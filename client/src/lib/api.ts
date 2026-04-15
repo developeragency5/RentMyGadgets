@@ -1,13 +1,49 @@
 import type { Category, Product } from "@shared/schema";
 
 const API_BASE = "/api";
+const BASE_PATH = import.meta.env.BASE_URL || "/";
+
+function fixImagePaths<T>(data: T): T {
+  if (BASE_PATH === "/") return data;
+  const prefix = BASE_PATH.replace(/\/$/, "");
+  const fixUrl = (url: string | null) => {
+    if (!url || url.startsWith("http") || url.startsWith(prefix)) return url;
+    if (url.startsWith("/")) return `${prefix}${url}`;
+    return url;
+  };
+  if (Array.isArray(data)) {
+    return data.map((item: any) => fixImagePaths(item)) as T;
+  }
+  if (data && typeof data === "object") {
+    const result = { ...data } as any;
+    if (result.imageUrl) result.imageUrl = fixUrl(result.imageUrl);
+    if (result.images && Array.isArray(result.images)) {
+      result.images = result.images.map((img: string) => fixUrl(img) || img);
+    }
+    return result;
+  }
+  return data;
+}
+
+async function fetchWithFallback<T>(apiUrl: string, staticUrl: string, transform?: (data: any) => T): Promise<T> {
+  try {
+    const response = await fetch(apiUrl);
+    if (response.ok) return response.json();
+  } catch {}
+  const staticRes = await fetch(staticUrl);
+  if (staticRes.ok) {
+    const data = await staticRes.json();
+    const result = transform ? transform(data) : data;
+    return fixImagePaths(result);
+  }
+  throw new Error(`Failed to fetch: ${apiUrl}`);
+}
 
 export async function fetchCategories(): Promise<Category[]> {
-  const response = await fetch(`${API_BASE}/categories`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch categories");
-  }
-  return response.json();
+  return fetchWithFallback<Category[]>(
+    `${API_BASE}/categories`,
+    `${BASE_PATH}data/categories.json`
+  );
 }
 
 export async function fetchProducts(params?: { categoryId?: string; featured?: boolean }): Promise<Product[]> {
@@ -20,27 +56,44 @@ export async function fetchProducts(params?: { categoryId?: string; featured?: b
   }
   
   const url = searchParams.toString() ? `${API_BASE}/products?${searchParams}` : `${API_BASE}/products`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Failed to fetch products");
-  }
-  return response.json();
+  return fetchWithFallback<Product[]>(
+    url,
+    `${BASE_PATH}data/products.json`,
+    (products) => {
+      let filtered = products;
+      if (params?.categoryId) {
+        filtered = filtered.filter((p: Product) => p.categoryId === params.categoryId);
+      }
+      if (params?.featured) {
+        filtered = filtered.filter((p: Product) => p.featured);
+      }
+      return filtered;
+    }
+  );
 }
 
 export async function fetchProduct(id: string): Promise<Product> {
-  const response = await fetch(`${API_BASE}/products/${id}`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch product");
-  }
-  return response.json();
+  return fetchWithFallback<Product>(
+    `${API_BASE}/products/${id}`,
+    `${BASE_PATH}data/products.json`,
+    (products) => {
+      const product = products.find((p: Product) => p.id === id);
+      if (!product) throw new Error("Product not found");
+      return product;
+    }
+  );
 }
 
 export async function fetchCategory(id: string): Promise<Category> {
-  const response = await fetch(`${API_BASE}/categories/${id}`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch category");
-  }
-  return response.json();
+  return fetchWithFallback<Category>(
+    `${API_BASE}/categories/${id}`,
+    `${BASE_PATH}data/categories.json`,
+    (categories) => {
+      const category = categories.find((c: Category) => c.id === id);
+      if (!category) throw new Error("Category not found");
+      return category;
+    }
+  );
 }
 
 export interface SearchSuggestion {
