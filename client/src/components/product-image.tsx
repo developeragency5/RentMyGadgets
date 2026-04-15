@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react';
 import { ImageOff } from 'lucide-react';
 
+const BASE_PATH = import.meta.env.BASE_URL || "/";
+
+export function resolveImageSrc(src: string | null | undefined): string | null | undefined {
+  if (!src) return src;
+  if (src.startsWith("http")) return src;
+  if (BASE_PATH !== "/" && src.startsWith("/") && !src.startsWith(BASE_PATH)) {
+    return `${BASE_PATH.replace(/\/$/, "")}${src}`;
+  }
+  return src;
+}
+
 interface ProductImageProps {
   src: string | null | undefined;
   alt: string;
@@ -51,7 +62,7 @@ export function ProductImage({
         </div>
       )}
       <img
-        src={src}
+        src={resolveImageSrc(src) || ""}
         alt={alt}
         className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
         onError={handleError}

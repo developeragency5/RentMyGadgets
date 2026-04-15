@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation } from "wouter";
+import { Switch, Route, useLocation, Router as WouterRouter } from "wouter";
 import { useEffect, Suspense, lazy } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -101,20 +101,24 @@ function Router() {
   );
 }
 
+const basePath = import.meta.env.BASE_URL !== "/" ? import.meta.env.BASE_URL.replace(/\/$/, "") : "";
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <CartProvider>
-          <CompareProvider>
-            <TooltipProvider>
-              <ScrollToTop />
-              <Toaster />
-              <Router />
-            </TooltipProvider>
-          </CompareProvider>
-        </CartProvider>
-      </AuthProvider>
+      <WouterRouter base={basePath}>
+        <AuthProvider>
+          <CartProvider>
+            <CompareProvider>
+              <TooltipProvider>
+                <ScrollToTop />
+                <Toaster />
+                <Router />
+              </TooltipProvider>
+            </CompareProvider>
+          </CartProvider>
+        </AuthProvider>
+      </WouterRouter>
     </QueryClientProvider>
   );
 }
