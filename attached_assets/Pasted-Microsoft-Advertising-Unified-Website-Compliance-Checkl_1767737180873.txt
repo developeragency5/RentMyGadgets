@@ -1,0 +1,163 @@
+Microsoft Advertising
+Unified Website Compliance Checklist (Priority-Based)
+Use this as your single source of truth for all current and future websites.
+
+🔴 CRITICAL (Must Fix First – Ad Approval Blockers)
+1. Business Identity & Transparency
+Goal: Clearly show who operates the business.
+Required
+Display the legal business name in:
+Footer
+Contact page
+About page
+Show a real physical address on the website.
+If the address is residential or non-storefront, add clarification:
+“Corporate mailing address” OR
+“Business warehouse and shipping address”
+Provide clear contact options:
+Email (mandatory)
+Phone (recommended)
+If no phone is available, add:
+“Phone support is currently unavailable. Please contact us via email.”
+
+
+2. Legal & Policy Pages (Mandatory for Ads)
+Goal: Policies must reflect real business operations.
+Pages required
+5. Privacy Policy
+6. Terms of Service
+7. Shipping Policy
+8. Return & Refund Policy
+9. Disclaimer
+Each policy must include
+10. Business name
+11. Contact email
+12. Country/state
+13. “Last updated” date
+Privacy Policy must disclose
+14. Data collection methods
+15. Cookie usage
+16. Analytics tools
+17. Advertising / tracking tools
+18. Email marketing practices and opt-out rights
+Shipping Policy must explain
+19. Processing times
+20. Shipping carriers
+21. Cutoff times
+22. Handling periods
+23. Peak-season delays
+
+3. Homepage Content Strength
+Goal: Avoid “thin” or placeholder site flags.
+Clear introduction explaining:
+What the site is
+What it offers
+Who it is for
+Minimum 300–500 words of original homepage content
+At least one section such as:
+Featured guides
+Popular topics
+Helpful resources
+
+4. Thin Page Fixes (High-Risk Area)
+Goal: Eliminate low-value or empty pages.
+Any short page must either:
+Be expanded to 250–300+ words, OR
+Be removed from:
+Menu
+Sitemap
+Internal links
+Applies to
+28. Category pages
+29. Tag pages
+30. Troubleshooting pages
+31. Resource hubs
+
+🟠 HIGH PRIORITY (Strongly Affects Trust & Manual Review)
+5. Product Accuracy & Brand Representation
+Goal: Avoid misleading brand claims.
+Remove unsupported phrases such as:
+❌ “genuine HP products” (unless reseller proof exists)
+For OEM products:
+Show Manufacturer Part Number (MPN) OR
+Display authorized reseller proof
+For compatible products, clearly state:
+“Compatible with [Brand/Model]”
+Do not imply official affiliation unless documented.
+
+6. HP Printer Product Page Rules (If Applicable)
+Apply only to printer products (not supplies).
+Add near specifications:
+“OEM Warranty Included”
+Auto-detect and display:
+Manufacturer Part Number (MPN): HP Product Number
+Place MPN:
+Under the model name or inside the specifications block
+Do NOT
+40. Add MPN or OEM warranty text to supplies
+41. Change any product images
+42. Use “genuine HP products” wording anywhere
+
+7. Return, Refund & RMA Policy Clarity
+Goal: Remove ambiguity.
+Replace unclear fee ranges (e.g., “15–25%”).
+Use:
+“Up to X%” OR clearly defined tier rules
+Ensure free-return claims appear consistently across:
+Ads
+Product pages
+Category pages
+Clearly define RMA shipping responsibility:
+Prepaid label OR customer-paid return
+
+8. About Us Page (Trust-Critical)
+Business name
+Purpose of the website
+What the business offers
+Operating location (city/state/country)
+Who operates the site (individual or team)
+Mission or goal
+
+🟡 MEDIUM PRIORITY (Improves Approval Stability & Account Health)
+9. Real Value Content Standards
+Goal: Avoid “thin affiliate” classification.
+Add original content such as:
+Buying guides
+Product comparisons
+How-to guides
+Expert advice
+Safety tips
+Target 300–600 words per core page
+Avoid copied manufacturer descriptions
+
+10. Product & Category Page Expansion
+Detailed descriptions
+Benefits and drawbacks
+Use cases
+Safety information
+Comparison notes
+Original images when possible
+Avoid one-paragraph listings
+
+11. Trust Signals & External Credibility
+Real payment processor badges (only if used)
+SSL / security badges
+Shipping carrier logos
+Verified reviews including:
+Date
+Name or initials
+Order reference pattern
+Optional
+67. EIN or state registration reference
+68. Real business photos
+69. Author or owner bios
+
+🟢 LOW PRIORITY (Required but Easy Wins)
+12. Newsletter & Email Transparency
+Add under signup forms:
+“By subscribing, you agree to receive promotional emails. You can unsubscribe anytime.”
+Ensure Privacy Policy reflects email marketing and unsubscribe rights
+
+13. Affiliate Disclosure (If Applicable)
+Place visible disclosure on relevant pages:
+“This website participates in affiliate programs. We may earn a commission from qualifying purchases at no extra cost to you.”

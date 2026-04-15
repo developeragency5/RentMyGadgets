@@ -1,0 +1,35 @@
+{
+  "brand": "Dell",
+  "model": "XPS 13 9310",
+  "category": "Desktops & Laptops",
+  "source": "https://www.dell.com/en-us/shop/dell-laptops/xps-13-laptop/spd/xps-13-9350-intel-laptop",
+  "downloadedAt": "2025-12-02T00:15:03.010Z",
+  "images": [
+    {
+      "view": "hero",
+      "alt": "Dell XPS 13 9310, hero view",
+      "caption": "Dell XPS 13 9310",
+      "source": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9350/media-gallery/platinum/notebook-xps-13-9350-t-oled-sl-gallery-1.psd",
+      "hasOverlay": true,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_xps13_9310_01.jpg",
+        "webp": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_xps13_9310_01.webp",
+        "medium": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_xps13_9310_01_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_xps13_9310_01_thumb.jpg"
+      }
+    },
+    {
+      "view": "front",
+      "alt": "Dell XPS 13 9310, front view",
+      "caption": "Dell XPS 13 9310",
+      "source": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9350/media-gallery/platinum/notebook-xps-13-9350-t-oled-sl-gallery-4.psd",
+      "hasOverlay": true,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_xps13_9310_02.jpg",
+        "webp": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_xps13_9310_02.webp",
+        "medium": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_xps13_9310_02_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_xps13_9310_02_thumb.jpg"
+      }
+    }
+  ]
+}

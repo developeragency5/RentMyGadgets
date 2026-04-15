@@ -1,0 +1,1045 @@
+Apple (16)
+category: Desktops & Laptops
+brand: Apple
+product_model: MacBook Air 13" M3
+preferred_image_views: ["hero","front","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_macbook_air_13_m3
+
+category: Desktops & Laptops
+brand: Apple
+product_model: MacBook Air 15"
+preferred_image_views: ["hero","front","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_macbook_air_15
+
+category: Desktops & Laptops
+brand: Apple
+product_model: MacBook Air 15" M2
+preferred_image_views: ["hero","front","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_macbook_air_15_m2
+
+category: Desktops & Laptops
+brand: Apple
+product_model: MacBook Air 15" M3
+preferred_image_views: ["hero","front","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_macbook_air_15_m3
+
+category: Desktops & Laptops
+brand: Apple
+product_model: MacBook Pro 13" M2
+preferred_image_views: ["hero","front","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_macbook_pro_13_m2
+
+category: Desktops & Laptops
+brand: Apple
+product_model: MacBook Pro 14" M3
+preferred_image_views: ["hero","front","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_macbook_pro_14_m3
+
+category: Desktops & Laptops
+brand: Apple
+product_model: MacBook Pro 14" M3 Max
+preferred_image_views: ["hero","front","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_macbook_pro_14_m3_max
+
+category: Desktops & Laptops
+brand: Apple
+product_model: MacBook Pro 16"
+preferred_image_views: ["hero","front","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_macbook_pro_16
+
+category: Desktops & Laptops
+brand: Apple
+product_model: iMac 24"
+preferred_image_views: ["hero","angle","side"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_imac_24
+
+category: Desktops & Laptops
+brand: Apple
+product_model: iMac 24" M3
+preferred_image_views: ["hero","angle","side"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_imac_24_m3
+
+category: Desktops & Laptops
+brand: Apple
+product_model: iMac 24" M3 (16GB)
+preferred_image_views: ["hero","angle","side"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_imac_24_m3_16gb
+
+category: Desktops & Laptops
+brand: Apple
+product_model: Mac Mini M2
+preferred_image_views: ["hero","top","ports"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_mac_mini_m2
+
+category: Desktops & Laptops
+brand: Apple
+product_model: Mac Mini M2 Pro
+preferred_image_views: ["hero","top","ports"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_mac_mini_m2_pro
+
+category: Desktops & Laptops
+brand: Apple
+product_model: Mac Studio M2 Max
+preferred_image_views: ["hero","top","ports"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_mac_studio_m2_max
+
+category: Desktops & Laptops
+brand: Apple
+product_model: Mac Studio M2 Ultra
+preferred_image_views: ["hero","top","ports"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_mac_studio_m2_ultra
+
+category: Desktops & Laptops
+brand: Apple
+product_model: Mac Pro M2 Ultra
+preferred_image_views: ["hero","rackview","ports"]
+output_dir: /static/images/Desktops & Laptops/Apple/
+filename_base: apple_mac_pro_m2_ultra
+
+HP (23)
+category: Desktops & Laptops
+brand: HP
+product_model: Spectre x360
+preferred_image_views: ["hero","360-view","keyboard"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_spectre_x360
+
+category: Desktops & Laptops
+brand: HP
+product_model: Spectre x360 16
+preferred_image_views: ["hero","360-view","keyboard"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_spectre_x360_16
+
+category: Desktops & Laptops
+brand: HP
+product_model: Envy 16
+preferred_image_views: ["hero","3-quarter","open"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_envy_16
+
+category: Desktops & Laptops
+brand: HP
+product_model: Pavilion Plus 14
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_pavilion_plus_14
+
+category: Desktops & Laptops
+brand: HP
+product_model: Victus 16
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_victus_16
+
+category: Desktops & Laptops
+brand: HP
+product_model: Omen 17
+preferred_image_views: ["hero","gaming-angle","back"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_omen_17
+
+category: Desktops & Laptops
+brand: HP
+product_model: Omen Transcend 16
+preferred_image_views: ["hero","3-quarter","keyboard"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_omen_transcend_16
+
+category: Desktops & Laptops
+brand: HP
+product_model: OMEN 25L
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_omen_25l
+
+category: Desktops & Laptops
+brand: HP
+product_model: OMEN 45L
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_omen_45l
+
+category: Desktops & Laptops
+brand: HP
+product_model: Dragonfly Pro
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_dragonfly_pro
+
+category: Desktops & Laptops
+brand: HP
+product_model: EliteBook 1040 G10
+preferred_image_views: ["hero","open","ports"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_elitebook_1040_g10
+
+category: Desktops & Laptops
+brand: HP
+product_model: ProBook 440 G10
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_probook_440_g10
+
+category: Desktops & Laptops
+brand: HP
+product_model: ProBook 450 G10
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_probook_450_g10
+
+category: Desktops & Laptops
+brand: HP
+product_model: ZBook Studio G10
+preferred_image_views: ["hero","open","rear"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_zbook_studio_g10
+
+category: Desktops & Laptops
+brand: HP
+product_model: Elite Tower 800 G9
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_elite_tower_800_g9
+
+category: Desktops & Laptops
+brand: HP
+product_model: EliteDesk 800 G9 Mini
+preferred_image_views: ["hero","top","ports"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_elitedesk_800_g9_mini
+
+category: Desktops & Laptops
+brand: HP
+product_model: ProDesk 400 G9 SFF
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_prodesk_400_g9_sff
+
+category: Desktops & Laptops
+brand: HP
+product_model: Z2 Tower G9
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_z2_tower_g9
+
+category: Desktops & Laptops
+brand: HP
+product_model: Z4 Workstation
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_z4_workstation
+
+category: Desktops & Laptops
+brand: HP
+product_model: Z4 G5 Workstation
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_z4_g5_workstation
+
+category: Desktops & Laptops
+brand: HP
+product_model: Z6 G5 Workstation
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_z6_g5_workstation
+
+category: Desktops & Laptops
+brand: HP
+product_model: Z8 Fury G5
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_z8_fury_g5
+
+category: Desktops & Laptops
+brand: HP
+product_model: Pavilion Gaming TG01
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/HP/
+filename_base: hp_pavilion_gaming_tg01
+
+Lenovo (17)
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkPad X1 Carbon
+preferred_image_views: ["hero","open","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkpad_x1_carbon
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkPad X1 Nano
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkpad_x1_nano
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkPad X1 Yoga
+preferred_image_views: ["hero","360-view","tablet-mode"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkpad_x1_yoga
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkPad E16
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkpad_e16
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkPad P16s
+preferred_image_views: ["hero","open","ports"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkpad_p16s
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkPad T16
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkpad_t16
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkBook 16p
+preferred_image_views: ["hero","open","angle"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkbook_16p
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: Yoga 9i
+preferred_image_views: ["hero","360-view","tablet-mode"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_yoga_9i
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: IdeaPad Gaming 3
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_ideapad_gaming_3
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: LOQ 15
+preferred_image_views: ["hero","3-quarter","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_loq_15
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: Legion Pro 7i
+preferred_image_views: ["hero","gaming-angle","back"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_legion_pro_7i
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkCentre M90q
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkcentre_m90q
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkCentre M90q Gen 3
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkcentre_m90q_gen3
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkCentre Neo 50s
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkcentre_neo_50s
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkStation P360 Ultra
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkstation_p360_ultra
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkStation P5
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkstation_p5
+
+category: Desktops & Laptops
+brand: Lenovo
+product_model: ThinkStation P620
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Lenovo/
+filename_base: lenovo_thinkstation_p620
+
+Dell (14)
+category: Desktops & Laptops
+brand: Dell
+product_model: XPS 13 Plus
+preferred_image_views: ["hero","open","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_xps_13_plus
+
+category: Desktops & Laptops
+brand: Dell
+product_model: XPS 15
+preferred_image_views: ["hero","open","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_xps_15
+
+category: Desktops & Laptops
+brand: Dell
+product_model: XPS 17
+preferred_image_views: ["hero","open","3-quarter"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_xps_17
+
+category: Desktops & Laptops
+brand: Dell
+product_model: XPS Desktop 8960
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_xps_desktop_8960
+
+category: Desktops & Laptops
+brand: Dell
+product_model: Inspiron 16 Plus
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_inspiron_16_plus
+
+category: Desktops & Laptops
+brand: Dell
+product_model: G16
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_g16
+
+category: Desktops & Laptops
+brand: Dell
+product_model: Vostro 16
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_vostro_16
+
+category: Desktops & Laptops
+brand: Dell
+product_model: Latitude 9440
+preferred_image_views: ["hero","open","ports"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_latitude_9440
+
+category: Desktops & Laptops
+brand: Dell
+product_model: Precision 5680
+preferred_image_views: ["hero","open","rear"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_precision_5680
+
+category: Desktops & Laptops
+brand: Dell
+product_model: Precision 5860 Tower
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_precision_5860_tower
+
+category: Desktops & Laptops
+brand: Dell
+product_model: Precision 7875 Tower
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_precision_7875_tower
+
+category: Desktops & Laptops
+brand: Dell
+product_model: Precision Workstation
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_precision_workstation
+
+category: Desktops & Laptops
+brand: Dell
+product_model: Optiplex 7000 Micro
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_optiplex_7000_micro
+
+category: Desktops & Laptops
+brand: Dell
+product_model: Optiplex 7090 Ultra
+preferred_image_views: ["hero","slot","ports"]
+output_dir: /static/images/Desktops & Laptops/Dell/
+filename_base: dell_optiplex_7090_ultra
+
+ASUS (14)
+category: Desktops & Laptops
+brand: ASUS
+product_model: ROG Zephyrus
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_rog_zephyrus
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: ROG Strix SCAR 18
+preferred_image_views: ["hero","gaming-angle","back"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_rog_strix_scar_18
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: ROG Flow Z13
+preferred_image_views: ["hero","tablet-mode","keyboard"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_rog_flow_z13
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: ROG Strix G15DK
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_rog_strix_g15dk
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: ROG Strix GT35
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_rog_strix_gt35
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: TUF Gaming A17
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_tuf_gaming_a17
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: TUF Gaming F15
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_tuf_gaming_f15
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: ZenBook Pro 16X
+preferred_image_views: ["hero","open","creative-angle"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_zenbook_pro_16x
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: Vivobook Pro 16X
+preferred_image_views: ["hero","open","angle"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_vivobook_pro_16x
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: ProArt Studiobook 16
+preferred_image_views: ["hero","open","angle"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_proart_studiobook_16
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: ProArt Station PD5
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_proart_station_pd5
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: ExpertBook B9
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_expertbook_b9
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: Chromebook Plus CX34
+preferred_image_views: ["hero","open","angle"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_chromebook_plus_cx34
+
+category: Desktops & Laptops
+brand: ASUS
+product_model: NUC 13 Pro
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/ASUS/
+filename_base: asus_nuc_13_pro
+
+Acer (12)
+category: Desktops & Laptops
+brand: Acer
+product_model: Swift 5
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_swift_5
+
+category: Desktops & Laptops
+brand: Acer
+product_model: Swift Edge 16
+preferred_image_views: ["hero","open","angle"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_swift_edge_16
+
+category: Desktops & Laptops
+brand: Acer
+product_model: Aspire 5
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_aspire_5
+
+category: Desktops & Laptops
+brand: Acer
+product_model: Aspire TC-1780
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_aspire_tc_1780
+
+category: Desktops & Laptops
+brand: Acer
+product_model: Nitro 5
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_nitro_5
+
+category: Desktops & Laptops
+brand: Acer
+product_model: Predator Helios 18
+preferred_image_views: ["hero","gaming-angle","back"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_predator_helios_18
+
+category: Desktops & Laptops
+brand: Acer
+product_model: Predator Triton 16
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_predator_triton_16
+
+category: Desktops & Laptops
+brand: Acer
+product_model: Predator Orion 5000
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_predator_orion_5000
+
+category: Desktops & Laptops
+brand: Acer
+product_model: Predator Orion 7000
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_predator_orion_7000
+
+category: Desktops & Laptops
+brand: Acer
+product_model: ConceptD 500
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_conceptd_500
+
+category: Desktops & Laptops
+brand: Acer
+product_model: ConceptD 7 Ezel
+preferred_image_views: ["hero","creative-angle","open"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_conceptd_7_ezel
+
+category: Desktops & Laptops
+brand: Acer
+product_model: TravelMate P4
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/Acer/
+filename_base: acer_travelmate_p4
+
+MSI (9)
+category: Desktops & Laptops
+brand: MSI
+product_model: Titan GT77 HX
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/MSI/
+filename_base: msi_titan_gt77_hx
+
+category: Desktops & Laptops
+brand: MSI
+product_model: Stealth 17 Studio
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/MSI/
+filename_base: msi_stealth_17_studio
+
+category: Desktops & Laptops
+brand: MSI
+product_model: Creator Z17 HX
+preferred_image_views: ["hero","open","creative-angle"]
+output_dir: /static/images/Desktops & Laptops/MSI/
+filename_base: msi_creator_z17_hx
+
+category: Desktops & Laptops
+brand: MSI
+product_model: Prestige 16 Studio
+preferred_image_views: ["hero","open","angle"]
+output_dir: /static/images/Desktops & Laptops/MSI/
+filename_base: msi_prestige_16_studio
+
+category: Desktops & Laptops
+brand: MSI
+product_model: Katana 15
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/MSI/
+filename_base: msi_katana_15
+
+category: Desktops & Laptops
+brand: MSI
+product_model: Cyborg 15
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/MSI/
+filename_base: msi_cyborg_15
+
+category: Desktops & Laptops
+brand: MSI
+product_model: MEG Trident X2
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/MSI/
+filename_base: msi_meg_trident_x2
+
+category: Desktops & Laptops
+brand: MSI
+product_model: MAG Infinite S3
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/MSI/
+filename_base: msi_mag_infinite_s3
+
+category: Desktops & Laptops
+brand: MSI
+product_model: Aegis ZS 5DS
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/MSI/
+filename_base: msi_aegis_zs_5ds
+
+Custom (5)
+category: Desktops & Laptops
+brand: Custom
+product_model: Gaming PC Starter
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/Custom/
+filename_base: custom_gaming_pc_starter
+
+category: Desktops & Laptops
+brand: Custom
+product_model: Gaming PC Pro
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/Custom/
+filename_base: custom_gaming_pc_pro
+
+category: Desktops & Laptops
+brand: Custom
+product_model: Gaming PC Elite
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/Custom/
+filename_base: custom_gaming_pc_elite
+
+category: Desktops & Laptops
+brand: Custom
+product_model: Gaming PC Ultimate
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/Custom/
+filename_base: custom_gaming_pc_ultimate
+
+category: Desktops & Laptops
+brand: Custom
+product_model: Custom Workstation
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/Custom/
+filename_base: custom_workstation
+
+Microsoft (4)
+category: Desktops & Laptops
+brand: Microsoft
+product_model: Surface Laptop 5
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/Microsoft/
+filename_base: microsoft_surface_laptop_5
+
+category: Desktops & Laptops
+brand: Microsoft
+product_model: Surface Laptop Studio 2
+preferred_image_views: ["hero","studio-mode","open"]
+output_dir: /static/images/Desktops & Laptops/Microsoft/
+filename_base: microsoft_surface_laptop_studio_2
+
+category: Desktops & Laptops
+brand: Microsoft
+product_model: Surface Pro 9
+preferred_image_views: ["hero","tablet-mode","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Microsoft/
+filename_base: microsoft_surface_pro_9
+
+category: Desktops & Laptops
+brand: Microsoft
+product_model: Surface Go 3
+preferred_image_views: ["hero","tablet-mode","side"]
+output_dir: /static/images/Desktops & Laptops/Microsoft/
+filename_base: microsoft_surface_go_3
+
+Razer (4)
+category: Desktops & Laptops
+brand: Razer
+product_model: Blade 14
+preferred_image_views: ["hero","open","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Razer/
+filename_base: razer_blade_14
+
+category: Desktops & Laptops
+brand: Razer
+product_model: Blade 15
+preferred_image_views: ["hero","open","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Razer/
+filename_base: razer_blade_15
+
+category: Desktops & Laptops
+brand: Razer
+product_model: Blade 16
+preferred_image_views: ["hero","open","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Razer/
+filename_base: razer_blade_16
+
+category: Desktops & Laptops
+brand: Razer
+product_model: Blade 18
+preferred_image_views: ["hero","open","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Razer/
+filename_base: razer_blade_18
+
+Alienware (4)
+category: Desktops & Laptops
+brand: Alienware
+product_model: x14 R2
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Alienware/
+filename_base: alienware_x14_r2
+
+category: Desktops & Laptops
+brand: Alienware
+product_model: x16
+preferred_image_views: ["hero","gaming-angle","back"]
+output_dir: /static/images/Desktops & Laptops/Alienware/
+filename_base: alienware_x16
+
+category: Desktops & Laptops
+brand: Alienware
+product_model: m18
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Alienware/
+filename_base: alienware_m18
+
+category: Desktops & Laptops
+brand: Alienware
+product_model: Aurora R16
+preferred_image_views: ["hero","front","i/o"]
+output_dir: /static/images/Desktops & Laptops/Alienware/
+filename_base: alienware_aurora_r16
+
+Intel (4)
+category: Desktops & Laptops
+brand: Intel
+product_model: NUC 12 Enthusiast
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Intel/
+filename_base: intel_nuc_12_enthusiast
+
+category: Desktops & Laptops
+brand: Intel
+product_model: NUC 13 Pro
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Intel/
+filename_base: intel_nuc_13_pro
+
+category: Desktops & Laptops
+brand: Intel
+product_model: NUC 13 Extreme
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Intel/
+filename_base: intel_nuc_13_extreme
+
+category: Desktops & Laptops
+brand: Intel
+product_model: NUC 13 Extreme (alt)
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Intel/
+filename_base: intel_nuc_13_extreme_alt
+
+LG (3)
+category: Desktops & Laptops
+brand: LG
+product_model: Gram 16 2-in-1
+preferred_image_views: ["hero","tablet-mode","open"]
+output_dir: /static/images/Desktops & Laptops/LG/
+filename_base: lg_gram_16_2in1
+
+category: Desktops & Laptops
+brand: LG
+product_model: Gram 17
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/LG/
+filename_base: lg_gram_17
+
+category: Desktops & Laptops
+brand: LG
+product_model: Gram SuperSlim
+preferred_image_views: ["hero","open","side"]
+output_dir: /static/images/Desktops & Laptops/LG/
+filename_base: lg_gram_superslim
+
+NZXT (3)
+category: Desktops & Laptops
+brand: NZXT
+product_model: Player One
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/NZXT/
+filename_base: nzxt_player_one
+
+category: Desktops & Laptops
+brand: NZXT
+product_model: Player Two
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/NZXT/
+filename_base: nzxt_player_two
+
+category: Desktops & Laptops
+brand: NZXT
+product_model: Player Three
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/NZXT/
+filename_base: nzxt_player_three
+
+Samsung (2)
+category: Desktops & Laptops
+brand: Samsung
+product_model: Galaxy Book3 Pro 360
+preferred_image_views: ["hero","360-view","tablet-mode"]
+output_dir: /static/images/Desktops & Laptops/Samsung/
+filename_base: samsung_galaxy_book3_pro_360
+
+category: Desktops & Laptops
+brand: Samsung
+product_model: Galaxy Book3 Ultra
+preferred_image_views: ["hero","open","angle"]
+output_dir: /static/images/Desktops & Laptops/Samsung/
+filename_base: samsung_galaxy_book3_ultra
+
+Framework (2)
+category: Desktops & Laptops
+brand: Framework
+product_model: Laptop 13
+preferred_image_views: ["hero","open","modular"]
+output_dir: /static/images/Desktops & Laptops/Framework/
+filename_base: framework_laptop_13
+
+category: Desktops & Laptops
+brand: Framework
+product_model: Laptop 16
+preferred_image_views: ["hero","open","modular"]
+output_dir: /static/images/Desktops & Laptops/Framework/
+filename_base: framework_laptop_16
+
+Corsair (2)
+category: Desktops & Laptops
+brand: Corsair
+product_model: One i500
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/Corsair/
+filename_base: corsair_one_i500
+
+category: Desktops & Laptops
+brand: Corsair
+product_model: Vengeance i7500
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/Corsair/
+filename_base: corsair_vengeance_i7500
+
+Origin (2)
+category: Desktops & Laptops
+brand: Origin
+product_model: Chronos
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/Origin/
+filename_base: origin_chronos
+
+category: Desktops & Laptops
+brand: Origin
+product_model: Big O
+preferred_image_views: ["hero","front","inside"]
+output_dir: /static/images/Desktops & Laptops/Origin/
+filename_base: origin_big_o
+
+Huawei (2)
+category: Desktops & Laptops
+brand: Huawei
+product_model: MateBook X Pro 2023
+preferred_image_views: ["hero","open","angle"]
+output_dir: /static/images/Desktops & Laptops/Huawei/
+filename_base: huawei_matebook_x_pro_2023
+
+category: Desktops & Laptops
+brand: Huawei
+product_model: MateBook 16s
+preferred_image_views: ["hero","open","angle"]
+output_dir: /static/images/Desktops & Laptops/Huawei/
+filename_base: huawei_matebook_16s
+
+Gigabyte (2)
+category: Desktops & Laptops
+brand: Gigabyte
+product_model: AERO 16
+preferred_image_views: ["hero","open","creative-angle"]
+output_dir: /static/images/Desktops & Laptops/Gigabyte/
+filename_base: gigabyte_aero_16
+
+category: Desktops & Laptops
+brand: Gigabyte
+product_model: AORUS 17X
+preferred_image_views: ["hero","gaming-angle","keyboard"]
+output_dir: /static/images/Desktops & Laptops/Gigabyte/
+filename_base: gigabyte_aorus_17x
+
+Other / Remaining brands (14 brands — one prompt each)
+
+For the remaining 14 brands (ASRock, Beelink, BOSGAME, CyberPowerPC, Fujitsu, GMKtec, Geekom, Google, iBuyPower, Maingear, Minisforum, Panasonic, Toshiba, VAIO) use this generic prompt and replace {brand} and {product_model} with the model names you listed in your catalog. Example for ASRock and Beelink below:
+
+category: Desktops & Laptops
+brand: ASRock
+product_model: [insert ASRock model name from your list]
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/ASRock/
+filename_base: asrock_{sanitized_model_name}
+
+category: Desktops & Laptops
+brand: Beelink
+product_model: [insert Beelink model name from your list]
+preferred_image_views: ["hero","front","ports"]
+output_dir: /static/images/Desktops & Laptops/Beelink/
+filename_base: beelink_{sanitized_model_name}

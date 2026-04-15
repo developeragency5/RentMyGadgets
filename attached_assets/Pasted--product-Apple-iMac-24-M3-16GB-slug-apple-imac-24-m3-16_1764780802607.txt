@@ -1,0 +1,173 @@
+[
+  {
+    "product": "Apple iMac 24\" M3 (16GB)",
+    "slug": "apple-imac-24-m3-16gb",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/imac-24-m3-hero-2023",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/imac-24-m3-side-2023",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/imac-24-m3-back-2023"
+    ]
+  },
+  {
+    "product": "Apple Mac Mini M2",
+    "slug": "apple-mac-mini-m2",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-2023-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-2023-back",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-2023-ports"
+    ]
+  },
+  {
+    "product": "Apple Mac Mini M2 Pro",
+    "slug": "apple-mac-mini-m2-pro",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-pro-2023",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-pro-ports",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-pro-back"
+    ]
+  },
+  {
+    "product": "Apple Mac Pro M2 Ultra",
+    "slug": "apple-mac-pro-m2-ultra",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-pro-2023-tower",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-pro-2023-side",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-pro-2023-back"
+    ]
+  },
+  {
+    "product": "Apple Mac Studio M2 Max",
+    "slug": "apple-mac-studio-m2-max",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-max-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-max-side",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-max-ports"
+    ]
+  },
+  {
+    "product": "Apple Mac Studio M2 Ultra",
+    "slug": "apple-mac-studio-m2-ultra",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-ultra-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-ultra-back",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-ultra-side"
+    ]
+  },
+  {
+    "product": "MacBook Air 13\" M3",
+    "slug": "macbook-air-13-m3",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-13-m3-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-13-m3-side",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-13-m3-open"
+    ]
+  },
+  {
+    "product": "MacBook Air 15\"",
+    "slug": "macbook-air-15",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-side",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-open"
+    ]
+  },
+  {
+    "product": "MacBook Air 15\" M2",
+    "slug": "macbook-air-15-m2",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m2-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m2-side",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m2-open"
+    ]
+  },
+  {
+    "product": "MacBook Air 15\" M3",
+    "slug": "macbook-air-15-m3",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m3-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m3-open",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m3-side"
+    ]
+  },
+  {
+    "product": "MacBook Pro 13\" M2",
+    "slug": "macbook-pro-13-m2",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-13-m2-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-13-m2-side",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-13-m2-open"
+    ]
+  },
+  {
+    "product": "MacBook Pro 14\" M3",
+    "slug": "macbook-pro-14-m3",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-side",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-open"
+    ]
+  },
+  {
+    "product": "MacBook Pro 14\" M3 Max",
+    "slug": "macbook-pro-14-m3-max",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-max-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-max-open",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-max-side"
+    ]
+  },
+  {
+    "product": "MacBook Pro 16\"",
+    "slug": "macbook-pro-16",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-16-hero",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-16-side",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-16-open"
+    ]
+  },
+  {
+    "product": "ASUS Chromebook Plus CX34",
+    "slug": "asus-chromebook-plus-cx34",
+    "images": [
+      "https://m.media-amazon.com/images/I/71hVQCO+8hL._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/f2457e16-cx34-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/cx34-angled.png"
+    ]
+  },
+  {
+    "product": "ASUS ExpertBook B9",
+    "slug": "asus-expertbook-b9",
+    "images": [
+      "https://m.media-amazon.com/images/I/61xX6PvxI6L._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/expertbook-b9-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/expertbook-b9-side.png"
+    ]
+  },
+  {
+    "product": "ASUS NUC 13 Pro",
+    "slug": "asus-nuc-13-pro",
+    "images": [
+      "https://m.media-amazon.com/images/I/61ol16VON+L._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/nuc13-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/nuc13-back.png"
+    ]
+  },
+  {
+    "product": "ASUS ProArt Station PD5",
+    "slug": "asus-proart-station-pd5",
+    "images": [
+      "https://m.media-amazon.com/images/I/71P8nB4ZLzL._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/proart-pd5-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/proart-pd5-side.png"
+    ]
+  },
+  {
+    "product": "ASUS ProArt Studiobook 16",
+    "slug": "asus-proart-studiobook-16",
+    "images": [
+      "https://m.media-amazon.com/images/I/7161C6e6WwL._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/studiobook-16-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/studiobook-16-angled.png"
+    ]
+  }
+]

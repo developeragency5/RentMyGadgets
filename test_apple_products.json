@@ -1,0 +1,30 @@
+[
+  {
+    "productId": "test-1",
+    "name": "MacBook Air 15\"",
+    "brand": "Apple",
+    "sku": "MLY33LL/A",
+    "brandUrl": "https://www.apple.com/macbook-air-15/"
+  },
+  {
+    "productId": "test-2",
+    "name": "MacBook Pro 16\"",
+    "brand": "Apple",
+    "sku": "MK193LL/A",
+    "brandUrl": "https://www.apple.com/macbook-pro-16/"
+  },
+  {
+    "productId": "test-3",
+    "name": "iMac 24\"",
+    "brand": "Apple",
+    "sku": "MHK23LL/A",
+    "brandUrl": "https://www.apple.com/imac-24/"
+  },
+  {
+    "productId": "test-4",
+    "name": "Mac Mini",
+    "brand": "Apple",
+    "sku": "MGN63LL/A",
+    "brandUrl": "https://www.apple.com/mac-mini/"
+  }
+]

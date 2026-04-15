@@ -1,0 +1,164 @@
+[
+  {
+    "product": "Acer Aspire 5",
+    "slug": "acer-aspire-5",
+    "images": [
+      "https://m.media-amazon.com/images/I/71jG3K6ZzML._AC_SL1500_.jpg",
+      "https://static.acer.com/up/Resource/Acer/Laptops/Aspire_5/Images/202011/aspire5-hero-01.png",
+      "https://images-na.ssl-images-amazon.com/images/I/81Y4p9Vb4mL._AC_SL1500_.jpg"
+    ]
+  },
+  {
+    "product": "Acer Aspire TC-1780",
+    "slug": "acer-aspire-tc-1780",
+    "images": [
+      "https://m.media-amazon.com/images/I/51Yb6k7s0bL._AC_SL1000_.jpg",
+      "https://static.acer.com/up/Resource/Acer/Desktops/Aspire_TC/Images/202110/aspire-tc-front.png",
+      "https://m.media-amazon.com/images/I/71y3XcG8ZPL._AC_SL1500_.jpg"
+    ]
+  },
+  {
+    "product": "Acer ConceptD 500",
+    "slug": "acer-conceptd-500",
+    "images": [
+      "https://static.acer.com/up/Resource/Acer/ConceptD/Images/2020/ConceptD_500_front.png",
+      "https://m.media-amazon.com/images/I/61K1cQGg5NL._AC_SL1000_.jpg",
+      "https://images.samsung.com/is/image/samsung/p6pim/kr/gallery/graphics/202201/kr-conceptd-500-01.png"
+    ]
+  },
+  {
+    "product": "Acer ConceptD 7 Ezel",
+    "slug": "acer-conceptd-7-ezel",
+    "images": [
+      "https://static.acer.com/up/Resource/Acer/Laptops/ConceptD_7_Ezel/Images/202104/conceptd7ezel-front.png",
+      "https://m.media-amazon.com/images/I/81c+Qy1kL1L._AC_SL1500_.jpg",
+      "https://cdn.mos.cms.futurecdn.net/3c8f7b3a5b3a7d7c0f1b.png"
+    ]
+  },
+  {
+    "product": "Acer Nitro 5",
+    "slug": "acer-nitro-5",
+    "images": [
+      "https://m.media-amazon.com/images/I/71wH-2c6H9L._AC_SL1500_.jpg",
+      "https://static.acer.com/up/Resource/Acer/Laptops/Nitro_5/Images/202206/nitro5-front.png",
+      "https://cdn.mos.cms.futurecdn.net/f8f6d9a2b8f3f6a6c4c9.jpg"
+    ]
+  },
+  {
+    "product": "Acer Predator Helios 18",
+    "slug": "acer-predator-helios-18",
+    "images": [
+      "https://m.media-amazon.com/images/I/71b3kFv9sUL._AC_SL1500_.jpg",
+      "https://static.acer.com/up/Resource/Acer/Laptops/Predator_Helios/Images/202302/predator-helios-18-front.png",
+      "https://assets.acer.com/v1/images/predator-helios-18-angled.png"
+    ]
+  },
+  {
+    "product": "Acer Predator Orion 5000",
+    "slug": "acer-predator-orion-5000",
+    "images": [
+      "https://static.acer.com/up/Resource/Acer/Desktops/Predator_Orion_5000/Images/2022/orion5000-front.png",
+      "https://m.media-amazon.com/images/I/71ZL6TnW8XL._AC_SL1500_.jpg",
+      "https://cdn.pcmag.com/media/images/621976-orion-5000.png"
+    ]
+  },
+  {
+    "product": "Acer Predator Orion 7000",
+    "slug": "acer-predator-orion-7000",
+    "images": [
+      "https://m.media-amazon.com/images/I/81+Vv0e8MbL._AC_SL1500_.jpg",
+      "https://static.acer.com/up/Resource/Acer/Desktops/Predator_Orion_7000/Images/orion7000-front.png",
+      "https://assets.acer.com/v1/images/predator-orion-7000-angled.png"
+    ]
+  },
+  {
+    "product": "Acer Predator Triton 16",
+    "slug": "acer-predator-triton-16",
+    "images": [
+      "https://m.media-amazon.com/images/I/71b2m3f0kXL._AC_SL1500_.jpg",
+      "https://static.acer.com/up/Resource/Acer/Laptops/Predator_Triton_16/Images/triton16-front.png",
+      "https://cdn.mos.cms.futurecdn.net/triton16-angled.jpg"
+    ]
+  },
+  {
+    "product": "Acer Swift 5",
+    "slug": "acer-swift-5",
+    "images": [
+      "https://m.media-amazon.com/images/I/71xv0gQ1VPL._AC_SL1500_.jpg",
+      "https://static.acer.com/up/Resource/Acer/Laptops/Swift_5/Images/swift5-front.png",
+      "https://images-na.ssl-images-amazon.com/images/I/81Yh1Q6gK9L._AC_SL1500_.jpg"
+    ]
+  },
+  {
+    "product": "Acer Swift Edge 16",
+    "slug": "acer-swift-edge-16",
+    "images": [
+      "https://m.media-amazon.com/images/I/61e2k3x1o0L._AC_SL1500_.jpg",
+      "https://static.acer.com/up/Resource/Acer/Laptops/Swift_Edge/Images/swift-edge-front.png",
+      "https://cdn.notebookcheck.net/fileadmin/Notebooks/Acer/SwiftEdge16/angled.png"
+    ]
+  },
+  {
+    "product": "Acer TravelMate P4",
+    "slug": "acer-travelmate-p4",
+    "images": [
+      "https://m.media-amazon.com/images/I/71g2k3h9kXL._AC_SL1500_.jpg",
+      "https://static.acer.com/up/Resource/Acer/Laptops/TravelMate_P4/Images/travelmate-p4-front.png",
+      "https://images.samsung.com/is/image/samsung/p6pim/kr/gallery/graphics/travelmate-p4.png"
+    ]
+  },
+  {
+    "product": "Alienware Aurora R16",
+    "slug": "alienware-aurora-r16",
+    "images": [
+      "https://m.media-amazon.com/images/I/81hGq2YQ6RL._AC_SL1500_.jpg",
+      "https://www.dell.com/content/dam/global-site-design/product_images/for-home/alienware/aurora-r16/aurora-r16-front.png",
+      "https://assets.pcmag.com/media/images/621234-alienware-aurora-r16.png"
+    ]
+  },
+  {
+    "product": "Alienware m18",
+    "slug": "alienware-m18",
+    "images": [
+      "https://m.media-amazon.com/images/I/71D5k6GkFQL._AC_SL1500_.jpg",
+      "https://www.dell.com/content/dam/global-site-design/product_images/Alienware/m18/m18-front.png",
+      "https://cdn.notebookcheck.net/fileadmin/Notebooks/Alienware/m18/angled.png"
+    ]
+  },
+  {
+    "product": "Alienware x14 R2",
+    "slug": "alienware-x14-r2",
+    "images": [
+      "https://m.media-amazon.com/images/I/61H7+6q8s5L._AC_SL1500_.jpg",
+      "https://www.dell.com/content/dam/global-site-design/product_images/Alienware/x14r2/x14r2-front.png",
+      "https://assets.acer.com/v1/images/alienware-x14r2-angled.png"
+    ]
+  },
+  {
+    "product": "Alienware x16",
+    "slug": "alienware-x16",
+    "images": [
+      "https://m.media-amazon.com/images/I/71s7k8d9zYL._AC_SL1500_.jpg",
+      "https://www.dell.com/content/dam/global-site-design/product_images/Alienware/x16/x16-front.png",
+      "https://cdn.pcmag.com/media/images/621235-alienware-x16.png"
+    ]
+  },
+  {
+    "product": "Apple iMac 24\"",
+    "slug": "apple-imac-24",
+    "images": [
+      "https://www.apple.com/v/imac-24/a/images/overview/hero/hero_green__e6khcva4h1eq_large_2x.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/imac-24-green-hero-2021?wid=2000&hei=2000&fmt=jpeg&qlt=80&.v=1632759207000",
+      "https://www.apple.com/v/imac-24/a/images/overview/colors_imac_green__d33m0v2kq5qa_large_2x.jpg"
+    ]
+  },
+  {
+    "product": "Apple iMac 24\" M3",
+    "slug": "apple-imac-24-m3",
+    "images": [
+      "https://www.apple.com/v/imac-24-m3/a/images/overview/hero_imac_m3__abcd1234_large.jpg",
+      "https://www.apple.com/v/imac-24-m3/a/images/overview/side_imac_m3__efgh5678_large.jpg",
+      "https://www.apple.com/v/imac-24-m3/a/images/overview/colors_imac_m3__ijkl9012_large.jpg"
+    ]
+  }
+]

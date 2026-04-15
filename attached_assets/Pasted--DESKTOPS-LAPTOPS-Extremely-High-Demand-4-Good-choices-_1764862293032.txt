@@ -1,0 +1,140 @@
+🖥️ DESKTOPS & LAPTOPS — Extremely High Demand
+4
+✔️ Good choices — all are high rental demand:
+
+MacBook Air (13” & 15”) — top rentals for students, freelancers, events
+
+MacBook Pro 14/16 M3 — top for video editing, photography
+
+iMac 24 — medium demand, mostly design/office
+
+Mac Mini M2 — small business & developers
+
+Dell XPS 15/17 — Windows creative & office users
+
+ThinkPad X1 Carbon — corporate rentals (very strong)
+
+❌ Issues
+
+Duplicate item:
+❌ MacBook Air 15"
+❌ MacBook Air 15" M3
+(Keep only M3, remove old one unless you want lower-price category)
+
+⭐ Recommended Additions (U.S. Demand)
+
+Surface Laptop 6 / Surface Pro 10 – very high corporate demand
+
+Gaming laptops (RTX 4070/4080) – required by many renters
+
+Mac Studio (M2 Max/Ultra) – for heavy video/3D users
+
+📷 CAMERAS & GEAR — Excellent List
+4
+✔️ These are exactly what U.S. creators rent the most:
+
+Canon R5
+
+Canon C70
+
+RF 24–70 f/2.8
+
+DJI Mavic 3 Pro
+
+DJI Ronin 4D
+
+Nikon Z8
+
+Sony A7 IV
+
+Sony A9 III
+
+Sony FX3
+
+Sony 24–70 GM II
+
+⭐ Recommended Additions
+
+If you want to win the photography segment, add:
+
+Canon EOS R6 Mark II (massive demand, cheaper option)
+
+Sony A7C II (vloggers love it)
+
+DJI Mini 4 Pro (high demand because of low price & no FAA restrictions)
+
+Lighting gear (Aputure 300D/600D — highly rented)
+
+🎧 HEADPHONES — All Good, High-Demand Models
+✔️ Perfect selection:
+
+AirPods Max & Pro 2
+
+Bose QC Ultra
+
+Sennheiser HD800S & Momentum
+
+Sony XM5 / WF-1000XM5
+
+⭐ Optional: Add
+
+Beats Studio Pro (U.S. pop-culture demand is high)
+
+🖨️ PRINTERS & SCANNERS — Good but missing a key model
+✔️ Good mix of:
+
+Office color laser
+
+Wide-format printer
+
+High-end photo printers
+
+⭐ Missing (important for U.S. SMB rentals)
+
+HP LaserJet Pro / Color LaserJet series
+(Most common office rentals in the USA)
+
+📶 ROUTERS — Good selection, but consider adding 1–2 essentials
+4
+✔️ Good coverage of Wi-Fi 6E and Wi-Fi 7
+⭐ Missing (high rental use cases)
+
+Ubiquiti UniFi Dream Machine SE / UDR
+(Most common for SMB temporary network setups)
+
+Ubiquiti UniFi Access Points (U6/ U7)
+Events & offices LOVE these for temporary deployment.
+
+🔥 FINAL RECOMMENDATIONS (Action List)
+Remove:
+
+Duplicate MacBook Air 15" — keep only the M3.
+
+Add (high impact):
+Laptops / Desktops
+
+Surface Laptop 6 / Surface Pro 10
+
+1 high-end gaming laptop (RTX 4080)
+
+Mac Studio (M2 Max/Ultra)
+
+Cameras
+
+DJI Mini 4 Pro
+
+Canon R6 Mark II
+
+Sony A7C II
+
+Aputure lights (300D/600D)
+
+Printers
+
+HP LaserJet Pro 4301 or 4101
+
+Routers
+
+Ubiquiti Dream Machine SE
+
+Ubiquiti UniFi U6/U7 Access Points

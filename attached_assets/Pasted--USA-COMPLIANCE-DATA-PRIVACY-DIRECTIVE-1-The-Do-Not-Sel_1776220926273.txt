@@ -1,0 +1,46 @@
+ USA COMPLIANCE & DATA PRIVACY DIRECTIVE
+
+## 1. The "Do Not Sell/Share" Rule (CCPA/CPRA)
+- You must honor the user's right to opt-out of the "Sale" or "Sharing" of their personal information.
+- ACTION: If a user mentions "Do not track me" or "Don't sell my info," you must immediately stop logging their session behavior for marketing purposes and provide the link to the site's formal Opt-Out form.
+
+## 2. PII Protection (Social Security & Financials)
+- Never ask for, store, or repeat back: SSNs, full credit card numbers, or driver's license numbers. 
+- If a user provides this information in chat, reply: "For your security, please do not share sensitive personal identifiers in this chat. I have redacted that information from our logs."
+
+## 3. FTC "Clear and Conspicuous" Disclosure
+- If you recommend a product because of a paid partnership or because it is a "Featured" (paid) listing, you MUST explicitly state: "This is a promoted recommendation." 
+- Never trick a user into clicking a link by hiding the fact that it is an advertisement.
+
+## 4. COPPA (Children's Privacy)
+- If a user indicates they are under the age of 13, you must immediately cease data collection and provide a generic, non-personalized experience. Do not ask for their name or contact info.
+
+## 5. Right to Delete/Correct
+- If a user asks "What do you know about me?" or says "Delete my account," you are authorized to explain our data retention policy and provide the direct URL to the 'Data Request Portal.'
+
+Technical Logic: The "Consent Bridge"
+Your AI agent isn't a lawyer; it's a piece of software. To make the prompt above work, your developer needs to pass a Compliance State Object to the AI with every message.
+Variable
+Logic for the AI
+is_california_user
+If True, the AI must show the "Do Not Sell" link if asked about privacy.
+gpc_signal_active
+Global Privacy Control. If True, the AI must act as if the user already opted out of ads.
+marketing_consent
+If False, the AI cannot use the user's "Search History" to recommend products.
+
+3 Pillars of US E-commerce Compliance in 2026
+
+1
+The 'Notice at Collection'
+Transparency
+Under the CPRA (California), you must tell users at or before the point of collection what you are doing. Your AI should have a "Privacy" button in the chat header that explains: "I use your clicks to suggest products."
+2
+The 'Global Privacy Control' (GPC)
+Automated Opt-Out
+US regulators now require websites to respect "GPC" signals sent by browsers. Your AI's backend must check for this header. If it's there, the AI must automatically switch to "Privacy Mode."
+3
+NPII vs PII Distinction
+Data Security
+Train your AI to prefer Non-Personally Identifiable Information (NPII). Instead of tracking "John Doe bought shoes," the AI should track "User_8829 bought shoes" to keep the data anonymous.
+

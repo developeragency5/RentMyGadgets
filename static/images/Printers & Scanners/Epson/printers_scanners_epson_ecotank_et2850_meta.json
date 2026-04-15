@@ -1,0 +1,48 @@
+{
+  "brand": "Epson",
+  "model": "EcoTank ET-2850",
+  "category": "Printers & Scanners",
+  "source": "https://epson.com/For-Work/Printers/Inkjet/EcoTank-ET-2850-Wireless-Color-All-in-One-Cartridge-Free-Supertank-Printer-with-Scan%2C-Copy-and-Auto-2-sided-Printing/p/C11CJ63201",
+  "downloadedAt": "2025-12-02T15:43:43.251Z",
+  "images": [
+    {
+      "view": "hero",
+      "alt": "Epson EcoTank ET-2850, hero view",
+      "caption": "Epson EcoTank ET-2850",
+      "source": "https://mediaserver.goepson.com/ImConvServlet/imconv/1ae80106e441774e1fac9165dcac7159299a9cd2/original?use=productpictures&hybrisId=B2C&assetDescr=ET-4950_wht_headon-output_690x460%402x",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_01.jpg",
+        "webp": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_01.webp",
+        "medium": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_01_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_01_thumb.jpg"
+      }
+    },
+    {
+      "view": "front",
+      "alt": "Epson EcoTank ET-2850, front view",
+      "caption": "Epson EcoTank ET-2850",
+      "source": "https://mediaserver.goepson.com/ImConvServlet/imconv/57ee4b7584f843739e46d3da67a92b2e4837fd0c/original?use=productpictures&hybrisId=B2C&assetDescr=ink502-125-126_690x460",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_02.jpg",
+        "webp": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_02.webp",
+        "medium": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_02_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_02_thumb.jpg"
+      }
+    },
+    {
+      "view": "side",
+      "alt": "Epson EcoTank ET-2850, side view",
+      "caption": "Epson EcoTank ET-2850",
+      "source": "https://mediaserver.goepson.com/ImConvServlet/imconv/aedec5eb5dc3f9a993860ff495fc31ceaa1ec20c/original?use=productpictures&hybrisId=B2C&assetDescr=LS11000_headon_690x460",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_03.jpg",
+        "webp": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_03.webp",
+        "medium": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_03_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Printers & Scanners/Epson/printers_scanners_epson_ecotank_et2850_03_thumb.jpg"
+      }
+    }
+  ]
+}

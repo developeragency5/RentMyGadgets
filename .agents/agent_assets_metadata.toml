@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "-GmwYZvLl5ftP8wlKrVmb"
+uri = "file://image_fix_report.md"
+type = "text"
+title = "Product Image Fix Summary Report"

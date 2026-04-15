@@ -1,0 +1,191 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Brand Colors - Orange & White */
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(0 0% 12%);
+
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(0 0% 12%);
+
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(0 0% 12%);
+
+  --color-primary: hsl(32 95% 52%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  --color-secondary: hsl(0 0% 96%);
+  --color-secondary-foreground: hsl(0 0% 12%);
+
+  --color-muted: hsl(0 0% 96%);
+  --color-muted-foreground: hsl(0 0% 45%);
+
+  --color-accent: hsl(38 92% 50%);
+  --color-accent-foreground: hsl(0 0% 100%);
+
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  --color-border: hsl(0 0% 90%);
+  --color-input: hsl(0 0% 90%);
+  --color-ring: hsl(32 95% 52%);
+
+  --color-chart-1: hsl(32 95% 52%);
+  --color-chart-2: hsl(45 93% 47%);
+  --color-chart-3: hsl(0 0% 24%);
+  --color-chart-4: hsl(38 92% 50%);
+  --color-chart-5: hsl(27 87% 60%);
+
+  --color-sidebar: hsl(0 0% 98%);
+  --color-sidebar-foreground: hsl(0 0% 26%);
+  --color-sidebar-primary: hsl(0 0% 10%);
+  --color-sidebar-primary-foreground: hsl(0 0% 98%);
+  --color-sidebar-accent: hsl(0 0% 96%);
+  --color-sidebar-accent-foreground: hsl(0 0% 10%);
+  --color-sidebar-border: hsl(0 0% 91%);
+  --color-sidebar-ring: hsl(217 91% 60%);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+
+  --radius: 0.75rem;
+}
+
+/* Apple-like Base Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  body {
+    @apply font-sans bg-background text-foreground;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 24;
+    letter-spacing: -0.011em;
+    line-height: 1.47059;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl font-semibold tracking-tight;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold;
+    letter-spacing: -0.02em;
+    line-height: 1.14;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl font-semibold;
+    letter-spacing: -0.018em;
+    line-height: 1.19;
+  }
+  
+  h5 {
+    @apply text-lg md:text-xl font-semibold;
+    letter-spacing: -0.016em;
+    line-height: 1.21;
+  }
+  
+  h6 {
+    @apply text-base md:text-lg font-semibold;
+    letter-spacing: -0.014em;
+    line-height: 1.24;
+  }
+  
+  p {
+    line-height: 1.58824;
+    letter-spacing: -0.003em;
+  }
+  
+  a {
+    @apply transition-colors duration-200;
+  }
+  
+  button {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  
+  input, textarea, select {
+    font-feature-settings: 'cv11', 'ss01';
+  }
+}
+
+/* Apple-like utility classes */
+@layer utilities {
+  .text-headline {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+  }
+  
+  .text-subheadline {
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.21;
+  }
+  
+  .text-body {
+    font-weight: 400;
+    letter-spacing: -0.011em;
+    line-height: 1.47;
+  }
+  
+  .text-caption {
+    font-weight: 400;
+    letter-spacing: -0.006em;
+    line-height: 1.38;
+  }
+}
+
+/* Micro-interaction animations */
+@keyframes cart-shake {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-10deg); }
+  40% { transform: rotate(10deg); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(8deg); }
+}
+
+.animate-cart-shake {
+  animation: cart-shake 0.35s ease-in-out;
+}
+
+/* Smooth transitions for interactive elements */
+@layer base {
+  .card, [class*="rounded-xl"], [class*="rounded-2xl"], [class*="rounded-3xl"] {
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+  }
+  
+  input, textarea, select {
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: hsl(32 95% 52%);
+    box-shadow: 0 0 0 3px hsl(32 95% 52% / 0.1);
+  }
+}

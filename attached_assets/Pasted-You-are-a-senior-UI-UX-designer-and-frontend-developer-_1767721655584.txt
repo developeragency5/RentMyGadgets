@@ -1,0 +1,63 @@
+You are a senior UI/UX designer and frontend developer.
+
+Redesign and refactor the blog/article page layout to improve readability, spacing, and visual hierarchy.
+
+Current issues:
+- Article content is too narrow and cramped
+- Paragraphs look dense and unstructured
+- Poor line height and paragraph spacing
+- Headings and body text lack hierarchy
+- Page feels hard to scan and uncomfortable to read
+
+Goal:
+Create a clean, modern, professional blog reading experience similar to Medium, HubSpot, or SaaS blogs.
+
+Requirements:
+
+1. Article Layout
+- Center the article content
+- Set max-width between 720px–840px
+- Add generous white space on left and right
+- Keep content visually balanced on large screens
+
+2. Typography
+- Use a modern, readable font (Inter, Open Sans, Roboto, or system-ui)
+- Body text size: 16–18px
+- Line-height: 1.6–1.8
+- Paragraph spacing: margin-bottom 1.25–1.5em
+- Improve letter spacing slightly for readability
+
+3. Content Hierarchy
+- Clearly style:
+  - Article title
+  - Author, date, read time
+  - Headings (h2, h3)
+  - Paragraph text
+- Add sufficient spacing before and after headings
+- Ensure headings stand out without being oversized
+
+4. Article Content Formatting
+- Break long paragraphs into smaller readable blocks
+- Improve list styling (numbered and bullet lists)
+- Ensure images are centered with spacing above and below
+- Add subtle dividers where helpful
+
+5. Visual Enhancements
+- Improve contrast between text and background
+- Add a calm, distraction-free reading experience
+- Optional: highlight key sections or takeaways
+
+6. Responsiveness
+- Ensure excellent readability on mobile, tablet, and desktop
+- Reduce line length on large screens
+- Maintain comfortable padding on small screens
+
+7. Code Quality
+- Use semantic HTML (<article>, <section>, <header>, <p>, <h2>)
+- Clean, reusable CSS
+- Well-commented, production-ready code
+
+Important:
+- Do NOT change the article text or content
+- Only improve layout, spacing, typography, and readability
+- Follow modern blog UI/UX best practices

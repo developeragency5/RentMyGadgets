@@ -1,0 +1,44 @@
+import type { Plugin } from 'vite';
+import fs from 'fs';
+import path from 'path';
+
+export function metaImagesPlugin(): Plugin {
+  return {
+    name: 'vite-plugin-meta-images',
+    transformIndexHtml(html) {
+      const baseUrl = "https://rentmygadgets.com";
+
+      const publicDir = path.resolve(process.cwd(), 'client', 'public');
+      const opengraphPngPath = path.join(publicDir, 'opengraph.png');
+      const opengraphJpgPath = path.join(publicDir, 'opengraph.jpg');
+      const opengraphJpegPath = path.join(publicDir, 'opengraph.jpeg');
+
+      let imageExt: string | null = null;
+      if (fs.existsSync(opengraphPngPath)) {
+        imageExt = 'png';
+      } else if (fs.existsSync(opengraphJpgPath)) {
+        imageExt = 'jpg';
+      } else if (fs.existsSync(opengraphJpegPath)) {
+        imageExt = 'jpeg';
+      }
+
+      if (!imageExt) {
+        return html;
+      }
+
+      const imageUrl = `${baseUrl}/opengraph.${imageExt}`;
+
+      html = html.replace(
+        /<meta\s+property="og:image"\s+content="[^"]*"\s*\/>/g,
+        `<meta property="og:image" content="${imageUrl}" />`
+      );
+
+      html = html.replace(
+        /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/>/g,
+        `<meta name="twitter:image" content="${imageUrl}" />`
+      );
+
+      return html;
+    },
+  };
+}

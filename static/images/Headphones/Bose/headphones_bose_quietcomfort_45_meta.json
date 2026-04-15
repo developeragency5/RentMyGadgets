@@ -1,0 +1,48 @@
+{
+  "brand": "Bose",
+  "model": "QuietComfort 45",
+  "category": "Headphones",
+  "source": "https://www.bose.com/c/headphones",
+  "downloadedAt": "2025-12-02T15:45:32.403Z",
+  "images": [
+    {
+      "view": "hero",
+      "alt": "Bose QuietComfort 45, hero view",
+      "caption": "Bose QuietComfort 45",
+      "source": "https://assets.bosecreative.com/transform/f407904e-b682-4303-8651-85252972934a/QCUHIILE26-MidnightViolet_Nav-Flyout-SF-Desktop-1920x1920?io=width:1280,height:1280,transform:fill&",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_01.jpg",
+        "webp": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_01.webp",
+        "medium": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_01_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_01_thumb.jpg"
+      }
+    },
+    {
+      "view": "front",
+      "alt": "Bose QuietComfort 45, front view",
+      "caption": "Bose QuietComfort 45",
+      "source": "https://assets.bosecreative.com/transform/e1171814-35fc-426a-b8c1-c5c5fff18c6c/UOEBLE26_QCUHII26_QCH24_SLMII_HolidayHarder_BFW_Nav-Flyout-SF-Desktop-1920x1920?io=transform:fit,height:1920,width:1920&format=avif&quality=95",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_02.jpg",
+        "webp": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_02.webp",
+        "medium": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_02_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_02_thumb.jpg"
+      }
+    },
+    {
+      "view": "side",
+      "alt": "Bose QuietComfort 45, side view",
+      "caption": "Bose QuietComfort 45",
+      "source": "https://assets.bosecreative.com/transform/372fddbd-094c-43bf-87ad-ec1404865b7c/UOEBLE26-MidnightViolet_BrandAnthem_SF_Nav_Flyout_Desktop_1920x1920?io=transform:fit,height:1920,width:1920&format=avif&quality=95",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_03.jpg",
+        "webp": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_03.webp",
+        "medium": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_03_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Headphones/Bose/headphones_bose_quietcomfort_45_03_thumb.jpg"
+      }
+    }
+  ]
+}

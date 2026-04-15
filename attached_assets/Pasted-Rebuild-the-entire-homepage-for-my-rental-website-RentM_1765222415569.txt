@@ -1,0 +1,187 @@
+Rebuild the entire homepage for my rental website RentMyGadgets with a clean, spacious, premium Apple-inspired design.
+
+🎨 Overall Design Style
+
+Minimalistic, white background
+
+Subtle gradients and soft drop shadows
+
+Rounded cards, spacious padding, smooth animations
+
+Professional real humans in images (men, women, salespeople, tech users)
+
+Premium, authentic feel — like Apple / Airbnb hybrid
+
+Large typography, elegant hierarchy, modern UI components
+
+Use light orange as accent color (#FF8A00 or similar)
+
+🧩 Page Layout Structure to Build
+🔶 1. Hero Section (Apple-like)
+
+Very large hero area with:
+
+Left side: Big bold headline
+“Rent Premium Tech Today”
+
+Subheadline:
+“Access high-end laptops, cameras, and gear without the commitment.”
+
+Buttons:
+
+🔸 Explore Categories
+
+🔸 Browse All Products
+
+Right side: High-quality image card with real human using tech
+
+Add floating animations (light dots or shapes drifting slowly)
+
+Add a smooth fade-in on scroll
+
+🔶 2. Why Rent Instead of Buy? (3 Features Row)
+
+Three large cards, each with:
+
+Real human professional image
+
+Title + short description
+
+Subtle lift-on-hover animation
+
+Example features:
+
+💰 Save Money, Get More
+
+🆕 Always Use the Latest Tech
+
+🛡️ Accidents? We’ve Got You Covered
+
+Each card should animate up slightly when hovered.
+
+🔶 3. Find Your Perfect Device — Categories Carousel
+
+Large category icons in rounded-square cards
+
+Increase category card size
+
+Show only 4 categories at a time
+
+Remaining categories scroll horizontally
+
+Add swipe on mobile + dots indicator
+
+Stylish Apple-like “glass” hover effect
+
+Categories examples:
+
+Laptops
+
+Phones
+
+Printers
+
+Headphones
+
+Cameras & Gear
+
+Routers
+(Use placeholders dynamically)
+
+🔶 4. Most Popular Rentals (Product Grid)
+
+Responsive grid of 3–4 columns
+
+White rounded cards with shadow
+
+Smooth hover scale animation
+
+Show:
+
+Product photo
+
+Name
+
+Price per month
+
+Rent Now button (round, orange)
+
+🔶 5. Testimonial / Human Touch Section
+
+Real people photos (smiling, using gadgets)
+
+Sliding testimonial carousel
+
+Light gradient background
+
+🔶 6. CTA Section — “Experience Renting the Smart Way”
+
+Large centered CTA
+
+Button: Browse Our Rentals
+
+Soft animated background gradient
+
+🔶 7. Footer
+
+Clean minimal Apple-style footer
+
+Links:
+
+Categories
+
+Rentals
+
+Support
+
+Policies
+
+Social icons
+
+Light gray text
+
+🎬 Animations to Include
+
+Fade-in on scroll for each section
+
+Hover lift for cards
+
+Smooth sliding carousels
+
+Gradient shimmer on buttons (optional)
+
+Floating decorative dots in hero section
+
+🧱 Tech Stack Requirements
+
+Use:
+
+HTML + CSS + JavaScript
+OR
+
+React + Tailwind CSS (recommended)
+OR
+
+Whatever suits the current Replit environment
+
+Ensure code is:
+
+Fully responsive
+
+Elegant and clean
+
+Uses reusable components
+
+Includes placeholder images for now
+
+📦 Insert My Current Data
+
+Use placeholders for:
+
+Categories
+
+Products
+
+Prices
+
+You may copy structural ideas from my existing homepage (images provided), but redesign everything to modern Apple-style.

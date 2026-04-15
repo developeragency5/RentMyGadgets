@@ -1,0 +1,48 @@
+{
+  "brand": "Apple",
+  "model": "MacBook Air M2",
+  "category": "Desktops & Laptops",
+  "source": "https://www.apple.com/newsroom/2022/06/apple-unveils-all-new-macbook-air-supercharged-by-the-new-m2-chip/",
+  "downloadedAt": "2025-12-02T00:52:03.955Z",
+  "images": [
+    {
+      "view": "hero",
+      "alt": "Apple MacBook Air M2, hero view",
+      "caption": "Apple MacBook Air M2",
+      "source": "https://www.apple.com/newsroom/images/product/mac/standard/Apple-WWDC22-MacBook-Air-hero-220606_big.jpg.large.jpg",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_01.jpg",
+        "webp": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_01.webp",
+        "medium": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_01_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_01_thumb.jpg"
+      }
+    },
+    {
+      "view": "front",
+      "alt": "Apple MacBook Air M2, front view",
+      "caption": "Apple MacBook Air M2",
+      "source": "https://www.apple.com/newsroom/images/product/mac/standard/Apple-WWDC22-MacBook-Air-M2-performance-220606_big.jpg.large.jpg",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_02.jpg",
+        "webp": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_02.webp",
+        "medium": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_02_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_02_thumb.jpg"
+      }
+    },
+    {
+      "view": "side",
+      "alt": "Apple MacBook Air M2, side view",
+      "caption": "Apple MacBook Air M2",
+      "source": "https://www.apple.com/newsroom/images/product/mac/standard/Apple-WWDC22-MacBook-Air-Liquid-Retina-Display-220606_big.jpg.large.jpg",
+      "hasOverlay": true,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_03.jpg",
+        "webp": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_03.webp",
+        "medium": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_03_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Desktops & Laptops/Apple/desktops_laptops_apple_macbook_air_m2_03_thumb.jpg"
+      }
+    }
+  ]
+}

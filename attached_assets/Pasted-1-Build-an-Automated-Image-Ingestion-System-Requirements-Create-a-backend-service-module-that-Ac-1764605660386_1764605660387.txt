@@ -1,0 +1,172 @@
+1. Build an Automated Image Ingestion System
+Requirements
+
+Create a backend service/module that:
+
+Accepts a product’s brand + product name (e.g., “Dell XPS 15”).
+
+Automatically fetches the official product page from the manufacturer’s website.
+
+Extracts:
+
+Primary image URL
+
+Secondary/gallery image URLs
+
+Product description (short + long)
+
+Technical specs (if structured on page)
+
+Sources
+
+Images must be pulled from manufacturer-owned domains only, e.g.:
+
+apple.com
+
+dell.com
+
+hp.com
+
+asus.com
+
+lenovo.com
+
+sony.com
+
+canon.com
+
+nikon.com
+
+Avoid third-party retail sites (Amazon, BestBuy, B&H, etc.)
+Only use the official brand product pages.
+
+Implement logic for:
+
+Fallback to alternative regions (e.g., dell.com > dell.co.uk) if the primary page fails.
+
+Auto-cleaning of URLs so no tracking parameters remain.
+
+Strict validation: image URLs must return HTTP 200 and a valid MIME type (image/jpeg, image/png, image/webp).
+
+2. Database Schema Update
+
+Modify the product schema as follows:
+
+Product {
+    id: string;
+    name: string;
+    brand: string;
+    category: string;
+
+    image_main: string;        // required
+    image_gallery: string[];   // optional
+    spec_html: string;         // optional extracted specs
+    description_short: string; 
+    description_long: string;
+
+    last_image_sync: DateTime;
+    image_source_url: string;   // canonical manufacturer product URL
+}
+
+
+Populate these fields programmatically.
+
+3. Admin Panel Enhancements
+
+Add a new Image Sync tab in the Admin UI:
+
+Features
+
+Button: “Sync Product Images”
+
+Button: “Sync All Products”
+
+Display:
+
+current image URLs
+
+source URL
+
+last sync timestamp
+
+validation status (200 OK check)
+
+Manual override for image_main + gallery list
+
+Admin should see:
+
+Thumbnails of fetched images
+
+A warning badge if any image is broken or unreachable
+
+Log output from last sync (HTTP status, matched selectors, errors)
+
+4. Frontend Fix
+
+Every product card + category page must:
+
+Load image_main reliably
+
+Show a blurred placeholder while loading
+
+Show a generic fallback only if no valid image URL exists after sync
+
+Support lazy loading (loading="lazy")
+
+5. Automation Requirements
+
+Implement a server-side cron job (1x daily):
+
+cron: 0 3 * * *  // Every day at 3 AM
+task: sync all products with manufacturer images
+
+
+Cron job steps:
+
+Iterate through all products
+
+Fetch their manufacturer pages
+
+Re-validate image URLs
+
+Update DB if new images available
+
+Log results to an audit table
+
+6. Image Scraper Technical Specs
+
+Tech stack preferences (adjust to project):
+
+Node.js or Python backend
+
+Use a headless browser (Playwright/Puppeteer) for reliable DOM extraction
+
+Fallback: static HTML parsing with Cheerio/BeautifulSoup
+
+Store validated URLs only—no downloading or hosting images locally
+
+Extraction strategy:
+
+Identify <meta property="og:image">
+
+Identify <img> elements in primary product gallery containers:
+
+Look for class names like gallery, hero, product-images, etc.
+
+Normalize all relative URLs to absolute paths
+
+Validate via HEAD request before saving
+
+7. Deliverables
+
+Fully functional automated image ingestion pipeline
+
+Updated database schema populated with real manufacturer images
+
+Admin UI with image sync + validation controls
+
+Frontend that displays images correctly in all categories
+
+Working cron-based nightly sync
+
+Removal of all broken images currently displayed

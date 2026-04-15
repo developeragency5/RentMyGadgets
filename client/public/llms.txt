@@ -1,0 +1,64 @@
+# RentMyGadgets
+
+> RentMyGadgets is a technology equipment rental service offering flexible monthly plans for premium laptops, cameras, desktops, and accessories.
+
+## About
+
+RentMyGadgets makes high-end technology accessible through affordable rental options. We offer flexible monthly rental plans with no long-term contracts, same-day delivery in select areas, and optional GadgetCare+ damage protection.
+
+## How It Works
+
+1. Browse our catalog of laptops, desktops, cameras, audio equipment, and accessories
+2. Choose your rental period: 1, 3, 6, or 12 months (longer terms get bigger discounts)
+3. We ship your equipment with same-day delivery available in select areas
+4. Use your equipment for as long as you need
+5. Return it with our prepaid shipping label when done
+
+## Rental Pricing
+
+- 1 Month: Full monthly rate
+- 3 Months: 10% monthly rate discount
+- 6 Months: 20% monthly rate discount
+- 12 Months: 30% monthly rate discount
+
+## Product Categories
+
+- [Laptops](/categories): MacBooks, Windows laptops, and Chromebooks
+- [Desktops](/categories): High-performance desktop computers
+- [Cameras](/categories): DSLR, mirrorless, and video cameras
+- [Audio](/categories): Professional microphones, speakers, and headphones
+- [Accessories](/categories): Monitors, keyboards, mice, and peripherals
+- [Networking](/categories): Routers, switches, and networking equipment
+
+## Key Features
+
+- **GadgetCare+ Protection**: Optional plan covering accidental damage, liquid spills, hardware malfunctions, and priority repairs (15% of rental total)
+- **Rent-to-Own**: After 6 months, purchase your rental at a reduced buyout price
+- **Free Shipping**: On orders of 3 or more months
+- **14-Day Free Returns**: On all rentals
+- **Quality Checked**: Every item inspected before shipping
+
+## Pages
+
+- [Home](https://rentmygadgets.com/)
+- [All Products](https://rentmygadgets.com/products)
+- [Categories](https://rentmygadgets.com/categories)
+- [How It Works](https://rentmygadgets.com/how-it-works)
+- [GadgetCare+ Protection](https://rentmygadgets.com/gadgetcare)
+- [Rent-to-Own Program](https://rentmygadgets.com/rent-to-own)
+- [Blog](https://rentmygadgets.com/blog)
+- [About Us](https://rentmygadgets.com/about)
+- [Contact](https://rentmygadgets.com/contact)
+- [Search Products](https://rentmygadgets.com/search)
+- [Compare Products](https://rentmygadgets.com/compare)
+
+## Policies
+
+- [Terms of Service](https://rentmygadgets.com/terms)
+- [Privacy Policy](https://rentmygadgets.com/privacy)
+- [Rental Policy](https://rentmygadgets.com/rental-policy)
+- [Return Policy](https://rentmygadgets.com/return-policy)
+- [Shipping Policy](https://rentmygadgets.com/shipping-policy)
+- [Damage Policy](https://rentmygadgets.com/damage-policy)
+- [Cookie Policy](https://rentmygadgets.com/cookies)
+- [Accessibility](https://rentmygadgets.com/accessibility)

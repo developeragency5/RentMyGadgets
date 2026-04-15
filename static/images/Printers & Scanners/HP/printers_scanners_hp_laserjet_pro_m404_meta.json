@@ -1,0 +1,48 @@
+{
+  "brand": "HP",
+  "model": "LaserJet Pro M404",
+  "category": "Printers & Scanners",
+  "source": "https://www.hp.com/us-en/shop/slp/laptops?filters=HP_productFamily%3ALaserJet",
+  "downloadedAt": "2025-12-02T15:43:29.238Z",
+  "images": [
+    {
+      "view": "hero",
+      "alt": "HP LaserJet Pro M404, hero view",
+      "caption": "HP LaserJet Pro M404",
+      "source": "https://www.hp.com/content/dam/digitnav/menu/aug_2025/desktops-for-home%402x.jpg",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_01.jpg",
+        "webp": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_01.webp",
+        "medium": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_01_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_01_thumb.jpg"
+      }
+    },
+    {
+      "view": "front",
+      "alt": "HP LaserJet Pro M404, front view",
+      "caption": "HP LaserJet Pro M404",
+      "source": "https://www.hp.com/content/dam/digitnav/menu/aug_2025/workstations%402x.jpg",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_02.jpg",
+        "webp": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_02.webp",
+        "medium": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_02_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_02_thumb.jpg"
+      }
+    },
+    {
+      "view": "side",
+      "alt": "HP LaserJet Pro M404, side view",
+      "caption": "HP LaserJet Pro M404",
+      "source": "https://www.hp.com/content/dam/digitnav/menu/aug_2025/desktops-for-gaming%402x.jpg",
+      "hasOverlay": false,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_03.jpg",
+        "webp": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_03.webp",
+        "medium": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_03_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Printers & Scanners/HP/printers_scanners_hp_laserjet_pro_m404_03_thumb.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+[
+  {
+    "product": "Apple iMac 24\" M3 (16GB)",
+    "slug": "apple-imac-24-m3-16gb",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/imac-24-m3-hero-2023.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/imac-24-m3-side-2023.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/imac-24-m3-back-2023.jpg"
+    ]
+  },
+  {
+    "product": "Apple Mac Mini M2",
+    "slug": "apple-mac-mini-m2",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-2023-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-2023-back.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-2023-ports.jpg"
+    ]
+  },
+  {
+    "product": "Apple Mac Mini M2 Pro",
+    "slug": "apple-mac-mini-m2-pro",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-pro-2023-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-pro-ports.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-mini-pro-back.jpg"
+    ]
+  },
+  {
+    "product": "Apple Mac Pro M2 Ultra",
+    "slug": "apple-mac-pro-m2-ultra",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-pro-2023-tower.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-pro-2023-back.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-pro-2023-side.jpg"
+    ]
+  },
+  {
+    "product": "Apple Mac Studio M2 Max",
+    "slug": "apple-mac-studio-m2-max",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-max-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-max-back.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-max-side.jpg"
+    ]
+  },
+  {
+    "product": "Apple Mac Studio M2 Ultra",
+    "slug": "apple-mac-studio-m2-ultra",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-ultra-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-ultra-back.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mac-studio-m2-ultra-side.jpg"
+    ]
+  },
+  {
+    "product": "MacBook Air 13\" M3",
+    "slug": "macbook-air-13-m3",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-13-m3-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-13-m3-side.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-13-m3-open.jpg"
+    ]
+  },
+  {
+    "product": "MacBook Air 15\"",
+    "slug": "macbook-air-15",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-open.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-side.jpg"
+    ]
+  },
+  {
+    "product": "MacBook Air 15\" M2",
+    "slug": "macbook-air-15-m2",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m2-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m2-open.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m2-side.jpg"
+    ]
+  },
+  {
+    "product": "MacBook Air 15\" M3",
+    "slug": "macbook-air-15-m3",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m3-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m3-open.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-15-m3-side.jpg"
+    ]
+  },
+  {
+    "product": "MacBook Pro 13\" M2",
+    "slug": "macbook-pro-13-m2",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-13-m2-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-13-m2-open.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-13-m2-side.jpg"
+    ]
+  },
+  {
+    "product": "MacBook Pro 14\" M3",
+    "slug": "macbook-pro-14-m3",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-open.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-side.jpg"
+    ]
+  },
+  {
+    "product": "MacBook Pro 14\" M3 Max",
+    "slug": "macbook-pro-14-m3-max",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-max-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-max-open.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-m3-max-side.jpg"
+    ]
+  },
+  {
+    "product": "MacBook Pro 16\"",
+    "slug": "macbook-pro-16",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-16-hero.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-16-open.jpg",
+      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-16-side.jpg"
+    ]
+  },
+  {
+    "product": "ASUS ROG Flow Z13",
+    "slug": "asus-rog-flow-z13",
+    "images": [
+      "https://m.media-amazon.com/images/I/71m3hfiGXRL._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/rog-flow-z13-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/rog-flow-z13-back.png"
+    ]
+  },
+  {
+    "product": "ASUS ROG Strix G15DK",
+    "slug": "asus-rog-strix-g15dk",
+    "images": [
+      "https://m.media-amazon.com/images/I/71usYJYqBQL._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/rog-g15dk-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/rog-g15dk-side.png"
+    ]
+  },
+  {
+    "product": "ASUS ROG Strix GT35",
+    "slug": "asus-rog-strix-gt35",
+    "images": [
+      "https://m.media-amazon.com/images/I/91B5H8R7MDL._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/rog-gt35-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/rog-gt35-side.png"
+    ]
+  },
+  {
+    "product": "ASUS ROG Strix SCAR 18",
+    "slug": "asus-rog-strix-scar-18",
+    "images": [
+      "https://m.media-amazon.com/images/I/71xJkP6Ucel._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/scar18-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/scar18-side.png"
+    ]
+  },
+  {
+    "product": "ASUS ROG Zephyrus",
+    "slug": "asus-rog-zephyrus",
+    "images": [
+      "https://m.media-amazon.com/images/I/71J7jd9HhnL._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/rog-zephyrus-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/rog-zephyrus-side.png"
+    ]
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "brand": "Dell",
+  "model": "Latitude 5540",
+  "category": "Desktops & Laptops",
+  "source": "https://www.dell.com/en-us/shop/dell-laptops/latitude-5455-laptop/spd/latitude-14-5455-laptop",
+  "downloadedAt": "2025-12-02T00:24:30.310Z",
+  "images": [
+    {
+      "view": "hero",
+      "alt": "Dell Latitude 5540, hero view",
+      "caption": "Dell Latitude 5540",
+      "source": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/5455/latitude-14-5455-laptop-copilot-pc-mg.png?qlt=95,0&op_usm=1.75,0.3,2,0&resMode=sharp&pscan=auto&fmt=png-alpha&hei=1600",
+      "hasOverlay": true,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_01.jpg",
+        "webp": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_01.webp",
+        "medium": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_01_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_01_thumb.jpg"
+      }
+    },
+    {
+      "view": "front",
+      "alt": "Dell Latitude 5540, front view",
+      "caption": "Dell Latitude 5540",
+      "source": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-15-5550-laptop/mg/notebook-latitude-15-5550-rgb-silver-gallery-20.psd?qlt=95,0&op_usm=1.75,0.3,2,0&resMode=sharp&pscan=auto&fmt=png-alpha&hei=1600",
+      "hasOverlay": true,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_02.jpg",
+        "webp": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_02.webp",
+        "medium": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_02_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_02_thumb.jpg"
+      }
+    },
+    {
+      "view": "side",
+      "alt": "Dell Latitude 5540, side view",
+      "caption": "Dell Latitude 5540",
+      "source": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/5455/media-gallery/notebook-latitude-14-5455-gray-gallery-4.psd?qlt=95,0&op_usm=1.75,0.3,2,0&resMode=sharp&pscan=auto&fmt=png-alpha&hei=1600",
+      "hasOverlay": true,
+      "paths": {
+        "original": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_03.jpg",
+        "webp": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_03.webp",
+        "medium": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_03_800.jpg",
+        "thumbnail": "/home/runner/workspace/static/images/Desktops & Laptops/Dell/desktops_laptops_dell_latitude_5540_03_thumb.jpg"
+      }
+    }
+  ]
+}

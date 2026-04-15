@@ -1,0 +1,173 @@
+[
+  {
+    "product": "ASUS TUF Gaming A17",
+    "slug": "asus-tuf-gaming-a17",
+    "images": [
+      "https://m.media-amazon.com/images/I/81YQB-Sg1-L._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/tuf-a17-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/tuf-a17-side.png"
+    ]
+  },
+  {
+    "product": "ASUS TUF Gaming F15",
+    "slug": "asus-tuf-gaming-f15",
+    "images": [
+      "https://m.media-amazon.com/images/I/71cv2l9nZBL._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/tuf-f15-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/tuf-f15-side.png"
+    ]
+  },
+  {
+    "product": "ASUS Vivobook Pro 16X",
+    "slug": "asus-vivobook-pro-16x",
+    "images": [
+      "https://m.media-amazon.com/images/I/71A2Tjv1n-L._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/vivobook-16x-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/vivobook-16x-side.png"
+    ]
+  },
+  {
+    "product": "ASUS ZenBook Pro 16X",
+    "slug": "asus-zenbook-pro-16x",
+    "images": [
+      "https://m.media-amazon.com/images/I/71yqJwKx3zL._AC_SL1500_.jpg",
+      "https://dlcdnwebimgs.asus.com/gain/zenbook-pro-16x-front.png",
+      "https://dlcdnwebimgs.asus.com/gain/zenbook-pro-16x-side.png"
+    ]
+  },
+  {
+    "product": "Dell G16",
+    "slug": "dell-g16",
+    "images": [
+      "https://m.media-amazon.com/images/I/71zN2ZC+3dL._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/Video_Imagery/all/g16-front.png",
+      "https://i.dell.com/sites/csimages/Video_Imagery/all/g16-side.png"
+    ]
+  },
+  {
+    "product": "Dell Inspiron 16 Plus",
+    "slug": "dell-inspiron-16-plus",
+    "images": [
+      "https://m.media-amazon.com/images/I/71eDLkWUT-L._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/inspiron-16-plus-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/inspiron-16-plus-side.png"
+    ]
+  },
+  {
+    "product": "Dell Latitude 9440",
+    "slug": "dell-latitude-9440",
+    "images": [
+      "https://m.media-amazon.com/images/I/71P5E6ynFQL._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/latitude-9440-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/latitude-9440-side.png"
+    ]
+  },
+  {
+    "product": "Dell Optiplex 7000 Micro",
+    "slug": "dell-optiplex-7000-micro",
+    "images": [
+      "https://m.media-amazon.com/images/I/61aP5WOP0GL._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/optiplex-7000-micro-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/optiplex-7000-micro-back.png"
+    ]
+  },
+  {
+    "product": "Dell Optiplex 7090 Ultra",
+    "slug": "dell-optiplex-7090-ultra",
+    "images": [
+      "https://m.media-amazon.com/images/I/61X-l8kdQ+L._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/optiplex-7090-ultra-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/optiplex-7090-ultra-side.png"
+    ]
+  },
+  {
+    "product": "Dell Precision 5680",
+    "slug": "dell-precision-5680",
+    "images": [
+      "https://m.media-amazon.com/images/I/61AhH2m6q0L._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/precision-5680-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/precision-5680-side.png"
+    ]
+  },
+  {
+    "product": "Dell Precision 5860 Tower",
+    "slug": "dell-precision-5860-tower",
+    "images": [
+      "https://m.media-amazon.com/images/I/81fM5H0hQ-L._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/precision-5860-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/precision-5860-side.png"
+    ]
+  },
+  {
+    "product": "Dell Precision 7875 Tower",
+    "slug": "dell-precision-7875-tower",
+    "images": [
+      "https://m.media-amazon.com/images/I/71nX0tH5PyL._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/precision-7875-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/precision-7875-side.png"
+    ]
+  },
+  {
+    "product": "Dell Precision Workstation",
+    "slug": "dell-precision-workstation",
+    "images": [
+      "https://m.media-amazon.com/images/I/71w8T6+S4+L._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/precision-workstation-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/precision-workstation-side.png"
+    ]
+  },
+  {
+    "product": "Dell Vostro 16",
+    "slug": "dell-vostro-16",
+    "images": [
+      "https://m.media-amazon.com/images/I/71x4tvnm4+L._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/vostro-16-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/vostro-16-side.png"
+    ]
+  },
+  {
+    "product": "Dell XPS 13 Plus",
+    "slug": "dell-xps-13-plus",
+    "images": [
+      "https://m.media-amazon.com/images/I/713MT0MNL+L._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/xps-13-plus-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/xps-13-plus-side.png"
+    ]
+  },
+  {
+    "product": "Dell XPS 15",
+    "slug": "dell-xps-15",
+    "images": [
+      "https://m.media-amazon.com/images/I/71CkQeZ9EML._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/xps-15-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/xps-15-side.png"
+    ]
+  },
+  {
+    "product": "Dell XPS 17",
+    "slug": "dell-xps-17",
+    "images": [
+      "https://m.media-amazon.com/images/I/71QQHf1mHJL._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/xps-17-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/xps-17-side.png"
+    ]
+  },
+  {
+    "product": "Dell XPS Desktop 8960",
+    "slug": "dell-xps-desktop-8960",
+    "images": [
+      "https://m.media-amazon.com/images/I/71l0VSeD+FL._AC_SL1500_.jpg",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/xps-8960-front.png",
+      "https://i.dell.com/sites/csimages/MerchImagery/all/xps-8960-side.png"
+    ]
+  },
+  {
+    "product": "HP Dragonfly Pro",
+    "slug": "hp-dragonfly-pro",
+    "images": [
+      "https://m.media-amazon.com/images/I/71RZPXiJ0VL._AC_SL1500_.jpg",
+      "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08326844.png",
+      "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08326822.png"
+    ]
+  }
+]
