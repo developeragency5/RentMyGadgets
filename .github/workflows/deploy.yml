@@ -35,6 +35,12 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Copy static image assets to build output
+        run: |
+          cp -r public/images dist/public/images
+          mkdir -p dist/public/stock_images
+          cp -r attached_assets/stock_images/* dist/public/stock_images/ 2>/dev/null || true
+
       - name: Copy index.html for SPA routing
         run: cp dist/public/index.html dist/public/404.html
 
