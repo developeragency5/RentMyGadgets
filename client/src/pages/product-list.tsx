@@ -701,13 +701,6 @@ export default function ProductList() {
                             Popular
                           </span>
                         )}
-                        {!product.available && (
-                          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                            <span className="bg-white text-black text-sm font-bold px-3 py-1 rounded-full">
-                              Unavailable
-                            </span>
-                          </div>
-                        )}
                         <button
                           onClick={(e) => handleCompareToggle(product, e)}
                           className={`absolute top-2 left-2 p-2 rounded-full transition-all ${
@@ -742,10 +735,9 @@ export default function ProductList() {
                             size="sm" 
                             className="rounded-full"
                             onClick={(e) => handleQuickAdd(product, e)}
-                            disabled={!product.available}
                             data-testid={`button-rent-${product.id}`}
                           >
-                            {product.available ? 'Rent' : 'N/A'}
+                            Rent
                           </Button>
                         </div>
                       </div>

@@ -183,7 +183,6 @@ export default function Compare() {
                   <td key={product.id} className="p-4 text-center">
                     <Button 
                       onClick={() => handleAddToCart(product)}
-                      disabled={!product.available}
                       className="w-full max-w-[150px]"
                       data-testid={`button-add-cart-${product.id}`}
                     >
