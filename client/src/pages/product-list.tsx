@@ -737,7 +737,7 @@ export default function ProductList() {
                             onClick={(e) => handleQuickAdd(product, e)}
                             data-testid={`button-rent-${product.id}`}
                           >
-                            Rent
+                            Rent Now
                           </Button>
                         </div>
                       </div>
