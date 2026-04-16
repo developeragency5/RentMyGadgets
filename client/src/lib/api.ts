@@ -28,7 +28,10 @@ function fixImagePaths<T>(data: T): T {
 async function fetchWithFallback<T>(apiUrl: string, staticUrl: string, transform?: (data: any) => T): Promise<T> {
   try {
     const response = await fetch(apiUrl);
-    if (response.ok) return response.json();
+    const contentType = response.headers.get("content-type") || "";
+    if (response.ok && contentType.includes("application/json")) {
+      return response.json();
+    }
   } catch {}
   const staticRes = await fetch(staticUrl);
   if (staticRes.ok) {

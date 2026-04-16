@@ -32,7 +32,8 @@ function fixImagePaths(data: any): any {
 async function fetchWithStaticFallback(url: string, options?: RequestInit): Promise<Response> {
   try {
     const res = await fetch(url, options);
-    if (res.ok) return res;
+    const contentType = res.headers.get("content-type") || "";
+    if (res.ok && contentType.includes("application/json")) return res;
     throw new Error(`${res.status}`);
   } catch {
     const staticPath = STATIC_DATA_MAP[url];
