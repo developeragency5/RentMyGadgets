@@ -19,7 +19,11 @@ Traffic flow: `user → Cloudflare → Vercel → Neon`
    - `/api/products` returns JSON
    - Login works
 
-> If the latest deployment is still failing, message me — I'll switch us to Render in 10 minutes.
+> If the latest deployment is still failing on Vercel after multiple attempts, the fallback is to deploy to Render (Express + Neon work natively on Render's web service tier without code changes). The same Cloudflare DNS steps below apply — just point the records at the Render-provided target instead of the Vercel one.
+
+## Note on CORS
+
+This deployment is **same-origin**: the React frontend and the Express API are both served from `rentmygadgets.com` (the SPA is served as static files; `/api/*` paths are routed to the function via `vercel.json` rewrites). Browsers therefore never trigger a cross-origin preflight, so no `cors` middleware is required. If you later move the API to a separate subdomain (e.g. `api.rentmygadgets.com`), you'll need to add `cors` middleware with an allowlist of `https://rentmygadgets.com` and `https://www.rentmygadgets.com`, plus `credentials: true` so cookies are sent.
 
 ## Step 2 — Set environment variables on Vercel
 
