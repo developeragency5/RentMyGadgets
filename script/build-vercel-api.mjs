@@ -2,10 +2,10 @@ import { build } from 'esbuild';
 import { rm, writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 
-console.log('[vercel-api] Bundling api/index.ts -> api/index.js ...');
+console.log('[vercel-api] Bundling server/_vercel-handler.ts -> api/index.js ...');
 
 await build({
-  entryPoints: ['api/index.ts'],
+  entryPoints: ['server/_vercel-handler.ts'],
   bundle: true,
   platform: 'node',
   target: 'node20',
