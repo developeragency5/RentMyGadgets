@@ -6,7 +6,8 @@
   "framework": null,
   "functions": {
     "api/index.js": {
-      "maxDuration": 30
+      "maxDuration": 30,
+      "excludeFiles": "node_modules/{lucide-react,react-day-picker,recharts,framer-motion,react-dom,typescript,vite,esbuild,drizzle-kit,puppeteer,playwright,@radix-ui,@tanstack,@types,@vitejs,@esbuild,@swc,@babel,@replit,@puppeteer,@tailwindcss}/**"
     }
   },
   "rewrites": [
