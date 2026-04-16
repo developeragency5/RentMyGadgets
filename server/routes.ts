@@ -25,6 +25,21 @@ import { captureAndAnalyzeGallery } from "./reference-analyzer";
 import { scrapeAppleGalleryImages } from "./browser-scraper";
 import { cache } from "./cache";
 
+// Cookie config helper - in production, scope to .rentmygadgets.com so cookies work
+// across apex and www subdomain (and via Cloudflare proxy).
+const PROD_COOKIE_DOMAIN = process.env.COOKIE_DOMAIN || ".rentmygadgets.com";
+function sessionCookieOpts(maxAgeMs: number) {
+  const isProd = process.env.NODE_ENV === 'production';
+  return {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: 'lax' as const,
+    maxAge: maxAgeMs,
+    path: '/',
+    ...(isProd ? { domain: PROD_COOKIE_DOMAIN } : {}),
+  };
+}
+
 // Secure password hashing with bcrypt
 async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, 10);
@@ -975,13 +990,7 @@ ${allPages.map(page => `  <url>
       });
       
       // Set HttpOnly cookie for secure session management
-      res.cookie('session_id', sessionId, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-        path: '/'
-      });
+      res.cookie('session_id', sessionId, sessionCookieOpts(7 * 24 * 60 * 60 * 1000));
       
       res.json({ 
         user: { id: user.id, username: user.username, email: user.email, fullName: user.fullName }
@@ -1015,13 +1024,7 @@ ${allPages.map(page => `  <url>
       });
       
       // Set HttpOnly cookie for secure session management
-      res.cookie('session_id', sessionId, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-        path: '/'
-      });
+      res.cookie('session_id', sessionId, sessionCookieOpts(7 * 24 * 60 * 60 * 1000));
       
       res.json({ 
         user: { id: user.id, username: user.username, email: user.email, fullName: user.fullName }
@@ -1059,13 +1062,7 @@ ${allPages.map(page => `  <url>
       });
       
       // Set HttpOnly cookie for secure session management (shorter expiry for guests)
-      res.cookie('session_id', sessionId, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours for guests
-        path: '/'
-      });
+      res.cookie('session_id', sessionId, sessionCookieOpts(24 * 60 * 60 * 1000));
       
       res.json({ 
         user: { id: user.id, username: user.username, email: user.email, fullName: user.fullName, isGuest: true }
@@ -1083,7 +1080,10 @@ ${allPages.map(page => `  <url>
       sessions.delete(sessionId);
     }
     // Clear the session cookie
-    res.clearCookie('session_id', { path: '/' });
+    res.clearCookie('session_id', {
+      path: '/',
+      ...(process.env.NODE_ENV === 'production' ? { domain: PROD_COOKIE_DOMAIN } : {}),
+    });
     res.json({ success: true });
   });
 
