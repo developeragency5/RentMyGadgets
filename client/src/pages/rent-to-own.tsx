@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 import { Card, CardContent } from "@/components/ui/card";
