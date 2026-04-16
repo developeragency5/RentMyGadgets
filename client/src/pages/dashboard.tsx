@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Package, Clock, Settings, LogOut, User as UserIcon, Loader2, ShoppingBag } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { useQuery } from "@tanstack/react-query";
+import { safeFetch } from "@/lib/api";
 
 interface OrderItem {
   id: string;
@@ -35,7 +36,7 @@ interface Order {
 }
 
 async function fetchOrders(): Promise<Order[]> {
-  const res = await fetch("/api/orders", {
+  const res = await safeFetch("/api/orders", {
     credentials: 'include'
   });
   if (!res.ok) return [];
@@ -43,7 +44,7 @@ async function fetchOrders(): Promise<Order[]> {
 }
 
 async function fetchOrderDetails(orderId: string): Promise<Order | null> {
-  const res = await fetch(`/api/orders/${orderId}`, {
+  const res = await safeFetch(`/api/orders/${orderId}`, {
     credentials: 'include'
   });
   if (!res.ok) return null;

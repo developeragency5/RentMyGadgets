@@ -3,6 +3,15 @@ import type { Category, Product } from "@shared/schema";
 const API_BASE = "/api";
 const BASE_PATH = import.meta.env.BASE_URL || "/";
 
+export async function safeFetch(url: string, options?: RequestInit): Promise<Response> {
+  const res = await fetch(url, options);
+  const ct = res.headers.get("content-type") || "";
+  if (res.ok && !ct.includes("application/json")) {
+    throw new Error(`Expected JSON but got ${ct || "unknown"} from ${url}`);
+  }
+  return res;
+}
+
 function fixImagePaths<T>(data: T): T {
   if (BASE_PATH === "/") return data;
   const prefix = BASE_PATH.replace(/\/$/, "");
@@ -113,7 +122,8 @@ export async function fetchSearchSuggestions(query: string, limit = 6): Promise<
     return [];
   }
   const response = await fetch(`${API_BASE}/products/search/suggestions?q=${encodeURIComponent(query)}&limit=${limit}`);
-  if (!response.ok) {
+  const ct = response.headers.get("content-type") || "";
+  if (!response.ok || !ct.includes("application/json")) {
     return [];
   }
   return response.json();
@@ -151,7 +161,8 @@ export interface ProductContent {
 
 export async function fetchProductContent(productId: string): Promise<ProductContent> {
   const response = await fetch(`${API_BASE}/products/${productId}/content`);
-  if (!response.ok) {
+  const ct = response.headers.get("content-type") || "";
+  if (!response.ok || !ct.includes("application/json")) {
     throw new Error("Failed to fetch product content");
   }
   return response.json();
@@ -171,7 +182,8 @@ export type VariantGroups = Record<string, VariantOption[]>;
 
 export async function fetchProductVariants(productId: string): Promise<VariantGroups> {
   const response = await fetch(`${API_BASE}/products/${productId}/variants`);
-  if (!response.ok) {
+  const ct = response.headers.get("content-type") || "";
+  if (!response.ok || !ct.includes("application/json")) {
     throw new Error("Failed to fetch product variants");
   }
   return response.json();

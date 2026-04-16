@@ -118,8 +118,8 @@ export default function Checkout() {
           "Content-Type": "application/json"
         }
       });
-      
-      if (response.ok) {
+      const ct = response.headers.get("content-type") || "";
+      if (response.ok && ct.includes("application/json")) {
         const pricing: CartPricingResult = await response.json();
         setServerPricing(pricing);
       }

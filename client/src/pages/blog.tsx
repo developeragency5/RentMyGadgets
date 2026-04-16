@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { Calendar, User, ArrowRight, Clock } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { safeFetch } from "@/lib/api";
 import type { BlogPost } from "@shared/schema";
 import { format } from "date-fns";
 
@@ -18,7 +19,7 @@ export default function Blog() {
   const { data: posts = [], isLoading } = useQuery<BlogPost[]>({
     queryKey: ['blog'],
     queryFn: async () => {
-      const res = await fetch('/api/blog');
+      const res = await safeFetch('/api/blog');
       if (!res.ok) throw new Error('Failed to fetch blog posts');
       return res.json();
     }

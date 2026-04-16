@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link, useParams } from "wouter";
 import { Calendar, User, ArrowLeft, Clock, Facebook, Twitter, Linkedin } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { safeFetch } from "@/lib/api";
 import type { BlogPost } from "@shared/schema";
 import { format } from "date-fns";
 
@@ -16,7 +17,7 @@ export default function BlogPostPage() {
   const { data: post, isLoading, error } = useQuery<BlogPost>({
     queryKey: ['blog', slug],
     queryFn: async () => {
-      const res = await fetch(`/api/blog/${slug}`);
+      const res = await safeFetch(`/api/blog/${slug}`);
       if (!res.ok) throw new Error('Failed to fetch blog post');
       return res.json();
     },
@@ -26,7 +27,7 @@ export default function BlogPostPage() {
   const { data: relatedPosts = [] } = useQuery<BlogPost[]>({
     queryKey: ['blog', 'related', post?.category],
     queryFn: async () => {
-      const res = await fetch(`/api/blog?category=${post?.category}`);
+      const res = await safeFetch(`/api/blog?category=${post?.category}`);
       if (!res.ok) return [];
       const posts = await res.json();
       return posts.filter((p: BlogPost) => p.id !== post?.id).slice(0, 3);
