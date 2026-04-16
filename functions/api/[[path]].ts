@@ -124,7 +124,18 @@ app.post("/auth/register", async (c) => {
     return c.json({ user: toPublicUser(user) });
   } catch (err: any) {
     console.error("POST /api/auth/register failed:", err);
-    return c.json({ error: err?.message || "Registration failed" }, 500);
+    // Detect Postgres unique-constraint violations from the race window
+    // between our pre-check and the INSERT, and return a stable 400.
+    const msg = String(err?.message ?? "");
+    const code = String(err?.code ?? "");
+    if (code === "23505" || /duplicate key|unique constraint/i.test(msg)) {
+      const onEmail = /email/i.test(msg);
+      return c.json(
+        { error: onEmail ? "Email already registered" : "Username already taken" },
+        400
+      );
+    }
+    return c.json({ error: "Registration failed" }, 500);
   }
 });
 
@@ -211,11 +222,11 @@ app.get("/auth/me", async (c) => {
     if (!session) return c.json({ error: "Not authenticated" }, 401);
     const user = await getUserById(c.env, session.userId);
     if (!user) return c.json({ error: "User not found" }, 401);
+    // NOTE: matches Express shape — flat user object (not wrapped in `user`).
+    // Frontend `auth-context.tsx` checkAuth() does `setUser(userData)` directly.
     return c.json({
-      user: {
-        ...toPublicUser(user),
-        ...(session.isGuest ? { isGuest: true } : {}),
-      },
+      ...toPublicUser(user),
+      ...(session.isGuest ? { isGuest: true } : {}),
     });
   } catch (err) {
     console.error("GET /api/auth/me failed:", err);

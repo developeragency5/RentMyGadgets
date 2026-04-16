@@ -1,4 +1,6 @@
-const PBKDF2_ITERATIONS = 100_000;
+const PBKDF2_ITERATIONS = 600_000; // OWASP 2023 recommendation for PBKDF2-SHA256
+const PBKDF2_MIN_ITERATIONS = 100_000;
+const PBKDF2_MAX_ITERATIONS = 5_000_000; // upper bound to prevent DoS via tampered hash
 const PBKDF2_HASH = "SHA-256";
 const PBKDF2_KEY_LEN = 32;
 const SALT_LEN = 16;
@@ -76,7 +78,11 @@ export async function verifyPassword(
   if (parts.length !== 4) return { ok: false, reason: "unknown_format" };
 
   const iterations = parseInt(parts[1], 10);
-  if (!Number.isFinite(iterations) || iterations < 1000) {
+  if (
+    !Number.isFinite(iterations) ||
+    iterations < PBKDF2_MIN_ITERATIONS ||
+    iterations > PBKDF2_MAX_ITERATIONS
+  ) {
     return { ok: false, reason: "unknown_format" };
   }
   let salt: Uint8Array;
