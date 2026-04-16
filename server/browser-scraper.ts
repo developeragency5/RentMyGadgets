@@ -1,4 +1,4 @@
-import puppeteer, { Browser, Page } from 'puppeteer';
+import type { Browser, Page } from 'puppeteer';
 
 let browserInstance: Browser | null = null;
 
@@ -12,6 +12,7 @@ export interface GalleryScrapingResult {
 async function getBrowser(): Promise<Browser> {
   if (!browserInstance || !browserInstance.isConnected()) {
     console.log('[browser-scraper] Launching new browser instance...');
+    const puppeteer = (await import('puppeteer')).default;
     browserInstance = await puppeteer.launch({
       headless: true,
       args: [
