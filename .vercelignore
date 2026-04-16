@@ -5,7 +5,12 @@ replit.md
 .local
 *.zip
 
-attached_assets
+attached_assets/Screenshot*
+attached_assets/Pasted*
+attached_assets/PNG_image*
+attached_assets/image_*
+attached_assets/*.part*
+attached_assets/*.zip*
 dist
 
 node_modules/puppeteer
