@@ -40,6 +40,8 @@ jobs:
           cp -r public/images dist/public/images
           mkdir -p dist/public/stock_images
           cp -r attached_assets/stock_images/* dist/public/stock_images/ 2>/dev/null || true
+          mkdir -p dist/public/attached_assets
+          find attached_assets -maxdepth 1 -type f \( -iname "*.webp" -o -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.avif" -o -iname "*.gif" \) -exec cp {} dist/public/attached_assets/ \; 2>/dev/null || true
 
       - name: Copy index.html for SPA routing
         run: cp dist/public/index.html dist/public/404.html
