@@ -14,6 +14,10 @@ import { storage } from "./storage";
 const app = express();
 const httpServer = createServer(app);
 
+// Trust the first proxy hop (Cloudflare → Vercel/Render → app) so req.protocol,
+// req.hostname, and req.ip reflect the original client request.
+app.set("trust proxy", 1);
+
 app.use((req: Request, res: Response, next: NextFunction) => {
   const host = req.hostname;
   if (host === "www.rentmygadgets.com") {
