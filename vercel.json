@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "buildCommand": "npx vite build",
+  "buildCommand": "npx vite build && node script/build-vercel-api.mjs",
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
   "framework": null,
   "functions": {
-    "api/index.ts": {
+    "api/index.js": {
       "maxDuration": 30,
-      "excludeFiles": "{node_modules/puppeteer/**,node_modules/puppeteer-core/**,node_modules/@puppeteer/**,node_modules/chromium-bidi/**,node_modules/electron-to-chromium/**,node_modules/playwright*/**,node_modules/lucide-react/**,node_modules/react-day-picker/**,node_modules/@radix-ui/**,node_modules/recharts/**,node_modules/framer-motion/**,node_modules/react-hook-form/**,node_modules/@hookform/**,node_modules/@tanstack/**,node_modules/react/**,node_modules/react-dom/**,node_modules/react-resizable-panels/**,node_modules/embla-carousel*/**,node_modules/cmdk/**,node_modules/vaul/**,node_modules/sonner/**,node_modules/input-otp/**,node_modules/next-themes/**,node_modules/wouter/**,node_modules/class-variance-authority/**,node_modules/clsx/**,node_modules/tailwind-merge/**,node_modules/tailwindcss-animate/**,node_modules/tw-animate-css/**,node_modules/@tailwindcss/**,node_modules/tailwindcss/**,node_modules/@swc/**,node_modules/typescript/**,node_modules/@types/**,node_modules/esbuild/**,node_modules/@esbuild/**,node_modules/@esbuild-kit/**,node_modules/vite/**,node_modules/@vitejs/**,node_modules/tsx/**,node_modules/drizzle-kit/**,node_modules/@babel/**,node_modules/lightningcss*/**,node_modules/@img/**,node_modules/web-streams-polyfill/**,node_modules/date-fns-jalali/**,node_modules/recharts/**,node_modules/lodash/**,node_modules/@rollup/**,node_modules/rollup/**,node_modules/caniuse-lite/**,node_modules/@replit/**,attached_assets/**,public/images/**,client/**,**/*.test.ts,**/*.spec.ts,**/*.md,**/*.map,dist/**}"
+      "excludeFiles": "{node_modules/puppeteer/**,node_modules/puppeteer-core/**,node_modules/@puppeteer/**,node_modules/chromium-bidi/**,node_modules/playwright*/**,node_modules/electron-to-chromium/**,node_modules/lucide-react/**,node_modules/react-day-picker/**,node_modules/@radix-ui/**,node_modules/recharts/**,node_modules/framer-motion/**,node_modules/react-hook-form/**,node_modules/@hookform/**,node_modules/@tanstack/**,node_modules/react/**,node_modules/react-dom/**,node_modules/wouter/**,node_modules/@swc/**,node_modules/typescript/**,node_modules/@types/**,node_modules/esbuild/**,node_modules/@esbuild/**,node_modules/@esbuild-kit/**,node_modules/vite/**,node_modules/@vitejs/**,node_modules/tsx/**,node_modules/drizzle-kit/**,node_modules/@babel/**,node_modules/lightningcss*/**,node_modules/web-streams-polyfill/**,node_modules/date-fns-jalali/**,node_modules/lodash/**,node_modules/@rollup/**,node_modules/rollup/**,node_modules/caniuse-lite/**,node_modules/@replit/**,node_modules/tailwindcss/**,node_modules/@tailwindcss/**,attached_assets/**,public/images/**,client/**,**/*.test.ts,**/*.spec.ts,**/*.md,**/*.map,dist/**}"
     }
   },
   "rewrites": [
