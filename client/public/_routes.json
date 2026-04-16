@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "description": "Only invoke Pages Functions for /api/* paths. Everything else is served as static from the Pages CDN.",
+  "include": ["/api/*"],
+  "exclude": []
+}

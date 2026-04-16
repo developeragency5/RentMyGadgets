@@ -1,0 +1,20 @@
+name = "rentmygadgets"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "dist/public"
+
+# Cloudflare Pages reads bindings from the dashboard in production.
+# This file documents the required bindings for `wrangler pages dev`
+# and serves as a reference for the dashboard configuration.
+
+# Required environment variables (set per-environment in the Pages dashboard):
+#   DATABASE_URL    - Neon Postgres connection string (HTTP driver compatible)
+#   SESSION_SECRET  - Random 32+ char string for signing session cookies
+#   COOKIE_DOMAIN   - .rentmygadgets.com (production only)
+#   GEMINI_API_KEY  - Optional, only used if AI content generation is invoked
+#
+# Required KV namespaces (Phase 2+):
+#   SESSIONS        - Stores session_id -> userId mapping
+#
+# Local dev with bindings:
+#   npx wrangler pages dev dist/public --kv SESSIONS
