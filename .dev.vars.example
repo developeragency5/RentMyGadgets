@@ -1,0 +1,11 @@
+# Copy this file to .dev.vars (which is gitignored) and fill in real values
+# for local Wrangler Pages dev:
+#   npx wrangler pages dev dist/public --kv SESSIONS
+
+DATABASE_URL="postgres://user:password@host/dbname?sslmode=require"
+
+# Optional — leave unset locally so the cookie domain falls back to the request host
+# COOKIE_DOMAIN=".rentmygadgets.com"
+
+# Optional — only required if AI content generation endpoints are exercised
+# GEMINI_API_KEY="..."

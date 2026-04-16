@@ -9,12 +9,18 @@ pages_build_output_dir = "dist/public"
 
 # Required environment variables (set per-environment in the Pages dashboard):
 #   DATABASE_URL    - Neon Postgres connection string (HTTP driver compatible)
-#   SESSION_SECRET  - Random 32+ char string for signing session cookies
-#   COOKIE_DOMAIN   - .rentmygadgets.com (production only)
+#   COOKIE_DOMAIN   - .rentmygadgets.com (production only — leave unset on .pages.dev)
 #   GEMINI_API_KEY  - Optional, only used if AI content generation is invoked
 #
 # Required KV namespaces (Phase 2+):
-#   SESSIONS        - Stores session_id -> userId mapping
+#   SESSIONS        - Stores session_id -> { userId, isGuest, createdAt }
+#                     Bind in dashboard: Settings → Functions → KV namespace bindings
+#                     Variable name: SESSIONS  →  Namespace: rentmygadgets-sessions
 #
 # Local dev with bindings:
-#   npx wrangler pages dev dist/public --kv SESSIONS
+#   1. Create a local KV namespace once:
+#        npx wrangler kv namespace create SESSIONS --preview
+#   2. Copy DATABASE_URL into .dev.vars (gitignored), e.g.:
+#        DATABASE_URL="postgres://..."
+#   3. Run:
+#        npx wrangler pages dev dist/public --kv SESSIONS

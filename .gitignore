@@ -9,3 +9,4 @@ attached_assets/*.zip*
 attached_assets/*.part*
 
 # Vercel API bundle (generated)
+.dev.vars
