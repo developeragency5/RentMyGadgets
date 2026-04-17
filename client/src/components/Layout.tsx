@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useCart } from "@/lib/cart-context";
 import { useAuth } from "@/lib/auth-context";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Logo } from "@/components/Logo";
 import CompareBar from "@/components/CompareBar";
 import CookieConsent from "@/components/CookieConsent";
 import ConsentGatedScripts from "@/components/ConsentGatedScripts";
@@ -136,12 +137,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container mx-auto px-6 h-20 flex items-center">
           {/* Left: Logo - fixed width for balance */}
           <div className="flex-1 flex items-center">
-            <Link href="/">
-              <div className="flex items-center gap-2 font-heading font-bold text-xl tracking-tight text-primary hover:opacity-90 transition-opacity cursor-pointer">
-                <span className="bg-primary text-primary-foreground px-2.5 py-1.5 rounded-lg text-base">RMG</span>
-                <span className="hidden sm:inline">RentMyGadgets</span>
-              </div>
-            </Link>
+            <Logo size="md" className="[&>span:last-child]:hidden sm:[&>span:last-child]:inline" />
           </div>
 
           {/* Center: Desktop Nav - truly centered */}
@@ -316,7 +312,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             <div className="col-span-2 md:col-span-1">
-              <div className="font-heading font-bold text-lg text-primary mb-4">RentMyGadgets</div>
+              <div className="mb-4">
+                <Logo size="md" />
+              </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 Premium tech rentals for professionals and businesses. 
                 Get the latest gear without the upfront cost.
