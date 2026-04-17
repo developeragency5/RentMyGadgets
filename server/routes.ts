@@ -4,6 +4,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertUserSchema } from "@shared/schema";
 import { calculateCartPricing, type CartPricingResult } from "@shared/pricing";
+import { validateUsAddress, normalizeState, isValidUsZip } from "@shared/address-validation";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
@@ -1648,8 +1649,27 @@ ${allPages.map(page => `  <url>
       // Completely ignore any req.body.items - all cart data comes from server
       const { deliveryAddress, startDate, endDate } = req.body;
       
-      if (!deliveryAddress) {
+      if (!deliveryAddress || typeof deliveryAddress !== "string") {
         return res.status(400).json({ error: "Delivery address is required" });
+      }
+
+      const phoneMatch = deliveryAddress.match(/Phone:\s*([^,]+)$/i);
+      const phoneDigits = phoneMatch ? phoneMatch[1].replace(/\D/g, "") : "";
+      if (phoneDigits.length !== 10) {
+        return res.status(400).json({ error: "A valid 10-digit US phone number is required." });
+      }
+
+      const zipMatch = deliveryAddress.match(/\b(\d{5}(?:-?\d{4})?)\b(?=[^\d]*(?:,\s*Phone:|$))/);
+      const stateZipMatch = deliveryAddress.match(/,\s*([^,]+?)\s+(\d{5}(?:-?\d{4})?)\s*,\s*Phone:/i);
+      if (!zipMatch || !isValidUsZip(zipMatch[1])) {
+        return res.status(400).json({ error: "Please verify your address — invalid ZIP code." });
+      }
+      if (stateZipMatch) {
+        const stateText = stateZipMatch[1].trim();
+        const lastToken = stateText.split(/\s+/).pop() || stateText;
+        if (!normalizeState(lastToken) && !normalizeState(stateText)) {
+          return res.status(400).json({ error: "Please verify your address — invalid US state." });
+        }
       }
 
       // STEP 1: Fetch authenticated user's cart from database (server-authoritative)

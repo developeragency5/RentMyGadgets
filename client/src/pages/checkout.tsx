@@ -29,6 +29,8 @@ import { useCart, GADGET_CARE_RATE } from "@/lib/cart-context";
 import { useAuth } from "@/lib/auth-context";
 import { motion } from "framer-motion";
 import type { CartPricingResult } from "@shared/pricing";
+import { formatUsPhone, isValidUsPhone } from "@/lib/phone";
+import { validateUsAddress } from "@shared/address-validation";
 
 type CheckoutStep = 1 | 2 | 3 | 4 | 5;
 
@@ -218,6 +220,52 @@ export default function Checkout() {
         variant: "destructive"
       });
       return;
+    }
+
+    if (!isValidUsPhone(formData.phone)) {
+      toast({
+        title: "Invalid phone number",
+        description: "Please enter a valid 10-digit US phone number.",
+        variant: "destructive"
+      });
+      setCurrentStep(2);
+      return;
+    }
+
+    const billingCheck = validateUsAddress({
+      street: formData.billingAddress,
+      city: formData.billingCity,
+      state: formData.billingState,
+      zip: formData.billingZip,
+      country: formData.billingCountry,
+    });
+    if (!billingCheck.ok) {
+      toast({
+        title: "Please verify your billing address",
+        description: billingCheck.reason,
+        variant: "destructive"
+      });
+      setCurrentStep(3);
+      return;
+    }
+
+    if (!formData.sameAsDelivery) {
+      const deliveryCheck = validateUsAddress({
+        street: formData.deliveryAddress,
+        city: formData.deliveryCity,
+        state: formData.deliveryState,
+        zip: formData.deliveryZip,
+        country: formData.deliveryCountry,
+      });
+      if (!deliveryCheck.ok) {
+        toast({
+          title: "Please verify your delivery address",
+          description: deliveryCheck.reason,
+          variant: "destructive"
+        });
+        setCurrentStep(3);
+        return;
+      }
     }
 
     setIsSubmitting(true);
@@ -502,9 +550,13 @@ export default function Checkout() {
           <Input 
             id="phone" 
             data-testid="input-phone"
-            placeholder="+1 (555) 000-0000" 
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel-national"
+            placeholder="(555) 000-0000" 
             value={formData.phone}
-            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+            maxLength={14}
+            onChange={(e) => setFormData({...formData, phone: formatUsPhone(e.target.value)})}
             required 
           />
         </div>
