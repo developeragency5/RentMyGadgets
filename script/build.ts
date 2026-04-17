@@ -54,6 +54,17 @@ async function buildAll() {
     if (e?.code !== "ENOENT") throw e;
   }
 
+  // Mirror attached_assets/stock_images at /stock_images so URLs that use the
+  // dev-only Express alias (`app.use('/stock_images', ...)`) keep working in
+  // production on Cloudflare Pages (categories, etc.).
+  console.log("copying attached_assets/stock_images/ into dist/public/stock_images/...");
+  try {
+    await stat("attached_assets/stock_images");
+    await cp("attached_assets/stock_images", "dist/public/stock_images", { recursive: true, force: false, errorOnExist: false });
+  } catch (e: any) {
+    if (e?.code !== "ENOENT") throw e;
+  }
+
   // Embed the built index.html shell into a TypeScript module so the
   // Cloudflare Pages catch-all function can use it as a constant. This
   // avoids a per-request `env.ASSETS.fetch('/index.html')` round trip and
