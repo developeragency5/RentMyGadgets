@@ -1,6 +1,6 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
-import { rm, readFile, writeFile } from "fs/promises";
+import { cp, rm, readFile, writeFile, stat } from "fs/promises";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -37,6 +37,14 @@ async function buildAll() {
 
   console.log("building client...");
   await viteBuild();
+
+  console.log("copying public/ assets (product images, etc.) into dist/public/...");
+  try {
+    await stat("public");
+    await cp("public", "dist/public", { recursive: true, force: false, errorOnExist: false });
+  } catch (e: any) {
+    if (e?.code !== "ENOENT") throw e;
+  }
 
   // Embed the built index.html shell into a TypeScript module so the
   // Cloudflare Pages catch-all function can use it as a constant. This
