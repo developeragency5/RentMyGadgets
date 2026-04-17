@@ -196,7 +196,7 @@ export default function AccessibilityStatement() {
                   <div className="text-muted-foreground space-y-2">
                     <p><strong>Email:</strong> accessibility@rentmygadgets.com</p>
                     <p><strong>Dashboard:</strong> Contact us through your account dashboard</p>
-                    <p><strong>Mail:</strong> Accessibility Coordinator, 123 Tech Plaza, Suite 500, San Francisco, CA 94105</p>
+                    <p><strong>Mail:</strong> Accessibility Coordinator, PC Rental, LLC, 2393 Seabreeze Dr SE, Darien, GA 31305-5425</p>
                   </div>
                   <p className="text-muted-foreground mt-4">
                     When contacting us, please include:

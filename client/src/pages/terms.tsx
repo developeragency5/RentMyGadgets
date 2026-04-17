@@ -204,10 +204,10 @@ export default function Terms() {
                 If you have any questions about these Terms, please contact us at:
               </p>
               <div className="mt-4 text-muted-foreground">
-                <p><strong>RentMyGadgets</strong></p>
+                <p><strong>PC Rental, LLC</strong> (dba RentMyGadgets)</p>
                 <p>Email: legal@rentmygadgets.com</p>
                 <p>Contact us through your account dashboard</p>
-                <p>Address: 123 Tech Plaza, Suite 500, San Francisco, CA 94105</p>
+                <p>Address: 2393 Seabreeze Dr SE, Darien, GA 31305-5425</p>
               </div>
             </div>
           </CardContent>

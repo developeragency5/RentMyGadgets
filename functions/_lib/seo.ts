@@ -35,9 +35,18 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
         "@context": "https://schema.org",
         "@type": "Organization",
         name: SITE_NAME,
+        legalName: "PC Rental, LLC",
         url: BASE_URL,
         logo: `${BASE_URL}/favicon.png`,
         description: "Premium technology equipment rental service with flexible plans and same-day delivery.",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "2393 Seabreeze Dr SE",
+          addressLocality: "Darien",
+          addressRegion: "GA",
+          postalCode: "31305-5425",
+          addressCountry: "US",
+        },
         contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "support@rentmygadgets.com" },
       },
       {

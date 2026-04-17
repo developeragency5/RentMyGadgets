@@ -72,8 +72,9 @@ export default function Contact() {
                 <div>
                   <h3 className="font-bold text-lg mb-1">Visit HQ</h3>
                   <p className="text-muted-foreground">
-                    123 Tech Plaza, Suite 500<br />
-                    San Francisco, CA 94105
+                    PC Rental, LLC<br />
+                    2393 Seabreeze Dr SE<br />
+                    Darien, GA 31305-5425
                   </p>
                 </div>
               </div>
