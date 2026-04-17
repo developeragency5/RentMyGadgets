@@ -828,7 +828,7 @@ export async function injectMeta(
   result = upsertMeta(
     result,
     "robots",
-    meta.noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large"
+    meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"
   );
   result = upsertLink(result, "canonical", escapeHtml(fullUrl));
   result = upsertMeta(result, "og:title", safeTitle, true);
