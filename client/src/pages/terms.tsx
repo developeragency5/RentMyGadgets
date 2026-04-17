@@ -207,7 +207,7 @@ export default function Terms() {
                 <p><strong>PC Rental, LLC</strong> (dba RentMyGadgets)</p>
                 <p>Email: legal@rentmygadgets.com</p>
                 <p>Contact us through your account dashboard</p>
-                <p>Address: 2393 Seabreeze Dr SE, Darien, GA 31305-5425</p>
+                <p>Address: 2393 Seabreeze Dr SE, Darien, GA 31305-5425, United States</p>
               </div>
             </div>
           </CardContent>

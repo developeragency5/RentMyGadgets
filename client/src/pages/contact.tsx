@@ -74,7 +74,8 @@ export default function Contact() {
                   <p className="text-muted-foreground">
                     PC Rental, LLC<br />
                     2393 Seabreeze Dr SE<br />
-                    Darien, GA 31305-5425
+                    Darien, GA 31305-5425<br />
+                    United States
                   </p>
                 </div>
               </div>
