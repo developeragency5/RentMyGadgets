@@ -754,21 +754,21 @@ const NOSCRIPT_FALLBACK = `<noscript>
     <h2 style="font-size:1.15rem;margin:1.25rem 0 0.5rem;">Contact</h2>
     <ul style="line-height:1.8;">
       <li>Email: <a href="mailto:support@rentmygadgets.com">support@rentmygadgets.com</a></li>
-      <li>Support: <a href="/contact">Contact form</a> &middot; <a href="/faq">FAQ</a></li>
+      <li>Support: <a href="/contact">Contact form</a></li>
       <li>Hours: Monday&ndash;Friday, 9:00am&ndash;6:00pm PT</li>
     </ul>
     <h2 style="font-size:1.15rem;margin:1.25rem 0 0.5rem;">Policies &amp; legal</h2>
     <ul style="line-height:1.8;">
-      <li><a href="/privacy-policy">Privacy policy</a></li>
-      <li><a href="/terms-of-service">Terms of service</a></li>
-      <li><a href="/rental-agreement">Rental agreement</a></li>
-      <li><a href="/cookie-policy">Cookie policy</a></li>
+      <li><a href="/privacy">Privacy policy</a></li>
+      <li><a href="/terms">Terms of service</a></li>
+      <li><a href="/rental-policy">Rental policy</a></li>
+      <li><a href="/cookies">Cookie policy</a></li>
       <li><a href="/do-not-sell">Do not sell or share my personal information</a></li>
       <li><a href="/accessibility">Accessibility statement</a></li>
       <li><a href="/shipping-policy">Shipping policy</a></li>
       <li><a href="/return-policy">Return policy</a></li>
       <li><a href="/damage-policy">Damage policy</a></li>
-      <li><a href="/refund-policy">Refund policy</a></li>
+      <li><a href="/security-deposit">Security deposit</a></li>
       <li><a href="/advertising-disclosure">Advertising disclosure</a></li>
     </ul>
   </div>
@@ -874,7 +874,10 @@ export async function injectMeta(
   const safeH1 = escapeHtml(
     meta.title.includes(SITE_NAME) ? meta.title.replace(` | ${SITE_NAME}`, "") : meta.title
   );
-  const pageContent = getCrawlerPageContent(url);
+  // Prefer route-specific dynamic body (product/category/blog detail) when
+  // available; fall back to the static page-content map for known static
+  // routes (or empty string for unknown routes).
+  const pageContent = meta.bodyContent ?? getCrawlerPageContent(url);
   const crawlerContent = `${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}`;
   result = result.replace('<div id="root"></div>', `<div id="root">${crawlerContent}</div>`);
 

@@ -3,6 +3,23 @@ compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist/public"
 
+# REQUIRED Cloudflare Pages dashboard settings
+# (Settings → Builds & deployments → Build configuration):
+#
+#   Build command:           npm run build
+#   Build output directory:  dist/public
+#   Root directory:          /
+#
+# Why `npm run build` (not `vite build`): the build script
+# `script/build.ts` runs `vite build` AND then writes
+# `functions/_lib/html-shell.generated.ts` from the freshly built
+# `dist/public/index.html`. The catch-all Pages Function imports
+# `HTML_SHELL` from that generated module to prerender per-route SEO
+# metadata at the edge. If the build command is changed to `vite build`,
+# the generated module will not be refreshed and per-route prerendering
+# will fall back to a runtime `env.ASSETS.fetch('/index.html')` round
+# trip on every request.
+
 # Cloudflare Pages reads bindings from the dashboard in production.
 # This file documents the required bindings for `wrangler pages dev`
 # and serves as a reference for the dashboard configuration.
