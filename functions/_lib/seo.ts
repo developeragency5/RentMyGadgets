@@ -11,6 +11,14 @@ interface PageMeta {
   image?: string;
   jsonLd?: Record<string, any> | Record<string, any>[];
   noindex?: boolean;
+  /**
+   * Route-specific HTML body content for crawlers. When provided this is
+   * injected into the prerendered <main>, replacing the static fallback
+   * content from CRAWLER_PAGE_CONTENT. Used for dynamic pages
+   * (product/category/blog) where DB-backed content beats a generic
+   * placeholder.
+   */
+  bodyContent?: string;
 }
 
 const SITE_NAME = "RentMyGadgets";
@@ -184,9 +192,17 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
     if (!product) return null;
 
     let category: { id: string; name: string } | null = null;
+    let related: { id: string; name: string; pricePerMonth: string | null }[] = [];
     if (product.categoryId) {
       const catRows = await db.select().from(categories).where(eq(categories.id, product.categoryId)).limit(1);
       category = catRows[0] ?? null;
+      // Up to 6 related rentals from the same category (excluding self).
+      const relRows = await db
+        .select({ id: products.id, name: products.name, pricePerMonth: products.pricePerMonth })
+        .from(products)
+        .where(eq(products.categoryId, product.categoryId))
+        .limit(8);
+      related = relRows.filter(r => r.id !== product.id).slice(0, 6);
     }
     const price = product.pricePerMonth ? parseFloat(product.pricePerMonth.toString()) : 0;
     const desc = product.descriptionShort || product.description || `Rent the ${product.name} starting at $${price.toFixed(2)}/month.`;
@@ -212,11 +228,24 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
       breadcrumbItems.push({ "@type": "ListItem", position: 3, name: product.name });
     }
 
+    const breadcrumbHtml = category
+      ? `<nav aria-label="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/categories">Categories</a> &rsaquo; <a href="/categories/${category.id}">${escapeHtml(category.name)}</a> &rsaquo; ${escapeHtml(product.name)}</nav>`
+      : `<nav aria-label="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/categories">Categories</a> &rsaquo; ${escapeHtml(product.name)}</nav>`;
+    const fullDesc = product.description || desc;
+    const relatedHtml = related.length > 0
+      ? `<section><h2>Related rentals</h2><ul>${related.map(r => {
+          const rPrice = r.pricePerMonth ? parseFloat(r.pricePerMonth.toString()).toFixed(2) : "0.00";
+          return `<li><a href="/product/${r.id}">${escapeHtml(r.name)}</a> &mdash; $${rPrice}/mo</li>`;
+        }).join("")}</ul></section>`
+      : "";
+    const bodyContent = `${breadcrumbHtml}<article><h2>About this rental</h2><p>${escapeHtml(fullDesc).slice(0, 1500)}</p><dl>${product.brand ? `<dt>Brand</dt><dd>${escapeHtml(product.brand)}</dd>` : ""}${category ? `<dt>Category</dt><dd><a href="/categories/${category.id}">${escapeHtml(category.name)}</a></dd>` : ""}<dt>Monthly rate</dt><dd>$${price.toFixed(2)}/mo</dd><dt>Availability</dt><dd>${product.available ? "In stock" : "Currently unavailable"}</dd></dl><p><a href="/cart">Add to cart</a> &middot; <a href="/gadgetcare">Add GadgetCare+ protection</a> &middot; <a href="/how-it-works">How rental works</a></p></article>${relatedHtml}`;
+
     return {
       title: titleWithPrice,
       description: desc.slice(0, 300),
       type: "product",
       image: product.imageUrl || DEFAULT_IMAGE,
+      bodyContent,
       jsonLd: [
         {
           "@context": "https://schema.org",
@@ -257,10 +286,30 @@ async function getCategoryMeta(env: Env, categoryId: string): Promise<PageMeta |
 
     const catDesc = category.description || `Browse and rent ${category.name.toLowerCase()} equipment. Flexible rental periods, competitive pricing, and same-day delivery available.`;
 
+    // Pull all products in this category to render a crawler-visible product list.
+    const catProducts = await db
+      .select({ id: products.id, name: products.name, pricePerMonth: products.pricePerMonth, brand: products.brand })
+      .from(products)
+      .where(eq(products.categoryId, categoryId))
+      .limit(60);
+
+    const productListHtml = catProducts.length > 0
+      ? `<section><h2>Available ${escapeHtml(category.name)} for rent</h2><ul>${catProducts.map(p => {
+          const pPrice = p.pricePerMonth ? parseFloat(p.pricePerMonth.toString()).toFixed(2) : "0.00";
+          return `<li><a href="/product/${p.id}">${escapeHtml(p.name)}</a>${p.brand ? ` (${escapeHtml(p.brand)})` : ""} &mdash; $${pPrice}/mo</li>`;
+        }).join("")}</ul></section>`
+      : `<p>No products are currently listed in this category. <a href="/products">Browse all products</a>.</p>`;
+
+    const bodyContent =
+      `<nav aria-label="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/categories">Categories</a> &rsaquo; ${escapeHtml(category.name)}</nav>` +
+      `<article><h2>About ${escapeHtml(category.name)}</h2><p>${escapeHtml(catDesc)}</p></article>` +
+      productListHtml;
+
     return {
       title: `Rent ${category.name} | Browse Equipment`,
       description: catDesc,
       image: category.imageUrl || DEFAULT_IMAGE,
+      bodyContent,
       jsonLd: [
         {
           "@context": "https://schema.org",
@@ -286,10 +335,20 @@ async function getCategoryMeta(env: Env, categoryId: string): Promise<PageMeta |
   }
 }
 
+function blogBody(slug: string, title: string, description: string): string {
+  return (
+    `<nav aria-label="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo; ${escapeHtml(title)}</nav>` +
+    `<article><h2>${escapeHtml(title)}</h2><p>${escapeHtml(description)}</p>` +
+    `<p>This guide is part of our ongoing series of tech rental resources. Read more on the <a href="/blog">RentMyGadgets blog</a>, <a href="/products">browse our full product catalog</a>, or learn <a href="/how-it-works">how renting works</a>.</p>` +
+    `<p>Have questions about this post or any rental? <a href="/contact">Contact our support team</a>.</p></article>`
+  );
+}
+
 const BLOG_META: Record<string, PageMeta> = {
   "best-laptops-remote-work-2025": {
     title: "Best Laptops for Remote Work in 2025",
     description: "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing for the best work-from-home setups.",
+    bodyContent: blogBody("best-laptops-remote-work-2025", "Best Laptops for Remote Work in 2025", "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing for the best work-from-home setups."),
     jsonLd: [
       { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Best Laptops for Remote Work in 2025", description: "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/best-laptops-remote-work-2025`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/best-laptops-remote-work-2025` } },
       { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Best Laptops for Remote Work in 2025" }] },
@@ -298,6 +357,7 @@ const BLOG_META: Record<string, PageMeta> = {
   "camera-rental-guide-beginners": {
     title: "Camera Rental Guide for Beginners",
     description: "A complete guide to renting cameras for beginners. Learn what to look for, which cameras to rent for different needs, and how to get started.",
+    bodyContent: blogBody("camera-rental-guide-beginners", "Camera Rental Guide for Beginners", "A complete guide to renting cameras for beginners. Learn what to look for, which cameras to rent for different needs, and how to get started."),
     jsonLd: [
       { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Camera Rental Guide for Beginners", description: "A complete guide to renting cameras for beginners.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/camera-rental-guide-beginners`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/camera-rental-guide-beginners` } },
       { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Camera Rental Guide for Beginners" }] },
@@ -306,6 +366,7 @@ const BLOG_META: Record<string, PageMeta> = {
   "save-money-renting-vs-buying-tech": {
     title: "Save Money: Renting vs. Buying Tech",
     description: "Compare the costs of renting vs buying technology equipment. See how much you can save with flexible tech rentals.",
+    bodyContent: blogBody("save-money-renting-vs-buying-tech", "Save Money: Renting vs. Buying Tech", "Compare the costs of renting vs buying technology equipment. See how much you can save with flexible tech rentals."),
     jsonLd: [
       { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Save Money: Renting vs. Buying Tech", description: "Compare the costs of renting vs buying technology equipment.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/save-money-renting-vs-buying-tech`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/save-money-renting-vs-buying-tech` } },
       { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Save Money: Renting vs. Buying Tech" }] },
@@ -602,10 +663,14 @@ function buildCrawlerNav(currentUrl: string, categoryLinks: string[], productLin
   const catSection = categoryLinks.length > 0 ? `<p>${categoryLinks.join(" | ")}</p>` : "";
   const prodSection = productLinks.length > 0 ? `<p>${productLinks.join(" | ")}</p>` : "";
 
+  // Use the HTML5 `hidden` attribute so the crawler nav is invisible to
+  // sighted users (it would otherwise flash before React hydrates) but
+  // remains in the DOM for crawlers that don't execute JavaScript. React's
+  // root-replacement on hydration also wipes these blocks for JS clients.
   return {
-    header: `<header><nav aria-label="Site Navigation"><p><a href="/"><strong>RentMyGadgets</strong></a> | ${mainLinks}</p></nav></header>`,
-    bodyLinks: `${catSection}${prodSection}`,
-    footer: `<footer><nav aria-label="Policies and Legal"><p>${policyLinks}</p></nav></footer>`,
+    header: `<header hidden aria-hidden="true"><nav aria-label="Site Navigation"><p><a href="/"><strong>RentMyGadgets</strong></a> | ${mainLinks}</p></nav></header>`,
+    bodyLinks: catSection || prodSection ? `<div hidden aria-hidden="true">${catSection}${prodSection}</div>` : "",
+    footer: `<footer hidden aria-hidden="true"><nav aria-label="Policies and Legal"><p>${policyLinks}</p></nav></footer>`,
   };
 }
 
@@ -669,18 +734,42 @@ async function getFeaturedProductsForItemList(env: Env): Promise<typeof cachedFe
 }
 
 // Static no-JS fallback shown to users without JavaScript. Lives outside the
-// React root so hydration cannot wipe it. Linked to key navigation paths.
+// React root so hydration cannot wipe it. Includes browse links, support
+// contact details, and the full set of legal/policy links so the site
+// remains compliant and navigable without JavaScript.
 const NOSCRIPT_FALLBACK = `<noscript>
   <div style="max-width:760px;margin:2rem auto;padding:1.5rem;font-family:system-ui,-apple-system,sans-serif;color:#1f2937;">
     <h1 style="font-size:1.75rem;margin:0 0 0.75rem;">RentMyGadgets</h1>
-    <p style="font-size:1rem;line-height:1.5;">JavaScript is required for the full interactive experience. Browse our site below or visit our static pages directly.</p>
+    <p style="font-size:1rem;line-height:1.5;">JavaScript is required for the full interactive experience. Browse our site or contact us using the information below.</p>
+    <h2 style="font-size:1.15rem;margin:1.25rem 0 0.5rem;">Browse</h2>
     <ul style="line-height:1.8;">
       <li><a href="/products">All products</a></li>
       <li><a href="/categories">Browse categories</a></li>
       <li><a href="/how-it-works">How it works</a></li>
       <li><a href="/gadgetcare">GadgetCare+ protection</a></li>
+      <li><a href="/rent-to-own">Rent-to-own</a></li>
       <li><a href="/blog">Blog &amp; guides</a></li>
-      <li><a href="/contact">Contact us</a></li>
+      <li><a href="/about">About us</a></li>
+    </ul>
+    <h2 style="font-size:1.15rem;margin:1.25rem 0 0.5rem;">Contact</h2>
+    <ul style="line-height:1.8;">
+      <li>Email: <a href="mailto:support@rentmygadgets.com">support@rentmygadgets.com</a></li>
+      <li>Support: <a href="/contact">Contact form</a> &middot; <a href="/faq">FAQ</a></li>
+      <li>Hours: Monday&ndash;Friday, 9:00am&ndash;6:00pm PT</li>
+    </ul>
+    <h2 style="font-size:1.15rem;margin:1.25rem 0 0.5rem;">Policies &amp; legal</h2>
+    <ul style="line-height:1.8;">
+      <li><a href="/privacy-policy">Privacy policy</a></li>
+      <li><a href="/terms-of-service">Terms of service</a></li>
+      <li><a href="/rental-agreement">Rental agreement</a></li>
+      <li><a href="/cookie-policy">Cookie policy</a></li>
+      <li><a href="/do-not-sell">Do not sell or share my personal information</a></li>
+      <li><a href="/accessibility">Accessibility statement</a></li>
+      <li><a href="/shipping-policy">Shipping policy</a></li>
+      <li><a href="/return-policy">Return policy</a></li>
+      <li><a href="/damage-policy">Damage policy</a></li>
+      <li><a href="/refund-policy">Refund policy</a></li>
+      <li><a href="/advertising-disclosure">Advertising disclosure</a></li>
     </ul>
   </div>
 </noscript>`;
@@ -732,6 +821,15 @@ export async function injectMeta(
     schemas.push(...arr);
   }
   if (url.split("?")[0] === "/") {
+    // Homepage breadcrumb (single root entry) — required for crawlers that
+    // expect BreadcrumbList on every page.
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      ],
+    });
     const featured = (await getFeaturedProductsForItemList(env)) || [];
     if (featured.length > 0) {
       schemas.push({
@@ -740,12 +838,28 @@ export async function injectMeta(
         name: "Featured Tech Rentals",
         url: BASE_URL,
         numberOfItems: featured.length,
-        itemListElement: featured.map((p, i) => ({
-          "@type": "ListItem",
-          position: i + 1,
-          url: `${BASE_URL}/product/${p.id}`,
-          name: p.name,
-        })),
+        itemListElement: featured.map((p, i) => {
+          const fPrice = p.pricePerMonth ? parseFloat(p.pricePerMonth.toString()) : 0;
+          return {
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${BASE_URL}/product/${p.id}`,
+            item: {
+              "@type": "Product",
+              name: p.name,
+              description: `Rent the ${p.name} from ${SITE_NAME} starting at $${fPrice.toFixed(2)}/month.`,
+              image: p.imageUrl ? toAbsoluteUrl(p.imageUrl) : undefined,
+              url: `${BASE_URL}/product/${p.id}`,
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "USD",
+                price: fPrice.toFixed(2),
+                availability: "https://schema.org/InStock",
+                seller: { "@type": "Organization", name: SITE_NAME },
+              },
+            },
+          };
+        }),
       });
     }
   }
