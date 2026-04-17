@@ -7,6 +7,9 @@ export type Env = {
   COOKIE_DOMAIN?: string;
   GEMINI_API_KEY?: string;
   SESSIONS?: KVNamespace;
+  // Bound automatically by Cloudflare Pages — used to fetch built static assets
+  // (e.g. the Vite-built `index.html` shell) at request time.
+  ASSETS: Fetcher;
 };
 
 export function getDb(env: Env) {

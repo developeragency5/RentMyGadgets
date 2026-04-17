@@ -1,6 +1,25 @@
 {
   "version": 1,
-  "description": "Only invoke Pages Functions for /api/* paths. Everything else is served as static from the Pages CDN.",
-  "include": ["/api/*"],
-  "exclude": []
+  "description": "Pages Functions handle /api/*, /sitemap.xml, and any HTML page navigation. Static assets (built JS/CSS, images, fonts, icons, public files) are served directly from the Pages CDN with no function invocation.",
+  "include": ["/*"],
+  "exclude": [
+    "/assets/*",
+    "/images/*",
+    "/data/*",
+    "/stock_images/*",
+    "/product_images/*",
+    "/generated_images/*",
+    "/favicon.ico",
+    "/favicon.png",
+    "/favicon.svg",
+    "/favicon-16x16.png",
+    "/favicon-32x32.png",
+    "/apple-touch-icon.png",
+    "/opengraph.jpg",
+    "/robots.txt",
+    "/llms.txt",
+    "/manifest.json",
+    "/site.webmanifest",
+    "/sw.js"
+  ]
 }
