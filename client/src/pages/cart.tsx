@@ -53,7 +53,7 @@ export default function Cart() {
   const subtotal = getSubtotal();
   const gadgetCareTotal = getGadgetCareTotal();
   const subtotalWithCare = subtotal + gadgetCareTotal;
-  const tax = subtotalWithCare * 0.1;
+  const tax = subtotalWithCare * 0.08;
   const total = subtotalWithCare + tax;
 
   const rentalEndDate = useMemo(() => {
@@ -299,7 +299,7 @@ export default function Cart() {
                   <span className="text-green-600 font-medium">Free</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Tax (10%)</span>
+                  <span className="text-muted-foreground">Tax (8%)</span>
                   <span data-testid="text-tax">${tax.toFixed(2)}</span>
                 </div>
                 <Separator />

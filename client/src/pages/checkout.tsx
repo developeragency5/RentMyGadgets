@@ -104,7 +104,7 @@ export default function Checkout() {
   const gadgetCareTotal = getGadgetCareTotal();
   const subtotalWithCare = subtotal + gadgetCareTotal;
   const deliveryFee = 0;
-  const tax = subtotalWithCare * 0.1;
+  const tax = subtotalWithCare * 0.08;
   const total = subtotalWithCare + tax + deliveryFee;
 
   const fetchServerPricing = useCallback(async () => {
@@ -437,7 +437,7 @@ export default function Checkout() {
               <span className="text-green-600">Free</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Tax (10%)</span>
+              <span className="text-muted-foreground">Tax (8%)</span>
               <span>${tax.toFixed(2)}</span>
             </div>
             <Separator className="my-2" />
@@ -924,7 +924,7 @@ export default function Checkout() {
                 <span className="text-green-600">Free</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Tax ({serverPricing ? '8%' : '10%'})</span>
+                <span className="text-muted-foreground">Tax (8%)</span>
                 <span>${(serverPricing?.taxEstimate ?? tax).toFixed(2)}</span>
               </div>
               <Separator className="my-3" />
@@ -1055,7 +1055,7 @@ export default function Checkout() {
             <span className="text-green-600">Free</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-muted-foreground">Tax (10%)</span>
+            <span className="text-muted-foreground">Tax (8%)</span>
             <span>${tax.toFixed(2)}</span>
           </div>
           <Separator className="my-2" />
