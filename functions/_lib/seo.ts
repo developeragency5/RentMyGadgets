@@ -1,7 +1,7 @@
 // Workers-compatible port of server/seo-injector.ts.
 // Uses Neon HTTP via Drizzle directly (no `process.env` / no Express `storage`).
-import { eq } from "drizzle-orm";
-import { products, categories } from "@shared/schema";
+import { eq, and } from "drizzle-orm";
+import { products, categories, blogPosts } from "@shared/schema";
 import { getDb, type Env } from "./db";
 
 interface PageMeta {
@@ -11,14 +11,10 @@ interface PageMeta {
   image?: string;
   jsonLd?: Record<string, any> | Record<string, any>[];
   noindex?: boolean;
-  /**
-   * Route-specific HTML body content for crawlers. When provided this is
-   * injected into the prerendered <main>, replacing the static fallback
-   * content from CRAWLER_PAGE_CONTENT. Used for dynamic pages
-   * (product/category/blog) where DB-backed content beats a generic
-   * placeholder.
-   */
+  // Route-specific <main> body for crawlers; replaces CRAWLER_PAGE_CONTENT.
   bodyContent?: string;
+  // Override for the rendered <h1>; defaults to title minus the site suffix.
+  h1?: string;
 }
 
 const SITE_NAME = "RentMyGadgets";
@@ -245,6 +241,7 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
       description: desc.slice(0, 300),
       type: "product",
       image: product.imageUrl || DEFAULT_IMAGE,
+      h1: product.name,
       bodyContent,
       jsonLd: [
         {
@@ -286,12 +283,12 @@ async function getCategoryMeta(env: Env, categoryId: string): Promise<PageMeta |
 
     const catDesc = category.description || `Browse and rent ${category.name.toLowerCase()} equipment. Flexible rental periods, competitive pricing, and same-day delivery available.`;
 
-    // Pull all products in this category to render a crawler-visible product list.
+    // Every product in the category — no cap, so the crawler-visible list
+    // is a complete reflection of what's available.
     const catProducts = await db
       .select({ id: products.id, name: products.name, pricePerMonth: products.pricePerMonth, brand: products.brand })
       .from(products)
-      .where(eq(products.categoryId, categoryId))
-      .limit(60);
+      .where(eq(products.categoryId, categoryId));
 
     const productListHtml = catProducts.length > 0
       ? `<section><h2>Available ${escapeHtml(category.name)} for rent</h2><ul>${catProducts.map(p => {
@@ -309,6 +306,7 @@ async function getCategoryMeta(env: Env, categoryId: string): Promise<PageMeta |
       title: `Rent ${category.name} | Browse Equipment`,
       description: catDesc,
       image: category.imageUrl || DEFAULT_IMAGE,
+      h1: category.name,
       bodyContent,
       jsonLd: [
         {
@@ -344,35 +342,64 @@ function blogBody(slug: string, title: string, description: string): string {
   );
 }
 
-const BLOG_META: Record<string, PageMeta> = {
-  "best-laptops-remote-work-2025": {
-    title: "Best Laptops for Remote Work in 2025",
-    description: "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing for the best work-from-home setups.",
-    bodyContent: blogBody("best-laptops-remote-work-2025", "Best Laptops for Remote Work in 2025", "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing for the best work-from-home setups."),
-    jsonLd: [
-      { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Best Laptops for Remote Work in 2025", description: "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/best-laptops-remote-work-2025`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/best-laptops-remote-work-2025` } },
-      { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Best Laptops for Remote Work in 2025" }] },
-    ],
-  },
-  "camera-rental-guide-beginners": {
-    title: "Camera Rental Guide for Beginners",
-    description: "A complete guide to renting cameras for beginners. Learn what to look for, which cameras to rent for different needs, and how to get started.",
-    bodyContent: blogBody("camera-rental-guide-beginners", "Camera Rental Guide for Beginners", "A complete guide to renting cameras for beginners. Learn what to look for, which cameras to rent for different needs, and how to get started."),
-    jsonLd: [
-      { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Camera Rental Guide for Beginners", description: "A complete guide to renting cameras for beginners.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/camera-rental-guide-beginners`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/camera-rental-guide-beginners` } },
-      { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Camera Rental Guide for Beginners" }] },
-    ],
-  },
-  "save-money-renting-vs-buying-tech": {
-    title: "Save Money: Renting vs. Buying Tech",
-    description: "Compare the costs of renting vs buying technology equipment. See how much you can save with flexible tech rentals.",
-    bodyContent: blogBody("save-money-renting-vs-buying-tech", "Save Money: Renting vs. Buying Tech", "Compare the costs of renting vs buying technology equipment. See how much you can save with flexible tech rentals."),
-    jsonLd: [
-      { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Save Money: Renting vs. Buying Tech", description: "Compare the costs of renting vs buying technology equipment.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/save-money-renting-vs-buying-tech`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/save-money-renting-vs-buying-tech` } },
-      { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Save Money: Renting vs. Buying Tech" }] },
-    ],
-  },
-};
+async function getBlogMeta(env: Env, slug: string): Promise<PageMeta | null> {
+  try {
+    const db = getDb(env);
+    const rows = await db
+      .select()
+      .from(blogPosts)
+      .where(and(eq(blogPosts.slug, slug), eq(blogPosts.published, true)))
+      .limit(1);
+    const post = rows[0];
+    if (!post) return null;
+
+    const url = `${BASE_URL}/blog/${post.slug}`;
+    const excerpt = post.excerpt;
+    // Crawler-visible body: breadcrumb + title + excerpt + a content excerpt.
+    const contentExcerpt = post.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 1500);
+    const bodyContent =
+      `<nav aria-label="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo; ${escapeHtml(post.title)}</nav>` +
+      `<article><h2>${escapeHtml(post.title)}</h2>` +
+      `<p><em>${escapeHtml(excerpt)}</em></p>` +
+      `<p>By ${escapeHtml(post.author)} &middot; Category: ${escapeHtml(post.category)}</p>` +
+      `<p>${escapeHtml(contentExcerpt)}</p>` +
+      `<p>Read more on the <a href="/blog">RentMyGadgets blog</a> or <a href="/contact">contact our support team</a> with questions.</p></article>`;
+
+    return {
+      title: post.title,
+      description: excerpt.slice(0, 300),
+      image: post.imageUrl || DEFAULT_IMAGE,
+      h1: post.title,
+      bodyContent,
+      jsonLd: [
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: excerpt,
+          image: post.imageUrl ? toAbsoluteUrl(post.imageUrl) : undefined,
+          author: { "@type": "Person", name: post.author },
+          publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } },
+          datePublished: post.createdAt instanceof Date ? post.createdAt.toISOString() : new Date(post.createdAt).toISOString(),
+          url,
+          mainEntityOfPage: { "@type": "WebPage", "@id": url },
+          articleSection: post.category,
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+            { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
+            { "@type": "ListItem", position: 3, name: post.title },
+          ],
+        },
+      ],
+    };
+  } catch {
+    return null;
+  }
+}
 
 // Routes that should be excluded from indexing (private/transactional pages).
 const NOINDEX_ROUTES = new Set<string>([
@@ -405,8 +432,9 @@ export async function getMetaForUrl(env: Env, url: string): Promise<PageMeta> {
   }
 
   const blogMatch = cleanUrl.match(/^\/blog\/([^/]+)$/);
-  if (blogMatch && BLOG_META[blogMatch[1]]) {
-    return BLOG_META[blogMatch[1]];
+  if (blogMatch) {
+    const meta = await getBlogMeta(env, blogMatch[1]);
+    if (meta) return meta;
   }
 
   return applyNoindex({
@@ -724,7 +752,7 @@ async function getFeaturedProductsForItemList(env: Env): Promise<typeof cachedFe
       })
       .from(products)
       .where(eq(products.featured, true))
-      .limit(20);
+      .limit(8);
     cachedFeaturedProducts = rows;
     cachedFeaturedTime = now;
     return rows;
@@ -871,12 +899,11 @@ export async function injectMeta(
   }
 
   const nav = await getCrawlerNav(env, url);
-  const safeH1 = escapeHtml(
-    meta.title.includes(SITE_NAME) ? meta.title.replace(` | ${SITE_NAME}`, "") : meta.title
-  );
-  // Prefer route-specific dynamic body (product/category/blog detail) when
-  // available; fall back to the static page-content map for known static
-  // routes (or empty string for unknown routes).
+  // Prefer an explicit H1 (set on dynamic routes to the product/category/
+  // post name) over deriving it from the title.
+  const h1Source = meta.h1 ?? (meta.title.includes(SITE_NAME) ? meta.title.replace(` | ${SITE_NAME}`, "") : meta.title);
+  const safeH1 = escapeHtml(h1Source);
+  // Prefer route-specific dynamic body; fall back to the static map.
   const pageContent = meta.bodyContent ?? getCrawlerPageContent(url);
   const crawlerContent = `${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}`;
   result = result.replace('<div id="root"></div>', `<div id="root">${crawlerContent}</div>`);
