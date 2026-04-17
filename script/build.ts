@@ -46,6 +46,14 @@ async function buildAll() {
     if (e?.code !== "ENOENT") throw e;
   }
 
+  console.log("copying attached_assets/ (referenced product images) into dist/public/attached_assets/...");
+  try {
+    await stat("attached_assets");
+    await cp("attached_assets", "dist/public/attached_assets", { recursive: true, force: false, errorOnExist: false });
+  } catch (e: any) {
+    if (e?.code !== "ENOENT") throw e;
+  }
+
   // Embed the built index.html shell into a TypeScript module so the
   // Cloudflare Pages catch-all function can use it as a constant. This
   // avoids a per-request `env.ASSETS.fetch('/index.html')` round trip and
