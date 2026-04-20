@@ -785,7 +785,7 @@ async function getFeaturedProductsForItemList(env: Env): Promise<typeof cachedFe
 // remains compliant and navigable without JavaScript.
 const NOSCRIPT_FALLBACK = `<noscript>
   <div style="max-width:760px;margin:2rem auto;padding:1.5rem;font-family:system-ui,-apple-system,sans-serif;color:#1f2937;">
-    <h1 style="font-size:1.75rem;margin:0 0 0.75rem;">RentMyGadgets</h1>
+    <p role="heading" aria-level="1" style="font-size:1.75rem;font-weight:700;margin:0 0 0.75rem;">RentMyGadgets</p>
     <p style="font-size:1rem;line-height:1.5;">JavaScript is required for the full interactive experience. Browse our site or contact us using the information below.</p>
     <h2 style="font-size:1.15rem;margin:1.25rem 0 0.5rem;">Browse</h2>
     <ul style="line-height:1.8;">

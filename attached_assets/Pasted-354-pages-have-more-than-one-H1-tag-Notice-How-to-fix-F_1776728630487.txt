@@ -1,0 +1,515 @@
+354 pages have more than one H1 tag
+Notice
+
+How to fix
+Failed:
+354
+Successful:
+0
+
+
+Page URL
+
+H1 Count
+Discovered
+Sortable
+
+Rent Epson Expression Photo XP-8800 | $34.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/89f47b97-d334-4a14-81f4-3f275fca36fb
+2
+Apr 17, 2026, 8:03
+
+Rent HP OfficeJet Pro 8135e All-in-One | $34.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/912389c7-a235-46a4-a7ce-c870a8fdf78b
+2
+Apr 17, 2026, 8:03
+
+Rent Canon PIXMA TS3722 Wireless | $17.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/91f426d5-3aad-4863-a62e-7f5d640d570a
+2
+Apr 17, 2026, 8:03
+
+Rent Samsung Galaxy Z Flip 6 | $109.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/92e73197-eec7-45f1-bdcb-1e5b6c802387
+2
+Apr 17, 2026, 8:03
+
+Rent HP LaserJet Pro MFP 3101sdw Wireless | $44.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/936ec367-8e05-43e7-8c7a-b4d501438efc
+2
+Apr 17, 2026, 8:03
+
+Rent Brother MFC-J6555DW INKvestment Tank | $59.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/93d581e0-1968-41d2-a8cc-ef4188feaca1
+2
+Apr 17, 2026, 8:03
+
+Rent Canon PIXMA TR4720 Wireless | $24.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/93d809f7-3e2e-4cf7-a475-5fe9e6661360
+2
+Apr 17, 2026, 8:03
+
+Rent Canon imageCLASS MF465dw II | $49.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/952961b5-cdf7-44d4-8a6a-396eae187adb
+2
+Apr 17, 2026, 8:03
+
+Rent Epson EcoTank Photo ET-8500 | $54.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/969b75c6-ebcc-4b54-a317-b0793975de7f
+2
+Apr 17, 2026, 8:03
+
+Rent HP LaserJet M207dw Wireless Laser | $29.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/99e9101e-593e-443e-9e90-11b34cf19066
+2
+Apr 17, 2026, 8:03
+
+Rent Epson EcoTank ET-2800 Wireless Color | $24.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/9ea9eef3-e8cf-4054-971e-1b179317cd72
+2
+Apr 17, 2026, 8:03
+
+Rent Brother MFC-L3780CDW Wireless | $54.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/9f72fd84-f4db-4288-b4b1-472c96ff58de
+2
+Apr 17, 2026, 8:03
+
+Rent TP-Link Deco BE63 | $59.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/9ff1aff5-1cfe-4276-871c-1bcfdb960a74
+2
+Apr 17, 2026, 8:03
+
+Rent MacBook Air 13" M3 | $99.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/a18f9334-1165-4409-b744-19dc9b82570c
+2
+Apr 17, 2026, 8:03
+
+Rent HP OfficeJet Pro 9730e Wide Format | $49.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/a2057278-472a-4b98-82ef-1c70158ed66e
+2
+Apr 17, 2026, 8:03
+
+Rent Canon PIXMA MG3620 Wireless | $19.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/a231c255-663b-4283-901d-92305bd4c80e
+2
+Apr 17, 2026, 8:03
+
+Rent Epson EcoTank Photo ET-8550 | $64.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/a31f480a-5989-4a13-9aa8-471745452bab
+2
+Apr 17, 2026, 8:03
+
+Rent HP ENVY Photo 7975 All-in-One Printer | $27.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/a607e5da-1d4c-43a7-a149-b4470406fa95
+2
+Apr 17, 2026, 8:03
+
+Rent ASUS RT-BE96U | $69.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/a73c4e47-2457-4fd1-9e50-e70f333dee9c
+2
+Apr 17, 2026, 8:03
+
+Rent Epson SureColor P900 | $169.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/a96df9e6-faf5-4df0-9184-cfb4ec35597c
+2
+Apr 17, 2026, 8:03
+
+Rent HP Color LaserJet Enterprise 6700dn | $84.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/ac1b5425-832f-4502-83a0-f5e6a14eff46
+2
+Apr 17, 2026, 8:03
+
+Rent DJI Ronin 4D | $599.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/ae8d9bd1-2566-4278-b0c6-b6abf6ec0883
+2
+Apr 17, 2026, 8:03
+
+Rent HP DeskJet 2855e All-in-One Printer | $19.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/af3aa865-4276-49f8-a56c-4ac0fb1b31ab
+2
+Apr 17, 2026, 8:03
+
+Rent Brother MFC-J5855DW INKvestment Tank | $49.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/b20744e0-a2a1-490e-9e95-17ed560b2524
+2
+Apr 17, 2026, 8:03
+
+Rent Canon imageCLASS MF284dw All-in-One | $39.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/b253b512-8ca7-4dbf-b739-5da1bf533b7d
+2
+Apr 17, 2026, 8:03
+
+Rent HP LaserJet Pro 4001n Mono Laser | $42.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/b2f1532d-6704-4b3b-8a77-17e9be0fe3af
+2
+Apr 17, 2026, 8:03
+
+Rent Canon PIXMA TS4320 Wireless | $22.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/b373dde2-d39a-4869-a9d2-974e44fe8b07
+2
+Apr 17, 2026, 8:03
+
+Rent Epson EcoTank ET-4950 Wireless | $39.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/b420073d-281b-48f2-b094-89481d59ec9e
+2
+Apr 17, 2026, 8:03
+
+Rent HP LaserJet Enterprise 8501dn Mono | $79.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/b4cafdb6-1425-42b0-a826-62035a1626ed
+2
+Apr 17, 2026, 8:03
+
+Rent Brother MFC-J1365DW Wireless Color | $32.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/b69346a3-e593-4b5e-96e8-639f4ba5f465
+2
+Apr 17, 2026, 8:03
+
+Rent Canon RF 24-70mm f/2.8L | $129.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/bda71dd1-acc9-46f6-baf3-f624ec9cee2d
+2
+Apr 17, 2026, 8:03
+
+Rent Epson PictureMate PM-400 Personal | $24.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/bf3a8b2c-5f92-4bb5-aa4d-47a59397f65a
+2
+Apr 17, 2026, 8:03
+
+Rent Sony WF-1000XM5 | $35.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/c117693d-f62b-4ae5-b949-8b39499d2395
+2
+Apr 17, 2026, 8:03
+
+Rent HP Color LaserJet Enterprise MFP | $129.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/c2f68613-0e30-4631-8aaa-6a8252d6ee55
+2
+Apr 17, 2026, 8:03
+
+Rent Dell XPS 17 | $159.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/c7430d52-77be-4ef3-8986-d49e238ddea3
+2
+Apr 17, 2026, 8:03
+
+Rent HP LaserJet Enterprise MFP 8601dn | $99.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/cefe2bec-da06-43f8-a31a-b89d18c7c726
+2
+Apr 17, 2026, 8:03
+
+Rent HP Color LaserJet Enterprise 5700dn | $74.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/cf480368-f0bb-4824-b8bb-fb2f658e428e
+2
+Apr 17, 2026, 8:03
+
+Rent HP ScanJet Enterprise Flow 7000 s3 | $59.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/d0ef30b4-2148-4938-866a-ba522af699f6
+2
+Apr 17, 2026, 8:03
+
+Rent Dell XPS 15 | $129.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/d3574c9f-d720-4827-89fc-7c4063500c8a
+2
+Apr 17, 2026, 8:03
+
+Rent Epson WorkForce Pro WF-4830 Wireless | $37.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/d4ca2c5f-30a9-4502-9027-e8350d23046d
+2
+Apr 17, 2026, 8:03
+
+Rent Canon Color imageCLASS LBP646Cdw | $44.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/d6a1f120-70fb-40b8-b079-790621734cd1
+2
+Apr 17, 2026, 8:03
+
+Rent Brother HL-L8360CDW Business Color | $49.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/d6adf03f-59dd-4241-8bdf-3f73ad5faf5a
+2
+Apr 17, 2026, 8:03
+
+Rent OnePlus 13 | $89.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/d8063490-b92a-4785-b289-fff7f93d96d1
+2
+Apr 17, 2026, 8:03
+
+Rent HP Color LaserJet Enterprise 6701dn | $89.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/d82769d7-c4da-43cd-b5be-741b3d69fa1b
+2
+Apr 17, 2026, 8:03
+
+Rent HP Color LaserJet Enterprise Flow | $114.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/d891aab7-cbc2-452a-ba89-d045d80d50bb
+2
+Apr 17, 2026, 8:03
+
+Rent Canon PIXMA TR160 Portable Wireless | $29.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/daa373ad-e670-46f1-87a5-133973a1d162
+2
+Apr 17, 2026, 8:03
+
+Rent iPhone 17 Pro Max | $129.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/db3a64b2-1f48-4c54-90e8-a208a329dfa6
+2
+Apr 17, 2026, 8:03
+
+Rent HP OfficeJet Pro 8139e All-in-One | $37.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/dc963f4a-4f82-4e6a-a27c-91b8aac90131
+2
+Apr 17, 2026, 8:03
+
+Rent Netgear Orbi 770 | $79.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/dcdd8de2-f5dd-48a3-aac7-f0bd1a911a0f
+2
+Apr 17, 2026, 8:03
+
+Rent Epson EcoTank Pro ET-5850 | $99.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/e6fee6ba-58ad-4015-b2bf-4dca8685de66
+2
+Apr 17, 2026, 8:03
+
+Rent HP Smart Tank 5105 All-in-One Printer | $24.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/e99a025b-8d95-40f4-b521-3067e99a2d19
+2
+Apr 17, 2026, 8:03
+
+Rent Sony A7 IV | $279.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/ea9a3863-1746-4214-b9dd-cf4b1ace1155
+2
+Apr 17, 2026, 8:03
+
+Rent iPhone 16 Pro Max | $119.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/ec610790-a37a-4a2c-a64d-c3d1161fb5ae
+2
+Apr 17, 2026, 8:03
+
+Rent HP OfficeJet Pro 9135e All-in-One | $39.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/ed042697-f663-459e-850b-552dc315961d
+2
+Apr 17, 2026, 8:03
+
+Rent HP Spectre x360 | $139.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/edd875d3-4c54-4e6e-819e-e89c43bb78a4
+2
+Apr 17, 2026, 8:03
+
+Rent Sony A9 III | $549.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/ef9cf965-8423-4e0e-9ac2-63311071b1e9
+2
+Apr 17, 2026, 8:03
+
+Rent Canon EOS R5 | $349.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/f05f3f5c-a33b-429c-b370-ea823922250f
+2
+Apr 17, 2026, 8:03
+
+Rent Epson EcoTank ET-2980 Wireless | $29.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/f26bcd70-0499-4080-8f2b-f1def188f9a5
+2
+Apr 17, 2026, 8:03
+
+Rent Brother MFC-T780DW INKvestment Tank | $39.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/f32a9359-99b6-497b-abfa-59562f9452e6
+2
+Apr 17, 2026, 8:03
+
+Rent HP ScanJet Enterprise Flow N9120 fn2 | $79.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/f3f1d62e-945c-4b12-aea8-451763a43aad
+2
+Apr 17, 2026, 8:03
+
+Rent Apple MacBook Air 15" M3 | $129.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/f5b31656-e313-4830-b0cd-dc77233ee82f
+2
+Apr 17, 2026, 8:03
+
+Rent Canon EOS R6 Mark II | $249.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/f6122454-25b7-4210-b624-0a7cd8ef3f99
+2
+Apr 17, 2026, 8:03
+
+Rent HP DeskJet 2827e All-in-One Printer | $17.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/f7764dbe-dc6e-44e4-9760-fd5615f2504b
+2
+Apr 17, 2026, 8:03
+
+Rent Brother MFC-J1360DW Wireless Color | $29.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/f8c2a151-5ad6-44f7-b101-a7bb1d6bb4e9
+2
+Apr 17, 2026, 8:03
+
+Rent HP Color LaserJet Enterprise MFP | $104.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/f94168bd-7cec-40ce-9a2e-d49df5d250eb
+2
+Apr 17, 2026, 8:03
+
+Rent HP ScanJet Enterprise Flow N9000 sn1 | $74.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/f9f71eb2-a80c-4a42-9ffb-b871b9eca4bc
+2
+Apr 17, 2026, 8:03
+
+Rent Apple AirPods Pro 3 | $29.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/fa3951c7-f5f6-414e-9f93-ddbbe58f3287
+2
+Apr 17, 2026, 8:03
+
+Rent HP LaserJet Enterprise 8501x Mono | $89.99/mo | RentMyGadgets
+https://rentmygadgets.com/product/fa773a33-4339-4156-b196-578a49067558
+2
+Apr 17, 2026, 8:03
+
+Rent iPhone 16 | $79.00/mo | RentMyGadgets
+https://rentmygadgets.com/product/fbe2e2dd-fd77-4b55-a3eb-d6f4c10dc468
+2
+Apr 17, 2026, 8:03
+
+Browse All Products | RentMyGadgets
+https://rentmygadgets.com/products
+2
+Apr 17, 2026, 8:03
+
+Rent-to-Own Program | RentMyGadgets
+https://rentmygadgets.com/rent-to-own
+2
+Apr 17, 2026, 8:03
+
+Rental Agreement Policy | RentMyGadgets
+https://rentmygadgets.com/rental-policy
+2
+Apr 17, 2026, 8:03
+
+Return & Refund Policy | RentMyGadgets
+https://rentmygadgets.com/return-policy
+2
+Apr 17, 2026, 8:03
+
+Search Products | RentMyGadgets
+https://rentmygadgets.com/search
+2
+Apr 17, 2026, 8:03
+
+Security Deposit Policy | RentMyGadgets
+https://rentmygadgets.com/security-deposit
+2
+Apr 17, 2026, 8:03
+
+Delivery & Shipping Policy | RentMyGadgets
+https://rentmygadgets.com/shipping-policy
+2
+Apr 17, 2026, 8:03
+
+Terms and Conditions | RentMyGadgets
+https://rentmygadgets.com/terms
+2
+Apr 17, 2026, 8:03
+
+Rent Premium Tech Equipment | Laptops, Cameras & More | RentMyGadgets
+https://www.rentmygadgets.com/
+2
+Apr 17, 2026, 8:03
+
+About Us | RentMyGadgets
+https://www.rentmygadgets.com/about
+2
+Apr 17, 2026, 8:03
+
+Accessibility Statement | RentMyGadgets
+https://www.rentmygadgets.com/accessibility
+2
+Apr 17, 2026, 8:03
+
+Advertising Disclosure & Merchant Standards | RentMyGadgets
+https://www.rentmygadgets.com/advertising-disclosure
+2
+Apr 17, 2026, 8:03
+
+Tech Rental Blog & Guides | RentMyGadgets
+https://www.rentmygadgets.com/blog
+2
+Apr 17, 2026, 8:03
+
+Browse All Categories | RentMyGadgets
+https://www.rentmygadgets.com/categories
+2
+Apr 17, 2026, 8:03
+
+Rent Cameras & Gear | Browse Equipment | RentMyGadgets
+https://www.rentmygadgets.com/categories/09bcf6ce-10bb-4e95-95ee-477e78f6edb1
+2
+Apr 17, 2026, 8:03
+
+Rent Printers & Scanners | Browse Equipment | RentMyGadgets
+https://www.rentmygadgets.com/categories/18079e56-3836-4542-b12a-733b4ce84bdd
+2
+Apr 17, 2026, 8:03
+
+Rent Desktops & Laptops | Browse Equipment | RentMyGadgets
+https://www.rentmygadgets.com/categories/2c7a748e-6128-488e-af34-1ff07d5efca8
+2
+Apr 17, 2026, 8:03
+
+Rent Headphones | Browse Equipment | RentMyGadgets
+https://www.rentmygadgets.com/categories/5bf83f8b-6cca-4c80-ae3f-e926ef53f14e
+2
+Apr 17, 2026, 8:03
+
+Rent Phones | Browse Equipment | RentMyGadgets
+https://www.rentmygadgets.com/categories/c9f3d7d1-34c8-4f9f-9dec-57a808b28e35
+2
+Apr 17, 2026, 8:03
+
+Rent Routers | Browse Equipment | RentMyGadgets
+https://www.rentmygadgets.com/categories/f74a6ed6-d23e-4800-8a2e-df600a5f38b4
+2
+Apr 17, 2026, 8:03
+
+Compare Products | RentMyGadgets
+https://www.rentmygadgets.com/compare
+2
+Apr 17, 2026, 8:03
+
+Contact Us | RentMyGadgets
+https://www.rentmygadgets.com/contact
+2
+Apr 17, 2026, 8:03
+
+Cookie Policy | RentMyGadgets
+https://www.rentmygadgets.com/cookies
+2
+Apr 17, 2026, 8:03
+
+Damage & Loss Policy | RentMyGadgets
+https://www.rentmygadgets.com/damage-policy
+2
+Apr 17, 2026, 8:03
+
+Do Not Sell or Share My Personal Information | RentMyGadgets
+https://www.rentmygadgets.com/do-not-sell
+2
+Apr 17, 2026, 8:03
+
+GadgetCare+ Protection Plan | RentMyGadgets
+https://www.rentmygadgets.com/gadgetcare
+2
+Apr 17, 2026, 8:03
+
+How It Works - Rent Tech in 3 Easy Steps | RentMyGadgets
+https://www.rentmygadgets.com/how-it-works
+2
+Apr 17, 2026, 8:03
+
+Privacy Policy | RentMyGadgets
+https://www.rentmygadgets.com/privacy
+2
+Apr 17, 2026, 8:03
+
+Rent Sony Xperia 1 VI | $139.00/mo | RentMyGadgets
+https://www.rentmygadgets.com/product/041effab-4364-496f-aa5c-01b098c2bf8b
+2
+Apr 17, 2026, 8:03
+
+Rent Mac Mini M2 | $89.00/mo | RentMyGadgets
+https://www.rentmygadgets.com/product/047f5b18-6f01-4e27-a61f-99ec1254c54d
+2
+Apr 17, 2026, 8:03
+
+Rent Microsoft Surface Laptop 6 | $149.00/mo | RentMyGadgets
+https://www.rentmygadgets.com/product/04c50031-2ba7-4b41-8d47-4216fc23714e
+2
+Apr 17, 2026, 8:03
