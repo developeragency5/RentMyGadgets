@@ -210,7 +210,16 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
       related = relRows.filter(r => r.id !== product.id).slice(0, 6);
     }
     const price = product.pricePerMonth ? parseFloat(product.pricePerMonth.toString()) : 0;
-    const desc = product.descriptionShort || product.description || `Rent the ${product.name} starting at $${price.toFixed(2)}/month.`;
+    // Always synthesize a UNIQUE meta description from product attributes so two
+    // products that happen to share a manufacturer's boilerplate description still
+    // get distinct meta descriptions (avoids duplicate-meta SEO warnings).
+    const dbDesc = (product.descriptionShort || product.description || "").trim();
+    const brandPart = product.brand ? `${product.brand} ` : "";
+    const catPart = category ? ` in our ${category.name.toLowerCase()} category` : "";
+    const uniqueLead = `Rent the ${brandPart}${product.name} from RentMyGadgets for $${price.toFixed(2)}/month${catPart}. Flexible 1, 3, 6 or 12-month plans with same-day delivery and optional GadgetCare+ protection.`;
+    const desc = dbDesc
+      ? `${uniqueLead} ${dbDesc}`.slice(0, 300)
+      : uniqueLead;
 
     const priceStr = `$${price.toFixed(2)}/mo`;
     const suffix = ` | ${SITE_NAME}`;
@@ -867,8 +876,12 @@ export async function injectMeta(
         { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
       ],
     });
-    const featured = (await getFeaturedProductsForItemList(env)) || [];
+    const allFeatured = (await getFeaturedProductsForItemList(env)) || [];
+    // Carousel rich-result requires every item to have a real image; drop any
+    // featured product missing imageUrl so the schema stays valid.
+    const featured = allFeatured.filter(p => !!p.imageUrl);
     if (featured.length > 0) {
+      const priceValidUntil = new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0];
       schemas.push({
         "@context": "https://schema.org",
         "@type": "ItemList",
@@ -885,13 +898,16 @@ export async function injectMeta(
               "@type": "Product",
               name: p.name,
               description: `Rent the ${p.name} from ${SITE_NAME} starting at $${fPrice.toFixed(2)}/month.`,
-              image: p.imageUrl ? toAbsoluteUrl(p.imageUrl) : undefined,
+              image: toAbsoluteUrl(p.imageUrl as string),
               url: `${BASE_URL}/product/${p.id}`,
               offers: {
                 "@type": "Offer",
                 priceCurrency: "USD",
                 price: fPrice.toFixed(2),
+                priceValidUntil,
                 availability: "https://schema.org/InStock",
+                itemCondition: "https://schema.org/UsedCondition",
+                url: `${BASE_URL}/product/${p.id}`,
                 seller: { "@type": "Organization", name: SITE_NAME },
               },
             },

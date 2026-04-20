@@ -187,7 +187,16 @@ async function getProductMeta(productId: string): Promise<PageMeta | null> {
 
     const category = product.categoryId ? await storage.getCategory(product.categoryId) : null;
     const price = product.pricePerMonth ? parseFloat(product.pricePerMonth.toString()) : 0;
-    const desc = product.descriptionShort || product.description || `Rent the ${product.name} starting at $${price.toFixed(2)}/month.`;
+    // Always synthesize a UNIQUE meta description from product attributes so two
+    // products that happen to share a manufacturer's boilerplate description still
+    // get distinct meta descriptions (avoids duplicate-meta SEO warnings).
+    const dbDesc = (product.descriptionShort || product.description || "").trim();
+    const brandPart = product.brand ? `${product.brand} ` : "";
+    const catPart = category ? ` in our ${category.name.toLowerCase()} category` : "";
+    const uniqueLead = `Rent the ${brandPart}${product.name} from RentMyGadgets for $${price.toFixed(2)}/month${catPart}. Flexible 1, 3, 6 or 12-month plans with same-day delivery and optional GadgetCare+ protection.`;
+    const desc = dbDesc
+      ? `${uniqueLead} ${dbDesc}`.slice(0, 300)
+      : uniqueLead;
 
     const priceStr = `$${price.toFixed(2)}/mo`;
     const suffix = ` | ${SITE_NAME}`;
