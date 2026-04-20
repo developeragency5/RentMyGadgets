@@ -3,8 +3,7 @@ dist
 .DS_Store
 server/public
 vite.config.ts.*
-*.tar.gzattached_assets/*.zip*
-attached_assets/*.part*
+*.tar.gz
 attached_assets/*.zip*
 attached_assets/*.part*
 

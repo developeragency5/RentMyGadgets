@@ -46,13 +46,11 @@ async function buildAll() {
     if (e?.code !== "ENOENT") throw e;
   }
 
-  console.log("copying attached_assets/ (referenced product images) into dist/public/attached_assets/...");
-  try {
-    await stat("attached_assets");
-    await cp("attached_assets", "dist/public/attached_assets", { recursive: true, force: false, errorOnExist: false });
-  } catch (e: any) {
-    if (e?.code !== "ENOENT") throw e;
-  }
+  // NOTE: attached_assets/ is intentionally NOT copied into dist/public.
+  // The directory holds raw uploads (including multi-MB zips) that exceed
+  // Cloudflare Pages' 25 MiB per-file limit. The DB has been cleaned so no
+  // product references /attached_assets/* URLs anymore. Anything that still
+  // needs to be web-served lives under public/ or is mirrored below.
 
   // Mirror attached_assets/stock_images at /stock_images so URLs that use the
   // dev-only Express alias (`app.use('/stock_images', ...)`) keep working in
