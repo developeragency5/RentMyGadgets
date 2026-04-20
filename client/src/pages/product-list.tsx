@@ -22,6 +22,7 @@ import { useCompare } from "@/lib/compare-context";
 import { useToast } from "@/hooks/use-toast";
 import type { Product } from "@shared/schema";
 import { ProductImage } from "@/components/product-image";
+import CategoryContent from "@/components/CategoryContent";
 
 import laptopLifestyle from "@assets/stock_images/professional_busines_559a8906.jpg";
 import cameraLifestyle from "@assets/stock_images/photographer_using_p_69976d3e.jpg";
@@ -750,6 +751,7 @@ export default function ProductList() {
           </div>
         </div>
       </div>
+      {!isAllProductsView && categoryId && <CategoryContent categoryId={categoryId} />}
     </Layout>
   );
 }
