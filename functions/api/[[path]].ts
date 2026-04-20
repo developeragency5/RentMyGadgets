@@ -40,7 +40,17 @@ app.get("/health", (c) =>
 app.get("/products", async (c) => {
   try {
     const db = getDb(c.env);
-    const rows = await db.select().from(products);
+    const categoryId = c.req.query("categoryId");
+    const featured = c.req.query("featured");
+
+    let rows;
+    if (categoryId) {
+      rows = await db.select().from(products).where(eq(products.categoryId, categoryId));
+    } else if (featured === "true") {
+      rows = await db.select().from(products).where(eq(products.featured, true));
+    } else {
+      rows = await db.select().from(products);
+    }
     return c.json(rows);
   } catch (err) {
     console.error("GET /api/products failed:", err);
