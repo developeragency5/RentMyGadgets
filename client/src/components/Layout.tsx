@@ -362,7 +362,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <h4 className="font-semibold text-sm mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>support@rentmygadgets.com</li>
-                <li>+1 (555) 123-4567</li>
                 <li>PC Rental, LLC</li>
                 <li>2393 Seabreeze Dr SE</li>
                 <li>Darien, GA 31305-5425</li>
