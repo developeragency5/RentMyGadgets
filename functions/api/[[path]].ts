@@ -1,8 +1,14 @@
 import { Hono } from "hono";
 import { handle } from "hono/cloudflare-pages";
-import { eq } from "drizzle-orm";
+import { eq, asc } from "drizzle-orm";
 import { z } from "zod";
-import { products, categories } from "@shared/schema";
+import {
+  products,
+  categories,
+  productContent,
+  productVariantOptions,
+  blogPosts,
+} from "@shared/schema";
 import { getDb, type Env } from "../_lib/db";
 import { hashPassword, verifyPassword } from "../_lib/password";
 import {
@@ -52,6 +58,121 @@ app.get("/products/:id", async (c) => {
   } catch (err) {
     console.error("GET /api/products/:id failed:", err);
     return c.json({ message: "Failed to fetch product" }, 500);
+  }
+});
+
+// Search suggestions (must come before /products/:id/* dynamic routes? Hono is path-specific so order is fine)
+app.get("/products/search/suggestions", async (c) => {
+  try {
+    const q = (c.req.query("q") ?? "").toString().toLowerCase().trim();
+    const limitRaw = parseInt((c.req.query("limit") ?? "6").toString(), 10);
+    const maxResults = Math.min(Number.isFinite(limitRaw) ? limitRaw : 6, 10);
+    if (q.length < 2) return c.json([]);
+
+    const db = getDb(c.env);
+    const all = await db.select().from(products);
+
+    const scored = all
+      .map((p) => {
+        let score = 0;
+        const name = (p.name ?? "").toLowerCase();
+        const brand = (p.brand ?? "").toLowerCase();
+        const description = (p.description ?? "").toLowerCase();
+        if (name === q) score += 100;
+        else if (name.startsWith(q)) score += 50;
+        else if (name.includes(q)) score += 30;
+        if (brand === q) score += 40;
+        else if (brand.startsWith(q)) score += 25;
+        else if (brand.includes(q)) score += 15;
+        if (description.includes(q)) score += 10;
+        if (Array.isArray(p.specs) && p.specs.some((s: string) => (s ?? "").toLowerCase().includes(q))) score += 5;
+        if (p.featured && score > 0) score += 5;
+        return { p, score };
+      })
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, maxResults)
+      .map((x) => ({
+        id: x.p.id,
+        name: x.p.name,
+        brand: x.p.brand,
+        imageUrl: x.p.imageUrl,
+        pricePerMonth: x.p.pricePerMonth,
+        categoryId: x.p.categoryId,
+      }));
+
+    return c.json(scored);
+  } catch (err) {
+    console.error("GET /api/products/search/suggestions failed:", err);
+    return c.json({ message: "Failed to search products" }, 500);
+  }
+});
+
+// Cached AI-generated product content (How It Works, Key Benefits, Specs, etc.)
+// AI generation is intentionally NOT performed in the Workers runtime — all
+// content is pre-generated and stored in the product_content table.
+app.get("/products/:id/content", async (c) => {
+  try {
+    const db = getDb(c.env);
+    const id = c.req.param("id");
+    const rows = await db
+      .select()
+      .from(productContent)
+      .where(eq(productContent.productId, id))
+      .limit(1);
+    if (!rows[0]) {
+      return c.json({ message: "Product content not yet generated" }, 404);
+    }
+    return c.json(rows[0]);
+  } catch (err) {
+    console.error("GET /api/products/:id/content failed:", err);
+    return c.json({ message: "Failed to fetch product content" }, 500);
+  }
+});
+
+// Product variant options (storage / memory / chip configurator)
+app.get("/products/:id/variants", async (c) => {
+  try {
+    const db = getDb(c.env);
+    const id = c.req.param("id");
+
+    const exists = await db.select({ id: products.id }).from(products).where(eq(products.id, id)).limit(1);
+    if (!exists[0]) return c.json({ message: "Product not found" }, 404);
+
+    const opts = await db
+      .select()
+      .from(productVariantOptions)
+      .where(eq(productVariantOptions.productId, id))
+      .orderBy(asc(productVariantOptions.displayOrder));
+
+    const grouped: Record<
+      string,
+      Array<{
+        id: string;
+        label: string;
+        value: string;
+        priceAdjustment: number;
+        isDefault: boolean;
+        available: boolean;
+        displayOrder: number;
+      }>
+    > = {};
+    for (const o of opts) {
+      if (!grouped[o.variantType]) grouped[o.variantType] = [];
+      grouped[o.variantType].push({
+        id: o.id,
+        label: o.optionLabel,
+        value: o.optionValue,
+        priceAdjustment: parseFloat(o.priceAdjustmentMonthly ?? "0"),
+        isDefault: o.isDefault,
+        available: o.available,
+        displayOrder: o.displayOrder,
+      });
+    }
+    return c.json(grouped);
+  } catch (err) {
+    console.error("GET /api/products/:id/variants failed:", err);
+    return c.json({ message: "Failed to fetch product variants" }, 500);
   }
 });
 
@@ -231,6 +352,34 @@ app.get("/auth/me", async (c) => {
   } catch (err) {
     console.error("GET /api/auth/me failed:", err);
     return c.json({ error: "Failed to load session" }, 500);
+  }
+});
+
+// ---------- Blog ----------
+app.get("/blog", async (c) => {
+  try {
+    const db = getDb(c.env);
+    const category = c.req.query("category");
+    const rows = category
+      ? await db.select().from(blogPosts).where(eq(blogPosts.category, category as string))
+      : await db.select().from(blogPosts);
+    return c.json(rows);
+  } catch (err) {
+    console.error("GET /api/blog failed:", err);
+    return c.json({ message: "Failed to fetch blog posts" }, 500);
+  }
+});
+
+app.get("/blog/:slug", async (c) => {
+  try {
+    const db = getDb(c.env);
+    const slug = c.req.param("slug");
+    const rows = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
+    if (!rows[0]) return c.json({ message: "Blog post not found" }, 404);
+    return c.json(rows[0]);
+  } catch (err) {
+    console.error("GET /api/blog/:slug failed:", err);
+    return c.json({ message: "Failed to fetch blog post" }, 500);
   }
 });
 
