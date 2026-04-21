@@ -28,7 +28,7 @@ interface PageMeta {
     tags?: string[];
   };
   imageAlt?: string;
-  canonicalUrl?: string;
+  canonicalUrl: string;
   pagination?: {
     currentPage: number;
     totalPages: number;
@@ -821,6 +821,7 @@ export async function getMetaForUrl(url: string): Promise<PageMeta> {
   }
 
   return {
+    canonicalUrl: `${BASE_URL}${stripTrackingParams(url)}`,
     title: "Premium Tech Rentals",
     description: "Rent high-end laptops, desktops, cameras, and tech accessories with flexible monthly plans and fast delivery in select areas.",
   };
@@ -1191,7 +1192,10 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   const safeTitle = escapeHtml(fullTitle);
   const safeDesc = escapeHtml(meta.description);
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
-  const fullUrl = meta.canonicalUrl || `${BASE_URL}${stripTrackingParams(url)}`;
+  if (!meta.canonicalUrl) {
+    console.warn(`[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`);
+  }
+  const fullUrl = meta.canonicalUrl;
   const ogType =
     meta.type === "product" ? "product"
     : meta.type === "article" ? "article"
