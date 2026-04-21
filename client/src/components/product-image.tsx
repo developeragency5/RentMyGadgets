@@ -118,7 +118,7 @@ export function ProductGallery({
   
   if (uniqueImages.length === 0) {
     return (
-      <div className="aspect-[4/5] rounded-xl overflow-hidden bg-muted flex items-center justify-center">
+      <div className="aspect-square rounded-xl overflow-hidden bg-muted flex items-center justify-center">
         <div className="text-center text-muted-foreground">
           <ImageOff className="h-16 w-16 mx-auto mb-2 opacity-50" />
           <span className="text-sm">No images available</span>
@@ -128,8 +128,8 @@ export function ProductGallery({
   }
 
   return (
-    <div className="space-y-4">
-      <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-white border shadow-sm">
+    <div className="space-y-3">
+      <div className="aspect-square rounded-3xl overflow-hidden bg-white border shadow-sm">
         <ProductImage 
           key={`main-${selectedIndex}-${uniqueImages[selectedIndex]}`}
           src={uniqueImages[selectedIndex]} 

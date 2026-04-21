@@ -171,8 +171,8 @@ export default function ProductDetail() {
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="space-y-4">
             <ProductGallery 
               images={product.galleryImageUrls} 
               mainImage={product.imageUrl}
