@@ -31,6 +31,9 @@ export default function CookieConsent() {
   });
 
   useEffect(() => {
+    const ssrBanner = document.getElementById("ssr-cookie-consent");
+    if (ssrBanner) ssrBanner.remove();
+
     const gpc = detectGPC();
     setGpcActive(gpc);
 
