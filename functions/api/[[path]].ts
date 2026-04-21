@@ -9,7 +9,7 @@ import {
   productVariantOptions,
   blogPosts,
 } from "@shared/schema";
-import { getDb, type Env } from "../_lib/db";
+import { getDb, fixGalleryArrays, type Env } from "../_lib/db";
 import { hashPassword, verifyPassword } from "../_lib/password";
 import {
   createSession,
@@ -51,7 +51,8 @@ app.get("/products", async (c) => {
     } else {
       rows = await db.select().from(products);
     }
-    return c.json(rows);
+    const fixed = await fixGalleryArrays(c.env, rows);
+    return c.json(fixed);
   } catch (err) {
     console.error("GET /api/products failed:", err);
     return c.json({ message: "Failed to fetch products" }, 500);
@@ -64,7 +65,8 @@ app.get("/products/:id", async (c) => {
     const id = c.req.param("id");
     const rows = await db.select().from(products).where(eq(products.id, id)).limit(1);
     if (!rows[0]) return c.json({ message: "Product not found" }, 404);
-    return c.json(rows[0]);
+    const fixed = await fixGalleryArrays(c.env, rows);
+    return c.json(fixed[0]);
   } catch (err) {
     console.error("GET /api/products/:id failed:", err);
     return c.json({ message: "Failed to fetch product" }, 500);

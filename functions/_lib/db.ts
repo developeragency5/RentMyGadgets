@@ -7,8 +7,6 @@ export type Env = {
   COOKIE_DOMAIN?: string;
   GEMINI_API_KEY?: string;
   SESSIONS?: KVNamespace;
-  // Bound automatically by Cloudflare Pages — used to fetch built static assets
-  // (e.g. the Vite-built `index.html` shell) at request time.
   ASSETS: Fetcher;
 };
 
@@ -18,4 +16,31 @@ export function getDb(env: Env) {
   }
   const client = neon(env.DATABASE_URL);
   return drizzle(client);
+}
+
+export function getNeonClient(env: Env) {
+  if (!env.DATABASE_URL) {
+    throw new Error("DATABASE_URL is not configured");
+  }
+  return neon(env.DATABASE_URL);
+}
+
+export async function fixGalleryArrays(env: Env, rows: any[]): Promise<any[]> {
+  if (!rows.length) return rows;
+  const ids = rows.map((r) => r.id);
+  const client = getNeonClient(env);
+  const placeholders = ids.map((_, i) => `$${i + 1}`).join(",");
+  const result = await client(
+    `SELECT id, array_to_json(gallery_image_urls) as gallery FROM products WHERE id IN (${placeholders})`,
+    ids
+  );
+  const galleryMap = new Map<string, string[]>();
+  for (const row of result) {
+    const parsed = typeof row.gallery === "string" ? JSON.parse(row.gallery) : row.gallery;
+    galleryMap.set(row.id as string, parsed || []);
+  }
+  return rows.map((r) => ({
+    ...r,
+    galleryImageUrls: galleryMap.get(r.id) || r.galleryImageUrls || [],
+  }));
 }

@@ -14,6 +14,24 @@ const VIEW_SUFFIXES = [
   "-app-companion", "-display-view", "-keyboard", "-screen",
 ];
 
+const KNOWN_VIEW_PATTERNS = [
+  "-product-photo", "-front-view", "-back-view", "-side-view",
+  "-angle-view", "-top-view", "-open-view", "-color-options",
+  "-complete-kit", "-carrying-case", "-ports-detail", "-lifestyle",
+  "-app-companion", "-display-view", "-keyboard", "-screen",
+  "-gallery-view-", "-front-ai", "-side-left-ai", "-three-quarter-ai",
+  "_detail", "_white", "_black", "_front", "_side", "_back", "_angle",
+];
+
+function isExactSlugMatch(fileName: string, slug: string): boolean {
+  const baseName = fileName.replace(/\.(webp|jpg|png)$/i, "");
+  if (baseName === slug) return true;
+  if (!baseName.startsWith(slug)) return false;
+  const afterSlug = baseName.slice(slug.length);
+  if (!afterSlug) return false;
+  return KNOWN_VIEW_PATTERNS.some((p) => afterSlug.startsWith(p));
+}
+
 function extractProductSlug(fileName: string): string {
   const baseName = fileName.replace(/\.(webp|jpg|png)$/i, "");
   for (const vs of VIEW_SUFFIXES) {
@@ -89,11 +107,7 @@ async function populateGalleryImages() {
           const allFiles = fs.readdirSync(dir);
           const matches = allFiles.filter((f) => {
             if (!/\.(webp|jpg|png)$/i.test(f)) return false;
-            return (
-              f.startsWith(productSlug + "-") ||
-              f.startsWith(productSlug + "_") ||
-              f === productSlug + ".webp"
-            );
+            return isExactSlugMatch(f, productSlug);
           });
           galleryUrls = sortGalleryUrls(
             matches
@@ -107,13 +121,14 @@ async function populateGalleryImages() {
         const brand = (product.brand || "").toLowerCase();
         const brandDir = BRAND_DIR_MAP[brand] || brand.replace(/\s+/g, "-");
         const slug = nameToSlug(product.name);
+        const brandSlug = brandDir + "-" + slug;
 
         const dir = path.join(IMAGES_DIR, brandDir);
         try {
           const allFiles = fs.readdirSync(dir);
           const matches = allFiles.filter((f) => {
             if (!/\.(webp|jpg|png)$/i.test(f)) return false;
-            return f.startsWith(slug + "-") || f.startsWith(slug + "_");
+            return isExactSlugMatch(f, slug) || isExactSlugMatch(f, brandSlug);
           });
           galleryUrls = sortGalleryUrls(
             matches.map((f) => `/images/products/${brandDir}/${f}`)

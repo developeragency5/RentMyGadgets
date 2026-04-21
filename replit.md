@@ -137,4 +137,5 @@ Preferred communication style: Simple, everyday language.
     - File naming: `{brand}-{product-slug}-{view-description}.webp` pattern
     - Alt text: Dynamic, context-aware alt text derived from filename view descriptions via `deriveAltText()` in `product-image.tsx`
     - Loading: Lazy loading (`loading="lazy"`) and async decoding on all product images
+- **Product Gallery Images**: 120 products have multi-image galleries populated from local filesystem images. Gallery URLs stored in `gallery_image_urls` text[] column. `fixGalleryArrays()` in `server/storage.ts` works around a Neon HTTP driver bug where text[] columns return empty arrays (uses `array_to_json()` for correct deserialization). `server/populate-gallery-images.ts` script scans `public/images/products/{brand}/` and matches images to products by slug. Run it with `npx tsx server/populate-gallery-images.ts` to re-populate after adding new images.
 - **AI Image Generation**: External AI models (implied by "text-to-image AI" and "Sharp-based image optimization").
