@@ -27,20 +27,32 @@ export function getNeonClient(env: Env) {
 
 export async function fixGalleryArrays(env: Env, rows: any[]): Promise<any[]> {
   if (!rows.length) return rows;
-  const ids = rows.map((r) => r.id);
-  const client = getNeonClient(env);
-  const placeholders = ids.map((_, i) => `$${i + 1}`).join(",");
-  const result = await client(
-    `SELECT id, array_to_json(gallery_image_urls) as gallery FROM products WHERE id IN (${placeholders})`,
-    ids
-  );
-  const galleryMap = new Map<string, string[]>();
-  for (const row of result) {
-    const parsed = typeof row.gallery === "string" ? JSON.parse(row.gallery) : row.gallery;
-    galleryMap.set(row.id as string, parsed || []);
+  try {
+    const ids = rows.map((r) => r.id);
+    const client = getNeonClient(env);
+    const placeholders = ids.map((_, i) => `$${i + 1}`).join(",");
+    const result = await client(
+      `SELECT id, array_to_json(gallery_image_urls) as gallery FROM products WHERE id IN (${placeholders})`,
+      ids
+    );
+    const galleryMap = new Map<string, string[]>();
+    for (const row of result) {
+      const parsed = typeof row.gallery === "string" ? JSON.parse(row.gallery) : row.gallery;
+      galleryMap.set(row.id as string, parsed || []);
+    }
+    return rows.map((r) => ({
+      ...r,
+      galleryImageUrls: galleryMap.get(r.id) || r.galleryImageUrls || [],
+    }));
+  } catch (err) {
+    console.error("fixGalleryArrays failed, using Drizzle-returned values:", err);
+    return rows.map((r) => {
+      let gallery = r.galleryImageUrls;
+      if (typeof gallery === "string") {
+        try { gallery = JSON.parse(gallery); } catch { gallery = []; }
+      }
+      if (!Array.isArray(gallery)) gallery = [];
+      return { ...r, galleryImageUrls: gallery };
+    });
   }
-  return rows.map((r) => ({
-    ...r,
-    galleryImageUrls: galleryMap.get(r.id) || r.galleryImageUrls || [],
-  }));
 }
