@@ -323,6 +323,65 @@ async function getProductMeta(productId: string): Promise<PageMeta | null> {
       if (!allImageUrls.includes(abs)) allImageUrls.push(abs);
     }
 
+    const price3 = (price * 0.9).toFixed(2);
+    const price6 = (price * 0.8).toFixed(2);
+    const price12 = (price * 0.7).toFixed(2);
+    const longDesc = product.descriptionLong || product.description || "";
+    const catName = category ? category.name : "tech equipment";
+    const availability = product.available ? "In Stock — Ready to Ship" : "Currently Unavailable";
+
+    const bodyContent =
+      `<nav aria-label="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/categories">Categories</a>` +
+      (category ? ` &rsaquo; <a href="/categories/${category.id}">${escapeHtml(category.name)}</a>` : "") +
+      ` &rsaquo; ${escapeHtml(product.name)}</nav>` +
+      `<article>` +
+      `<h2>${escapeHtml(product.name)}</h2>` +
+      (product.brand ? `<p><strong>Brand:</strong> ${escapeHtml(product.brand)}</p>` : "") +
+      `<p><strong>Category:</strong> <a href="${category ? `/categories/${category.id}` : "/categories"}">${escapeHtml(catName)}</a></p>` +
+      `<p><strong>Availability:</strong> ${availability}</p>` +
+      `<p><strong>Monthly Rental:</strong> $${price.toFixed(2)}/month</p>` +
+      `<section><h3>About This Product</h3>` +
+      `<p>${escapeHtml(longDesc)}</p>` +
+      `</section>` +
+      `<section><h3>Flexible Rental Pricing</h3>` +
+      `<p>Choose the rental term that fits your needs. Longer rentals save you more:</p>` +
+      `<ul>` +
+      `<li><strong>1 Month:</strong> $${price.toFixed(2)}/month — Perfect for short-term projects</li>` +
+      `<li><strong>3 Months:</strong> $${price3}/month (save 10%) — Great for seasonal needs</li>` +
+      `<li><strong>6 Months:</strong> $${price6}/month (save 20%) — Ideal for extended projects</li>` +
+      `<li><strong>12 Months:</strong> $${price12}/month (save 30%) — Best value for ongoing use</li>` +
+      `</ul>` +
+      `<p>All rentals include free shipping on 3+ month plans, 14-day free returns, and same-day delivery in select areas.</p>` +
+      `</section>` +
+      `<section><h3>GadgetCare+ Protection</h3>` +
+      `<p>Add GadgetCare+ to your rental for complete peace of mind. Coverage includes accidental damage, liquid spills, ` +
+      `hardware malfunctions, and priority repair or replacement — all for just 15% of your rental total.</p>` +
+      `</section>` +
+      `<section><h3>How Renting Works</h3>` +
+      `<ol>` +
+      `<li><strong>Choose Your Gear:</strong> Browse our catalog of 140+ premium products from trusted brands like ${escapeHtml(product.brand || "Apple, Dell, HP, and more")}.</li>` +
+      `<li><strong>Select Your Term:</strong> Pick a 1, 3, 6, or 12-month rental period. Longer terms unlock bigger discounts.</li>` +
+      `<li><strong>Receive &amp; Enjoy:</strong> We ship your equipment fast — same-day delivery available. Every item is quality-checked and ready to use.</li>` +
+      `<li><strong>Return or Extend:</strong> Send it back when you're done, extend your rental, or choose our Rent-to-Own option to keep it.</li>` +
+      `</ol>` +
+      `</section>` +
+      `<section><h3>Why Rent From RentMyGadgets?</h3>` +
+      `<ul>` +
+      `<li>No long-term commitments — rent month-to-month or choose a longer term for savings</li>` +
+      `<li>Quality-checked equipment from top brands</li>` +
+      `<li>Same-day delivery available in select areas</li>` +
+      `<li>14-day free return window on all rentals</li>` +
+      `<li>Optional GadgetCare+ damage protection</li>` +
+      `<li>Rent-to-Own pathway if you decide to keep the gear</li>` +
+      `<li>Dedicated customer support via email and phone</li>` +
+      `</ul>` +
+      `</section>` +
+      `<section><h3>Related Categories</h3>` +
+      `<p>Browse more rental options: <a href="/categories">All Categories</a> | <a href="/products">All Products</a> | ` +
+      `<a href="/compare">Compare Products</a> | <a href="/search">Search</a></p>` +
+      `</section>` +
+      `</article>`;
+
     return {
       title: titleWithPrice,
       description: desc.slice(0, 300),
@@ -330,6 +389,8 @@ async function getProductMeta(productId: string): Promise<PageMeta | null> {
       image: product.imageUrl || DEFAULT_IMAGE,
       additionalImages: allImageUrls.length > 1 ? allImageUrls.slice(1) : undefined,
       imageAlt: `${brandPart}${product.name} available to rent from ${SITE_NAME}`,
+      h1: `Rent ${product.name}`,
+      bodyContent,
       product: {
         priceAmount: price.toFixed(2),
         priceCurrency: "USD",
@@ -376,16 +437,64 @@ async function getCategoryMeta(categoryId: string): Promise<PageMeta | null> {
     const category = await storage.getCategory(categoryId);
     if (!category) return null;
 
+    const products = await storage.getProductsByCategory(categoryId);
     const catDesc = category.description || `Browse and rent ${category.name.toLowerCase()} equipment. Flexible rental periods, competitive pricing, and same-day delivery available.`;
 
     const catLower = category.name.toLowerCase();
     const categoryKeywords = `rent ${catLower}, ${catLower} rental, monthly ${catLower} rental, ${catLower} for rent, rent ${catLower} online, RentMyGadgets ${catLower}, browse ${catLower}`;
+
+    const productListHtml = products.slice(0, 30).map(p => {
+      const pPrice = p.pricePerMonth ? parseFloat(p.pricePerMonth.toString()).toFixed(2) : "0.00";
+      return `<li><a href="/product/${p.id}">${escapeHtml(p.name)}</a> — $${pPrice}/month${p.brand ? ` by ${escapeHtml(p.brand)}` : ""}</li>`;
+    }).join("");
+
+    const brands = [...new Set(products.map(p => p.brand).filter(Boolean))] as string[];
+    const brandList = brands.length > 0 ? brands.map(b => escapeHtml(b)).join(", ") : "leading manufacturers";
+    const priceRange = products.length > 0
+      ? `$${Math.min(...products.map(p => parseFloat((p.pricePerMonth || "0").toString()))).toFixed(2)} — $${Math.max(...products.map(p => parseFloat((p.pricePerMonth || "0").toString()))).toFixed(2)}/month`
+      : "";
+
+    const bodyContent =
+      `<nav aria-label="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/categories">Categories</a> &rsaquo; ${escapeHtml(category.name)}</nav>` +
+      `<article>` +
+      `<h2>${escapeHtml(category.name)} Rentals</h2>` +
+      `<p>${escapeHtml(catDesc)}</p>` +
+      `<p><strong>${products.length} products available</strong> from brands including ${brandList}.` +
+      (priceRange ? ` Prices range from ${priceRange}.` : "") +
+      ` All rentals include flexible 1, 3, 6, or 12-month terms with progressive discounts up to 30% off.</p>` +
+      `<section><h3>Available ${escapeHtml(category.name)}</h3>` +
+      `<ul>${productListHtml}</ul>` +
+      `</section>` +
+      `<section><h3>Why Rent ${escapeHtml(category.name)} From RentMyGadgets?</h3>` +
+      `<ul>` +
+      `<li>Quality-checked equipment from trusted brands like ${brandList}</li>` +
+      `<li>Flexible monthly rental terms — no long-term commitments required</li>` +
+      `<li>Save 10-30% with longer rental periods (3, 6, or 12 months)</li>` +
+      `<li>Free shipping on rentals of 3 months or longer</li>` +
+      `<li>Same-day delivery available in select areas</li>` +
+      `<li>Optional GadgetCare+ protection against accidental damage and spills</li>` +
+      `<li>14-day free return window on all rentals</li>` +
+      `<li>Rent-to-Own option if you decide to keep the equipment</li>` +
+      `</ul>` +
+      `</section>` +
+      `<section><h3>How to Rent ${escapeHtml(category.name)}</h3>` +
+      `<ol>` +
+      `<li>Browse our selection of ${products.length} ${escapeHtml(catLower)} above</li>` +
+      `<li>Select your preferred model and rental term</li>` +
+      `<li>Add optional GadgetCare+ protection at checkout</li>` +
+      `<li>Receive your equipment — quality-checked and ready to use</li>` +
+      `</ol>` +
+      `<p>Need help choosing? <a href="/compare">Compare products side by side</a> or <a href="/contact">contact our team</a> for personalized recommendations.</p>` +
+      `</section>` +
+      `</article>`;
 
     return {
       title: `Rent ${category.name} | Browse Equipment`,
       description: catDesc,
       image: category.imageUrl || DEFAULT_IMAGE,
       keywords: categoryKeywords,
+      h1: `${category.name} Rentals`,
+      bodyContent,
       jsonLd: [
         {
           "@context": "https://schema.org",
@@ -1005,8 +1114,8 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   }
 
   const nav = await getCrawlerNav(url);
-  const safeH1 = escapeHtml(meta.title.includes(SITE_NAME) ? meta.title.replace(` | ${SITE_NAME}`, '') : meta.title);
-  const pageContent = getCrawlerPageContent(url);
+  const safeH1 = escapeHtml(meta.h1 || (meta.title.includes(SITE_NAME) ? meta.title.replace(` | ${SITE_NAME}`, '') : meta.title));
+  const pageContent = meta.bodyContent || getCrawlerPageContent(url);
   const crawlerContent = `<div hidden aria-hidden="true" style="display:none!important">${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}</div>`;
   result = result.replace('<div id="root"></div>', `<div id="root">${crawlerContent}</div>`);
 
