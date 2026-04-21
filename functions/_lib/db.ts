@@ -53,3 +53,32 @@ export function fixGalleryArraysSync(rows: any[]): any[] {
 export async function fixGalleryArrays(env: Env, rows: any[]): Promise<any[]> {
   return fixGalleryArraysSync(rows);
 }
+
+function snakeToCamel(s: string): string {
+  return s.replace(/_([a-z])/g, (_, ch: string) => ch.toUpperCase());
+}
+
+function camelCaseRow(row: Record<string, unknown>): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(row)) out[snakeToCamel(k)] = v;
+  return out;
+}
+
+export async function queryProducts(env: Env, opts?: { categoryId?: string; featured?: boolean; id?: string; slug?: string; limit?: number; columns?: string[] }): Promise<any[]> {
+  const sql = getNeonClient(env);
+  const cols = opts?.columns ? opts.columns.join(", ") : "*";
+  let rows;
+  if (opts?.id) {
+    rows = await sql`SELECT * FROM products WHERE id = ${opts.id} LIMIT 1`;
+  } else if (opts?.slug) {
+    rows = await sql`SELECT * FROM products WHERE slug = ${opts.slug} LIMIT 1`;
+  } else if (opts?.categoryId) {
+    rows = await sql`SELECT * FROM products WHERE category_id = ${opts.categoryId}`;
+  } else if (opts?.featured) {
+    rows = await sql`SELECT * FROM products WHERE featured = true`;
+  } else {
+    rows = await sql`SELECT * FROM products`;
+  }
+  const camelRows = rows.map(camelCaseRow);
+  return fixGalleryArraysSync(camelRows as any[]);
+}

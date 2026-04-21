@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { products, categories, blogPosts } from "@shared/schema";
-import { getDb, fixGalleryArrays, type Env } from "./_lib/db";
+import { getDb, fixGalleryArrays, queryProducts, type Env } from "./_lib/db";
 
 const BASE_URL = "https://www.rentmygadgets.com";
 
@@ -98,23 +98,14 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
     const [allCategories, allProductRows, posts] = await Promise.all([
       db.select({ id: categories.id }).from(categories),
-      db
-        .select({
-          id: products.id,
-          slug: products.slug,
-          name: products.name,
-          brand: products.brand,
-          imageUrl: products.imageUrl,
-          galleryImageUrls: products.galleryImageUrls,
-        })
-        .from(products),
+      queryProducts(context.env),
       db
         .select({ slug: blogPosts.slug })
         .from(blogPosts)
         .where(eq(blogPosts.published, true)),
     ]);
 
-    const allProducts = await fixGalleryArrays(context.env, allProductRows);
+    const allProducts = allProductRows;
 
     const productImageMap = new Map<string, any>();
     for (const prod of allProducts) {

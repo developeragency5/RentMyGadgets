@@ -9,7 +9,7 @@ import {
   productVariantOptions,
   blogPosts,
 } from "@shared/schema";
-import { getDb, fixGalleryArrays, type Env } from "../_lib/db";
+import { getDb, getNeonClient, fixGalleryArrays, fixGalleryArraysSync, queryProducts, type Env } from "../_lib/db";
 import { hashPassword, verifyPassword } from "../_lib/password";
 import {
   createSession,
@@ -37,22 +37,22 @@ app.get("/health", (c) =>
 );
 
 // ---------- Products ----------
+// Uses raw SQL (SELECT *) via queryProducts to avoid schema mismatches
+// between Drizzle schema and the actual Neon DB (e.g. missing columns).
 app.get("/products", async (c) => {
   try {
-    const db = getDb(c.env);
     const categoryId = c.req.query("categoryId");
     const featured = c.req.query("featured");
 
     let rows;
     if (categoryId) {
-      rows = await db.select().from(products).where(eq(products.categoryId, categoryId));
+      rows = await queryProducts(c.env, { categoryId });
     } else if (featured === "true") {
-      rows = await db.select().from(products).where(eq(products.featured, true));
+      rows = await queryProducts(c.env, { featured: true });
     } else {
-      rows = await db.select().from(products);
+      rows = await queryProducts(c.env);
     }
-    const fixed = await fixGalleryArrays(c.env, rows);
-    return c.json(fixed);
+    return c.json(rows);
   } catch (err: any) {
     console.error("GET /api/products failed:", err);
     return c.json({ message: "Failed to fetch products", error: String(err?.message || err) }, 500);
@@ -61,18 +61,16 @@ app.get("/products", async (c) => {
 
 app.get("/products/:idOrSlug", async (c) => {
   try {
-    const db = getDb(c.env);
     const idOrSlug = c.req.param("idOrSlug");
     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(idOrSlug);
     const rows = isUuid
-      ? await db.select().from(products).where(eq(products.id, idOrSlug)).limit(1)
-      : await db.select().from(products).where(eq(products.slug, idOrSlug)).limit(1);
+      ? await queryProducts(c.env, { id: idOrSlug })
+      : await queryProducts(c.env, { slug: idOrSlug });
     if (!rows[0]) return c.json({ message: "Product not found" }, 404);
-    const fixed = await fixGalleryArrays(c.env, rows);
-    return c.json(fixed[0]);
-  } catch (err) {
+    return c.json(rows[0]);
+  } catch (err: any) {
     console.error("GET /api/products/:idOrSlug failed:", err);
-    return c.json({ message: "Failed to fetch product", error: String((err as any)?.message || err) }, 500);
+    return c.json({ message: "Failed to fetch product", error: String(err?.message || err) }, 500);
   }
 });
 
@@ -84,11 +82,10 @@ app.get("/products/search/suggestions", async (c) => {
     const maxResults = Math.min(Number.isFinite(limitRaw) ? limitRaw : 6, 10);
     if (q.length < 2) return c.json([]);
 
-    const db = getDb(c.env);
-    const all = await db.select().from(products);
+    const all = await queryProducts(c.env);
 
     const scored = all
-      .map((p) => {
+      .map((p: any) => {
         let score = 0;
         const name = (p.name ?? "").toLowerCase();
         const brand = (p.brand ?? "").toLowerCase();
@@ -100,16 +97,17 @@ app.get("/products/search/suggestions", async (c) => {
         else if (brand.startsWith(q)) score += 25;
         else if (brand.includes(q)) score += 15;
         if (description.includes(q)) score += 10;
-        if (Array.isArray(p.specs) && p.specs.some((s: string) => (s ?? "").toLowerCase().includes(q))) score += 5;
+        const specs = Array.isArray(p.specs) ? p.specs : [];
+        if (specs.some((s: string) => (s ?? "").toLowerCase().includes(q))) score += 5;
         if (p.featured && score > 0) score += 5;
         return { p, score };
       })
-      .filter((x) => x.score > 0)
-      .sort((a, b) => b.score - a.score)
+      .filter((x: any) => x.score > 0)
+      .sort((a: any, b: any) => b.score - a.score)
       .slice(0, maxResults)
-      .map((x) => ({
+      .map((x: any) => ({
         id: x.p.id,
-        slug: x.p.slug,
+        slug: x.p.slug || null,
         name: x.p.name,
         brand: x.p.brand,
         imageUrl: x.p.imageUrl,
@@ -152,7 +150,7 @@ app.get("/products/:id/variants", async (c) => {
     const db = getDb(c.env);
     const id = c.req.param("id");
 
-    const exists = await db.select({ id: products.id }).from(products).where(eq(products.id, id)).limit(1);
+    const exists = await queryProducts(c.env, { id });
     if (!exists[0]) return c.json({ message: "Product not found" }, 404);
 
     const opts = await db

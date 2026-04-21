@@ -2,7 +2,7 @@
 // Uses Neon HTTP via Drizzle directly (no `process.env` / no Express `storage`).
 import { eq, and, desc } from "drizzle-orm";
 import { products, categories, blogPosts } from "@shared/schema";
-import { getDb, fixGalleryArrays, type Env } from "./db";
+import { getDb, getNeonClient, fixGalleryArrays, queryProducts, type Env } from "./db";
 
 interface PageMeta {
   title: string;
@@ -438,23 +438,21 @@ async function getProductMeta(env: Env, idOrSlug: string): Promise<PageMeta | nu
     const db = getDb(env);
     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(idOrSlug);
     const productRows = isUuid
-      ? await db.select().from(products).where(eq(products.id, idOrSlug)).limit(1)
-      : await db.select().from(products).where(eq(products.slug, idOrSlug)).limit(1);
+      ? await queryProducts(env, { id: idOrSlug })
+      : await queryProducts(env, { slug: idOrSlug });
     if (!productRows[0]) return null;
-    const fixedRows = await fixGalleryArrays(env, productRows);
-    const product = fixedRows[0];
+    const product = productRows[0];
 
     let category: { id: string; name: string } | null = null;
     let related: { id: string; slug: string | null; name: string; pricePerMonth: string | null }[] = [];
     if (product.categoryId) {
       const catRows = await db.select().from(categories).where(eq(categories.id, product.categoryId)).limit(1);
       category = catRows[0] ?? null;
-      const relRows = await db
-        .select({ id: products.id, slug: products.slug, name: products.name, pricePerMonth: products.pricePerMonth })
-        .from(products)
-        .where(eq(products.categoryId, product.categoryId))
-        .limit(8);
-      related = relRows.filter(r => r.id !== product.id).slice(0, 6);
+      const relRows = await queryProducts(env, { categoryId: product.categoryId });
+      related = relRows
+        .filter((r: any) => r.id !== product.id)
+        .slice(0, 6)
+        .map((r: any) => ({ id: r.id, slug: r.slug || null, name: r.name, pricePerMonth: r.pricePerMonth }));
     }
     const price = product.pricePerMonth ? parseFloat(product.pricePerMonth.toString()) : 0;
     // Always synthesize a UNIQUE meta description from product attributes so two
@@ -642,12 +640,7 @@ async function getCategoryMeta(env: Env, categoryId: string): Promise<PageMeta |
 
     const catDesc = category.description || `Browse and rent ${category.name.toLowerCase()} equipment. Flexible rental periods, competitive pricing, and fast delivery in select areas available.`;
 
-    // Every product in the category — no cap, so the crawler-visible list
-    // is a complete reflection of what's available.
-    const catProducts = await db
-      .select({ id: products.id, slug: products.slug, name: products.name, pricePerMonth: products.pricePerMonth, brand: products.brand })
-      .from(products)
-      .where(eq(products.categoryId, categoryId));
+    const catProducts = await queryProducts(env, { categoryId });
 
     const catLower = category.name.toLowerCase();
     const categoryKeywords = `rent ${catLower}, ${catLower} rental, monthly ${catLower} rental, ${catLower} for rent, rent ${catLower} online, RentMyGadgets ${catLower}, browse ${catLower}`;
@@ -904,8 +897,7 @@ export async function getMetaForUrl(env: Env, url: string): Promise<PageMeta> {
     const params = new URLSearchParams(queryPart.split("#")[0]);
     const productId = params.get("product");
     if (productId) {
-      const db = getDb(env);
-      const productRows = await db.select().from(products).where(eq(products.id, productId)).limit(1);
+      const productRows = await queryProducts(env, { id: productId });
       if (productRows[0]) {
         const product = productRows[0];
         return {
@@ -1393,7 +1385,7 @@ async function getCrawlerNav(env: Env, url: string): Promise<CrawlerNavParts> {
     const db = getDb(env);
     const [allCategories, allProducts, allBlogPosts] = await Promise.all([
       db.select({ id: categories.id, name: categories.name }).from(categories),
-      db.select({ id: products.id, slug: products.slug, name: products.name }).from(products),
+      queryProducts(env),
       db.select({ slug: blogPosts.slug, title: blogPosts.title, published: blogPosts.published }).from(blogPosts),
     ]);
 
