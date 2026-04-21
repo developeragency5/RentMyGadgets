@@ -765,6 +765,7 @@ async function getBlogMeta(env: Env, slug: string): Promise<PageMeta | null> {
       title: post.title,
       description: excerpt.slice(0, 300),
       type: "article",
+      canonicalUrl: url,
       image: post.imageUrl || DEFAULT_IMAGE,
       imageAlt: `${post.title} — ${SITE_NAME} blog`,
       article: {

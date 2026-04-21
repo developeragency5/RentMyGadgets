@@ -623,6 +623,7 @@ async function getBlogMeta(slug: string): Promise<PageMeta | null> {
       title: post.title,
       description: excerpt.slice(0, 300),
       image: post.imageUrl || DEFAULT_IMAGE,
+      canonicalUrl: url,
       h1: post.title,
       bodyContent,
       keywords: blogKeywords,
