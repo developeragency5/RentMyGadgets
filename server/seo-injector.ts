@@ -713,6 +713,17 @@ const NOINDEX_ROUTES = new Set<string>([
 ]);
 
 export async function getMetaForUrl(url: string): Promise<PageMeta> {
+  const meta = await resolveMetaForUrl(url);
+  if (!meta.canonicalUrl) {
+    throw new MissingCanonicalUrlError(
+      `[SEO] Route handler for ${url} returned PageMeta without canonicalUrl — every route must set canonicalUrl explicitly`,
+      url,
+    );
+  }
+  return meta;
+}
+
+async function resolveMetaForUrl(url: string): Promise<PageMeta> {
   const [pathPart, queryPart] = url.split("?");
   const cleanUrl = pathPart.split("#")[0];
 
@@ -1203,19 +1214,10 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   const safeDesc = escapeHtml(meta.description);
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
   if (!meta.canonicalUrl) {
-    const message = `[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`;
-    console.error(JSON.stringify({
-      level: 'error',
-      component: 'seo-injector',
-      event: 'missing_canonical_url',
+    throw new MissingCanonicalUrlError(
+      `[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`,
       url,
-      message,
-    }));
-    if (process.env.NODE_ENV === 'production') {
-      meta.canonicalUrl = toAbsoluteUrl(url.split('?')[0]);
-    } else {
-      throw new MissingCanonicalUrlError(message, url);
-    }
+    );
   }
   const fullUrl = meta.canonicalUrl;
   const ogType =
