@@ -35,6 +35,9 @@ Preferred communication style: Simple, everyday language.
 - **Legal Compliance**: Adheres to CCPA/CPRA requirements, including privacy policies, "Do Not Sell" options, cookie consent, and an accessibility statement.
 - **SEO-Friendly Product URLs**: Uses slug-based URLs for product pages, automatically generated and stored in the database.
 - **SEO & Performance Optimizations**: Includes server-side meta injection, comprehensive JSON-LD structured data, crawler-friendly navigation, image sitemaps, multi-image Open Graph tags, and SEO-optimized collection pages.
+- **HTML Sitemap Page**: A dedicated `/html-sitemap` page that lists all products, categories, collections, blog posts, and policy pages as visible links — solving orphaned sitemap page issues.
+- **Category Landing Pages**: 6 SEO landing pages (laptops/desktops, smartphones, headphones/audio, cameras, routers, printers) with hero sections, benefits, sub-categories, FAQs, and CTAs.
+- **Collection URL Mapping**: 19 collection slugs mapped to category UUIDs in `COLLECTION_CATEGORY_MAP` (product-list.tsx), with SEO titles/descriptions per collection.
 - **Security Headers**: Utilizes Helmet for CSP, X-Frame-Options, and other security headers.
 - **Advertising Platform Integration**: Incorporates Google Ads and Microsoft Ads tracking, consent-gated for privacy compliance.
 - **Privacy & Consent Compliance**: Features GPC detection, a granular cookie consent banner, "Do Not Sell/Share" toggles, and consent-gated script loading.
