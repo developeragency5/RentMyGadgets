@@ -740,46 +740,6 @@ export default function Home() {
       </section>
 
 
-      {/* Trusted Brands */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              <Award className="h-4 w-4" />
-              Trusted Brands
-            </div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-              Rent from <span className="text-primary">Industry Leaders</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We partner with the world's most trusted technology brands so you always get premium, reliable equipment.
-            </p>
-          </AnimatedSection>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 md:gap-8 items-center">
-            {[
-              { name: "Dell", category: "Laptops & Desktops" },
-              { name: "HP", category: "Printers & Laptops" },
-              { name: "Canon", category: "Cameras & Printers" },
-              { name: "Sony", category: "Cameras & Audio" },
-              { name: "Samsung", category: "Phones & Displays" },
-              { name: "Lenovo", category: "Laptops & Desktops" },
-              { name: "Asus", category: "Routers & Laptops" },
-              { name: "Brother", category: "Printers" },
-              { name: "Epson", category: "Printers" },
-              { name: "Nikon", category: "Cameras" },
-              { name: "Apple", category: "Laptops & Phones" },
-              { name: "Google", category: "Phones & Routers" },
-            ].map((brand, i) => (
-              <AnimatedCard key={i} index={i}>
-                <div className="group text-center p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300" data-testid={`brand-${brand.name.toLowerCase()}`}>
-                  <div className="text-2xl font-bold text-slate-700 group-hover:text-primary transition-colors mb-1">{brand.name}</div>
-                  <div className="text-xs text-muted-foreground">{brand.category}</div>
-                </div>
-              </AnimatedCard>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Detailed Rental Categories */}
       <section className="py-24 bg-gradient-to-b from-slate-50 to-white">
