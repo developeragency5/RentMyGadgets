@@ -163,6 +163,126 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
     keywords: "small office printer, small office printers, rent small office printer, compact office printer rental",
     jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Small Office Printers in Stock", description: "Small office printers fit tight spaces and deliver reliable printing for your daily tasks.", url: `${BASE_URL}/collections/small-office-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
+  "/laptop-desktop-rentals": {
+    title: "Laptop & Desktop Rentals | Laptops, Desktops & Workstations",
+    description: "Rent powerful laptops, desktop computers, and workstations for work, gaming, and creative projects. Flexible monthly plans, fast delivery, no long-term contracts.",
+    keywords: "laptop rental, desktop rental, workstation rental, rent laptop, rent desktop, computer rental, gaming laptop rental, business laptop rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Laptop & Desktop Rentals", description: "Rent powerful laptops, desktops, and workstations for work, gaming, and creative projects.", url: `${BASE_URL}/laptop-desktop-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/laptops": {
+    title: "Laptops for Work and Home Life",
+    description: "Laptops for work, study, gaming, and travel. Light build, strong battery, and fast speeds at flexible monthly rates.",
+    keywords: "laptop rental, rent laptop, laptop for work, laptop for gaming, laptop for study, business laptop rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Laptops for Work and Home Life", description: "Laptops for work, study, gaming, and travel. Light build, strong battery, and fast speeds.", url: `${BASE_URL}/collections/laptops`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/desktops": {
+    title: "Desktop Computers for Any Room",
+    description: "Desktop computers for home, work, and gaming. Wide displays, strong power, and fast speed at flexible rental rates.",
+    keywords: "desktop rental, rent desktop, desktop computer rental, gaming desktop rental, office desktop rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Desktop Computers for Any Room", description: "Desktop computers for home, work, and gaming. Wide displays, strong power, and fast speed.", url: `${BASE_URL}/collections/desktops`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/workstations": {
+    title: "Workstations for Creative Work",
+    description: "Workstations built for design, editing, and coding. Strong chips, big memory, and quick speed for demanding projects.",
+    keywords: "workstation rental, rent workstation, creative workstation, design workstation rental, editing workstation",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Workstations for Creative Work", description: "Workstations built for design, editing, and coding. Strong chips, big memory, quick speed.", url: `${BASE_URL}/collections/workstations`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/smartphone-rentals": {
+    title: "Smartphone Rentals | Latest Phones for Work, Travel & Daily Life",
+    description: "Rent premium smartphones with sharp displays, powerful cameras, and long battery life. Flexible monthly plans, no long-term contracts, always the latest models.",
+    keywords: "smartphone rental, phone rental, rent smartphone, rent phone, mobile phone rental, cell phone rental, iPhone rental, Samsung rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Smartphone Rentals", description: "Rent premium smartphones with sharp displays, powerful cameras, and long battery life.", url: `${BASE_URL}/smartphone-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/smartphones": {
+    title: "Smartphones for Daily Life Use",
+    description: "Smartphones with sharp displays, strong cameras, and long battery life for daily home use at flexible rental rates.",
+    keywords: "smartphone rental, rent smartphone, daily use smartphone, smartphone for home, rent iPhone, rent Samsung",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Smartphones for Daily Life Use", description: "Smartphones with sharp displays, strong cameras, and long battery life for daily home use.", url: `${BASE_URL}/collections/smartphones`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/mobile-phones": {
+    title: "Mobile Phones for Home or Work",
+    description: "Mobile phones with clear screens, smooth performance, and long battery life for daily use at flexible monthly rates.",
+    keywords: "mobile phone rental, rent mobile phone, phone rental, mobile phone for work, affordable phone rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Mobile Phones for Home or Work", description: "Mobile phones with clear screens, smooth performance, and long battery life for daily use.", url: `${BASE_URL}/collections/mobile-phones`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/cell-phones": {
+    title: "Cell Phones for Home or Travel",
+    description: "Cell phones with sharp cameras, clear calls, and lasting battery life for work and travel at flexible rental rates.",
+    keywords: "cell phone rental, rent cell phone, travel phone rental, cell phone for work, cell phone for travel",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Cell Phones for Home or Travel", description: "Cell phones with sharp cameras, clear calls, and lasting battery life for work and travel.", url: `${BASE_URL}/collections/cell-phones`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/headphones-audio-rentals": {
+    title: "Headphones & Accessories Rentals | Audio Gear, Keyboards & Mice",
+    description: "Rent premium headphones, mechanical keyboards, and ergonomic mice for work, gaming, and music. Flexible monthly plans, no long-term contracts.",
+    keywords: "headphone rental, keyboard rental, mouse rental, rent headphones, gaming headset rental, mechanical keyboard rental, ergonomic mouse rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Headphones & Accessories Rentals", description: "Rent premium headphones, keyboards, and mice for work, gaming, and music.", url: `${BASE_URL}/headphones-audio-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/headphones": {
+    title: "Headphones for Music and Games",
+    description: "Headphones with clear sound, comfy fit, and long battery life for music, calls, or gaming at flexible monthly rates.",
+    keywords: "headphone rental, rent headphones, gaming headset rental, wireless headphone rental, noise cancelling headphones",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Headphones for Music and Games", description: "Headphones with clear sound, comfy fit, and long battery life for music, calls, or gaming.", url: `${BASE_URL}/collections/headphones`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/keyboards": {
+    title: "Keyboards Made for Fast Typing",
+    description: "Keyboards with quiet keys, strong build, and smooth action for busy office and home desks at flexible rental rates.",
+    keywords: "keyboard rental, rent keyboard, mechanical keyboard rental, office keyboard rental, gaming keyboard rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Keyboards Made for Fast Typing", description: "Keyboards with quiet keys, strong build, and smooth action for busy office and home desks.", url: `${BASE_URL}/collections/keyboards`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/computer-mice": {
+    title: "Computer Mice for Home or Work",
+    description: "Computer mice with smooth glide, quiet clicks, and comfort grip for daily work and gaming at flexible rental rates.",
+    keywords: "mouse rental, rent mouse, computer mouse rental, ergonomic mouse rental, gaming mouse rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Computer Mice for Home or Work", description: "Computer mice with smooth glide, quiet clicks, and comfort grip for daily work and gaming.", url: `${BASE_URL}/collections/computer-mice`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/camera-gear-rentals": {
+    title: "Camera & Gear Rentals | DSLRs, Lenses & Lighting Equipment",
+    description: "Rent professional DSLR cameras, sharp lenses, and studio lighting gear for photo shoots, events, and travel. Flexible monthly plans, no contracts.",
+    keywords: "camera rental, DSLR rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Camera & Gear Rentals", description: "Rent professional DSLR cameras, lenses, and lighting gear for shoots, events, and travel.", url: `${BASE_URL}/camera-gear-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/dslr-cameras": {
+    title: "DSLR Cameras for Photo Studios",
+    description: "DSLR cameras for portraits, events, and travel. Sharp lens, strong build, and clear shots at flexible rental rates.",
+    keywords: "DSLR rental, rent DSLR camera, DSLR camera rental, portrait camera rental, event camera rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "DSLR Cameras for Photo Studios", description: "DSLR cameras for portraits, events, and travel. Sharp lens, strong build, and clear shots.", url: `${BASE_URL}/collections/dslr-cameras`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/camera-lenses": {
+    title: "Camera Lenses for Clear Photos",
+    description: "Camera lenses with sharp focus, wide range, and smooth zoom for portrait and travel shots at flexible monthly rates.",
+    keywords: "camera lens rental, rent camera lens, photography lens rental, portrait lens rental, zoom lens rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Camera Lenses for Clear Photos", description: "Camera lenses with sharp focus, wide range, and smooth zoom for portrait and travel shots.", url: `${BASE_URL}/collections/camera-lenses`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/lighting-gear": {
+    title: "Lighting Gear for Photo Shoots",
+    description: "Lighting gear for photo and video shoots. Softbox, stands, and bright LED lights in stock at flexible rental rates.",
+    keywords: "lighting rental, studio lighting rental, rent lighting gear, softbox rental, LED light rental, photography lighting",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Lighting Gear for Photo Shoots", description: "Lighting gear for photo and video shoots. Softbox, stands, and bright LED lights in stock.", url: `${BASE_URL}/collections/lighting-gear`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/router-rentals": {
+    title: "Router Rentals | Fast WiFi Routers for Home & Office",
+    description: "Rent fast, reliable routers and WiFi systems for home and office. Wide coverage, stable signal, flexible monthly plans, no long-term contracts.",
+    keywords: "router rental, WiFi router rental, wireless router rental, rent router, internet router rental, mesh WiFi rental, home router rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Router Rentals", description: "Rent fast, reliable routers and WiFi systems for home and office.", url: `${BASE_URL}/router-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/routers": {
+    title: "Routers for Fast Home Internet",
+    description: "Routers with fast speeds, wide range, and stable signal for home, office, or everyday use at flexible rental rates.",
+    keywords: "router rental, rent router, home router rental, fast router rental, internet router",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Routers for Fast Home Internet", description: "Routers with fast speeds, wide range, and stable signal for home, office, or everyday use.", url: `${BASE_URL}/collections/routers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/wifi-routers": {
+    title: "WiFi Routers for Home and Work",
+    description: "WiFi routers with strong speeds, wide coverage, and stable signal for any home and office at flexible monthly rates.",
+    keywords: "WiFi router rental, rent WiFi router, wireless internet rental, home WiFi rental, office WiFi router",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "WiFi Routers for Home and Work", description: "WiFi routers with strong speeds, wide coverage, and stable signal for any home and office.", url: `${BASE_URL}/collections/wifi-routers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/wireless-routers": {
+    title: "Wireless Routers for Fast WiFi",
+    description: "Wireless routers with strong speeds, wide coverage, and easy setup for home or office use at flexible rental rates.",
+    keywords: "wireless router rental, rent wireless router, WiFi router rental, easy setup router, home wireless router",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Wireless Routers for Fast WiFi", description: "Wireless routers with strong speeds, wide coverage, and easy setup for home or office use.", url: `${BASE_URL}/collections/wireless-routers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
   "/about": {
     title: "About Us",
     description: "Learn about RentMyGadgets, our mission to make premium technology accessible through flexible rentals, and our commitment to quality service.",
@@ -289,6 +409,11 @@ const STATIC_KEYWORDS: Record<string, string> = {
   "/gadgetcare": "GadgetCare+, rental damage protection, accidental damage coverage, liquid spill protection, tech protection plan",
   "/rent-to-own": "rent to own electronics, rent to own laptop, rent to own camera, buy after renting, ownership program",
   "/office-printer-rentals": "office printer rental, laser printer rental, color laser printer rental, small office printer, rent office printer, business printer rental, HP printer rental, Brother printer rental",
+  "/laptop-desktop-rentals": "laptop rental, desktop rental, workstation rental, rent laptop, rent desktop, computer rental, gaming laptop rental, business laptop rental",
+  "/smartphone-rentals": "smartphone rental, phone rental, rent smartphone, rent phone, mobile phone rental, cell phone rental, iPhone rental, Samsung rental",
+  "/headphones-audio-rentals": "headphone rental, keyboard rental, mouse rental, rent headphones, gaming headset rental, mechanical keyboard rental, ergonomic mouse rental",
+  "/camera-gear-rentals": "camera rental, DSLR rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental",
+  "/router-rentals": "router rental, WiFi router rental, wireless router rental, rent router, internet router rental, mesh WiFi rental, home router rental",
   "/terms": "terms and conditions, rental terms, RentMyGadgets terms of service, user agreement",
   "/rental-policy": "rental agreement, rental policy, rental terms, rental extension, equipment care policy",
   "/return-policy": "return policy, refund policy, 14 day returns, free returns, rental refund",
@@ -990,6 +1115,76 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>What's Included with Every Office Printer Rental</h2>
 <p>Every office printer ships fully configured with Wi-Fi, Ethernet, and USB connectivity, mobile printing support, a starter toner cartridge, and a setup guide. Technical support is available seven days a week. Replacement units ship within 24 hours if your device ever fails. <a href="/collections/printers-scanners">Browse our printer catalog</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for a recommendation.</p>`,
 
+  "/laptop-desktop-rentals": `<p>RentMyGadgets offers flexible monthly rentals on powerful laptops, desktop computers, and professional workstations from the brands you trust. Whether you need a lightweight laptop for travel, a high-performance desktop for your office, or a workstation built for creative projects, our rental plans give you access to premium computing power without the upfront cost of buying.</p>
+<h2>Why Rent a Laptop or Desktop Instead of Buying?</h2>
+<p>Buying a computer outright means a large upfront investment that starts depreciating the moment you open the box. Technology advances quickly, and a machine that's top-of-the-line today may feel outdated in two years. Renting lets you always have the right hardware for the job — swap to a faster model when your needs change, scale up for big projects, and keep your budget predictable with fixed monthly payments. No surprise repair bills, no depreciation headaches.</p>
+<h2>Laptop Rentals for Work and Home Life</h2>
+<p>Our laptop inventory covers ultrabooks for on-the-go professionals, business laptops built for all-day productivity, and gaming laptops with dedicated GPUs for high-performance computing. Laptops for work, study, gaming, and travel — all with light builds, strong batteries, and fast speeds. Every laptop rental ships pre-configured with the latest OS, charger, and connectivity ready to go.</p>
+<h2>Desktop Computer Rentals for Any Room</h2>
+<p>Desktop computers for home, work, and gaming — wide displays, strong power, and fast speed. Our desktop rentals range from compact mini PCs for tight workspaces to full-tower systems built for demanding applications. Each desktop comes with all cables, peripherals guidance, and is configured for immediate productivity.</p>
+<h2>Workstation Rentals for Creative Work</h2>
+<p>Workstations built for design, editing, and coding — strong chips, big memory, and quick speed. Our workstation rentals feature high-end processors, professional-grade GPUs, ECC memory, and fast NVMe storage. Perfect for video editing, 3D rendering, software development, and data science projects that require serious computing muscle.</p>
+<h2>How Our Rental Process Works</h2>
+<p>Step 1: Browse our laptop, desktop, and workstation categories and choose the model that fits your needs. Step 2: Select a rental term from 1 to 12 months with progressive discounts. Step 3: We deliver your computer quickly with fast delivery in select areas. Step 4: Work with confidence backed by free tech support and optional damage protection. Step 5: Return with a prepaid label or upgrade to a newer model anytime.</p>
+<h2>What's Included with Every Rental</h2>
+<p>Every laptop and desktop ships pre-configured with the operating system installed, power cables and charger included, Wi-Fi pre-enabled, and a quick-start guide. Tech support is available seven days a week. Replacement units ship within 24 hours if your device fails. All data is professionally wiped before and after each rental for your privacy. <a href="/categories/laptops">Browse laptops</a>, <a href="/categories/desktops">browse desktops</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for a recommendation.</p>`,
+
+  "/smartphone-rentals": `<p>RentMyGadgets offers flexible monthly rentals on the latest smartphones from top brands. Whether you need a flagship device with a stunning display and powerful camera, a reliable phone for daily use, or a secondary device for travel, our rental plans let you carry the latest tech without the full retail price or carrier lock-in.</p>
+<h2>Why Rent a Smartphone Instead of Buying?</h2>
+<p>Smartphones are expensive and new models launch every year. Buying outright means spending hundreds upfront on a device that loses value fast. Carrier financing locks you into multi-year contracts. Renting gives you the freedom to always carry the latest model, try different brands before committing, and keep your monthly costs predictable. No contracts, no depreciation, no hassle.</p>
+<h2>Smartphones for Daily Life Use</h2>
+<p>Smartphones with sharp displays, strong cameras, and long battery life for daily home use. Our smartphone rentals include flagship devices from leading brands with the latest processors, AMOLED displays, multi-lens camera systems, and all-day battery life. Every phone ships SIM-ready, unlocked, and ready to activate on any carrier.</p>
+<h2>Mobile Phones for Home or Work</h2>
+<p>Mobile phones with clear screens, smooth performance, and long battery life for daily use. Our mobile phone selection covers mid-range devices that deliver excellent value — crisp displays, reliable cameras, fast charging, and smooth multitasking for professionals and students alike.</p>
+<h2>Cell Phones for Home or Travel</h2>
+<p>Cell phones with sharp cameras, clear calls, and lasting battery life for work and travel. Perfect for frequent travelers who need a secondary device, event organizers who need temporary phones for staff, or anyone who wants to try the latest technology before committing to a purchase.</p>
+<h2>How Our Rental Process Works</h2>
+<p>Step 1: Browse our smartphone selection and pick the model that matches your needs. Step 2: Select a rental term from 1 to 12 months with progressive discounts. Step 3: We deliver your phone quickly with fast delivery in select areas. Step 4: Enjoy your device with free tech support and optional damage protection. Step 5: Return with a prepaid label or swap to the newest model anytime.</p>
+<h2>What's Included with Every Smartphone Rental</h2>
+<p>Every smartphone ships SIM-ready and unlocked, with a fast charger, screen protector, protective case, and quick-start guide included. Tech support is available seven days a week. Replacement devices ship within 24 hours if your phone has issues. <a href="/categories/phones">Browse smartphones</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for help choosing the right phone.</p>`,
+
+  "/headphones-audio-rentals": `<p>RentMyGadgets offers flexible monthly rentals on premium headphones, mechanical keyboards, and ergonomic mice from top audio and peripheral brands. Whether you're a music lover, a gamer, or a professional who spends long hours at a desk, our rental plans let you experience the best gear without the full retail investment.</p>
+<h2>Why Rent Audio Gear and Accessories?</h2>
+<p>Premium headphones, keyboards, and mice can be expensive — and personal preference plays a huge role in finding the right fit. Renting lets you try before you buy, always have access to the latest models, and avoid the waste of equipment that doesn't suit your style. Swap anytime, upgrade whenever you want, and keep your setup fresh without cluttering drawers with old gear.</p>
+<h2>Headphones for Music and Games</h2>
+<p>Headphones with clear sound, comfy fit, and long battery life for music, calls, or gaming. Our headphone rentals include noise-cancelling over-ears, wireless earbuds, studio monitoring headphones, and gaming headsets with surround sound. Every pair ships with all necessary cables, adapters, and a carrying case.</p>
+<h2>Keyboards Made for Fast Typing</h2>
+<p>Keyboards with quiet keys, strong build, and smooth action for busy office and home desks. Our keyboard rentals feature mechanical switches, wireless connectivity, ergonomic layouts, and customizable backlighting. From compact 65% boards to full-size layouts with number pads — find the typing feel that works best for you.</p>
+<h2>Computer Mice for Home or Work</h2>
+<p>Computer mice with smooth glide, quiet clicks, and comfort grip for daily work and gaming. Our mouse rentals include ergonomic office mice, high-precision gaming mice, trackball alternatives, and wireless options with long battery life. Every mouse ships with a receiver, charging cable, and setup instructions.</p>
+<h2>How Our Rental Process Works</h2>
+<p>Step 1: Browse our headphones, keyboards, and mice and pick the gear that fits your style. Step 2: Select a rental term from 1 to 12 months with progressive discounts. Step 3: We deliver your accessories quickly with fast delivery in select areas. Step 4: Enjoy your gear with free tech support and optional damage protection. Step 5: Return with a prepaid label or upgrade anytime.</p>
+<h2>What's Included with Every Accessory Rental</h2>
+<p>Every accessory ships with all necessary cables, adapters, batteries or receivers, and a carrying case or storage pouch. Tech support is available seven days a week. Replacement units ship within 24 hours if your gear has issues. <a href="/categories/accessories">Browse accessories</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for a recommendation.</p>`,
+
+  "/camera-gear-rentals": `<p>RentMyGadgets offers flexible monthly rentals on professional DSLR cameras, sharp lenses, and studio lighting equipment. Whether you're a photographer preparing for a wedding shoot, a filmmaker working on a short film, or a content creator building your portfolio, our rental plans give you access to pro-grade gear without the massive investment.</p>
+<h2>Why Rent Camera Gear Instead of Buying?</h2>
+<p>Professional photography and video equipment is expensive, and different projects often demand different gear. Renting lets you access the exact camera body, lens, or lighting setup for each shoot without owning shelves of equipment you rarely use. Try new gear before investing, access pro-level equipment for one-off projects, and avoid the storage and insurance costs of ownership.</p>
+<h2>DSLR Cameras for Photo Studios</h2>
+<p>DSLR cameras for portraits, events, and travel — sharp lenses, strong build, and clear shots. Our DSLR rentals include full-frame bodies, crop-sensor options, and mirrorless hybrids from leading brands. Every camera ships with a charged battery, memory card, lens cap, and carrying strap.</p>
+<h2>Camera Lenses for Clear Photos</h2>
+<p>Camera lenses with sharp focus, wide range, and smooth zoom for portrait and travel shots. Our lens library covers prime lenses, zoom lenses, macro lenses, and wide-angle options for every shooting style. Rent the perfect lens for your next project without the four-figure price tag.</p>
+<h2>Lighting Gear for Photo Shoots</h2>
+<p>Lighting gear for photo and video shoots — softbox, stands, and bright LED lights in stock. Our lighting rentals include continuous LED panels, strobe kits, softboxes with stands, ring lights, and reflector sets. Everything ships ready to set up with clear instructions and all mounting hardware included.</p>
+<h2>How Our Rental Process Works</h2>
+<p>Step 1: Browse our DSLR cameras, lenses, and lighting gear and pick the equipment for your project. Step 2: Select a rental term from 1 to 12 months with progressive discounts. Step 3: We deliver your camera gear quickly with fast delivery in select areas. Step 4: Shoot with confidence backed by free tech support and optional damage protection. Step 5: Return with a prepaid label or keep renting for your next project.</p>
+<h2>What's Included with Every Camera Rental</h2>
+<p>Every camera ships with a memory card, battery pack, carrying bag, and lens cleaning cloth. Lighting kits include all stands, diffusers, and mounting hardware. Tech support is available seven days a week. Replacement units ship within 24 hours if your gear has issues. <a href="/categories/cameras">Browse cameras and gear</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for gear recommendations.</p>`,
+
+  "/router-rentals": `<p>RentMyGadgets offers flexible monthly rentals on fast, reliable routers and WiFi systems for home and office. Whether you need a high-speed router for a growing household, a mesh system for a large office, or a temporary internet solution for an event, our rental plans deliver strong, stable connectivity without the upfront cost of buying.</p>
+<h2>Why Rent a Router Instead of Buying?</h2>
+<p>WiFi standards evolve quickly — WiFi 6, WiFi 6E, and WiFi 7 devices continue to push speeds and coverage further. Buying a router means locking into today's technology. Renting lets you upgrade to the latest standards as they arrive, scale your coverage for changing needs, and avoid obsolete hardware. Fixed monthly costs, no surprise obsolescence.</p>
+<h2>Routers for Fast Home Internet</h2>
+<p>Routers with fast speeds, wide range, and stable signal for home, office, or everyday use. Our router rentals include dual-band and tri-band models with advanced QoS, parental controls, and guest network support from brands like ASUS, TP-Link, Netgear, Google, and Ubiquiti.</p>
+<h2>WiFi Routers for Home and Work</h2>
+<p>WiFi routers with strong speeds, wide coverage, and stable signal for any home and office. Our WiFi router selection includes mesh systems for large spaces, gaming routers with ultra-low latency, and business-grade access points with enterprise security features.</p>
+<h2>Wireless Routers for Fast WiFi</h2>
+<p>Wireless routers with strong speeds, wide coverage, and easy setup for home or office use. Perfect for renters who don't want to invest in hardware for a temporary living situation, remote workers setting up a home office, or businesses that need extra coverage for seasonal demand.</p>
+<h2>How Our Router Rental Process Works</h2>
+<p>Step 1: Browse our router selection and choose the model that fits your space and speed needs. Step 2: Select a rental term from 1 to 12 months with progressive discounts. Step 3: We deliver your router quickly with fast delivery in select areas. Step 4: Connect with confidence backed by free tech support and optional damage protection. Step 5: Return with a prepaid label or upgrade to a faster model anytime.</p>
+<h2>What's Included with Every Router Rental</h2>
+<p>Every router ships with an ethernet cable, power adapter, step-by-step setup guide, and pre-configured firmware. Tech support is available seven days a week. Replacement units ship within 24 hours if your router has issues. Firmware updates are handled for you throughout your rental. <a href="/categories/routers">Browse routers</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for a recommendation.</p>`,
+
   "/terms": `<p>These Terms and Conditions govern your use of the RentMyGadgets website and rental services. By creating an account or placing a rental order, you agree to these terms. Please read them carefully before using our services. Our rental services are available to individuals and businesses who meet our approval requirements.</p>
 <h2>Rental Agreement Terms</h2>
 <p>When you rent equipment through RentMyGadgets, you enter into a rental agreement for the specified term length. Rental periods are available in 1, 3, 6, and 12 month increments. You are responsible for the care and safe use of rented equipment during your rental period. Equipment must be returned in the same condition as received, accounting for normal wear and use. For detailed rental terms, see our <a href="/rental-policy">Rental Agreement Policy</a>.</p>
@@ -1107,6 +1302,26 @@ const COLLECTION_LINKS = [
   { href: "/collections/laser-printers", text: "Laser Printers" },
   { href: "/collections/color-laser-printers", text: "Color Laser Printers" },
   { href: "/collections/small-office-printers", text: "Small Office Printers" },
+  { href: "/laptop-desktop-rentals", text: "Laptop & Desktop Rentals" },
+  { href: "/collections/laptops", text: "Laptops" },
+  { href: "/collections/desktops", text: "Desktops" },
+  { href: "/collections/workstations", text: "Workstations" },
+  { href: "/smartphone-rentals", text: "Smartphone Rentals" },
+  { href: "/collections/smartphones", text: "Smartphones" },
+  { href: "/collections/mobile-phones", text: "Mobile Phones" },
+  { href: "/collections/cell-phones", text: "Cell Phones" },
+  { href: "/headphones-audio-rentals", text: "Headphones & Accessories" },
+  { href: "/collections/headphones", text: "Headphones" },
+  { href: "/collections/keyboards", text: "Keyboards" },
+  { href: "/collections/computer-mice", text: "Computer Mice" },
+  { href: "/camera-gear-rentals", text: "Camera & Gear Rentals" },
+  { href: "/collections/dslr-cameras", text: "DSLR Cameras" },
+  { href: "/collections/camera-lenses", text: "Camera Lenses" },
+  { href: "/collections/lighting-gear", text: "Lighting Gear" },
+  { href: "/router-rentals", text: "Router Rentals" },
+  { href: "/collections/routers", text: "Routers" },
+  { href: "/collections/wifi-routers", text: "WiFi Routers" },
+  { href: "/collections/wireless-routers", text: "Wireless Routers" },
 ];
 
 const POLICY_LINKS = [

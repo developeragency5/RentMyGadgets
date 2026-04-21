@@ -84,6 +84,11 @@ const STATIC_KEYWORDS: Record<string, string> = {
   "/gadgetcare": "GadgetCare+, rental damage protection, accidental damage coverage, liquid spill protection, tech protection plan",
   "/rent-to-own": "rent to own electronics, rent to own laptop, rent to own camera, buy after renting, ownership program",
   "/office-printer-rentals": "office printer rental, laser printer rental, color laser printer rental, small office printer, rent office printer, business printer rental, HP printer rental, Brother printer rental",
+  "/laptop-desktop-rentals": "laptop rental, desktop rental, workstation rental, rent laptop, rent desktop, computer rental, gaming laptop rental, business laptop rental",
+  "/smartphone-rentals": "smartphone rental, phone rental, rent smartphone, rent phone, mobile phone rental, cell phone rental, iPhone rental, Samsung rental",
+  "/headphones-audio-rentals": "headphone rental, keyboard rental, mouse rental, rent headphones, gaming headset rental, mechanical keyboard rental, ergonomic mouse rental",
+  "/camera-gear-rentals": "camera rental, DSLR rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental",
+  "/router-rentals": "router rental, WiFi router rental, wireless router rental, rent router, internet router rental, mesh WiFi rental, home router rental",
   "/terms": "terms and conditions, rental terms, RentMyGadgets terms of service, user agreement",
   "/rental-policy": "rental agreement, rental policy, rental terms, rental extension, equipment care policy",
   "/return-policy": "return policy, refund policy, 14 day returns, free returns, rental refund",
@@ -908,6 +913,46 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>What's Included with Every Office Printer Rental</h2>
 <p>Every office printer ships fully configured with Wi-Fi, Ethernet, and USB connectivity, mobile printing support, a starter toner cartridge, and a setup guide. Technical support is available seven days a week. Replacement units ship within 24 hours if your device ever fails. <a href="/collections/printers-scanners">Browse our printer catalog</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for a recommendation.</p>`,
 
+  "/laptop-desktop-rentals": `<p>RentMyGadgets offers flexible monthly rentals on powerful laptops, desktop computers, and professional workstations. Whether you need a lightweight laptop for travel, a high-performance desktop for your office, or a workstation built for creative projects, our rental plans give you access to premium computing power without the upfront cost.</p>
+<h2>Laptop Rentals for Work and Home Life</h2>
+<p>Laptops for work, study, gaming, and travel — light builds, strong batteries, and fast speeds. Every laptop ships pre-configured with the latest OS, charger, and connectivity ready to go.</p>
+<h2>Desktop Computer Rentals for Any Room</h2>
+<p>Desktop computers for home, work, and gaming — wide displays, strong power, and fast speed. Our desktop rentals range from compact mini PCs to full-tower systems.</p>
+<h2>Workstation Rentals for Creative Work</h2>
+<p>Workstations built for design, editing, and coding — strong chips, big memory, and quick speed. Perfect for video editing, 3D rendering, and software development. <a href="/categories/laptops">Browse laptops</a>, <a href="/categories/desktops">browse desktops</a>, or <a href="/contact">contact us</a>.</p>`,
+
+  "/smartphone-rentals": `<p>RentMyGadgets offers flexible monthly rentals on the latest smartphones from top brands. Carry the latest tech without the full retail price or carrier lock-in.</p>
+<h2>Smartphones for Daily Life Use</h2>
+<p>Smartphones with sharp displays, strong cameras, and long battery life for daily home use. Every phone ships SIM-ready, unlocked, and ready to activate.</p>
+<h2>Mobile Phones for Home or Work</h2>
+<p>Mobile phones with clear screens, smooth performance, and long battery life for daily use.</p>
+<h2>Cell Phones for Home or Travel</h2>
+<p>Cell phones with sharp cameras, clear calls, and lasting battery life for work and travel. <a href="/categories/phones">Browse smartphones</a> or <a href="/contact">contact us</a>.</p>`,
+
+  "/headphones-audio-rentals": `<p>RentMyGadgets offers flexible monthly rentals on premium headphones, mechanical keyboards, and ergonomic mice. Try the best gear without the full retail investment.</p>
+<h2>Headphones for Music and Games</h2>
+<p>Headphones with clear sound, comfy fit, and long battery life for music, calls, or gaming.</p>
+<h2>Keyboards Made for Fast Typing</h2>
+<p>Keyboards with quiet keys, strong build, and smooth action for busy office and home desks.</p>
+<h2>Computer Mice for Home or Work</h2>
+<p>Computer mice with smooth glide, quiet clicks, and comfort grip for daily work and gaming. <a href="/categories/accessories">Browse accessories</a> or <a href="/contact">contact us</a>.</p>`,
+
+  "/camera-gear-rentals": `<p>RentMyGadgets offers flexible monthly rentals on professional DSLR cameras, sharp lenses, and studio lighting equipment. Access pro-grade gear without the massive investment.</p>
+<h2>DSLR Cameras for Photo Studios</h2>
+<p>DSLR cameras for portraits, events, and travel — sharp lenses, strong build, and clear shots.</p>
+<h2>Camera Lenses for Clear Photos</h2>
+<p>Camera lenses with sharp focus, wide range, and smooth zoom for portrait and travel shots.</p>
+<h2>Lighting Gear for Photo Shoots</h2>
+<p>Lighting gear for photo and video shoots — softbox, stands, and bright LED lights in stock. <a href="/categories/cameras">Browse cameras</a> or <a href="/contact">contact us</a>.</p>`,
+
+  "/router-rentals": `<p>RentMyGadgets offers flexible monthly rentals on fast, reliable routers and WiFi systems for home and office. Strong, stable connectivity without the upfront cost.</p>
+<h2>Routers for Fast Home Internet</h2>
+<p>Routers with fast speeds, wide range, and stable signal for home, office, or everyday use.</p>
+<h2>WiFi Routers for Home and Work</h2>
+<p>WiFi routers with strong speeds, wide coverage, and stable signal for any home and office.</p>
+<h2>Wireless Routers for Fast WiFi</h2>
+<p>Wireless routers with strong speeds, wide coverage, and easy setup for home or office use. <a href="/categories/routers">Browse routers</a> or <a href="/contact">contact us</a>.</p>`,
+
   "/terms": `<p>These Terms and Conditions govern your use of the RentMyGadgets website and rental services. By creating an account or placing a rental order, you agree to these terms. Please read them carefully before using our services. Our rental services are available to individuals and businesses who meet our approval requirements.</p>
 <h2>Rental Agreement Terms</h2>
 <p>When you rent equipment through RentMyGadgets, you enter into a rental agreement for the specified term length. Rental periods are available in 1, 3, 6, and 12 month increments. You are responsible for the care and safe use of rented equipment during your rental period. Equipment must be returned in the same condition as received, accounting for normal wear and use. For detailed rental terms, see our <a href="/rental-policy">Rental Agreement Policy</a>.</p>
@@ -1025,6 +1070,26 @@ const COLLECTION_LINKS = [
   { href: "/collections/laser-printers", text: "Laser Printers" },
   { href: "/collections/color-laser-printers", text: "Color Laser Printers" },
   { href: "/collections/small-office-printers", text: "Small Office Printers" },
+  { href: "/laptop-desktop-rentals", text: "Laptop & Desktop Rentals" },
+  { href: "/collections/laptops", text: "Laptops" },
+  { href: "/collections/desktops", text: "Desktops" },
+  { href: "/collections/workstations", text: "Workstations" },
+  { href: "/smartphone-rentals", text: "Smartphone Rentals" },
+  { href: "/collections/smartphones", text: "Smartphones" },
+  { href: "/collections/mobile-phones", text: "Mobile Phones" },
+  { href: "/collections/cell-phones", text: "Cell Phones" },
+  { href: "/headphones-audio-rentals", text: "Headphones & Accessories" },
+  { href: "/collections/headphones", text: "Headphones" },
+  { href: "/collections/keyboards", text: "Keyboards" },
+  { href: "/collections/computer-mice", text: "Computer Mice" },
+  { href: "/camera-gear-rentals", text: "Camera & Gear Rentals" },
+  { href: "/collections/dslr-cameras", text: "DSLR Cameras" },
+  { href: "/collections/camera-lenses", text: "Camera Lenses" },
+  { href: "/collections/lighting-gear", text: "Lighting Gear" },
+  { href: "/router-rentals", text: "Router Rentals" },
+  { href: "/collections/routers", text: "Routers" },
+  { href: "/collections/wifi-routers", text: "WiFi Routers" },
+  { href: "/collections/wireless-routers", text: "Wireless Routers" },
 ];
 
 const POLICY_LINKS = [
