@@ -441,11 +441,21 @@ const BLOG_META: Record<string, PageMeta> = {
   },
 };
 
+const NOINDEX_ROUTES = new Set<string>([
+  "/cart",
+  "/checkout",
+  "/login",
+  "/dashboard",
+]);
+
 export async function getMetaForUrl(url: string): Promise<PageMeta> {
   const cleanUrl = url.split("?")[0].split("#")[0];
 
+  const applyNoindex = (m: PageMeta): PageMeta =>
+    NOINDEX_ROUTES.has(cleanUrl) ? { ...m, noindex: true } : m;
+
   if (STATIC_ROUTES[cleanUrl]) {
-    return STATIC_ROUTES[cleanUrl];
+    return applyNoindex(STATIC_ROUTES[cleanUrl]);
   }
 
   const productMatch = cleanUrl.match(/^\/product\/([^/]+)$/);
