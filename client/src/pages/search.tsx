@@ -283,7 +283,7 @@ export default function SearchPage() {
       <SeoHead 
         title={debouncedQuery ? `Search: ${debouncedQuery}` : "Search Products"}
         description="Search and filter tech gadgets by category, price, and keywords. Find the perfect rental equipment."
-        keywords="find laptop rental, search tech equipment, browse rental products, discover gadgets to rent, search MacBook rental, find camera rental, equipment search"
+        keywords="find laptop rental, search tech equipment, browse rental products, discover gadgets to rent, search Dell XPS rental, find camera rental, equipment search"
       />
 
       <div className="bg-secondary/30 py-8 border-b">

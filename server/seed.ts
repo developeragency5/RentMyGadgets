@@ -50,16 +50,6 @@ async function seed() {
   // Create products
   const productsData: Omit<InsertProduct, 'categoryId'>[] & { category: string }[] = [
     {
-      name: "MacBook Pro 16\"",
-      category: "Laptops",
-      pricePerDay: "45",
-      imageUrl: "/stock_images/macbook_pro_laptop_8c2d9462.jpg",
-      specs: ["M3 Max", "32GB RAM", "1TB SSD"],
-      featured: true,
-      available: true,
-      description: "The most powerful MacBook Pro ever. Blazing fast M3 Max chip, stunning Liquid Retina XDR display, and all-day battery life. Perfect for creative professionals."
-    },
-    {
       name: "Dell XPS 15",
       category: "Laptops",
       pricePerDay: "35",
@@ -68,26 +58,6 @@ async function seed() {
       featured: true,
       available: true,
       description: "High-performance Windows laptop with a stunning OLED display. Ideal for coding, content creation, and business use."
-    },
-    {
-      name: "MacBook Air 15\"",
-      category: "Laptops",
-      pricePerDay: "25",
-      imageUrl: "/stock_images/macbook_air_15_inch__3947f545.jpg",
-      specs: ["M2 Chip", "16GB RAM", "512GB SSD"],
-      featured: false,
-      available: true,
-      description: "Incredibly thin and light. The world's best 15-inch laptop. Fanless design for silent operation."
-    },
-    {
-      name: "iMac 24\"",
-      category: "Desktops / PCs",
-      pricePerDay: "40",
-      imageUrl: "/stock_images/apple_imac_24_inch_a0c33201.jpg",
-      specs: ["M3 Chip", "16GB RAM", "512GB SSD"],
-      featured: false,
-      available: true,
-      description: "The all-in-one for everyone. If you can dream it, you can do it on iMac. It's beautifully designed, incredibly intuitive, and packed with powerful tools."
     },
     {
       name: "Sony WH-1000XM5",

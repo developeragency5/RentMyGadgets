@@ -314,15 +314,15 @@ export default function RentToOwn() {
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-16 h-16 rounded-xl overflow-hidden bg-white border shrink-0">
                         <img 
-                          src="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mbp14-spaceblack-select-202410?wid=904&hei=840&fmt=jpeg&qlt=90" 
-                          alt="MacBook Pro 14 M3"
+                          src="/images/products/dell/dell-xps-15-laptop.webp" 
+                          alt="Dell XPS 15"
                           className="w-full h-full object-cover"
                         />
                       </div>
                       <div>
                         <h3 className="text-xl font-bold flex items-center gap-2">
                           <Sparkles className="h-5 w-5 text-amber-500" />
-                          Example: MacBook Pro 14" M3
+                          Example: Dell XPS 15
                         </h3>
                         <p className="text-sm text-muted-foreground">See how the Rent-to-Own buyout works</p>
                       </div>

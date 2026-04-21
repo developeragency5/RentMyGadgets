@@ -9,10 +9,7 @@ import accessoriesCat from "@assets/stock_images/high_end_headphones_e76bda70.jp
 import cameraCat from "@assets/stock_images/professional_camera__71fd9611.jpg";
 
 // Products
-import mbp16 from "@assets/stock_images/macbook_pro_laptop_8c2d9462.jpg";
 import dellXps from "@assets/stock_images/dell_xps_laptop_e181f887.jpg";
-import mbAir from "@assets/stock_images/macbook_air_15_inch__3947f545.jpg";
-import iMac from "@assets/stock_images/apple_imac_24_inch_a0c33201.jpg";
 import sonyXm5 from "@assets/stock_images/sony_headphones_0452e1eb.jpg";
 import hpPrinter from "@assets/stock_images/hp_laserjet_printer_22474448.jpg";
 import canonR5 from "@assets/stock_images/canon_eos_r5_camera_4c38dbfa.jpg";
@@ -67,17 +64,6 @@ export const categories = [
 
 export const products = [
   {
-    id: "mbp-16",
-    name: "MacBook Pro 16\"",
-    category: "laptops",
-    price: 45,
-    period: "day",
-    image: mbp16,
-    specs: ["M3 Max", "32GB RAM", "1TB SSD"],
-    featured: true,
-    description: "High-performance MacBook Pro with M3 Max chip, Liquid Retina XDR display, and all-day battery life. Built for creative professionals."
-  },
-  {
     id: "dell-xps",
     name: "Dell XPS 15",
     category: "laptops",
@@ -87,28 +73,6 @@ export const products = [
     specs: ["i9 Processor", "32GB RAM", "1TB SSD"],
     featured: true,
     description: "High-performance Windows laptop with a stunning OLED display. Ideal for coding, content creation, and business use."
-  },
-  {
-    id: "mb-air",
-    name: "MacBook Air 15\"",
-    category: "laptops",
-    price: 25,
-    period: "day",
-    image: mbAir,
-    specs: ["M2 Chip", "16GB RAM", "512GB SSD"],
-    featured: false,
-    description: "Incredibly thin and light with a spacious 15-inch display. Fanless design for silent operation."
-  },
-  {
-    id: "imac-24",
-    name: "iMac 24\"",
-    category: "desktops",
-    price: 40,
-    period: "day",
-    image: iMac,
-    specs: ["M3 Chip", "16GB RAM", "512GB SSD"],
-    featured: false,
-    description: "An all-in-one desktop for creative work and everyday tasks. Beautifully designed, intuitive to use, and packed with capable tools."
   },
   {
     id: "sony-xm5",

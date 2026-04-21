@@ -35,7 +35,7 @@ export default function Compare() {
   if (compareItems.length === 0) {
     return (
       <Layout>
-        <SeoHead title="Compare Products" description="Compare tech gadgets side by side. Find the perfect device by comparing features, prices, and specifications." keywords="compare MacBook vs Dell rental, laptop comparison, compare iPhone vs Samsung, tech specs comparison, side by side rental comparison, compare cameras, brand vs brand rental" />
+        <SeoHead title="Compare Products" description="Compare tech gadgets side by side. Find the perfect device by comparing features, prices, and specifications." keywords="compare Dell vs HP rental, laptop comparison, compare Samsung vs Google Pixel, tech specs comparison, side by side rental comparison, compare cameras, brand vs brand rental" />
         <div className="container mx-auto px-4 py-20 text-center">
           <Scale className="h-16 w-16 mx-auto text-muted-foreground mb-6" />
           <h1 className="text-3xl font-heading font-bold mb-4">No Products to Compare</h1>
@@ -54,7 +54,7 @@ export default function Compare() {
 
   return (
     <Layout>
-      <SeoHead title="Compare Products" description="Compare tech gadgets side by side. Find the perfect device by comparing features, prices, and specifications." keywords="compare MacBook vs Dell rental, laptop comparison, compare iPhone vs Samsung, tech specs comparison, side by side rental comparison, compare cameras, brand vs brand rental" />
+      <SeoHead title="Compare Products" description="Compare tech gadgets side by side. Find the perfect device by comparing features, prices, and specifications." keywords="compare Dell vs HP rental, laptop comparison, compare Samsung vs Google Pixel, tech specs comparison, side by side rental comparison, compare cameras, brand vs brand rental" />
       <div className="bg-secondary/30 py-8 border-b">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">

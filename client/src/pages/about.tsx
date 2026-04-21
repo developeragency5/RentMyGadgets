@@ -187,7 +187,7 @@ export default function About() {
                 </div>
                 <h3 className="font-semibold text-lg mb-2">The Price Barrier</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  A professional MacBook costs $2,500+. A cinema-grade camera? $5,000+. These prices lock out 
+                  A professional laptop costs $2,500+. A cinema-grade camera? $5,000+. These prices lock out 
                   talented individuals who can't justify the investment for a project or short-term need.
                 </p>
               </div>
@@ -336,7 +336,7 @@ export default function About() {
                 <Sparkles className="h-8 w-8 text-amber-400 mb-5" />
                 <h3 className="font-semibold text-lg mb-2">Only the Latest Models</h3>
                 <p className="text-sm text-slate-400 leading-relaxed">
-                  We stock current-generation products only. MacBook Pro M3, Canon EOS R5, 
+                  We stock current-generation products only. Dell XPS, Canon EOS R5, 
                   Sony A9 III — the gear professionals dream about.
                 </p>
               </div>

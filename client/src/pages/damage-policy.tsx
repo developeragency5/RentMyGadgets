@@ -141,7 +141,7 @@ export default function DamagePolicy() {
                       <td className="p-3 border">$800 - $2,000</td>
                     </tr>
                     <tr>
-                      <td className="p-3 border">Premium Laptops (MacBook Pro, XPS, etc.)</td>
+                      <td className="p-3 border">Premium Laptops (Dell XPS, HP Spectre, etc.)</td>
                       <td className="p-3 border">$1,500 - $4,000</td>
                     </tr>
                     <tr>
