@@ -18,6 +18,7 @@ import {
 import { neon, types as neonTypes } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { eq, and, desc, isNull, or, lt, sql as drizzleSql } from "drizzle-orm";
+import { parseTextArray } from "@shared/parseTextArray";
 
 const neonClient = neon(process.env.DATABASE_URL!);
 export const db = drizzle(neonClient);
@@ -25,18 +26,7 @@ export const db = drizzle(neonClient);
 neonTypes.setTypeParser(neonTypes.builtins.BOOL, (val: string) => val === "t" || val === "true" || val === true as unknown as string);
 neonTypes.setTypeParser(neonTypes.builtins.TIMESTAMP, (val: string) => val == null ? null : new Date(val));
 neonTypes.setTypeParser(neonTypes.builtins.TIMESTAMPTZ, (val: string) => val == null ? null : new Date(val));
-
-async function fixGalleryArrays<T extends { id: string; galleryImageUrls?: string[] | null }>(items: T[]): Promise<T[]> {
-  if (items.length === 0) return items;
-  const ids = items.map(p => p.id);
-  const placeholders = ids.map((_, i) => `$${i + 1}`).join(",");
-  const rows: { id: string; gallery: string[] | null }[] = await neonClient(
-    `SELECT id, array_to_json(gallery_image_urls) as gallery FROM products WHERE id IN (${placeholders})`,
-    ids
-  );
-  const galleryMap = new Map(rows.map(r => [r.id, r.gallery || []]));
-  return items.map(p => ({ ...p, galleryImageUrls: galleryMap.get(p.id) || [] }));
-}
+neonTypes.setTypeParser(1009, (val: string) => parseTextArray(val));
 
 export interface IStorage {
   // Users
@@ -159,31 +149,27 @@ export class DatabaseStorage implements IStorage {
   // Products
   async getAllProducts(): Promise<Product[]> {
     const result = await db.select().from(products);
-    return await fixGalleryArrays(result);
+    return result;
   }
 
   async getProduct(id: string): Promise<Product | undefined> {
     const result = await db.select().from(products).where(eq(products.id, id)).limit(1);
-    if (!result[0]) return undefined;
-    const fixed = await fixGalleryArrays([result[0]]);
-    return fixed[0];
+    return result[0];
   }
 
   async getProductBySlug(slug: string): Promise<Product | undefined> {
     const result = await db.select().from(products).where(eq(products.slug, slug)).limit(1);
-    if (!result[0]) return undefined;
-    const fixed = await fixGalleryArrays([result[0]]);
-    return fixed[0];
+    return result[0];
   }
 
   async getProductsByCategory(categoryId: string): Promise<Product[]> {
     const result = await db.select().from(products).where(eq(products.categoryId, categoryId));
-    return await fixGalleryArrays(result);
+    return result;
   }
 
   async getFeaturedProducts(): Promise<Product[]> {
     const result = await db.select().from(products).where(eq(products.featured, true));
-    return await fixGalleryArrays(result);
+    return result;
   }
 
   async createProduct(product: InsertProduct): Promise<Product> {

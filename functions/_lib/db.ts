@@ -1,9 +1,11 @@
 import { neon, types as neonTypes } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
+import { parseTextArray } from "@shared/parseTextArray";
 
 neonTypes.setTypeParser(neonTypes.builtins.BOOL, (val: string) => val === "t" || val === "true" || val === (true as unknown as string));
 neonTypes.setTypeParser(neonTypes.builtins.TIMESTAMP, (val: string) => val == null ? null : new Date(val));
 neonTypes.setTypeParser(neonTypes.builtins.TIMESTAMPTZ, (val: string) => val == null ? null : new Date(val));
+neonTypes.setTypeParser(1009, (val: string) => parseTextArray(val));
 
 export type Env = {
   DATABASE_URL: string;
@@ -27,33 +29,6 @@ function getNeonClient(env: Env) {
     throw new Error("DATABASE_URL is not configured");
   }
   return neon(env.DATABASE_URL);
-}
-
-export function parseGalleryValue(val: unknown): string[] {
-  if (Array.isArray(val)) return val.filter((v): v is string => typeof v === "string");
-  if (typeof val === "string") {
-    if (val.startsWith("[")) {
-      try {
-        const parsed = JSON.parse(val);
-        return Array.isArray(parsed) ? parsed.filter((v: unknown): v is string => typeof v === "string") : [];
-      } catch { return []; }
-    }
-    if (val.startsWith("{")) {
-      const inner = val.slice(1, -1);
-      if (!inner) return [];
-      return inner.split(",").map(s => s.replace(/^"|"$/g, ""));
-    }
-  }
-  return [];
-}
-
-function fixGalleryArraysSync(rows: any[]): any[] {
-  return rows.map((r) => ({
-    ...r,
-    galleryImageUrls: parseGalleryValue(r.galleryImageUrls),
-    availableColors: parseGalleryValue(r.availableColors),
-    specs: parseGalleryValue(r.specs),
-  }));
 }
 
 function snakeToCamel(s: string): string {
@@ -89,5 +64,5 @@ export async function queryProducts(env: Env, opts?: { categoryId?: string; feat
     rows = await sql`SELECT * FROM products`;
   }
   const camelRows = rows.map(camelCaseRow);
-  return fixGalleryArraysSync(camelRows as any[]);
+  return camelRows as any[];
 }
