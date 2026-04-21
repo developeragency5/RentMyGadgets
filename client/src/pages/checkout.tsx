@@ -32,6 +32,69 @@ import type { CartPricingResult } from "@shared/pricing";
 import { formatUsPhone, isValidUsPhone } from "@/lib/phone";
 import { validateUsAddress } from "@shared/address-validation";
 
+function detectCardType(number: string): string {
+  const cleaned = number.replace(/\s/g, '');
+  if (/^4/.test(cleaned)) return 'visa';
+  if (/^5[1-5]/.test(cleaned) || /^2[2-7]/.test(cleaned)) return 'mastercard';
+  if (/^3[47]/.test(cleaned)) return 'amex';
+  if (/^6(?:011|5)/.test(cleaned)) return 'discover';
+  return 'unknown';
+}
+
+function getCardMaxLength(type: string): number {
+  if (type === 'amex') return 15;
+  return 16;
+}
+
+function formatCardNumber(value: string): string {
+  const digits = value.replace(/\D/g, '');
+  const type = detectCardType(digits);
+  const max = getCardMaxLength(type);
+  const trimmed = digits.slice(0, max);
+  if (type === 'amex') {
+    return trimmed.replace(/(\d{4})(\d{0,6})(\d{0,5})/, (_, a, b, c) =>
+      [a, b, c].filter(Boolean).join(' ')
+    );
+  }
+  return trimmed.replace(/(\d{4})/g, '$1 ').trim();
+}
+
+function luhnCheck(number: string): boolean {
+  const digits = number.replace(/\s/g, '');
+  if (digits.length < 13 || digits.length > 19) return false;
+  let sum = 0;
+  let alt = false;
+  for (let i = digits.length - 1; i >= 0; i--) {
+    let n = parseInt(digits[i], 10);
+    if (alt) {
+      n *= 2;
+      if (n > 9) n -= 9;
+    }
+    sum += n;
+    alt = !alt;
+  }
+  return sum % 10 === 0;
+}
+
+function formatExpiry(value: string): string {
+  const digits = value.replace(/\D/g, '').slice(0, 4);
+  if (digits.length >= 3) {
+    return digits.slice(0, 2) + '/' + digits.slice(2);
+  }
+  return digits;
+}
+
+function isValidExpiry(value: string): boolean {
+  const match = value.match(/^(\d{2})\/(\d{2})$/);
+  if (!match) return false;
+  const month = parseInt(match[1], 10);
+  const year = parseInt('20' + match[2], 10);
+  if (month < 1 || month > 12) return false;
+  const now = new Date();
+  const expDate = new Date(year, month);
+  return expDate > now;
+}
+
 type CheckoutStep = 1 | 2 | 3 | 4 | 5;
 
 interface StepInfo {
@@ -162,7 +225,16 @@ export default function Checkout() {
         return billingValid;
       case 4:
         if (formData.paymentMethod === 'card') {
-          return !!(formData.cardNumber && formData.cardName && formData.expiry && formData.cvc);
+          const digits = formData.cardNumber.replace(/\s/g, '');
+          const cardType = detectCardType(digits);
+          const expectedLen = getCardMaxLength(cardType);
+          return !!(
+            formData.cardName.trim() &&
+            digits.length === expectedLen &&
+            luhnCheck(digits) &&
+            isValidExpiry(formData.expiry) &&
+            formData.cvc.length >= 3
+          );
         }
         return true;
       case 5:
@@ -188,9 +260,22 @@ export default function Checkout() {
     if (currentStep < 5 && validateStep(currentStep)) {
       setCurrentStep((currentStep + 1) as CheckoutStep);
     } else if (!validateStep(currentStep)) {
+      let description = "Fill in all required fields before proceeding.";
+      if (currentStep === 4 && formData.paymentMethod === 'card') {
+        const digits = formData.cardNumber.replace(/\s/g, '');
+        if (!digits || !formData.cardName.trim()) {
+          description = "Please fill in all card details.";
+        } else if (!luhnCheck(digits)) {
+          description = "The card number you entered is not valid. Please check and try again.";
+        } else if (!isValidExpiry(formData.expiry)) {
+          description = "Please enter a valid expiry date (MM/YY) that hasn't passed.";
+        } else if (formData.cvc.length < 3) {
+          description = "Please enter a valid CVC code.";
+        }
+      }
       toast({
         title: "Please complete this step",
-        description: "Fill in all required fields before proceeding.",
+        description,
         variant: "destructive"
       });
     }
@@ -205,11 +290,10 @@ export default function Checkout() {
   const handleSubmit = async () => {
     if (!user) {
       toast({
-        title: "Please sign in",
-        description: "You need to be logged in to place an order.",
+        title: "Account required",
+        description: "Please sign in or create an account to complete your order. Your cart and details will be saved.",
         variant: "destructive"
       });
-      setLocation("/login");
       return;
     }
 
@@ -721,29 +805,18 @@ export default function Checkout() {
           <div className={`flex items-center space-x-3 border p-4 rounded-lg transition-colors ${formData.paymentMethod === 'card' ? 'border-primary bg-primary/5' : 'bg-secondary/10'}`}>
             <RadioGroupItem value="card" id="card" data-testid="radio-card" />
             <Label htmlFor="card" className="flex-1 cursor-pointer font-medium">Credit / Debit Card</Label>
-            <div className="flex gap-2">
-              <div className="w-10 h-6 bg-gradient-to-r from-blue-600 to-blue-800 rounded text-[8px] text-white flex items-center justify-center font-bold">VISA</div>
-              <div className="w-10 h-6 bg-gradient-to-r from-red-500 to-yellow-500 rounded flex items-center justify-center">
-                <div className="w-3 h-3 bg-red-600 rounded-full -mr-1"></div>
-                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-              </div>
-              <div className="w-10 h-6 bg-blue-500 rounded text-[6px] text-white flex items-center justify-center font-bold">AMEX</div>
-            </div>
           </div>
           <div className={`flex items-center space-x-3 border p-4 rounded-lg transition-colors ${formData.paymentMethod === 'paypal' ? 'border-primary bg-primary/5' : 'bg-secondary/10'}`}>
             <RadioGroupItem value="paypal" id="paypal" data-testid="radio-paypal" />
             <Label htmlFor="paypal" className="flex-1 cursor-pointer font-medium">PayPal</Label>
-            <div className="text-blue-600 font-bold text-sm">Pay<span className="text-blue-800">Pal</span></div>
           </div>
           <div className={`flex items-center space-x-3 border p-4 rounded-lg transition-colors ${formData.paymentMethod === 'applepay' ? 'border-primary bg-primary/5' : 'bg-secondary/10'}`}>
             <RadioGroupItem value="applepay" id="applepay" data-testid="radio-applepay" />
             <Label htmlFor="applepay" className="flex-1 cursor-pointer font-medium">Apple Pay</Label>
-            <div className="text-black font-medium text-sm"> Pay</div>
           </div>
           <div className={`flex items-center space-x-3 border p-4 rounded-lg transition-colors ${formData.paymentMethod === 'cod' ? 'border-primary bg-primary/5' : 'bg-secondary/10'}`}>
             <RadioGroupItem value="cod" id="cod" data-testid="radio-cod" />
             <Label htmlFor="cod" className="flex-1 cursor-pointer font-medium">Cash on Delivery</Label>
-            <div className="w-10 h-6 bg-gradient-to-r from-green-500 to-green-700 rounded text-[7px] text-white flex items-center justify-center font-bold">COD</div>
           </div>
         </RadioGroup>
         
@@ -756,7 +829,10 @@ export default function Checkout() {
                 data-testid="input-cardname"
                 placeholder="John Doe" 
                 value={formData.cardName}
-                onChange={(e) => setFormData({...formData, cardName: e.target.value})}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/[^a-zA-Z\s'-]/g, '');
+                  setFormData({...formData, cardName: val});
+                }}
               />
             </div>
             <div className="space-y-2">
@@ -764,10 +840,14 @@ export default function Checkout() {
               <Input 
                 id="cardNumber" 
                 data-testid="input-cardnumber"
+                inputMode="numeric"
                 placeholder="0000 0000 0000 0000" 
                 value={formData.cardNumber}
-                onChange={(e) => setFormData({...formData, cardNumber: e.target.value})}
+                onChange={(e) => setFormData({...formData, cardNumber: formatCardNumber(e.target.value)})}
               />
+              {formData.cardNumber.replace(/\s/g, '').length > 0 && formData.cardNumber.replace(/\s/g, '').length === getCardMaxLength(detectCardType(formData.cardNumber)) && !luhnCheck(formData.cardNumber) && (
+                <p className="text-xs text-destructive">Please enter a valid card number</p>
+              )}
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -775,10 +855,15 @@ export default function Checkout() {
                 <Input 
                   id="expiry" 
                   data-testid="input-expiry"
+                  inputMode="numeric"
                   placeholder="MM/YY" 
                   value={formData.expiry}
-                  onChange={(e) => setFormData({...formData, expiry: e.target.value})}
+                  maxLength={5}
+                  onChange={(e) => setFormData({...formData, expiry: formatExpiry(e.target.value)})}
                 />
+                {formData.expiry.length === 5 && !isValidExpiry(formData.expiry) && (
+                  <p className="text-xs text-destructive">Invalid or expired date</p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="cvc">CVC *</Label>
@@ -786,10 +871,15 @@ export default function Checkout() {
                   id="cvc" 
                   type="password"
                   data-testid="input-cvc"
+                  inputMode="numeric"
                   placeholder="***" 
                   value={formData.cvc}
-                  onChange={(e) => setFormData({...formData, cvc: e.target.value})}
-                  maxLength={4}
+                  onChange={(e) => {
+                    const digits = e.target.value.replace(/\D/g, '');
+                    const maxCvc = detectCardType(formData.cardNumber) === 'amex' ? 4 : 3;
+                    setFormData({...formData, cvc: digits.slice(0, maxCvc)});
+                  }}
+                  maxLength={detectCardType(formData.cardNumber) === 'amex' ? 4 : 3}
                 />
               </div>
             </div>
@@ -934,17 +1024,12 @@ export default function Checkout() {
             {formData.paymentMethod === 'card' && (
               <div className="flex items-center gap-2">
                 <CreditCard className="h-4 w-4" />
-                <span>Card ending in {formData.cardNumber.slice(-4) || '****'}</span>
+                <span>Card ending in {formData.cardNumber.replace(/\s/g, '').slice(-4) || '****'}</span>
               </div>
             )}
             {formData.paymentMethod === 'paypal' && <span>PayPal</span>}
             {formData.paymentMethod === 'applepay' && <span>Apple Pay</span>}
-            {formData.paymentMethod === 'cod' && (
-              <div className="flex items-center gap-2">
-                <span className="w-6 h-4 bg-gradient-to-r from-green-500 to-green-700 rounded text-[6px] text-white flex items-center justify-center font-bold">COD</span>
-                <span>Cash on Delivery</span>
-              </div>
-            )}
+            {formData.paymentMethod === 'cod' && <span>Cash on Delivery</span>}
           </CardContent>
         </Card>
       </div>
@@ -1035,18 +1120,6 @@ export default function Checkout() {
         </CardContent>
       </Card>
 
-      {!user && (
-        <Card className="border-destructive/50 bg-destructive/5">
-          <CardContent className="py-4">
-            <div className="flex items-center justify-between">
-              <p className="text-muted-foreground">Please sign in to complete your order.</p>
-              <Link href="/login">
-                <Button data-testid="button-signin-checkout">Sign In</Button>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 
@@ -1185,7 +1258,7 @@ export default function Checkout() {
                 <motion.div whileTap={{ scale: 0.95 }} transition={{ duration: 0.1 }}>
                   <Button 
                     onClick={handleSubmit}
-                    disabled={isSubmitting || !user || !formData.termsAgreed}
+                    disabled={isSubmitting || !formData.termsAgreed}
                     className="flex-1 sm:flex-none h-12 px-8 text-lg font-bold shadow-lg shadow-primary/20"
                     data-testid="button-place-order"
                   >
