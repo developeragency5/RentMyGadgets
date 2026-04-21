@@ -65,13 +65,7 @@ function buildProductImageTags(prod: any): string {
     const abs = prod.imageUrl.startsWith("http") ? prod.imageUrl : `${BASE_URL}${prod.imageUrl}`;
     images.push(abs);
   }
-  let gallery = prod.galleryImageUrls || [];
-  if (typeof gallery === "string") {
-    if (gallery.startsWith("[")) { try { gallery = JSON.parse(gallery); } catch { gallery = []; } }
-    else if (gallery.startsWith("{")) { gallery = gallery.slice(1, -1).split(",").map((s: string) => s.replace(/^"|"$/g, "")); }
-    else { gallery = []; }
-  }
-  if (!Array.isArray(gallery)) gallery = [];
+  const gallery: string[] = Array.isArray(prod.galleryImageUrls) ? prod.galleryImageUrls : [];
   for (const url of gallery) {
     if (typeof url !== "string" || !url) continue;
     const abs = url.startsWith("http") ? url : `${BASE_URL}${url}`;
