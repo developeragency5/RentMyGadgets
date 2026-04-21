@@ -4,6 +4,15 @@ import { eq, and, desc } from "drizzle-orm";
 import { products, categories, blogPosts } from "@shared/schema";
 import { getDb, getNeonClient, fixGalleryArrays, queryProducts, type Env } from "./db";
 
+export class MissingCanonicalUrlError extends Error {
+  public readonly url: string;
+  constructor(message: string, url: string) {
+    super(message);
+    this.name = 'MissingCanonicalUrlError';
+    this.url = url;
+  }
+}
+
 interface PageMeta {
   title: string;
   description: string;
@@ -870,6 +879,17 @@ const NOINDEX_ROUTES = new Set<string>([
 ]);
 
 export async function getMetaForUrl(env: Env, url: string): Promise<PageMeta> {
+  const meta = await resolveMetaForUrl(env, url);
+  if (!meta.canonicalUrl) {
+    throw new MissingCanonicalUrlError(
+      `[SEO] Route handler for ${url} returned PageMeta without canonicalUrl — every route must set canonicalUrl explicitly`,
+      url,
+    );
+  }
+  return meta;
+}
+
+async function resolveMetaForUrl(env: Env, url: string): Promise<PageMeta> {
   const [pathPart, queryPart] = url.split("?");
   const cleanUrl = pathPart.split("#")[0];
 
@@ -1447,14 +1467,10 @@ export async function injectMeta(
   const safeDesc = escapeHtml(meta.description);
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
   if (!meta.canonicalUrl) {
-    const message = `[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`;
-    console.error(JSON.stringify({
-      level: 'error',
-      component: 'seo-injector',
-      event: 'missing_canonical_url',
+    throw new MissingCanonicalUrlError(
+      `[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`,
       url,
-      message,
-    }));
+    );
   }
   const fullUrl = meta.canonicalUrl;
   const ogType =
