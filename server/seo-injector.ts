@@ -28,6 +28,7 @@ interface PageMeta {
     tags?: string[];
   };
   imageAlt?: string;
+  canonicalUrl?: string;
 }
 
 const SITE_NAME = "RentMyGadgets";
@@ -596,6 +597,7 @@ export async function getMetaForUrl(url: string): Promise<PageMeta> {
       const posts = await storage.getBlogPostsByCategory(category);
       const categoryUrl = `${BASE_URL}/blog?category=${encodeURIComponent(category)}`;
       return {
+        canonicalUrl: categoryUrl,
         title: `${category} Articles | ${SITE_NAME} Blog`,
         description: `Browse ${posts.length > 0 ? posts.length : "our"} ${category} articles on the ${SITE_NAME} blog. Tips, guides, and insights about ${category.toLowerCase()}.`,
         keywords: `${category.toLowerCase()}, ${category.toLowerCase()} blog, ${category.toLowerCase()} tips, tech rental blog, gadget rental guides`,
@@ -992,7 +994,7 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   const safeTitle = escapeHtml(fullTitle);
   const safeDesc = escapeHtml(meta.description);
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
-  const fullUrl = `${BASE_URL}${url.split("?")[0]}`;
+  const fullUrl = meta.canonicalUrl || `${BASE_URL}${url.split("?")[0]}`;
   const ogType =
     meta.type === "product" ? "product"
     : meta.type === "article" ? "article"
