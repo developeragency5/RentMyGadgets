@@ -25,11 +25,11 @@ Preferred communication style: Simple, everyday language.
 
 ### Feature Specifications
 
-- **Automated Product Data Sync**: A nightly system that fetches product data from 14 manufacturer websites, converting images to WebP and generating reports.
+- **Automated Product Data Sync**: A nightly system that fetches product data from manufacturer websites, converting images to WebP and generating reports. (Note: Apple products have been removed from the platform; Apple adapter remains in codebase but no Apple products exist in DB or static data.)
 - **Batch AI Image Generation**: A system for generating professional product photography using text-to-image AI, supporting various angles and clearly marking AI-generated content.
 - **AI Product Content Generation**: Rich product page content (How It Works, Key Benefits, Considerations, Who Should Rent This, Safety & Maintenance, Full Specifications) is generated using Gemini AI and cached in the database.
 - **Similar Products**: Displays 6 related products on detail pages.
-- **Product Variant Configuration**: An Apple-style configurator for products like MacBooks, allowing selection of storage, memory, and chip options with real-time price updates.
+- **Product Variant Configuration**: A configurator for products allowing selection of storage, memory, and chip options with real-time price updates.
 - **Tiered Rental Pricing**: Implements a progressive discount structure for longer rental durations (1, 3, 6, 12 months).
 - **GadgetCare+ Protection Plan**: An optional protection plan (15% of rental total) covering accidental damage and malfunctions, with dynamic pricing and a dedicated information page.
 - **Legal Compliance**: Adheres to CCPA/CPRA requirements, including privacy policies, "Do Not Sell" options, cookie consent, and an accessibility statement.
