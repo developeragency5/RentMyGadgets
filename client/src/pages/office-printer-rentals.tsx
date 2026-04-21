@@ -122,8 +122,6 @@ const brands = [
   { name: "Brother", tagline: "Reliable Business Models" },
   { name: "Canon", tagline: "imageCLASS & PIXMA" },
   { name: "Epson", tagline: "EcoTank & WorkForce" },
-  { name: "Xerox", tagline: "Enterprise Solutions" },
-  { name: "Lexmark", tagline: "Professional Grade" },
 ];
 
 const useCases = [
@@ -394,7 +392,7 @@ export default function OfficePrinterRentals() {
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
               We partner with the world's leading manufacturers so you get reliable, professional-grade equipment for every rental.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {brands.map((brand, i) => (
                 <div key={i} className="text-center p-4 rounded-xl border-2 border-slate-100 hover:border-orange-200 hover:shadow-md transition-all" data-testid={`brand-${brand.name.toLowerCase()}`}>
                   <div className="text-xl font-bold text-slate-800 mb-1">{brand.name}</div>
