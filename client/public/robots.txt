@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
+Disallow: /cart
+Disallow: /checkout
+Disallow: /login
+Disallow: /dashboard
+Disallow: /ad-variants
+Disallow: /api/
 
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: msnbot
+Allow: /
+Crawl-delay: 1
+
+Host: https://www.rentmygadgets.com
 Sitemap: https://www.rentmygadgets.com/sitemap.xml

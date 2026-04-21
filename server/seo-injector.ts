@@ -1035,9 +1035,11 @@ function buildCrawlerNav(
   const catSection = categoryLinks.length > 0 ? `<p>${categoryLinks.join(" | ")}</p>` : "";
   const blogSection = blogLinks.length > 0 ? `<p>${blogLinks.join(" | ")}</p>` : "";
 
+  const productSection = _productLinks.length > 0 ? `<p>${_productLinks.join(" | ")}</p>` : "";
+
   return {
     header: `<header><nav aria-label="Site Navigation"><p><a href="/"><strong>RentMyGadgets</strong></a> | ${navHtml}</p><p>${collectionHtml}</p></nav></header>`,
-    bodyLinks: `${catSection}${blogSection}`,
+    bodyLinks: `${catSection}${productSection}${blogSection}`,
     footer: `<footer><p>${policyHtml}</p></footer>`,
   };
 }

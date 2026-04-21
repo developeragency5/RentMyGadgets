@@ -186,6 +186,87 @@ ${imageTags}  </url>`;
     }
   });
 
+  const INDEXNOW_KEY = "311cde31e9674a55a90e99ba3ce0c3ea";
+
+  app.get(`/${INDEXNOW_KEY}.txt`, (_req, res) => {
+    res.type("text/plain").send(INDEXNOW_KEY);
+  });
+
+  app.post("/api/admin/indexnow", async (req, res) => {
+    try {
+      const baseUrl = "https://www.rentmygadgets.com";
+
+      const allProducts = await storage.getAllProducts();
+      const allCategories = await storage.getAllCategories();
+      const blogPosts = await storage.getAllBlogPosts();
+
+      const urlList: string[] = [
+        `${baseUrl}/`,
+        `${baseUrl}/categories`,
+        `${baseUrl}/products`,
+        `${baseUrl}/how-it-works`,
+        `${baseUrl}/gadgetcare`,
+        `${baseUrl}/rent-to-own`,
+        `${baseUrl}/blog`,
+        `${baseUrl}/about`,
+        `${baseUrl}/contact`,
+        `${baseUrl}/collections/office-printers`,
+        `${baseUrl}/collections/laser-printers`,
+        `${baseUrl}/collections/color-laser-printers`,
+        `${baseUrl}/collections/small-office-printers`,
+      ];
+
+      for (const cat of allCategories) {
+        urlList.push(`${baseUrl}/categories/${cat.id}`);
+      }
+      for (const prod of allProducts) {
+        urlList.push(`${baseUrl}/product/${prod.slug || prod.id}`);
+      }
+      for (const post of blogPosts) {
+        if (post.status === "published") {
+          urlList.push(`${baseUrl}/blog/${post.slug}`);
+        }
+      }
+
+      const batchSize = 10000;
+      const batches = [];
+      for (let i = 0; i < urlList.length; i += batchSize) {
+        batches.push(urlList.slice(i, i + batchSize));
+      }
+
+      const results = [];
+      for (const batch of batches) {
+        const payload = {
+          host: "www.rentmygadgets.com",
+          key: INDEXNOW_KEY,
+          keyLocation: `${baseUrl}/${INDEXNOW_KEY}.txt`,
+          urlList: batch,
+        };
+
+        const response = await fetch("https://api.indexnow.org/IndexNow", {
+          method: "POST",
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          body: JSON.stringify(payload),
+        });
+
+        results.push({
+          status: response.status,
+          statusText: response.statusText,
+          urlCount: batch.length,
+        });
+      }
+
+      res.json({
+        success: true,
+        totalUrls: urlList.length,
+        batches: results,
+      });
+    } catch (error: any) {
+      console.error("IndexNow submission error:", error);
+      res.status(500).json({ error: error.message || "IndexNow submission failed" });
+    }
+  });
+
   // Serve stock images via API route (bypasses Vite middleware)
   app.get("/api/images/:filename", (req, res) => {
     const filename = req.params.filename;
