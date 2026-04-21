@@ -122,8 +122,6 @@ const brands = [
   { name: "Sony", tagline: "Mirrorless innovation leader", slug: "sony" },
   { name: "Nikon", tagline: "Legendary optical performance", slug: "nikon" },
   { name: "DJI", tagline: "Aerial photography pioneers", slug: "dji" },
-  { name: "Fujifilm", tagline: "Color science perfection", slug: "fujifilm" },
-  { name: "Panasonic", tagline: "Hybrid photo & video excellence", slug: "panasonic" }
 ];
 
 const useCases = [
@@ -407,7 +405,7 @@ export default function CameraGearRentals() {
             <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed">
               We partner with the most trusted names in photography and videography. Whether you need a Canon EOS rental for portraits, a Sony A7 rental for mirrorless versatility, or a DJI drone for aerial shots — we have it all.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {brands.map((brand) => (
                 <Link key={brand.slug} href="/categories/09bcf6ce-10bb-4e95-95ee-477e78f6edb1">
                   <Card className="border-2 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer h-full" data-testid={`brand-${brand.slug}`}>
