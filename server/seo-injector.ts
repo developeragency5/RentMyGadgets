@@ -462,6 +462,7 @@ async function getProductMeta(idOrSlug: string): Promise<PageMeta | null> {
       `</article>`;
 
     return {
+      canonicalUrl: `${BASE_URL}/product/${product.slug || product.id}`,
       title: titleWithPrice,
       description: desc.slice(0, 300),
       type: "product",
@@ -568,6 +569,7 @@ async function getCategoryMeta(categoryId: string): Promise<PageMeta | null> {
       `</article>`;
 
     return {
+      canonicalUrl: `${BASE_URL}/categories/${category.id}`,
       title: `Rent ${category.name} | Browse Equipment`,
       description: catDesc,
       image: category.imageUrl || DEFAULT_IMAGE,

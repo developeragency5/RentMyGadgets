@@ -581,6 +581,7 @@ async function getProductMeta(env: Env, idOrSlug: string): Promise<PageMeta | nu
     }
 
     return {
+      canonicalUrl: `${BASE_URL}/product/${product.slug || product.id}`,
       title: titleWithPrice,
       description: desc.slice(0, 300),
       type: "product",
@@ -690,6 +691,7 @@ async function getCategoryMeta(env: Env, categoryId: string): Promise<PageMeta |
       `</article>`;
 
     return {
+      canonicalUrl: `${BASE_URL}/categories/${category.id}`,
       title: `Rent ${category.name} | Browse Equipment`,
       description: catDesc,
       image: category.imageUrl || DEFAULT_IMAGE,
