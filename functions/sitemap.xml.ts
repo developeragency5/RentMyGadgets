@@ -52,6 +52,7 @@ function buildProductImageTags(prod: any): string {
   }
   if (!Array.isArray(gallery)) gallery = [];
   for (const url of gallery) {
+    if (typeof url !== "string" || !url) continue;
     const abs = url.startsWith("http") ? url : `${BASE_URL}${url}`;
     if (!images.includes(abs)) images.push(abs);
   }
