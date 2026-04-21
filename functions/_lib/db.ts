@@ -25,34 +25,28 @@ export function getNeonClient(env: Env) {
   return neon(env.DATABASE_URL);
 }
 
-export async function fixGalleryArrays(env: Env, rows: any[]): Promise<any[]> {
-  if (!rows.length) return rows;
-  try {
-    const ids = rows.map((r) => r.id);
-    const client = getNeonClient(env);
-    const placeholders = ids.map((_, i) => `$${i + 1}`).join(",");
-    const result = await client(
-      `SELECT id, array_to_json(gallery_image_urls) as gallery FROM products WHERE id IN (${placeholders})`,
-      ids
-    );
-    const galleryMap = new Map<string, string[]>();
-    for (const row of result) {
-      const parsed = typeof row.gallery === "string" ? JSON.parse(row.gallery) : row.gallery;
-      galleryMap.set(row.id as string, parsed || []);
+function parseGalleryValue(val: unknown): string[] {
+  if (Array.isArray(val)) return val.filter((v): v is string => typeof v === "string");
+  if (typeof val === "string") {
+    if (val.startsWith("[")) {
+      try { return JSON.parse(val); } catch { return []; }
     }
-    return rows.map((r) => ({
-      ...r,
-      galleryImageUrls: galleryMap.get(r.id) || r.galleryImageUrls || [],
-    }));
-  } catch (err) {
-    console.error("fixGalleryArrays failed, using Drizzle-returned values:", err);
-    return rows.map((r) => {
-      let gallery = r.galleryImageUrls;
-      if (typeof gallery === "string") {
-        try { gallery = JSON.parse(gallery); } catch { gallery = []; }
-      }
-      if (!Array.isArray(gallery)) gallery = [];
-      return { ...r, galleryImageUrls: gallery };
-    });
+    if (val.startsWith("{")) {
+      const inner = val.slice(1, -1);
+      if (!inner) return [];
+      return inner.split(",").map(s => s.replace(/^"|"$/g, ""));
+    }
   }
+  return [];
+}
+
+export function fixGalleryArraysSync(rows: any[]): any[] {
+  return rows.map((r) => ({
+    ...r,
+    galleryImageUrls: parseGalleryValue(r.galleryImageUrls),
+  }));
+}
+
+export async function fixGalleryArrays(env: Env, rows: any[]): Promise<any[]> {
+  return fixGalleryArraysSync(rows);
 }
