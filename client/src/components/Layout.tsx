@@ -361,8 +361,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="font-semibold text-sm mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="tel:+19124378920" className="hover:text-primary">(912) 437-8920</a></li>
                 <li>{`support${"\u0040"}rentmygadgets.com`}</li>
-                <li>PC Rental, LLC</li>
+                <li className="font-medium text-foreground">PC Rental, LLC</li>
                 <li>2393 Seabreeze Dr SE</li>
                 <li>Darien, GA 31305-5425</li>
                 <li>United States</li>
@@ -370,7 +371,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="border-t mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© 2025 RentMyGadgets. All rights reserved.</p>
+            <p>© 2026 RentMyGadgets. All rights reserved.</p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/terms"><span className="hover:text-primary cursor-pointer">Terms</span></Link>
               <Link href="/privacy"><span className="hover:text-primary cursor-pointer">Privacy</span></Link>

@@ -5,7 +5,7 @@ const promoMessages = [
   "Free Shipping on Orders 3+ Months",
   "GadgetCare+ Protection Available",
   "14-Day Free Returns",
-  "Same-Day Delivery Available",
+  "Fast Delivery in Select Areas",
   "Flexible Rental Terms",
 ];
 
@@ -50,7 +50,7 @@ export default function PromoMarquee() {
   return (
     <div
       className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white overflow-hidden"
-      aria-label="Promotional offers: Free Shipping on Orders 3+ Months, GadgetCare+ Protection Available, 14-Day Free Returns, Same-Day Delivery Available, Flexible Rental Terms"
+      aria-label="Promotional offers: Free Shipping on Orders 3+ Months, GadgetCare+ Protection Available, 14-Day Free Returns, Fast Delivery in Select Areas, Flexible Rental Terms"
       role="marquee"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}

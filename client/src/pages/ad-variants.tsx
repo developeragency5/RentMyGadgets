@@ -25,7 +25,7 @@ const AD_PAIRS: AdPair[] = [
     id: 2,
     angle: "Brand Trust",
     headline: "Office Printer Rentals | Daily",
-    description: "Premium laser printers from HP, Brother & Canon. Flexible monthly rentals. Ships same day.",
+    description: "Premium laser printers from HP, Brother & Canon. Flexible monthly rentals. Fast delivery available.",
     color: "bg-emerald-500",
   },
   {
@@ -38,7 +38,7 @@ const AD_PAIRS: AdPair[] = [
   {
     id: 4,
     angle: "Small Office",
-    headline: "Rent Laser Printers - Same Day",
+    headline: "Rent Laser Printers - Fast Ship",
     description: "Rent small office printers monthly. Laser & color models. Same-day setup, zero commitment.",
     color: "bg-purple-500",
   },

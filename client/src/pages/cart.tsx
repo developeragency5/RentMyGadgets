@@ -70,7 +70,7 @@ export default function Cart() {
   if (items.length === 0) {
     return (
       <Layout>
-        <SeoHead title="Your Cart" description="Review your tech rental cart. Select rental periods and checkout for fast delivery." keywords="rental cart, tech rental order, fast checkout, same day rental delivery, secure rental checkout, instant booking, equipment rental cart, quick checkout" />
+        <SeoHead title="Your Cart" description="Review your tech rental cart. Select rental periods and checkout for fast delivery." keywords="rental cart, tech rental order, fast checkout, fast rental delivery, secure rental checkout, instant booking, equipment rental cart, quick checkout" />
         <div className="container mx-auto px-4 py-20 text-center">
           <ShoppingBag className="h-16 w-16 mx-auto text-muted-foreground mb-6" />
           <h1 className="text-3xl font-heading font-bold mb-4">Your Cart is Empty</h1>
@@ -87,7 +87,7 @@ export default function Cart() {
 
   return (
     <Layout>
-      <SeoHead title="Your Cart" description="Review your tech rental cart. Select rental periods and checkout for fast delivery." keywords="rental cart, tech rental order, fast checkout, same day rental delivery, secure rental checkout, instant booking, equipment rental cart, quick checkout" />
+      <SeoHead title="Your Cart" description="Review your tech rental cart. Select rental periods and checkout for fast delivery." keywords="rental cart, tech rental order, fast checkout, fast rental delivery, secure rental checkout, instant booking, equipment rental cart, quick checkout" />
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-3xl font-heading font-bold mb-8">Your Cart</h1>
 

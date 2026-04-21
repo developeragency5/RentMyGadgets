@@ -320,7 +320,7 @@ export default function Home() {
                   transition={prefersReducedMotion ? undefined : { duration: 0.4, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
                 >
                   Laptops, cameras, and gear for any project. No long-term contracts, 
-                  <span className="text-foreground font-medium"> same-day delivery</span>, and optional damage protection.
+                  <span className="text-foreground font-medium"> fast delivery in select areas</span>, and optional damage protection.
                 </motion.p>
               </div>
 

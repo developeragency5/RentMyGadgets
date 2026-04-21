@@ -126,11 +126,14 @@ export default function StructuredData(props: StructuredDataProps) {
           name: SITE_NAME,
           url: SITE_URL,
           logo: `${SITE_URL}/favicon.png`,
-          description: "Premium technology equipment rental service with flexible plans and same-day delivery.",
+          description: "Premium technology equipment rental service with flexible plans and fast delivery in select areas.",
+          telephone: "+1-912-437-8920",
           contactPoint: {
             "@type": "ContactPoint",
             contactType: "customer service",
-            email: `support${"\u0040"}rentmygadgets.com`
+            telephone: "+1-912-437-8920",
+            email: `support${"\u0040"}rentmygadgets.com`,
+            availableLanguage: "English"
           }
         };
         break;

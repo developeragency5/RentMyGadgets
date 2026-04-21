@@ -318,7 +318,7 @@ export default function Checkout() {
   if (items.length === 0 && currentStep === 1) {
     return (
       <Layout>
-        <SeoHead title="Checkout" description="Complete your tech rental order. Secure payment with free delivery." keywords="rental checkout, payment, same day delivery, complete rental order, quick checkout" />
+        <SeoHead title="Checkout" description="Complete your tech rental order. Secure payment with free delivery." keywords="rental checkout, payment, fast delivery, complete rental order, quick checkout" />
         <div className="container mx-auto px-4 py-16 text-center">
           <ShoppingCart className="h-16 w-16 mx-auto text-muted-foreground mb-6" />
           <h1 className="text-3xl font-heading font-bold mb-4">Your Cart is Empty</h1>
@@ -1143,7 +1143,7 @@ export default function Checkout() {
 
   return (
     <Layout>
-      <SeoHead title="Checkout" description="Complete your tech rental order. Secure payment with free delivery." keywords="rental checkout, payment, same day delivery, complete rental order, quick checkout" />
+      <SeoHead title="Checkout" description="Complete your tech rental order. Secure payment with free delivery." keywords="rental checkout, payment, fast delivery, complete rental order, quick checkout" />
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center gap-4 mb-6">
           <Link href="/cart">

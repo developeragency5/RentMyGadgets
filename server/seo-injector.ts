@@ -86,7 +86,7 @@ const STATIC_KEYWORDS: Record<string, string> = {
   "/terms": "terms and conditions, rental terms, RentMyGadgets terms of service, user agreement",
   "/rental-policy": "rental agreement, rental policy, rental terms, rental extension, equipment care policy",
   "/return-policy": "return policy, refund policy, 14 day returns, free returns, rental refund",
-  "/shipping-policy": "shipping policy, same day delivery, free shipping, rental delivery, expedited shipping",
+  "/shipping-policy": "shipping policy, fast delivery, free shipping, rental delivery, expedited shipping",
   "/security-deposit": "security deposit, rental deposit, deposit refund, deposit policy",
   "/damage-policy": "damage policy, equipment damage, damage charges, replacement costs, rental damage",
   "/privacy": "privacy policy, CCPA, CPRA, GDPR, data privacy, GPC, personal information protection",
@@ -99,7 +99,7 @@ const STATIC_KEYWORDS: Record<string, string> = {
 const STATIC_ROUTES: Record<string, PageMeta> = {
   "/": {
     title: "Rent Premium Tech Equipment | Laptops, Cameras & More",
-    description: "Rent high-end laptops, desktops, cameras, and tech accessories. Flexible monthly plans, same-day delivery, and optional damage protection.",
+    description: "Rent high-end laptops, desktops, cameras, and tech accessories. Flexible monthly plans, fast delivery in select areas, and optional damage protection.",
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -108,7 +108,7 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
         legalName: "PC Rental, LLC",
         url: BASE_URL,
         logo: `${BASE_URL}/favicon.png`,
-        description: "Premium technology equipment rental service with flexible plans and same-day delivery.",
+        description: "Premium technology equipment rental service with flexible plans and fast delivery in select areas.",
         address: {
           "@type": "PostalAddress",
           streetAddress: "2393 Seabreeze Dr SE",
@@ -117,7 +117,8 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
           postalCode: "31305-5425",
           addressCountry: "US",
         },
-        contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "support\u0040rentmygadgets.com" },
+        telephone: "+1-912-437-8920",
+        contactPoint: { "@type": "ContactPoint", contactType: "customer service", telephone: "+1-912-437-8920", email: "support\u0040rentmygadgets.com", availableLanguage: "English" },
       },
       {
         "@context": "https://schema.org",
@@ -222,8 +223,8 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
   "/how-it-works": {
     title: "How It Works - Rent Tech in 3 Easy Steps",
-    description: "Learn how to rent technology equipment from RentMyGadgets. Browse, select your rental period, and get same-day delivery. Simple returns included.",
-    jsonLd: { "@context": "https://schema.org", "@type": "HowTo", name: "How to Rent Technology Equipment", description: "A step-by-step guide to renting premium tech equipment from RentMyGadgets.", url: `${BASE_URL}/how-it-works`, step: [{ "@type": "HowToStep", name: "Browse Products", text: "Browse our catalog of over 140 products or explore by category to find the equipment you need." }, { "@type": "HowToStep", name: "Choose Rental Period", text: "Select your rental period from 1, 3, 6, or 12 months with progressive discounts for longer terms." }, { "@type": "HowToStep", name: "Receive and Use", text: "We ship your equipment with same-day delivery available. Use it for your rental period and return with our prepaid label." }] },
+    description: "Learn how to rent technology equipment from RentMyGadgets. Browse, select your rental period, and get fast delivery. Simple returns included.",
+    jsonLd: { "@context": "https://schema.org", "@type": "HowTo", name: "How to Rent Technology Equipment", description: "A step-by-step guide to renting premium tech equipment from RentMyGadgets.", url: `${BASE_URL}/how-it-works`, step: [{ "@type": "HowToStep", name: "Browse Products", text: "Browse our catalog of over 140 products or explore by category to find the equipment you need." }, { "@type": "HowToStep", name: "Choose Rental Period", text: "Select your rental period from 1, 3, 6, or 12 months with progressive discounts for longer terms." }, { "@type": "HowToStep", name: "Receive and Use", text: "We ship your equipment quickly — delivery available in select areas. Use it for your rental period and return with our prepaid label." }] },
   },
   "/gadgetcare": {
     title: "GadgetCare+ Protection Plan",
@@ -252,7 +253,7 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
   "/shipping-policy": {
     title: "Delivery & Shipping Policy",
-    description: "Free shipping on orders over $150. Same-day delivery available. Learn about shipping methods, costs, delivery timeframes, and return shipping.",
+    description: "Free shipping on orders over $150. Fast delivery available in select areas. Learn about shipping methods, costs, delivery timeframes, and return shipping.",
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Delivery and Shipping Policy", description: "Shipping methods, delivery timeframes, and free shipping on qualifying orders.", url: `${BASE_URL}/shipping-policy`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/security-deposit": {
@@ -309,7 +310,7 @@ async function getProductMeta(idOrSlug: string): Promise<PageMeta | null> {
     const nameStartsWithBrand = product.brand && product.name.toLowerCase().startsWith(product.brand.toLowerCase());
     const brandPart = (product.brand && !nameStartsWithBrand) ? `${product.brand} ` : "";
     const catPart = category ? ` in our ${category.name.toLowerCase()} category` : "";
-    const uniqueLead = `Rent the ${brandPart}${product.name} from RentMyGadgets for $${price.toFixed(2)}/month${catPart}. Flexible 1, 3, 6 or 12-month plans with same-day delivery and optional GadgetCare+ protection.`;
+    const uniqueLead = `Rent the ${brandPart}${product.name} from RentMyGadgets for $${price.toFixed(2)}/month${catPart}. Flexible 1, 3, 6 or 12-month plans with fast delivery in select areas and optional GadgetCare+ protection.`;
     const desc = dbDesc
       ? `${uniqueLead} ${dbDesc}`.slice(0, 300)
       : uniqueLead;
@@ -382,7 +383,7 @@ async function getProductMeta(idOrSlug: string): Promise<PageMeta | null> {
       `<li><strong>6 Months:</strong> $${price6}/month (save 20%) — Ideal for extended projects</li>` +
       `<li><strong>12 Months:</strong> $${price12}/month (save 30%) — Best value for ongoing use</li>` +
       `</ul>` +
-      `<p>All rentals include free shipping on 3+ month plans, 14-day free returns, and same-day delivery in select areas.</p>` +
+      `<p>All rentals include free shipping on 3+ month plans, 14-day free returns, and fast delivery in select areas.</p>` +
       `</section>` +
       `<section><h3>GadgetCare+ Protection</h3>` +
       `<p>Add GadgetCare+ to your rental for complete peace of mind. Coverage includes accidental damage, liquid spills, ` +
@@ -392,7 +393,7 @@ async function getProductMeta(idOrSlug: string): Promise<PageMeta | null> {
       `<ol>` +
       `<li><strong>Choose Your Gear:</strong> Browse our catalog of 140+ premium products from trusted brands like ${escapeHtml(product.brand || "Apple, Dell, HP, and more")}.</li>` +
       `<li><strong>Select Your Term:</strong> Pick a 1, 3, 6, or 12-month rental period. Longer terms unlock bigger discounts.</li>` +
-      `<li><strong>Receive &amp; Enjoy:</strong> We ship your equipment fast — same-day delivery available. Every item is quality-checked and ready to use.</li>` +
+      `<li><strong>Receive &amp; Enjoy:</strong> We ship your equipment promptly — fast delivery available in select areas. Every item is quality-checked and ready to use.</li>` +
       `<li><strong>Return or Extend:</strong> Send it back when you're done, extend your rental, or choose our Rent-to-Own option to keep it.</li>` +
       `</ol>` +
       `</section>` +
@@ -400,7 +401,7 @@ async function getProductMeta(idOrSlug: string): Promise<PageMeta | null> {
       `<ul>` +
       `<li>No long-term commitments — rent month-to-month or choose a longer term for savings</li>` +
       `<li>Quality-checked equipment from top brands</li>` +
-      `<li>Same-day delivery available in select areas</li>` +
+      `<li>Fast delivery available in select areas</li>` +
       `<li>14-day free return window on all rentals</li>` +
       `<li>Optional GadgetCare+ damage protection</li>` +
       `<li>Rent-to-Own pathway if you decide to keep the gear</li>` +
@@ -469,7 +470,7 @@ async function getCategoryMeta(categoryId: string): Promise<PageMeta | null> {
     if (!category) return null;
 
     const products = await storage.getProductsByCategory(categoryId);
-    const catDesc = category.description || `Browse and rent ${category.name.toLowerCase()} equipment. Flexible rental periods, competitive pricing, and same-day delivery available.`;
+    const catDesc = category.description || `Browse and rent ${category.name.toLowerCase()} equipment. Flexible rental periods, competitive pricing, and fast delivery available in select areas.`;
 
     const catLower = category.name.toLowerCase();
     const categoryKeywords = `rent ${catLower}, ${catLower} rental, monthly ${catLower} rental, ${catLower} for rent, rent ${catLower} online, RentMyGadgets ${catLower}, browse ${catLower}`;
@@ -502,7 +503,7 @@ async function getCategoryMeta(categoryId: string): Promise<PageMeta | null> {
       `<li>Flexible monthly rental terms — no long-term commitments required</li>` +
       `<li>Save 10-30% with longer rental periods (3, 6, or 12 months)</li>` +
       `<li>Free shipping on rentals of 3 months or longer</li>` +
-      `<li>Same-day delivery available in select areas</li>` +
+      `<li>Fast delivery available in select areas</li>` +
       `<li>Optional GadgetCare+ protection against accidental damage and spills</li>` +
       `<li>14-day free return window on all rentals</li>` +
       `<li>Rent-to-Own option if you decide to keep the equipment</li>` +
@@ -733,7 +734,7 @@ export async function getMetaForUrl(url: string): Promise<PageMeta> {
 
   return {
     title: "Premium Tech Rentals",
-    description: "Rent high-end laptops, desktops, cameras, and tech accessories with flexible monthly plans and same-day delivery.",
+    description: "Rent high-end laptops, desktops, cameras, and tech accessories with flexible monthly plans and fast delivery in select areas.",
   };
 }
 
@@ -768,7 +769,7 @@ function upsertLink(html: string, rel: string, href: string): string {
   return html.replace("</head>", `    ${tag}\n  </head>`);
 }
 
-const HOMEPAGE_CRAWLER_CONTENT = `<p>RentMyGadgets is the trusted destination for renting premium technology equipment in the United States. Whether you need a powerful MacBook Pro or Windows laptop for a creative project, a Canon or Sony mirrorless camera for professional photography, or a color laser printer for your small office, our flexible monthly rental plans fit any budget and timeline. We carry over 140 inspected, ready-to-ship products from trusted brands including Apple, Dell, HP, Lenovo, Canon, Sony, Nikon, Bose, DJI, Brother, Epson, and Netgear — with same-day delivery available in select areas, free shipping on rentals of 3 months or longer, optional GadgetCare+ damage protection, and a Rent-to-Own pathway if you decide to keep the gear.</p>
+const HOMEPAGE_CRAWLER_CONTENT = `<p>RentMyGadgets is the trusted destination for renting premium technology equipment in the United States. Whether you need a powerful MacBook Pro or Windows laptop for a creative project, a Canon or Sony mirrorless camera for professional photography, or a color laser printer for your small office, our flexible monthly rental plans fit any budget and timeline. We carry over 140 inspected, ready-to-ship products from trusted brands including Apple, Dell, HP, Lenovo, Canon, Sony, Nikon, Bose, DJI, Brother, Epson, and Netgear — with fast delivery available in select areas, free shipping on rentals of 3 months or longer, optional GadgetCare+ damage protection, and a Rent-to-Own pathway if you decide to keep the gear.</p>
 
 <h2>Browse Tech Rentals by Category</h2>
 <p>Explore our six rental categories to find the right equipment for your project, business, classroom, or studio. Every category is curated with current-generation models, multiple brand options, and transparent monthly pricing.</p>
@@ -787,7 +788,7 @@ const HOMEPAGE_CRAWLER_CONTENT = `<p>RentMyGadgets is the trusted destination fo
   <li><strong>Choose your gear.</strong> Browse the <a href="/products">catalog</a> or pick a <a href="/categories">category</a>, then open any product page to see specs, configurations, and rental pricing.</li>
   <li><strong>Pick your rental term.</strong> Select a 1, 3, 6, or 12-month plan. Longer terms unlock automatic savings — 10% off for 3 months, 20% off for 6 months, and 30% off for 12 months.</li>
   <li><strong>Add optional protection.</strong> Toggle on <a href="/gadgetcare">GadgetCare+</a> for 15% of your rental total to cover accidental drops, liquid spills, and hardware malfunctions.</li>
-  <li><strong>Check out securely.</strong> Same-day delivery is available in select metro areas, and standard shipping arrives in 3 to 5 business days.</li>
+  <li><strong>Check out securely.</strong> Expedited delivery is available in select metro areas, and standard shipping arrives in 3 to 5 business days.</li>
   <li><strong>Return it free — or keep it.</strong> Send everything back with the prepaid shipping label, or buy your gear through our <a href="/rent-to-own">Rent-to-Own program</a> after 6 months.</li>
 </ol>
 
@@ -836,7 +837,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 
   "/about": `<p>RentMyGadgets is a technology equipment rental service offering flexible monthly plans for premium laptops, cameras, desktops, and accessories. Our mission is to make high-end technology accessible through affordable rental options, whether you need equipment for a short-term project, want to try before you buy, or prefer the flexibility of renting over purchasing.</p>
 <h2>Our Commitment to Quality</h2>
-<p>We inspect and test every piece of equipment before shipping to ensure it meets our quality standards. Our rental terms are flexible with no long-term commitments required — rent for as little as one month or save with longer 3, 6, or 12 month terms. We offer same-day delivery in select areas and free returns with prepaid shipping labels on all rentals.</p>
+<p>We inspect and test every piece of equipment before shipping to ensure it meets our quality standards. Our rental terms are flexible with no long-term commitments required — rent for as little as one month or save with longer 3, 6, or 12 month terms. We offer fast delivery in select areas and free returns with prepaid shipping labels on all rentals.</p>
 <h2>What We Offer</h2>
 <p>Our <a href="/products">product catalog</a> features over 140 items across multiple <a href="/categories">categories</a> including laptops, desktops, cameras, audio equipment, accessories, and networking gear. Brands include Apple, Dell, HP, Lenovo, Canon, Sony, Nikon, and more. Every rental can be enhanced with optional <a href="/gadgetcare">GadgetCare+ protection</a> for coverage against accidental damage, spills, and hardware malfunctions. Our <a href="/rent-to-own">Rent-to-Own program</a> lets you purchase equipment after 6 months at a reduced buyout price. Learn more about how the process works on our <a href="/how-it-works">How It Works</a> page, read our <a href="/blog">blog</a> for rental tips and guides, or <a href="/contact">contact our team</a> with questions about your rental needs.</p>`,
 
@@ -844,7 +845,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Step-by-Step Rental Process</h2>
 <p>Step 1: <a href="/products">Browse our catalog</a> of over 140 products or <a href="/categories">explore by category</a>. Find laptops, desktops, cameras, audio equipment, and accessories from brands like Apple, Dell, Canon, and Sony. Use our <a href="/search">search tool</a> or <a href="/compare">comparison feature</a> to find exactly what you need.</p>
 <p>Step 2: Choose your rental period from 1, 3, 6, or 12 months. Longer terms include progressive discounts — 10% off monthly rate for 3 months, 20% off for 6 months, and 30% off for 12 months. Add optional <a href="/gadgetcare">GadgetCare+ protection</a> for coverage against accidental damage and hardware issues.</p>
-<p>Step 3: Complete checkout and we ship your equipment fast. Same-day delivery is available in select areas. Free shipping is included on all orders of 3 months or longer.</p>
+<p>Step 3: Complete checkout and we ship your equipment fast. Expedited delivery is available in select areas. Free shipping is included on all orders of 3 months or longer.</p>
 <p>Step 4: Use your equipment for as long as your rental period lasts. Need to extend? You can adjust your rental term at any time through your dashboard.</p>
 <p>Step 5: When your rental period ends, return the equipment using our prepaid shipping label. Returns are free and we include 14-day free returns on all rentals for your peace of mind.</p>
 <h2>Additional Options</h2>
@@ -904,9 +905,9 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Equipment Condition and Refund Details</h2>
 <p>Returned equipment must be in the same condition as received, accounting for normal wear from regular use. Items with damage beyond normal wear may be subject to charges as outlined in our <a href="/damage-policy">Damage and Loss Policy</a>. Consider <a href="/gadgetcare">GadgetCare+ protection</a> for coverage against accidental damage. Refunds are processed within 5 to 10 business days after we receive and inspect the returned equipment. <a href="/security-deposit">Security deposits</a> are refunded separately after equipment inspection. For shipping timelines and procedures, see our <a href="/shipping-policy">Shipping Policy</a>. Review our <a href="/rental-policy">Rental Agreement Policy</a> for complete rental terms. <a href="/products">Browse products</a> or visit <a href="/how-it-works">How It Works</a> to learn about our rental process.</p>`,
 
-  "/shipping-policy": `<p>RentMyGadgets offers fast and reliable shipping for all rental equipment. Free shipping is included on all orders with rental terms of 3 months or longer. Same-day delivery is available in select areas for orders placed before noon. This policy covers shipping methods, delivery timeframes, costs, and return shipping procedures.</p>
+  "/shipping-policy": `<p>RentMyGadgets offers fast and reliable shipping for all rental equipment. Free shipping is included on all orders with rental terms of 3 months or longer. Expedited delivery is available in select areas for qualifying orders. This policy covers shipping methods, delivery timeframes, costs, and return shipping procedures.</p>
 <h2>Delivery Options and Timeframes</h2>
-<p>Standard shipping delivers equipment within 3 to 5 business days from the date your order is processed. Expedited shipping is available for faster delivery at an additional cost. Same-day delivery is available in select metropolitan areas for orders placed before 12pm local time. All shipments include tracking information sent to your email and available in your account dashboard. Equipment is packaged securely to prevent damage during transit.</p>
+<p>Standard shipping delivers equipment within 3 to 5 business days from the date your order is processed. Expedited shipping is available for faster delivery at an additional cost. Expedited delivery is available in select metropolitan areas for qualifying orders. All shipments include tracking information sent to your email and available in your account dashboard. Equipment is packaged securely to prevent damage during transit.</p>
 <h2>Return Shipping and Costs</h2>
 <p>Return shipping is free for all rentals. We include a prepaid shipping label with every rental order for easy returns. Simply package the equipment securely in the original packaging and drop it off at any authorized shipping location. For return eligibility and refund details, see our <a href="/return-policy">Return and Refund Policy</a>. Shipping costs for orders under 3 months vary by product weight and destination — specific costs are displayed at checkout. For equipment care during shipping and use, review our <a href="/damage-policy">Damage Policy</a> and consider <a href="/gadgetcare">GadgetCare+ protection</a>. View our <a href="/rental-policy">rental terms</a>, <a href="/products">browse products</a>, or <a href="/contact">contact us</a> with shipping questions. Learn about our <a href="/how-it-works">rental process</a>.</p>`,
 
@@ -966,7 +967,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 
   "/checkout": `<p>Complete your RentMyGadgets rental order securely. Review your selected items, enter your delivery address, and confirm your rental booking. All transactions are processed through secure encrypted connections to protect your payment information. Your rental begins when your equipment ships.</p>
 <h2>Order Review and Delivery</h2>
-<p>Before completing your order, review each item in your cart including the rental period, monthly price, any applicable discounts, and GadgetCare+ protection status. Verify your delivery address and select your preferred shipping method. Standard shipping delivers within 3 to 5 business days, and same-day delivery is available in select areas for orders placed before noon. Free shipping is included on orders with rental terms of 3 months or longer. See our <a href="/shipping-policy">shipping policy</a> for complete delivery details.</p>
+<p>Before completing your order, review each item in your cart including the rental period, monthly price, any applicable discounts, and GadgetCare+ protection status. Verify your delivery address and select your preferred shipping method. Standard shipping delivers within 3 to 5 business days, and expedited delivery is available in select areas. Free shipping is included on orders with rental terms of 3 months or longer. See our <a href="/shipping-policy">shipping policy</a> for complete delivery details.</p>
 <h2>Payment and Policies</h2>
 <p>Rental payments are processed at the start of each billing period. A refundable <a href="/security-deposit">security deposit</a> may be required depending on the equipment category. All rentals include a 14-day free return period as described in our <a href="/return-policy">return policy</a>. Optional <a href="/gadgetcare">GadgetCare+ protection</a> covers accidental damage and hardware malfunctions. Review our <a href="/rental-policy">rental agreement</a>, <a href="/damage-policy">damage policy</a>, <a href="/terms">terms and conditions</a>, and <a href="/privacy">privacy policy</a> before completing your order. <a href="/contact">Contact us</a> with questions. <a href="/products">Continue shopping</a> for more products.</p>`,
 
