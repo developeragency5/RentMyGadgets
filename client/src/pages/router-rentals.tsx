@@ -144,7 +144,7 @@ export default function RouterRentals() {
               RentMyGadgets offers flexible monthly rentals on high-performance routers, WiFi systems, and wireless networking gear from brands you trust — Asus, TP-Link, Netgear, Google, and Ubiquiti. No expensive purchases. No outdated hardware.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/categories/routers">
+              <Link href="/categories/f74a6ed6-d23e-4800-8a2e-df600a5f38b4">
                 <Button size="lg" className="rounded-full" data-testid="button-browse-routers">
                   Browse Routers <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -361,7 +361,7 @@ export default function RouterRentals() {
                 { name: "Google", tagline: "Nest Mesh Systems", color: "bg-green-50" },
                 { name: "Ubiquiti", tagline: "Enterprise Grade", color: "bg-indigo-50" },
               ].map((brand) => (
-                <Link key={brand.name} href="/categories/routers">
+                <Link key={brand.name} href="/categories/f74a6ed6-d23e-4800-8a2e-df600a5f38b4">
                   <Card className={`${brand.color} border-2 hover:border-blue-300 transition-all hover:shadow-md cursor-pointer h-full`} data-testid={`brand-${brand.name.toLowerCase().replace(/[- ]/g, "")}`}>
                     <CardContent className="p-5 text-center flex flex-col items-center justify-center">
                       <Wifi className="h-8 w-8 text-blue-600 mb-3" />
@@ -609,7 +609,7 @@ export default function RouterRentals() {
               The math is clear: renting a router saves money, eliminates hassle, and ensures you always have access to the latest WiFi technology. Whether you need a basic home WiFi rental or an enterprise mesh router rental, the flexibility of renting beats buying every time.
             </p>
             <div className="text-center mt-6">
-              <Link href="/categories/routers">
+              <Link href="/categories/f74a6ed6-d23e-4800-8a2e-df600a5f38b4">
                 <Button size="lg" className="rounded-full" data-testid="button-rent-vs-buy-cta">
                   Start Renting a Router Today <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -631,7 +631,7 @@ export default function RouterRentals() {
                 Browse our full router catalog or chat with a specialist to find the perfect router for your home or office coverage needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/categories/routers">
+                <Link href="/categories/f74a6ed6-d23e-4800-8a2e-df600a5f38b4">
                   <Button size="lg" variant="secondary" className="rounded-full w-full sm:w-auto" data-testid="button-browse-catalog">
                     Browse Router Catalog
                   </Button>

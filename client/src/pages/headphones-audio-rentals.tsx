@@ -144,7 +144,7 @@ export default function HeadphonesAudioRentals() {
               RentMyGadgets offers flexible monthly rentals on top-tier headphones, mechanical keyboards, and ergonomic mice from brands like Sony, Bose, Sennheiser, Logitech, and Razer. Experience premium sound and precision control without the upfront investment.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/categories/accessories">
+              <Link href="/categories/5bf83f8b-6cca-4c80-ae3f-e926ef53f14e">
                 <Button size="lg" className="rounded-full" data-testid="button-browse-accessories">
                   Browse Accessories <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -356,7 +356,7 @@ export default function HeadphonesAudioRentals() {
                 { name: "Razer", tagline: "Gaming performance" },
                 { name: "SteelSeries", tagline: "Esports-grade audio" }
               ].map((brand) => (
-                <Link key={brand.name} href="/categories/accessories">
+                <Link key={brand.name} href="/categories/5bf83f8b-6cca-4c80-ae3f-e926ef53f14e">
                   <Card className="border-2 hover:border-purple-300 hover:shadow-md transition-all cursor-pointer h-full" data-testid={`brand-card-${brand.name.toLowerCase()}`}>
                     <CardContent className="p-5 text-center flex flex-col items-center justify-center">
                       <div className="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mb-3">
@@ -651,7 +651,7 @@ export default function HeadphonesAudioRentals() {
                 Browse our full accessories catalog or chat with a specialist to find the perfect headphones, keyboard, or mouse for your needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/categories/accessories">
+                <Link href="/categories/5bf83f8b-6cca-4c80-ae3f-e926ef53f14e">
                   <Button size="lg" variant="secondary" className="rounded-full w-full sm:w-auto" data-testid="button-browse-catalog">
                     Browse Accessories Catalog
                   </Button>

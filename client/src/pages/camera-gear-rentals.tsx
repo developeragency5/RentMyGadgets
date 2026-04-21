@@ -204,7 +204,7 @@ export default function CameraGearRentals() {
               RentMyGadgets offers flexible monthly rentals on professional cameras, sharp camera lenses, and studio lighting gear from brands photographers trust — Canon, Nikon, Sony, and Aputure. No massive upfront costs. No long-term contracts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/categories/cameras">
+              <Link href="/categories/09bcf6ce-10bb-4e95-95ee-477e78f6edb1">
                 <Button size="lg" className="rounded-full" data-testid="button-browse-cameras">
                   Browse Cameras & Gear <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -409,7 +409,7 @@ export default function CameraGearRentals() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {brands.map((brand) => (
-                <Link key={brand.slug} href="/categories/cameras">
+                <Link key={brand.slug} href="/categories/09bcf6ce-10bb-4e95-95ee-477e78f6edb1">
                   <Card className="border-2 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer h-full" data-testid={`brand-${brand.slug}`}>
                     <CardContent className="p-5 text-center flex flex-col items-center justify-center">
                       <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-3">
@@ -637,7 +637,7 @@ export default function CameraGearRentals() {
                 Browse our full camera and photography gear catalog or chat with a specialist to find the perfect setup for your next shoot.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/categories/cameras">
+                <Link href="/categories/09bcf6ce-10bb-4e95-95ee-477e78f6edb1">
                   <Button size="lg" variant="secondary" className="rounded-full w-full sm:w-auto" data-testid="button-browse-catalog">
                     Browse Camera Catalog
                   </Button>

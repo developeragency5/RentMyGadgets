@@ -145,7 +145,7 @@ export default function SmartphoneRentals() {
               RentMyGadgets offers flexible monthly rentals on premium smartphones from Apple, Samsung, Google, and OnePlus. Get flagship features — stunning displays, pro-grade cameras, and all-day battery life — without the $1,000+ commitment. No carrier contracts. No depreciation headaches.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/categories/phones">
+              <Link href="/categories/c9f3d7d1-34c8-4f9f-9dec-57a808b28e35">
                 <Button size="lg" className="rounded-full" data-testid="button-browse-smartphones">
                   Browse Smartphones <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -357,7 +357,7 @@ export default function SmartphoneRentals() {
                 { name: "Motorola", tagline: "Edge & Razr Series", color: "bg-indigo-600 text-white" },
                 { name: "Sony", tagline: "Xperia 1 VI & 5 VI", color: "bg-slate-700 text-white" },
               ].map((brand) => (
-                <Link key={brand.name} href="/categories/phones">
+                <Link key={brand.name} href="/categories/c9f3d7d1-34c8-4f9f-9dec-57a808b28e35">
                   <Card className="border-2 hover:border-blue-300 transition-all hover:shadow-md cursor-pointer h-full" data-testid={`brand-${brand.name.toLowerCase()}`}>
                     <CardContent className="p-4 text-center flex flex-col items-center justify-center h-full">
                       <div className={`w-12 h-12 rounded-xl ${brand.color} flex items-center justify-center mb-3`}>
@@ -497,7 +497,7 @@ export default function SmartphoneRentals() {
               </table>
             </div>
             <div className="text-center mt-8">
-              <Link href="/categories/phones">
+              <Link href="/categories/c9f3d7d1-34c8-4f9f-9dec-57a808b28e35">
                 <Button size="lg" className="rounded-full" data-testid="button-start-renting">
                   Start Renting a Smartphone <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -653,7 +653,7 @@ export default function SmartphoneRentals() {
                 Browse our full smartphone catalog or chat with a specialist to find the perfect phone for your lifestyle, work, or travel needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/categories/phones">
+                <Link href="/categories/c9f3d7d1-34c8-4f9f-9dec-57a808b28e35">
                   <Button size="lg" variant="secondary" className="rounded-full w-full sm:w-auto" data-testid="button-browse-catalog">
                     Browse Smartphone Catalog
                   </Button>

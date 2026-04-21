@@ -188,7 +188,7 @@ export default function OfficePrinterRentals() {
               RentMyGadgets offers flexible monthly rentals on business-grade laser, color, and compact multifunction devices from brands you trust — HP, Brother, Canon, Xerox, and Epson. No five-figure purchases. No three-year leases.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/collections/printers-scanners">
+              <Link href="/collections/office-printers">
                 <Button size="lg" className="rounded-full" data-testid="button-browse-printers">
                   Browse All Models <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -484,7 +484,7 @@ export default function OfficePrinterRentals() {
                 Browse our full catalog or chat with a specialist to get a model recommendation matched to your team's needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/collections/printers-scanners">
+                <Link href="/collections/office-printers">
                   <Button size="lg" variant="secondary" className="rounded-full w-full sm:w-auto" data-testid="button-browse-catalog">
                     Browse Full Catalog
                   </Button>

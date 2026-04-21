@@ -207,7 +207,7 @@ export default function LaptopDesktopRentals() {
               RentMyGadgets offers flexible monthly rentals on business-grade laptops, desktop computers, and professional workstations from brands like Apple, Dell, HP, Lenovo, and Asus. Skip the massive upfront cost. Cancel anytime. Always stay current.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/categories/laptops">
+              <Link href="/categories/2c7a748e-6128-488e-af34-1ff07d5efca8">
                 <Button size="lg" className="rounded-full" data-testid="button-browse-laptops">
                   Browse Laptops & Desktops <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -386,7 +386,7 @@ export default function LaptopDesktopRentals() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {brands.map((brand, index) => (
-                <Link key={brand.name} href="/categories/laptops">
+                <Link key={brand.name} href="/categories/2c7a748e-6128-488e-af34-1ff07d5efca8">
                   <Card className="border-2 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group" data-testid={`brand-card-${index}`}>
                     <CardContent className="p-6 text-center">
                       <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-50 transition-colors">
@@ -657,7 +657,7 @@ export default function LaptopDesktopRentals() {
                 Browse our full laptop and desktop catalog or chat with a specialist to find the right machine for your workflow, budget, and timeline.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/categories/laptops">
+                <Link href="/categories/2c7a748e-6128-488e-af34-1ff07d5efca8">
                   <Button size="lg" variant="secondary" className="rounded-full w-full sm:w-auto" data-testid="button-browse-catalog">
                     Browse Laptop & Desktop Catalog
                   </Button>
