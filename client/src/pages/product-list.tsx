@@ -45,6 +45,21 @@ const COLLECTION_CATEGORY_MAP: Record<string, string> = {
   "laser-printers": "18079e56-3836-4542-b12a-733b4ce84bdd",
   "color-laser-printers": "18079e56-3836-4542-b12a-733b4ce84bdd",
   "small-office-printers": "18079e56-3836-4542-b12a-733b4ce84bdd",
+  "laptops": "2c7a748e-6128-488e-af34-1ff07d5efca8",
+  "desktops": "2c7a748e-6128-488e-af34-1ff07d5efca8",
+  "workstations": "2c7a748e-6128-488e-af34-1ff07d5efca8",
+  "smartphones": "c9f3d7d1-34c8-4f9f-9dec-57a808b28e35",
+  "mobile-phones": "c9f3d7d1-34c8-4f9f-9dec-57a808b28e35",
+  "cell-phones": "c9f3d7d1-34c8-4f9f-9dec-57a808b28e35",
+  "headphones": "5bf83f8b-6cca-4c80-ae3f-e926ef53f14e",
+  "keyboards": "5bf83f8b-6cca-4c80-ae3f-e926ef53f14e",
+  "computer-mice": "5bf83f8b-6cca-4c80-ae3f-e926ef53f14e",
+  "dslr-cameras": "09bcf6ce-10bb-4e95-95ee-477e78f6edb1",
+  "camera-lenses": "09bcf6ce-10bb-4e95-95ee-477e78f6edb1",
+  "lighting-gear": "09bcf6ce-10bb-4e95-95ee-477e78f6edb1",
+  "routers": "f74a6ed6-d23e-4800-8a2e-df600a5f38b4",
+  "wifi-routers": "f74a6ed6-d23e-4800-8a2e-df600a5f38b4",
+  "wireless-routers": "f74a6ed6-d23e-4800-8a2e-df600a5f38b4",
 };
 
 const COLLECTION_SEO: Record<string, { title: string; description: string; keywords: string }> = {
@@ -67,6 +82,81 @@ const COLLECTION_SEO: Record<string, { title: string; description: string; keywo
     title: "Small Office Printers in Stock",
     description: "Small office printers fit tight spaces and deliver reliable printing for your daily tasks.",
     keywords: "small office printer, small office printers, rent small office printer, compact office printer rental",
+  },
+  "laptops": {
+    title: "Laptops for Rent",
+    description: "Rent high-performance laptops for work, gaming, and creative projects. Flexible monthly plans.",
+    keywords: "laptop rental, rent laptop, business laptop, gaming laptop rental, laptop for rent",
+  },
+  "desktops": {
+    title: "Desktops & PCs for Rent",
+    description: "Rent powerful desktop computers and workstations for business and creative work.",
+    keywords: "desktop rental, rent desktop, PC rental, workstation rental, desktop computer for rent",
+  },
+  "workstations": {
+    title: "Workstations for Rent",
+    description: "Rent professional workstations built for demanding tasks like CAD, 3D rendering, and data science.",
+    keywords: "workstation rental, rent workstation, professional workstation, high performance computer rental",
+  },
+  "smartphones": {
+    title: "Smartphones for Rent",
+    description: "Rent the latest smartphones with sharp displays and powerful cameras. Flexible monthly plans.",
+    keywords: "smartphone rental, rent smartphone, phone rental, mobile phone for rent",
+  },
+  "mobile-phones": {
+    title: "Mobile Phones for Rent",
+    description: "Rent mobile phones for work, travel, or daily use. Latest models, flexible rental terms.",
+    keywords: "mobile phone rental, rent mobile phone, cell phone rental, phone for rent",
+  },
+  "cell-phones": {
+    title: "Cell Phones for Rent",
+    description: "Rent cell phones with the latest features. No contracts, flexible monthly plans.",
+    keywords: "cell phone rental, rent cell phone, phone rental, smartphone for rent",
+  },
+  "headphones": {
+    title: "Headphones for Rent",
+    description: "Rent premium headphones from Bose, Sony, and Sennheiser. Noise-cancelling and studio-grade options.",
+    keywords: "headphone rental, rent headphones, noise cancelling headphone rental, studio headphones for rent",
+  },
+  "keyboards": {
+    title: "Keyboards for Rent",
+    description: "Rent mechanical and ergonomic keyboards for work and gaming. Top brands available.",
+    keywords: "keyboard rental, rent keyboard, mechanical keyboard rental, ergonomic keyboard for rent",
+  },
+  "computer-mice": {
+    title: "Computer Mice for Rent",
+    description: "Rent ergonomic and gaming mice for work and play. Wireless and wired options.",
+    keywords: "mouse rental, rent mouse, ergonomic mouse rental, gaming mouse for rent",
+  },
+  "dslr-cameras": {
+    title: "DSLR Cameras for Rent",
+    description: "Rent professional DSLR cameras for photo shoots, weddings, and events. Top brands available.",
+    keywords: "DSLR rental, rent DSLR, camera rental, DSLR camera for rent, professional camera rental",
+  },
+  "camera-lenses": {
+    title: "Camera Lenses for Rent",
+    description: "Rent sharp camera lenses for portraits, landscapes, and studio work. Wide selection.",
+    keywords: "lens rental, rent camera lens, photography lens rental, camera lens for rent",
+  },
+  "lighting-gear": {
+    title: "Lighting Gear for Rent",
+    description: "Rent professional studio lighting, LED panels, and portable light kits for photo and video.",
+    keywords: "lighting rental, rent studio lights, LED panel rental, photography lighting for rent",
+  },
+  "routers": {
+    title: "Routers for Rent",
+    description: "Rent fast, reliable routers for home and office networking. Easy setup, flexible terms.",
+    keywords: "router rental, rent router, WiFi router rental, networking equipment for rent",
+  },
+  "wifi-routers": {
+    title: "WiFi Routers for Rent",
+    description: "Rent WiFi routers with fast speeds and wide coverage. Mesh and single-unit options.",
+    keywords: "WiFi router rental, rent WiFi router, wireless router rental, mesh WiFi for rent",
+  },
+  "wireless-routers": {
+    title: "Wireless Routers for Rent",
+    description: "Rent wireless routers for reliable internet at home or the office. Latest standards.",
+    keywords: "wireless router rental, rent wireless router, WiFi 6 router rental, router for rent",
   },
 };
 
