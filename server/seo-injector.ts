@@ -683,7 +683,7 @@ async function getBlogMeta(slug: string): Promise<PageMeta | null> {
           image: post.imageUrl ? toAbsoluteUrl(post.imageUrl) : undefined,
           author: { "@type": "Person", name: post.author },
           publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } },
-          datePublished: (() => { try { const d = post.createdAt instanceof Date ? post.createdAt : new Date(post.createdAt ?? Date.now()); return isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString(); } catch { return new Date().toISOString(); } })(),
+          datePublished: post.createdAt instanceof Date ? post.createdAt.toISOString() : new Date(post.createdAt).toISOString(),
           url,
           mainEntityOfPage: { "@type": "WebPage", "@id": url },
           articleSection: post.category,

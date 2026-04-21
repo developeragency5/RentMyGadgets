@@ -15,12 +15,16 @@ import {
   syncRuns, productSyncLogs, productGalleryImages, productContent,
   productVariantOptions
 } from "@shared/schema";
-import { neon } from "@neondatabase/serverless";
+import { neon, types as neonTypes } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { eq, and, desc, isNull, or, lt, sql as drizzleSql } from "drizzle-orm";
 
 const neonClient = neon(process.env.DATABASE_URL!);
 export const db = drizzle(neonClient);
+
+neonTypes.setTypeParser(neonTypes.builtins.BOOL, (val: string) => val === "t" || val === "true" || val === true as unknown as string);
+neonTypes.setTypeParser(neonTypes.builtins.TIMESTAMP, (val: string) => val == null ? null : new Date(val));
+neonTypes.setTypeParser(neonTypes.builtins.TIMESTAMPTZ, (val: string) => val == null ? null : new Date(val));
 
 async function fixGalleryArrays<T extends { id: string; galleryImageUrls?: string[] | null }>(items: T[]): Promise<T[]> {
   if (items.length === 0) return items;
