@@ -90,7 +90,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const handleSuggestionClick = (suggestion: SearchSuggestion) => {
     setShowSuggestions(false);
     setSearchQuery("");
-    setLocation(`/product/${suggestion.id}`);
+    setLocation(`/product/${suggestion.slug || suggestion.id}`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

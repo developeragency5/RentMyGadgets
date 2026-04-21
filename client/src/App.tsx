@@ -71,7 +71,7 @@ function Router() {
         <Route path="/categories/:id" component={ProductList} />
         <Route path="/products" component={ProductList} />
         <Route path="/collections/:slug" component={ProductList} />
-        <Route path="/product/:id" component={ProductDetail} />
+        <Route path="/product/:slug" component={ProductDetail} />
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/dashboard" component={Dashboard} />

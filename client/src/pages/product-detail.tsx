@@ -17,16 +17,16 @@ import { calculateRentalPricing, type RentalDuration, type RentalPricing } from 
 import { motion } from "framer-motion";
 
 export default function ProductDetail() {
-  const [match, params] = useRoute("/product/:id");
-  const productId = params?.id;
+  const [match, params] = useRoute("/product/:slug");
+  const productSlug = params?.slug;
   const { toast } = useToast();
   const { addToCart } = useCart();
   const { addToCompare, removeFromCompare, isInCompare, canAddMore } = useCompare();
 
   const { data: product, isLoading, error } = useQuery({
-    queryKey: ['product', productId],
-    queryFn: () => fetchProduct(productId!),
-    enabled: !!productId
+    queryKey: ['product', productSlug],
+    queryFn: () => fetchProduct(productSlug!),
+    enabled: !!productSlug
   });
 
   const { data: category } = useQuery({
@@ -34,6 +34,8 @@ export default function ProductDetail() {
     queryFn: () => fetchCategory(product!.categoryId),
     enabled: !!product?.categoryId
   });
+
+  const productId = product?.id;
 
   const { data: similarProducts } = useQuery({
     queryKey: ['similarProducts', product?.categoryId, productId],
@@ -64,7 +66,7 @@ export default function ProductDetail() {
     setVariantConfiguration({});
     setSelectedColor(null);
     setHasGadgetCare(false);
-  }, [productId]);
+  }, [productSlug]);
 
   useEffect(() => {
     if (product?.availableColors && product.availableColors.length > 0 && !selectedColor) {
@@ -884,7 +886,7 @@ export default function ProductDetail() {
             <h2 className="text-2xl font-heading font-bold mb-6">Similar Products</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {similarProducts.map((similarProduct) => (
-                <Link key={similarProduct.id} href={`/product/${similarProduct.id}`}>
+                <Link key={similarProduct.id} href={`/product/${similarProduct.slug}`}>
                   <div className="bg-background rounded-xl border p-3 hover:shadow-lg hover:border-primary/30 transition-all cursor-pointer group" data-testid={`similar-product-${similarProduct.id}`}>
                     <div className="aspect-square rounded-lg overflow-hidden bg-muted mb-3">
                       <ProductImage 

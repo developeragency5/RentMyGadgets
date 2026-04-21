@@ -273,22 +273,24 @@ const STATIC_KEYWORDS: Record<string, string> = {
   "/do-not-sell": "do not sell my information, CCPA opt out, CPRA opt out, California privacy rights, data sharing opt out",
 };
 
-async function getProductMeta(env: Env, productId: string): Promise<PageMeta | null> {
+async function getProductMeta(env: Env, idOrSlug: string): Promise<PageMeta | null> {
   try {
     const db = getDb(env);
-    const productRows = await db.select().from(products).where(eq(products.id, productId)).limit(1);
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(idOrSlug);
+    const productRows = isUuid
+      ? await db.select().from(products).where(eq(products.id, idOrSlug)).limit(1)
+      : await db.select().from(products).where(eq(products.slug, idOrSlug)).limit(1);
     if (!productRows[0]) return null;
     const fixedRows = await fixGalleryArrays(env, productRows);
     const product = fixedRows[0];
 
     let category: { id: string; name: string } | null = null;
-    let related: { id: string; name: string; pricePerMonth: string | null }[] = [];
+    let related: { id: string; slug: string | null; name: string; pricePerMonth: string | null }[] = [];
     if (product.categoryId) {
       const catRows = await db.select().from(categories).where(eq(categories.id, product.categoryId)).limit(1);
       category = catRows[0] ?? null;
-      // Up to 6 related rentals from the same category (excluding self).
       const relRows = await db
-        .select({ id: products.id, name: products.name, pricePerMonth: products.pricePerMonth })
+        .select({ id: products.id, slug: products.slug, name: products.name, pricePerMonth: products.pricePerMonth })
         .from(products)
         .where(eq(products.categoryId, product.categoryId))
         .limit(8);
@@ -338,7 +340,7 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
     const relatedHtml = related.length > 0
       ? `<section><h3>Related Rentals</h3><ul>${related.map(r => {
           const rPrice = r.pricePerMonth ? parseFloat(r.pricePerMonth.toString()).toFixed(2) : "0.00";
-          return `<li><a href="/product/${r.id}">${escapeHtml(r.name)}</a> — $${rPrice}/month</li>`;
+          return `<li><a href="/product/${r.slug || r.id}">${escapeHtml(r.name)}</a> — $${rPrice}/month</li>`;
         }).join("")}</ul></section>`
       : "";
 
@@ -485,7 +487,7 @@ async function getCategoryMeta(env: Env, categoryId: string): Promise<PageMeta |
 
     const productListHtml = catProducts.slice(0, 30).map(p => {
       const pPrice = p.pricePerMonth ? parseFloat(p.pricePerMonth.toString()).toFixed(2) : "0.00";
-      return `<li><a href="/product/${p.id}">${escapeHtml(p.name)}</a> — $${pPrice}/month${p.brand ? ` by ${escapeHtml(p.brand)}` : ""}</li>`;
+      return `<li><a href="/product/${p.slug || p.id}">${escapeHtml(p.name)}</a> — $${pPrice}/month${p.brand ? ` by ${escapeHtml(p.brand)}` : ""}</li>`;
     }).join("");
 
     const brands = [...new Set(catProducts.map(p => p.brand).filter(Boolean))] as string[];
@@ -1066,7 +1068,7 @@ async function getCrawlerNav(env: Env, url: string): Promise<CrawlerNavParts> {
     const db = getDb(env);
     const [allCategories, allProducts, allBlogPosts] = await Promise.all([
       db.select({ id: categories.id, name: categories.name }).from(categories),
-      db.select({ id: products.id, name: products.name }).from(products),
+      db.select({ id: products.id, slug: products.slug, name: products.name }).from(products),
       db.select({ slug: blogPosts.slug, title: blogPosts.title, published: blogPosts.published }).from(blogPosts),
     ]);
 
@@ -1074,7 +1076,7 @@ async function getCrawlerNav(env: Env, url: string): Promise<CrawlerNavParts> {
       c => `<a href="/categories/${c.id}">${escapeHtml(c.name)}</a>`
     );
     const productLinks = allProducts.map(
-      p => `<a href="/product/${p.id}">${escapeHtml(p.name)}</a>`
+      p => `<a href="/product/${p.slug || p.id}">${escapeHtml(p.name)}</a>`
     );
     const blogLinks = allBlogPosts
       .filter(p => p.published)

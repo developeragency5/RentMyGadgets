@@ -110,6 +110,7 @@ export async function fetchCategory(id: string): Promise<Category> {
 
 export interface SearchSuggestion {
   id: string;
+  slug: string;
   name: string;
   brand: string;
   imageUrl: string;

@@ -22,6 +22,7 @@ export const categories = pgTable("categories", {
 export const products = pgTable("products", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
   brand: text("brand"),
   sku: text("sku"),
   categoryId: varchar("category_id").references(() => categories.id).notNull(),

@@ -49,6 +49,7 @@ export interface IStorage {
   // Products
   getAllProducts(): Promise<Product[]>;
   getProduct(id: string): Promise<Product | undefined>;
+  getProductBySlug(slug: string): Promise<Product | undefined>;
   getProductsByCategory(categoryId: string): Promise<Product[]>;
   getFeaturedProducts(): Promise<Product[]>;
   createProduct(product: InsertProduct): Promise<Product>;
@@ -159,6 +160,13 @@ export class DatabaseStorage implements IStorage {
 
   async getProduct(id: string): Promise<Product | undefined> {
     const result = await db.select().from(products).where(eq(products.id, id)).limit(1);
+    if (!result[0]) return undefined;
+    const fixed = await fixGalleryArrays([result[0]]);
+    return fixed[0];
+  }
+
+  async getProductBySlug(slug: string): Promise<Product | undefined> {
+    const result = await db.select().from(products).where(eq(products.slug, slug)).limit(1);
     if (!result[0]) return undefined;
     const fixed = await fixGalleryArrays([result[0]]);
     return fixed[0];

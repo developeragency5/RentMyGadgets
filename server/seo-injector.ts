@@ -271,9 +271,12 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
 };
 
-async function getProductMeta(productId: string): Promise<PageMeta | null> {
+async function getProductMeta(idOrSlug: string): Promise<PageMeta | null> {
   try {
-    const product = await storage.getProduct(productId);
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(idOrSlug);
+    const product = isUuid
+      ? await storage.getProduct(idOrSlug)
+      : await storage.getProductBySlug(idOrSlug);
     if (!product) return null;
 
     const category = product.categoryId ? await storage.getCategory(product.categoryId) : null;
@@ -452,7 +455,7 @@ async function getCategoryMeta(categoryId: string): Promise<PageMeta | null> {
 
     const productListHtml = products.slice(0, 30).map(p => {
       const pPrice = p.pricePerMonth ? parseFloat(p.pricePerMonth.toString()).toFixed(2) : "0.00";
-      return `<li><a href="/product/${p.id}">${escapeHtml(p.name)}</a> — $${pPrice}/month${p.brand ? ` by ${escapeHtml(p.brand)}` : ""}</li>`;
+      return `<li><a href="/product/${p.slug || p.id}">${escapeHtml(p.name)}</a> — $${pPrice}/month${p.brand ? ` by ${escapeHtml(p.brand)}` : ""}</li>`;
     }).join("");
 
     const brands = [...new Set(products.map(p => p.brand).filter(Boolean))] as string[];
@@ -1000,7 +1003,7 @@ async function getCrawlerNav(url: string): Promise<CrawlerNavParts> {
       c => `<a href="/categories/${c.id}">${escapeHtml(c.name)}</a>`
     );
     const productLinks = allProducts.map(
-      p => `<a href="/product/${p.id}">${escapeHtml(p.name)}</a>`
+      p => `<a href="/product/${p.slug || p.id}">${escapeHtml(p.name)}</a>`
     );
     const blogLinks = (allBlogPosts || [])
       .map((p: any) => `<a href="/blog/${escapeHtml(p.slug)}">${escapeHtml(p.title)}</a>`);

@@ -117,7 +117,7 @@ export async function registerRoutes(
 
       const allProducts = await storage.getAllProducts();
       const productPages = allProducts.map(prod => ({
-        loc: `/product/${prod.id}`,
+        loc: `/product/${prod.slug || prod.id}`,
         priority: "0.7",
         changefreq: "weekly"
       }));
@@ -159,7 +159,7 @@ export async function registerRoutes(
 
       const productImageMap = new Map<string, any>();
       for (const prod of allProducts) {
-        productImageMap.set(`/product/${prod.id}`, prod);
+        productImageMap.set(`/product/${prod.slug || prod.id}`, prod);
       }
       
       const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -1486,14 +1486,19 @@ ${imageTags}  </url>`;
     }
   });
 
-  app.get("/api/products/:id", async (req, res) => {
+  app.get("/api/products/:idOrSlug", async (req, res) => {
     try {
-      const cached = cache.getProduct(req.params.id);
+      const param = req.params.idOrSlug;
+      const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(param);
+
+      const cached = cache.getProduct(param);
       if (cached) {
         return res.json(cached);
       }
       
-      const product = await storage.getProduct(req.params.id);
+      const product = isUuid
+        ? await storage.getProduct(param)
+        : await storage.getProductBySlug(param);
       if (!product) {
         return res.status(404).json({ error: "Product not found" });
       }
@@ -1659,6 +1664,7 @@ ${imageTags}  </url>`;
         .slice(0, maxResults)
         .map(item => ({
           id: item.product.id,
+          slug: item.product.slug,
           name: item.product.name,
           brand: item.product.brand,
           imageUrl: item.product.imageUrl,
