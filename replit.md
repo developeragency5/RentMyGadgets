@@ -39,6 +39,13 @@ Preferred communication style: Simple, everyday language.
 - **Advertising Platform Integration**: Incorporates Google Ads and Microsoft Ads tracking, consent-gated for privacy compliance.
 - **Privacy & Consent Compliance**: Features GPC detection, a granular cookie consent banner, "Do Not Sell/Share" toggles, and consent-gated script loading.
 
+### Cloudflare Pages Deployment Notes
+
+- **Gallery Array Parsing**: CF Workers `fixGalleryArrays` uses inline parsing (not raw SQL) to handle PostgreSQL array columns. This avoids 500 errors that occurred when the raw neon SQL query crashed on CF Workers.
+- **Sitemap**: Product URLs use slug-based paths (`/product/:slug`). Gallery images are included with robust type guards.
+- **SEO Injection**: The catch-all function injects product-specific OG images, JSON-LD structured data, and gallery images into server-rendered HTML for crawlers (Bing, Google).
+- **Static JSON Fallback**: Frontend `fetchWithFallback` falls back to `/data/products.json` when the API is unavailable.
+
 ### System Design Choices
 
 - **Monorepo Structure**: A unified codebase for both frontend and backend.
