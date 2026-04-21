@@ -248,6 +248,36 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
     keywords: "office printer rental, laser printer rental, color laser printer rental, small office printer, rent office printer, business printer rental, monthly printer rental, HP printer rental, Brother printer rental, Canon printer rental",
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Office Printer Rentals", description: "Rent business-grade laser printers, color laser printers, and small office printers from HP, Brother, Canon, Xerox, and Epson with flexible monthly plans.", url: `${BASE_URL}/office-printer-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
+  "/laptop-desktop-rentals": {
+    title: "Laptop & Desktop Rentals | Laptops, Desktops & Workstations",
+    description: "Rent powerful laptops, desktop computers, and workstations for work, gaming, and creative projects. Flexible monthly plans, fast delivery, no long-term contracts.",
+    keywords: "laptop rental, desktop rental, workstation rental, rent laptop, rent desktop, computer rental, gaming laptop rental, business laptop rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Laptop & Desktop Rentals", description: "Rent powerful laptops, desktops, and workstations for work, gaming, and creative projects.", url: `${BASE_URL}/laptop-desktop-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/smartphone-rentals": {
+    title: "Smartphone Rentals | Latest Phones for Work, Travel & Daily Life",
+    description: "Rent premium smartphones with sharp displays, powerful cameras, and long battery life. Flexible monthly plans, no long-term contracts, always the latest models.",
+    keywords: "smartphone rental, phone rental, rent smartphone, rent phone, mobile phone rental, cell phone rental, iPhone rental, Samsung rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Smartphone Rentals", description: "Rent premium smartphones with sharp displays, powerful cameras, and long battery life.", url: `${BASE_URL}/smartphone-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/headphones-audio-rentals": {
+    title: "Headphones & Accessories Rentals | Audio Gear, Keyboards & Mice",
+    description: "Rent premium headphones, mechanical keyboards, and ergonomic mice for work, gaming, and music. Flexible monthly plans, no long-term contracts.",
+    keywords: "headphone rental, keyboard rental, mouse rental, rent headphones, gaming headset rental, mechanical keyboard rental, ergonomic mouse rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Headphones & Accessories Rentals", description: "Rent premium headphones, keyboards, and mice for work, gaming, and music.", url: `${BASE_URL}/headphones-audio-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/camera-gear-rentals": {
+    title: "Camera & Gear Rentals | DSLRs, Lenses & Lighting Equipment",
+    description: "Rent professional DSLR cameras, sharp lenses, and studio lighting gear for photo shoots, events, and travel. Flexible monthly plans, no contracts.",
+    keywords: "camera rental, DSLR rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Camera & Gear Rentals", description: "Rent professional DSLR cameras, lenses, and lighting gear for shoots, events, and travel.", url: `${BASE_URL}/camera-gear-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/router-rentals": {
+    title: "Router Rentals | Fast WiFi Routers for Home & Office",
+    description: "Rent fast, reliable routers and WiFi systems for home and office. Wide coverage, stable signal, flexible monthly plans, no long-term contracts.",
+    keywords: "router rental, WiFi router rental, wireless router rental, rent router, internet router rental, mesh WiFi rental, home router rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Router Rentals", description: "Rent fast, reliable routers and WiFi systems for home and office.", url: `${BASE_URL}/router-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
   "/terms": {
     title: "Terms and Conditions",
     description: "Read our terms and conditions for renting technology equipment. Understand your rights and responsibilities when using RentMyGadgets services.",
