@@ -627,14 +627,7 @@ async function getProductMeta(env: Env, idOrSlug: string): Promise<PageMeta | nu
       "RentMyGadgets",
     ].filter(Boolean).join(", ");
 
-    let rawGallery: any = product.galleryImageUrls || [];
-    if (typeof rawGallery === "string") {
-      if (rawGallery.startsWith("[")) { try { rawGallery = JSON.parse(rawGallery); } catch { rawGallery = []; } }
-      else if (rawGallery.startsWith("{")) { rawGallery = rawGallery.slice(1, -1).split(",").map((s: string) => s.replace(/^"|"$/g, "")); }
-      else { rawGallery = []; }
-    }
-    if (!Array.isArray(rawGallery)) rawGallery = [];
-    const galleryUrls: string[] = rawGallery.filter((u: any): u is string => typeof u === "string" && u.length > 0);
+    const galleryUrls: string[] = (Array.isArray(product.galleryImageUrls) ? product.galleryImageUrls : []).filter((u: any): u is string => typeof u === "string" && u.length > 0);
     const allImageUrls: string[] = [];
     if (product.imageUrl) allImageUrls.push(toAbsoluteUrl(product.imageUrl));
     for (const url of galleryUrls) {

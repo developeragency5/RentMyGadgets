@@ -29,7 +29,7 @@ function getNeonClient(env: Env) {
   return neon(env.DATABASE_URL);
 }
 
-function parseGalleryValue(val: unknown): string[] {
+export function parseGalleryValue(val: unknown): string[] {
   if (Array.isArray(val)) return val.filter((v): v is string => typeof v === "string");
   if (typeof val === "string") {
     if (val.startsWith("[")) {
