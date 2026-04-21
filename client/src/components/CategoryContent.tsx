@@ -31,8 +31,8 @@ interface ContentBlock {
 const CATEGORY_CONTENT: Record<string, ContentBlock> = {
   [PRINTERS_CATEGORY_ID]: {
     intro: {
-      h2: "Rent the Right Office Printer — Without Buying It",
-      body: "Buying an office printer means a $400–$8,000 capital outlay, a 3-year warranty clock, and a closet full of toner you'll outgrow before you finish. RentMyGadgets puts a business-grade office printer on your desk for a flat monthly fee — laser printers, color laser printers, and small office printers from HP, Brother, Canon, Xerox, and Epson. Whether you're opening a new location, surviving tax season, or just tired of inkjet headaches, you get the right device for as long as you need it, and not a day longer.",
+      h2: "Office Printers for Every Desk",
+      body: "Office printers that print, scan, copy, and handle all your paperwork in one handy device. RentMyGadgets puts a business-grade office printer on your desk for a flat monthly fee — laser printers, color laser printers, and small office printers from HP, Brother, Canon, Xerox, and Epson. Whether you're opening a new location, surviving tax season, or just tired of inkjet headaches, you get the right device for as long as you need it, and not a day longer.",
       bullets: [
         { icon: "truck", text: "Same-day delivery in 30+ metros" },
         { icon: "shield", text: "Optional GadgetCare+ damage protection" },
@@ -53,8 +53,8 @@ const CATEGORY_CONTENT: Record<string, ContentBlock> = {
     },
     sections: [
       {
-        h2: "Laser Printer Rentals — Built for Teams That Actually Print",
-        body: "Our laser printer lineup is engineered for offices where reliability matters more than novelty. Monochrome models print 35–55 pages per minute with monthly duty cycles up to 80,000 pages, so you're not babysitting jams during a Monday morning rush. Every laser printer rental ships with a starter toner cartridge, duplex two-sided printing enabled by default, Wi-Fi 6, Gigabit Ethernet, USB-C connectivity, and full mobile printing support (AirPrint, Mopria, Google Cloud Print).",
+        h2: "Laser Printers for Your Office",
+        body: "Laser printers deliver sharp text, fast speeds, and low cost per page for any busy office. Our laser printer lineup is engineered for teams where reliability matters more than novelty. Monochrome models print 35–55 pages per minute with monthly duty cycles up to 80,000 pages, so you're not babysitting jams during a Monday morning rush. Every laser printer rental ships with a starter toner cartridge, duplex two-sided printing enabled by default, Wi-Fi 6, Gigabit Ethernet, USB-C connectivity, and full mobile printing support (AirPrint, Mopria, Google Cloud Print).",
         products: [
           { name: "HP LaserJet Pro 4001n", price: "$42.99/mo", href: "/product/hp-laserjet-pro-4001n-mono-laser-printer" },
           { name: "HP LaserJet Pro MFP 4101", price: "$79/mo", href: "/product/hp-laserjet-pro-mfp-4101" },
@@ -62,8 +62,8 @@ const CATEGORY_CONTENT: Record<string, ContentBlock> = {
         ],
       },
       {
-        h2: "Color Laser Printer Rentals — Marketing-Ready Output, on Demand",
-        body: "When black-and-white won't sell the deal, a color laser printer delivers proposal-grade color without the dried-ink bills of an inkjet. Our color laser printer rentals span compact desktop units for 2-person creative teams up to floor-standing workgroup machines rated for 75,000 pages a month. You get true-to-brand color, smudge-proof output, and a per-page cost that can run 60–80% lower than inkjet over the rental term.",
+        h2: "Color Laser Printers Made Easy",
+        body: "Color laser printers produce vibrant prints, detailed output, and accurate color printing. Our color laser printer rentals span compact desktop units for 2-person creative teams up to floor-standing workgroup machines rated for 75,000 pages a month. You get true-to-brand color, smudge-proof output, and a per-page cost that can run 60–80% lower than inkjet over the rental term.",
         products: [
           { name: "HP Color LaserJet Pro MFP 4301fdw", price: "$64.99/mo", href: "/product/hp-color-laserjet-pro-mfp-4301fdw-wireless-color-all-in-one" },
           { name: "Brother MFC-L8900CDW", price: "$89/mo", href: "/product/brother-mfc-l8900cdw" },
@@ -71,8 +71,8 @@ const CATEGORY_CONTENT: Record<string, ContentBlock> = {
         ],
       },
       {
-        h2: "Small Office Printer Rentals — Big Capability, Small Footprint",
-        body: "Tight on space? A small office printer doesn't have to mean settling for less. Our small office printer category fits home offices, co-working desks, and 2–5 person teams that need laser-quality output, automatic document feeders, and wireless scanning to email, USB, or cloud — all in a footprint that lives on a credenza, not a dedicated table. Most small office printer rentals run $24.99–$44.99/month and ship with everything you need to print within 15 minutes of unboxing.",
+        h2: "Small Office Printers in Stock",
+        body: "Small office printers fit tight spaces and deliver reliable printing for your daily tasks. Our small office printer category fits home offices, co-working desks, and 2–5 person teams that need laser-quality output, automatic document feeders, and wireless scanning to email, USB, or cloud — all in a footprint that lives on a credenza, not a dedicated table. Most small office printer rentals run $24.99–$44.99/month and ship with everything you need to print within 15 minutes of unboxing.",
       },
     ],
     howItWorks: [
