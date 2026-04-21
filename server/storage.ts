@@ -280,7 +280,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
-    const result = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
+    const result = await db.select().from(blogPosts).where(and(eq(blogPosts.slug, slug), eq(blogPosts.published, true))).limit(1);
     return result[0];
   }
 

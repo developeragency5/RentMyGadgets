@@ -651,7 +651,7 @@ async function getCategoryMeta(categoryId: string): Promise<PageMeta | null> {
 async function getBlogMeta(slug: string): Promise<PageMeta | null> {
   try {
     const post = await storage.getBlogPostBySlug(slug);
-    if (!post || !post.published) return null;
+    if (!post) return null;
 
     const url = `${BASE_URL}/blog/${post.slug}`;
     const excerpt = post.excerpt;
@@ -683,7 +683,7 @@ async function getBlogMeta(slug: string): Promise<PageMeta | null> {
           image: post.imageUrl ? toAbsoluteUrl(post.imageUrl) : undefined,
           author: { "@type": "Person", name: post.author },
           publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } },
-          datePublished: post.createdAt instanceof Date ? post.createdAt.toISOString() : new Date(post.createdAt).toISOString(),
+          datePublished: (() => { try { const d = post.createdAt instanceof Date ? post.createdAt : new Date(post.createdAt ?? Date.now()); return isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString(); } catch { return new Date().toISOString(); } })(),
           url,
           mainEntityOfPage: { "@type": "WebPage", "@id": url },
           articleSection: post.category,
@@ -699,7 +699,8 @@ async function getBlogMeta(slug: string): Promise<PageMeta | null> {
         },
       ],
     };
-  } catch {
+  } catch (err) {
+    console.error("[SEO] getBlogMeta error:", err);
     return null;
   }
 }
