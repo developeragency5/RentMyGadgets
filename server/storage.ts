@@ -22,6 +22,18 @@ import { eq, and, desc, isNull, or, lt, sql as drizzleSql } from "drizzle-orm";
 const neonClient = neon(process.env.DATABASE_URL!);
 export const db = drizzle(neonClient);
 
+async function fixGalleryArrays<T extends { id: string; galleryImageUrls?: string[] | null }>(items: T[]): Promise<T[]> {
+  if (items.length === 0) return items;
+  const ids = items.map(p => p.id);
+  const placeholders = ids.map((_, i) => `$${i + 1}`).join(",");
+  const rows: { id: string; gallery: string[] | null }[] = await neonClient(
+    `SELECT id, array_to_json(gallery_image_urls) as gallery FROM products WHERE id IN (${placeholders})`,
+    ids
+  );
+  const galleryMap = new Map(rows.map(r => [r.id, r.gallery || []]));
+  return items.map(p => ({ ...p, galleryImageUrls: galleryMap.get(p.id) || [] }));
+}
+
 export interface IStorage {
   // Users
   getUser(id: string): Promise<User | undefined>;
@@ -141,20 +153,25 @@ export class DatabaseStorage implements IStorage {
 
   // Products
   async getAllProducts(): Promise<Product[]> {
-    return await db.select().from(products);
+    const result = await db.select().from(products);
+    return await fixGalleryArrays(result);
   }
 
   async getProduct(id: string): Promise<Product | undefined> {
     const result = await db.select().from(products).where(eq(products.id, id)).limit(1);
-    return result[0];
+    if (!result[0]) return undefined;
+    const fixed = await fixGalleryArrays([result[0]]);
+    return fixed[0];
   }
 
   async getProductsByCategory(categoryId: string): Promise<Product[]> {
-    return await db.select().from(products).where(eq(products.categoryId, categoryId));
+    const result = await db.select().from(products).where(eq(products.categoryId, categoryId));
+    return await fixGalleryArrays(result);
   }
 
   async getFeaturedProducts(): Promise<Product[]> {
-    return await db.select().from(products).where(eq(products.featured, true));
+    const result = await db.select().from(products).where(eq(products.featured, true));
+    return await fixGalleryArrays(result);
   }
 
   async createProduct(product: InsertProduct): Promise<Product> {

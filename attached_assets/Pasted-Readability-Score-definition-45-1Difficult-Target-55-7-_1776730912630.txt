@@ -1,0 +1,42 @@
+Readability
+Score definition
+45.1Difficult
+Target 55.7
+The difficulty of your text corresponds to college education level. This is just about what your audience expects.
+Words
+1,610
+Target 836
+Reading time: 7 min
+Title issues
+Title is present: “Rent Premium Tech Equipment | Laptops, Cameras & More | RentMyGadgets”
+Your title is longer than 60 characters. It could be truncated when displayed in search results.
+Your title has the right amount of words.
+Get ideas for your headline in our Topic Research tool
+Content issues
+The text is well optimized for your target readability. You can fix other issues for even better results:
+Split long paragraphs.
+1
+RentMyGadgets is the trusted destination for renting premium technology equipment in the United States. Whether you need a powerful MacBook Pro or Windows laptop for a creative project, a Canon or Sony mirrorless camera for professional photography, or a color laser printer for your small office, our flexible monthly rental plans fit any budget and timeline. We carry over 140 inspected, ready-to-ship products from trusted brands including Apple, Dell, HP, Lenovo, Canon, Sony, Nikon, Bose, DJI, Brother, Epson, and Netgear — with same-day delivery available in select areas, free shipping on rentals of 3 months or longer, optional GadgetCare+ damage protection, and a Rent-to-Own pathway if you decide to keep the gear.
+2
+We ship every order from our inspection center with tracking included. Standard shipping is 3 to 5 business days; expedited and same-day delivery are available in select metropolitan areas. Returns are always free with our prepaid label, and the first 14 days of any rental are covered by our no-questions-asked return policy. Have a question about your rental, billing, or a specific product? Contact our support team by email and we typically respond within one business day.
+3
+New to renting tech? Start with our How It Works guide, then read the RentMyGadgets blog for buying-vs-renting guides, gear roundups, and project tips. Compare any two products with the comparison tool, or use search to jump straight to a specific model. Our complete policies are linked from every page: Rental Agreement, Return & Refund Policy, Shipping Policy, Damage Policy, Security Deposit Policy, Privacy Policy, Cookie Policy, Terms & Conditions, and Accessibility Statement. Still have questions? Contact our team — we are happy to help you choose the right rental.
+Rewrite hard-to-read sentences.
+1
+Whether you need a powerful MacBook Pro or Windows laptop for a creative project, a Canon or Sony mirrorless camera for professional photography, or a color laser printer for your small office, our flexible monthly rental plans fit any budget and timeline.
+2
+We carry over 140 inspected, ready-to-ship products from trusted brands including Apple, Dell, HP, Lenovo, Canon, Sony, Nikon, Bose, DJI, Brother, Epson, and Netgear — with same-day delivery available in select areas, free shipping on rentals of 3 months or longer, optional GadgetCare+ damage protection, and a Rent-to-Own pathway if you decide to keep the gear.
+3
+Desktops & Laptops — MacBook Pro, MacBook Air, Dell XPS, HP Spectre, Lenovo ThinkPad ultrabooks, mobile workstations, gaming laptops, and high-performance desktop towers for video editing, 3D rendering, software development, and remote work.
+Show more
+Consider using active voice.
+1
+Every category is curated with current-generation models, multiple brand options, and transparent monthly pricing.
+2
+The base monthly rate is shown on each product page; longer terms automatically apply the discount below.
+3
+The cost is just 15% of your rental total, and it can be added on any product page at checkout.
+Show more
+Replace too complex words.
+1
+accessibility
