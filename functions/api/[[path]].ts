@@ -9,7 +9,7 @@ import {
   productVariantOptions,
   blogPosts,
 } from "@shared/schema";
-import { getDb, getNeonClient, fixGalleryArrays, fixGalleryArraysSync, queryProducts, type Env } from "../_lib/db";
+import { getDb, queryProducts, type Env } from "../_lib/db";
 import { hashPassword, verifyPassword } from "../_lib/password";
 import {
   createSession,

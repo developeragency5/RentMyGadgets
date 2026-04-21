@@ -2,7 +2,7 @@
 // Uses Neon HTTP via Drizzle directly (no `process.env` / no Express `storage`).
 import { eq, and, desc } from "drizzle-orm";
 import { products, categories, blogPosts } from "@shared/schema";
-import { getDb, getNeonClient, fixGalleryArrays, queryProducts, type Env } from "./db";
+import { getDb, queryProducts, type Env } from "./db";
 
 export class MissingCanonicalUrlError extends Error {
   public readonly url: string;
