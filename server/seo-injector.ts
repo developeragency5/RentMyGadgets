@@ -1,5 +1,14 @@
 import { storage } from "./storage";
 
+export class MissingCanonicalUrlError extends Error {
+  public readonly url: string;
+  constructor(message: string, url: string) {
+    super(message);
+    this.name = 'MissingCanonicalUrlError';
+    this.url = url;
+  }
+}
+
 interface PageMeta {
   title: string;
   description: string;
@@ -41,7 +50,7 @@ const SITE_NAME = "RentMyGadgets";
 const DEFAULT_IMAGE = "/opengraph.jpg";
 const BASE_URL = "https://www.rentmygadgets.com";
 
-function toAbsoluteUrl(path: string): string {
+export function toAbsoluteUrl(path: string): string {
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
   return `${BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
 }
@@ -1194,16 +1203,17 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
   if (!meta.canonicalUrl) {
     const message = `[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`;
+    console.error(JSON.stringify({
+      level: 'error',
+      component: 'seo-injector',
+      event: 'missing_canonical_url',
+      url,
+      message,
+    }));
     if (process.env.NODE_ENV === 'production') {
-      console.error(JSON.stringify({
-        level: 'error',
-        component: 'seo-injector',
-        event: 'missing_canonical_url',
-        url,
-        message,
-      }));
+      meta.canonicalUrl = toAbsoluteUrl(url.split('?')[0]);
     } else {
-      throw new Error(message);
+      throw new MissingCanonicalUrlError(message, url);
     }
   }
   const fullUrl = meta.canonicalUrl;

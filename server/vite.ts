@@ -5,7 +5,7 @@ import viteConfig from "../vite.config";
 import fs from "fs";
 import path from "path";
 import { nanoid } from "nanoid";
-import { getMetaForUrl, injectMeta } from "./seo-injector";
+import { getMetaForUrl, injectMeta, MissingCanonicalUrlError, toAbsoluteUrl } from "./seo-injector";
 
 const viteLogger = createLogger();
 
@@ -54,7 +54,17 @@ export async function setupVite(server: Server, app: Express) {
       const page = await vite.transformIndexHtml(url, template);
       let output = page.replace(/<meta property="og:image"[^>]*\/?>\s*/gi, "");
       output = output.replace(/<meta name="twitter:image"[^>]*\/?>\s*/gi, "");
-      output = await injectMeta(output, meta, url);
+      try {
+        output = await injectMeta(output, meta, url);
+      } catch (seoErr) {
+        if (seoErr instanceof MissingCanonicalUrlError) {
+          console.error(`\x1b[31m✗ ${seoErr.message}\x1b[0m`);
+          meta.canonicalUrl = toAbsoluteUrl(url.split('?')[0]);
+          output = await injectMeta(output, meta, url);
+        } else {
+          throw seoErr;
+        }
+      }
       res.status(200).set({ "Content-Type": "text/html" }).end(output);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
