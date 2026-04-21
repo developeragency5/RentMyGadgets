@@ -104,6 +104,12 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
     description: "Complete your rental order securely. Review your items, enter delivery details, and confirm your tech equipment rental booking today.",
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Secure Checkout", description: "Complete your technology equipment rental order securely.", url: `${BASE_URL}/checkout`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
+  "/ad-variants": {
+    title: "Google Ads — Printer Rental A/B Test Variants",
+    description: "Internal marketing reference: four headline + description pairs prepared for Google Ads A/B testing on the office printer rental category.",
+    noindex: true,
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Ad Variants", description: "Internal marketing reference for Google Ads variants.", url: `${BASE_URL}/ad-variants`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
   "/dashboard": {
     title: "Your Account Dashboard",
     description: "Manage your RentMyGadgets account. View active rentals, track deliveries, review order history, and update your account settings.",

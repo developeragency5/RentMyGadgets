@@ -131,6 +131,12 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
     noindex: true,
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Account Dashboard", description: "Manage your technology rentals, track deliveries, and update account settings.", url: `${BASE_URL}/dashboard`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
+  "/ad-variants": {
+    title: "Google Ads — Printer Rental A/B Test Variants",
+    description: "Internal marketing reference: four headline + description pairs prepared for Google Ads A/B testing on the office printer rental category.",
+    noindex: true,
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Ad Variants", description: "Internal marketing reference for Google Ads variants.", url: `${BASE_URL}/ad-variants`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
   "/about": {
     title: "About Us",
     description: "Learn about RentMyGadgets, our mission to make premium technology accessible through flexible rentals, and our commitment to quality service.",
