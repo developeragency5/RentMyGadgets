@@ -70,6 +70,7 @@ function Router() {
         <Route path="/categories" component={Categories} />
         <Route path="/categories/:id" component={ProductList} />
         <Route path="/products" component={ProductList} />
+        <Route path="/collections/:slug" component={ProductList} />
         <Route path="/product/:id" component={ProductDetail} />
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />

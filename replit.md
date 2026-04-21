@@ -77,7 +77,8 @@ Preferred communication style: Simple, everyday language.
     - Both dev (`vite.ts`) and production (`static.ts`) use the same async injection pipeline
     - **Image Sitemap**: Google Image Sitemap extension (`xmlns:image`) with `<image:image>` tags for all product images (600+ URLs). Each product's sitemap entry includes `<image:loc>` and `<image:title>` for main + gallery images, making them directly crawlable.
     - **Multi-Image OG Tags**: Product pages include multiple `og:image` tags (main + gallery), all gallery images in JSON-LD Product schema `image` array, and correct `twitter:image`. Dev server strips default template tags before Vite transform to prevent overwriting (`server/vite.ts`).
-    - Dynamic sitemap.xml at /sitemap.xml with 177+ URLs including all pages, categories, products, and blog posts (with `<lastmod>` dates)
+    - **Printer Collection Pages**: 4 SEO-optimized collection landing pages at `/collections/office-printers`, `/collections/laser-printers`, `/collections/color-laser-printers`, `/collections/small-office-printers`. Each has unique title, description, keywords, and CollectionPage JSON-LD. Client-side SeoHead and server-side seo-injector stay in sync. Routes reuse the ProductList component mapped to the Printers & Scanners category.
+    - Dynamic sitemap.xml at /sitemap.xml with 181+ URLs including all pages, categories, products, blog posts, and collection pages (with `<lastmod>` dates)
     - robots.txt with absolute sitemap URL (`https://www.rentmygadgets.com/sitemap.xml`) and Disallow for /api/, /checkout, /dashboard
     - Canonical URLs on all pages via SeoHead component (client-side) and seo-injector (server-side)
     - React.lazy() and Suspense for code splitting (non-critical pages lazy loaded)

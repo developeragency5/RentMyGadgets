@@ -40,11 +40,44 @@ const categoryLifestyleImages: Record<string, string> = {
 
 type SortOption = 'featured' | 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc';
 
+const COLLECTION_CATEGORY_MAP: Record<string, string> = {
+  "office-printers": "18079e56-3836-4542-b12a-733b4ce84bdd",
+  "laser-printers": "18079e56-3836-4542-b12a-733b4ce84bdd",
+  "color-laser-printers": "18079e56-3836-4542-b12a-733b4ce84bdd",
+  "small-office-printers": "18079e56-3836-4542-b12a-733b4ce84bdd",
+};
+
+const COLLECTION_SEO: Record<string, { title: string; description: string; keywords: string }> = {
+  "office-printers": {
+    title: "Office Printers for Every Desk",
+    description: "Office printers that print, scan, copy, and handle all your paperwork in one handy device.",
+    keywords: "office printer, office printers, rent office printer, all-in-one office printer, office printer rental",
+  },
+  "laser-printers": {
+    title: "Laser Printers for Your Office",
+    description: "Laser printers deliver sharp text, fast speeds, and low cost per page for any busy office.",
+    keywords: "laser printer, laser printers, rent laser printer, laser printer rental, office laser printer",
+  },
+  "color-laser-printers": {
+    title: "Color Laser Printers Made Easy",
+    description: "Color laser printers produce vibrant prints, detailed output, and accurate color printing.",
+    keywords: "color laser printer, color laser printers, rent color laser printer, color laser printer rental",
+  },
+  "small-office-printers": {
+    title: "Small Office Printers in Stock",
+    description: "Small office printers fit tight spaces and deliver reliable printing for your daily tasks.",
+    keywords: "small office printer, small office printers, rent small office printer, compact office printer rental",
+  },
+};
+
 export default function ProductList() {
   const [matchCategory, categoryParams] = useRoute("/categories/:id");
   const [matchProducts] = useRoute("/products");
-  const categoryId = categoryParams?.id;
-  const isAllProductsView = matchProducts;
+  const [matchCollection, collectionParams] = useRoute("/collections/:slug");
+  const collectionSlug = collectionParams?.slug || "";
+  const collectionCategoryId = COLLECTION_CATEGORY_MAP[collectionSlug];
+  const categoryId = categoryParams?.id || collectionCategoryId;
+  const isAllProductsView = matchProducts && !matchCollection;
   const { addToCart } = useCart();
   const { addToCompare, removeFromCompare, isInCompare, canAddMore } = useCompare();
   const { toast } = useToast();
@@ -436,27 +469,32 @@ export default function ProductList() {
     );
   }
 
-  const pageTitle = isAllProductsView ? "All Products" : category?.name || "Products";
-  const pageDescription = isAllProductsView 
+  const collectionSeo = matchCollection ? COLLECTION_SEO[collectionSlug] : undefined;
+  const pageTitle = collectionSeo?.title || (isAllProductsView ? "All Products" : category?.name || "Products");
+  const pageDescription = collectionSeo?.description || (isAllProductsView 
     ? "Browse our complete collection of premium tech rentals at affordable daily, weekly, or monthly rates."
-    : `Browse and rent ${category?.name?.toLowerCase()} at affordable daily, weekly, or monthly rates. ${category?.description || 'Wide selection of professional equipment.'}`;
+    : `Browse and rent ${category?.name?.toLowerCase()} at affordable daily, weekly, or monthly rates. ${category?.description || 'Wide selection of professional equipment.'}`);
+  const pageKeywords = collectionSeo?.keywords || (isAllProductsView 
+    ? "tech rental, gadget rental, laptop rental, camera rental, equipment rental"
+    : `rent ${category?.name?.toLowerCase()}, ${category?.name?.toLowerCase()} rental, hire ${category?.name?.toLowerCase()}, ${category?.name?.toLowerCase()} for rent, affordable ${category?.name?.toLowerCase()} rental`);
+  const pageUrl = matchCollection
+    ? `https://www.rentmygadgets.com/collections/${collectionSlug}`
+    : isAllProductsView ? "https://www.rentmygadgets.com/products" : `https://www.rentmygadgets.com/categories/${categoryId}`;
 
   return (
     <Layout>
       <SeoHead 
-        title={`Rent ${pageTitle}`}
+        title={collectionSeo ? pageTitle : `Rent ${pageTitle}`}
         description={pageDescription}
         image={category?.imageUrl || undefined}
-        keywords={isAllProductsView 
-          ? "tech rental, gadget rental, laptop rental, camera rental, equipment rental"
-          : `rent ${category?.name?.toLowerCase()}, ${category?.name?.toLowerCase()} rental, hire ${category?.name?.toLowerCase()}, ${category?.name?.toLowerCase()} for rent, affordable ${category?.name?.toLowerCase()} rental`}
+        keywords={pageKeywords}
       />
-      <StructuredData type="collectionPage" name={`${pageTitle} Rentals`} description={pageDescription} url={isAllProductsView ? "https://rentmygadgets.com/products" : `https://rentmygadgets.com/categories/${categoryId}`} />
-      {!isAllProductsView && category && (
+      <StructuredData type="collectionPage" name={collectionSeo ? pageTitle : `${pageTitle} Rentals`} description={pageDescription} url={pageUrl} />
+      {(matchCollection || (!isAllProductsView && category)) && (
         <StructuredData type="breadcrumb" items={[
-          { name: "Home", url: "https://rentmygadgets.com" },
-          { name: "Categories", url: "https://rentmygadgets.com/categories" },
-          { name: category.name },
+          { name: "Home", url: "https://www.rentmygadgets.com" },
+          { name: "Categories", url: "https://www.rentmygadgets.com/categories" },
+          ...(matchCollection ? [{ name: pageTitle }] : [{ name: category!.name }]),
         ]} />
       )}
       {/* Lifestyle Banner */}

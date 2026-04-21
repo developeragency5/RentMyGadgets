@@ -111,6 +111,30 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
     description: "Manage your RentMyGadgets account. View active rentals, track deliveries, review order history, and update your account settings.",
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Account Dashboard", description: "Manage your technology rentals, track deliveries, and update account settings.", url: `${BASE_URL}/dashboard`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
+  "/collections/office-printers": {
+    title: "Office Printers for Every Desk",
+    description: "Office printers that print, scan, copy, and handle all your paperwork in one handy device.",
+    keywords: "office printer, office printers, rent office printer, all-in-one office printer, office printer rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Office Printers for Every Desk", description: "Office printers that print, scan, copy, and handle all your paperwork in one handy device.", url: `${BASE_URL}/collections/office-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/laser-printers": {
+    title: "Laser Printers for Your Office",
+    description: "Laser printers deliver sharp text, fast speeds, and low cost per page for any busy office.",
+    keywords: "laser printer, laser printers, rent laser printer, laser printer rental, office laser printer",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Laser Printers for Your Office", description: "Laser printers deliver sharp text, fast speeds, and low cost per page for any busy office.", url: `${BASE_URL}/collections/laser-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/color-laser-printers": {
+    title: "Color Laser Printers Made Easy",
+    description: "Color laser printers produce vibrant prints, detailed output, and accurate color printing.",
+    keywords: "color laser printer, color laser printers, rent color laser printer, color laser printer rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Color Laser Printers Made Easy", description: "Color laser printers produce vibrant prints, detailed output, and accurate color printing.", url: `${BASE_URL}/collections/color-laser-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
+  "/collections/small-office-printers": {
+    title: "Small Office Printers in Stock",
+    description: "Small office printers fit tight spaces and deliver reliable printing for your daily tasks.",
+    keywords: "small office printer, small office printers, rent small office printer, compact office printer rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Small Office Printers in Stock", description: "Small office printers fit tight spaces and deliver reliable printing for your daily tasks.", url: `${BASE_URL}/collections/small-office-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
   "/about": {
     title: "About Us",
     description: "Learn about RentMyGadgets, our mission to make premium technology accessible through flexible rentals, and our commitment to quality service.",

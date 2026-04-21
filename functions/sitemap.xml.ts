@@ -27,6 +27,10 @@ const STATIC_PAGES: { loc: string; priority: string; changefreq: string }[] = [
   { loc: "/do-not-sell", priority: "0.3", changefreq: "yearly" },
   { loc: "/accessibility", priority: "0.3", changefreq: "yearly" },
   { loc: "/advertising-disclosure", priority: "0.3", changefreq: "yearly" },
+  { loc: "/collections/office-printers", priority: "0.8", changefreq: "weekly" },
+  { loc: "/collections/laser-printers", priority: "0.8", changefreq: "weekly" },
+  { loc: "/collections/color-laser-printers", priority: "0.8", changefreq: "weekly" },
+  { loc: "/collections/small-office-printers", priority: "0.8", changefreq: "weekly" },
 ];
 
 function escXml(s: string): string {
