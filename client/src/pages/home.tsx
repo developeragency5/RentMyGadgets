@@ -882,42 +882,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Who Rents From Us */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              <Building2 className="h-4 w-4" />
-              Who We Serve
-            </div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-              Built for <span className="text-primary">Everyone</span>
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              From solo freelancers to Fortune 500 companies — our rental platform scales to fit any need.
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: Briefcase, title: "Businesses", desc: "Equip teams with the latest tech on flexible terms. Scale up or down without capital expenditure." },
-              { icon: GraduationCap, title: "Students", desc: "Get the powerful laptop or camera you need for coursework without the student-budget stress." },
-              { icon: Camera, title: "Creatives", desc: "Access cinema-grade cameras, lighting rigs, and editing workstations for your next project." },
-              { icon: CalendarDays, title: "Event Planners", desc: "Rent routers, laptops, and screens for conferences, trade shows, and corporate retreats." },
-            ].map((persona, i) => (
-              <AnimatedCard key={i} index={i}>
-                <div className="text-center p-6 rounded-2xl hover:bg-slate-50 transition-colors" data-testid={`persona-${i}`}>
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <persona.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-bold text-foreground mb-2">{persona.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{persona.desc}</p>
-                </div>
-              </AnimatedCard>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section className="py-24 bg-gradient-to-b from-slate-50 to-white">
