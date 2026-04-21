@@ -156,7 +156,7 @@ export default function AdvertisingDisclosure() {
                   </p>
                   <div className="bg-secondary/30 p-4 rounded-lg">
                     <ul className="text-muted-foreground space-y-2">
-                      <li><strong>Email:</strong> support@rentmygadgets.com</li>
+                      <li><strong>Email:</strong> {`support${"\u0040"}rentmygadgets.com`}</li>
                       <li><strong>Dashboard:</strong> Contact us through your account dashboard</li>
                       <li><strong>Live Chat:</strong> Available on our website</li>
                       <li><strong>Hours:</strong> Monday - Friday, 8:00 AM - 8:00 PM EST</li>

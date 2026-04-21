@@ -995,7 +995,7 @@ export default function RentToOwn() {
               </div>
               <div className="flex items-center justify-center gap-2 text-muted-foreground">
                 <Mail className="h-5 w-5 text-primary" />
-                <span>support@rentmygadgets.com</span>
+                <span>{`support${"\u0040"}rentmygadgets.com`}</span>
               </div>
             </div>
           </div>

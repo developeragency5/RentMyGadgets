@@ -1,0 +1,82 @@
+Context: rentmygadgets.com now has SSR body content working. However, the <head> is still missing critical tags that Microsoft, Google, and Meta ad platforms require. Also, some subpages may still not be SSR'd.
+
+Required fixes:
+
+HEAD — add to every page:
+
+1. Add <link rel="canonical"> to every page with the correct absolute URL:
+   Homepage: <link rel="canonical" href="https://rentmygadgets.com/" />
+   Product pages: <link rel="canonical" href="https://rentmygadgets.com/products/[slug]" />
+   Category pages: <link rel="canonical" href="https://rentmygadgets.com/categories" />
+   (and so on for every route)
+
+2. Add <meta property="og:url"> matching the canonical on every page.
+
+3. Add <meta name="robots" content="index, follow" /> to every page.
+
+JSON-LD — add structured data to the homepage:
+
+4. Organization JSON-LD:
+   {
+     "@context": "https://schema.org",
+     "@type": "Organization",
+     "name": "RentMyGadgets",
+     "url": "https://rentmygadgets.com",
+     "logo": "https://rentmygadgets.com/favicon.svg",
+     "description": "Premium tech equipment rentals — laptops, cameras, desktops and accessories with flexible monthly plans.",
+     "email": "support@rentmygadgets.com",
+     "contactPoint": {
+       "@type": "ContactPoint",
+       "contactType": "customer service",
+       "email": "support@rentmygadgets.com",
+       "url": "https://rentmygadgets.com/contact"
+     }
+   }
+
+5. WebSite JSON-LD with SearchAction:
+   {
+     "@context": "https://schema.org",
+     "@type": "WebSite",
+     "name": "RentMyGadgets",
+     "url": "https://rentmygadgets.com",
+     "potentialAction": {
+       "@type": "SearchAction",
+       "target": "https://rentmygadgets.com/search?q={search_term_string}",
+       "query-input": "required name=search_term_string"
+     }
+   }
+
+6. BreadcrumbList JSON-LD on every page (homepage = 1 item, subpages = 2+ items).
+
+7. On product listing/category pages, add ItemList JSON-LD listing available rental products with name, url, description, and price.
+
+8. On individual product pages, add Product JSON-LD with name, description, image, offers (price, priceCurrency, availability).
+
+SUBPAGE VERIFICATION:
+
+9. Verify that ALL of these pages return SSR'd content (not 404 or empty shell) by checking that each has a correct <title> and body content:
+   /products
+   /categories
+   /how-it-works
+   /gadgetcare
+   /rent-to-own
+   /blog
+   /about
+   /contact
+   /search
+   /compare
+   /privacy
+   /terms
+   /rental-policy
+   /cookies
+   /do-not-sell
+   /accessibility
+   /shipping-policy
+   /return-policy
+   /damage-policy
+   /security-deposit
+   /advertising-disclosure
+
+If any of these return a 404 or empty body in the server-rendered HTML, fix them using the same prerender approach as the homepage.
+
+Do not change the client-side UI or the existing SSR body content.

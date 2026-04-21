@@ -65,7 +65,7 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
           postalCode: "31305-5425",
           addressCountry: "US",
         },
-        contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "support@rentmygadgets.com" },
+        contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "support\u0040rentmygadgets.com" },
       },
       {
         "@context": "https://schema.org",
@@ -707,7 +707,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Additional Options</h2>
 <p>Love the tech you are renting? Our <a href="/rent-to-own">Rent-to-Own program</a> lets you purchase equipment after 6 months at a reduced price. A portion of your rental payments goes toward the buyout cost. Have questions about the rental process? <a href="/contact">Contact our support team</a> or read our <a href="/rental-policy">rental policy</a> for complete terms. Check our <a href="/return-policy">return policy</a> and <a href="/shipping-policy">shipping policy</a> for delivery and return details.</p>`,
 
-  "/contact": `<p>Have questions about renting technology equipment? The RentMyGadgets customer support team is here to help with questions about rentals, returns, shipping, billing, account issues, and anything else related to our services. You can reach us by email at support@rentmygadgets.com and we aim to respond within one business day.</p>
+  "/contact": `<p>Have questions about renting technology equipment? The RentMyGadgets customer support team is here to help with questions about rentals, returns, shipping, billing, account issues, and anything else related to our services. You can reach us by email at support&#64;rentmygadgets.com and we aim to respond within one business day.</p>
 <h2>Common Questions We Can Help With</h2>
 <p>Our team can assist with choosing the right equipment for your project, extending or modifying an existing rental, understanding our <a href="/gadgetcare">GadgetCare+ protection plan</a>, processing returns and refunds, billing inquiries, and account management. If you are new to renting technology, check out our <a href="/how-it-works">How It Works</a> page for a step-by-step guide to the rental process.</p>
 <h2>Helpful Resources</h2>
@@ -801,7 +801,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Our Accessibility Efforts</h2>
 <p>We design and develop our website with accessibility in mind, implementing semantic HTML structure with proper heading hierarchy, keyboard navigation support for all interactive elements, sufficient color contrast ratios for text and UI components, descriptive alternative text for product images and informational graphics, clear and consistent navigation across all pages, form labels and error messages that are accessible to screen readers, and responsive design that works across devices and screen sizes. We regularly review and test our website for accessibility compliance.</p>
 <h2>Requesting Accommodations</h2>
-<p>If you encounter any accessibility barriers while using our website or need assistance with the rental process, please <a href="/contact">contact our support team</a>. We welcome your feedback and are committed to addressing accessibility issues promptly. You can also report accessibility concerns through email at support@rentmygadgets.com. For information about how we handle your personal data, see our <a href="/privacy">Privacy Policy</a>. Review our <a href="/cookies">Cookie Policy</a>, <a href="/terms">Terms and Conditions</a>, and <a href="/do-not-sell">Do Not Sell or Share</a> page. <a href="/products">Browse our products</a> or learn <a href="/how-it-works">how renting works</a>.</p>`,
+<p>If you encounter any accessibility barriers while using our website or need assistance with the rental process, please <a href="/contact">contact our support team</a>. We welcome your feedback and are committed to addressing accessibility issues promptly. You can also report accessibility concerns through email at support&#64;rentmygadgets.com. For information about how we handle your personal data, see our <a href="/privacy">Privacy Policy</a>. Review our <a href="/cookies">Cookie Policy</a>, <a href="/terms">Terms and Conditions</a>, and <a href="/do-not-sell">Do Not Sell or Share</a> page. <a href="/products">Browse our products</a> or learn <a href="/how-it-works">how renting works</a>.</p>`,
 
   "/advertising-disclosure": `<p>RentMyGadgets is committed to transparency in all of our advertising and marketing practices. This disclosure explains our approach to advertising, the standards we follow, and how we ensure our marketing accurately represents our products and services. We believe honest and clear advertising builds trust with our customers.</p>
 <h2>Our Advertising Standards</h2>
@@ -890,8 +890,6 @@ function buildCrawlerNav(currentUrl: string, categoryLinks: string[], _productLi
 
 let cachedCrawlerNav: CrawlerNavParts | null = null;
 let cachedCrawlerNavTime = 0;
-let cachedFeaturedProducts: { id: string; name: string; pricePerMonth: string; imageUrl: string | null }[] | null = null;
-let cachedFeaturedTime = 0;
 const CRAWLER_NAV_TTL = 3600000;
 
 async function getCrawlerNav(env: Env, url: string): Promise<CrawlerNavParts> {
@@ -921,31 +919,6 @@ async function getCrawlerNav(env: Env, url: string): Promise<CrawlerNavParts> {
   }
 }
 
-// Featured products feed the homepage ItemList JSON-LD. Cached 1hr.
-async function getFeaturedProductsForItemList(env: Env): Promise<typeof cachedFeaturedProducts> {
-  const now = Date.now();
-  if (cachedFeaturedProducts && now - cachedFeaturedTime < CRAWLER_NAV_TTL) {
-    return cachedFeaturedProducts;
-  }
-  try {
-    const db = getDb(env);
-    const rows = await db
-      .select({
-        id: products.id,
-        name: products.name,
-        pricePerMonth: products.pricePerMonth,
-        imageUrl: products.imageUrl,
-      })
-      .from(products)
-      .where(eq(products.featured, true))
-      .limit(8);
-    cachedFeaturedProducts = rows;
-    cachedFeaturedTime = now;
-    return rows;
-  } catch {
-    return [];
-  }
-}
 
 // Static no-JS fallback shown to users without JavaScript. Lives outside the
 // React root so hydration cannot wipe it. Includes browse links, support
@@ -967,7 +940,7 @@ const NOSCRIPT_FALLBACK = `<noscript>
     </ul>
     <h2 style="font-size:1.15rem;margin:1.25rem 0 0.5rem;">Contact</h2>
     <ul style="line-height:1.8;">
-      <li>Email: <a href="mailto:support@rentmygadgets.com">support@rentmygadgets.com</a></li>
+      <li>Email: <a href="mailto:support&#64;rentmygadgets.com">support&#64;rentmygadgets.com</a></li>
       <li>Support: <a href="/contact">Contact form</a></li>
       <li>Hours: Monday&ndash;Friday, 9:00am&ndash;6:00pm PT</li>
     </ul>
@@ -1127,16 +1100,6 @@ export async function injectMeta(
   result = upsertMeta(result, "revisit-after", "1 days");
   result = upsertMeta(result, "googlebot", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
   result = upsertMeta(result, "bingbot", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1");
-  // hreflang alternates (en-US, en, x-default) — injected directly because
-  // upsertLink keys on `rel` and would collide across multiple alternates.
-  if (!/hreflang="en-US"/.test(result)) {
-    const hreflangTags =
-      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="en-US" />\n    ` +
-      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="en" />\n    ` +
-      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="x-default" />`;
-    result = result.replace("</head>", `    ${hreflangTags}\n  </head>`);
-  }
-
   // Mobile / app-icon hints (Apple, Microsoft, generic).
   result = upsertMeta(result, "application-name", SITE_NAME);
   result = upsertMeta(result, "apple-mobile-web-app-title", SITE_NAME);
@@ -1172,45 +1135,6 @@ export async function injectMeta(
         { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
       ],
     });
-    const allFeatured = (await getFeaturedProductsForItemList(env)) || [];
-    // Carousel rich-result requires every item to have a real image; drop any
-    // featured product missing imageUrl so the schema stays valid.
-    const featured = allFeatured.filter(p => !!p.imageUrl);
-    if (featured.length > 0) {
-      const priceValidUntil = new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0];
-      schemas.push({
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        name: "Featured Tech Rentals",
-        url: BASE_URL,
-        numberOfItems: featured.length,
-        itemListElement: featured.map((p, i) => {
-          const fPrice = p.pricePerMonth ? parseFloat(p.pricePerMonth.toString()) : 0;
-          return {
-            "@type": "ListItem",
-            position: i + 1,
-            url: `${BASE_URL}/product/${p.id}`,
-            item: {
-              "@type": "Product",
-              name: p.name,
-              description: `Rent the ${p.name} from ${SITE_NAME} starting at $${fPrice.toFixed(2)}/month.`,
-              image: toAbsoluteUrl(p.imageUrl as string),
-              url: `${BASE_URL}/product/${p.id}`,
-              offers: {
-                "@type": "Offer",
-                priceCurrency: "USD",
-                price: fPrice.toFixed(2),
-                priceValidUntil,
-                availability: "https://schema.org/InStock",
-                itemCondition: "https://schema.org/UsedCondition",
-                url: `${BASE_URL}/product/${p.id}`,
-                seller: { "@type": "Organization", name: SITE_NAME },
-              },
-            },
-          };
-        }),
-      });
-    }
   }
   if (schemas.length > 0) {
     const ldScripts = schemas

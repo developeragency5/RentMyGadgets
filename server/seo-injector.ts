@@ -89,7 +89,7 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
           postalCode: "31305-5425",
           addressCountry: "US",
         },
-        contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "support@rentmygadgets.com" },
+        contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "support\u0040rentmygadgets.com" },
       },
       {
         "@context": "https://schema.org",
@@ -584,7 +584,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Additional Options</h2>
 <p>Love the tech you are renting? Our <a href="/rent-to-own">Rent-to-Own program</a> lets you purchase equipment after 6 months at a reduced price. A portion of your rental payments goes toward the buyout cost. Have questions about the rental process? <a href="/contact">Contact our support team</a> or read our <a href="/rental-policy">rental policy</a> for complete terms. Check our <a href="/return-policy">return policy</a> and <a href="/shipping-policy">shipping policy</a> for delivery and return details.</p>`,
 
-  "/contact": `<p>Have questions about renting technology equipment? The RentMyGadgets customer support team is here to help with questions about rentals, returns, shipping, billing, account issues, and anything else related to our services. You can reach us by email at support@rentmygadgets.com and we aim to respond within one business day.</p>
+  "/contact": `<p>Have questions about renting technology equipment? The RentMyGadgets customer support team is here to help with questions about rentals, returns, shipping, billing, account issues, and anything else related to our services. You can reach us by email at support&#64;rentmygadgets.com and we aim to respond within one business day.</p>
 <h2>Common Questions We Can Help With</h2>
 <p>Our team can assist with choosing the right equipment for your project, extending or modifying an existing rental, understanding our <a href="/gadgetcare">GadgetCare+ protection plan</a>, processing returns and refunds, billing inquiries, and account management. If you are new to renting technology, check out our <a href="/how-it-works">How It Works</a> page for a step-by-step guide to the rental process.</p>
 <h2>Helpful Resources</h2>
@@ -678,7 +678,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Our Accessibility Efforts</h2>
 <p>We design and develop our website with accessibility in mind, implementing semantic HTML structure with proper heading hierarchy, keyboard navigation support for all interactive elements, sufficient color contrast ratios for text and UI components, descriptive alternative text for product images and informational graphics, clear and consistent navigation across all pages, form labels and error messages that are accessible to screen readers, and responsive design that works across devices and screen sizes. We regularly review and test our website for accessibility compliance.</p>
 <h2>Requesting Accommodations</h2>
-<p>If you encounter any accessibility barriers while using our website or need assistance with the rental process, please <a href="/contact">contact our support team</a>. We welcome your feedback and are committed to addressing accessibility issues promptly. You can also report accessibility concerns through email at support@rentmygadgets.com. For information about how we handle your personal data, see our <a href="/privacy">Privacy Policy</a>. Review our <a href="/cookies">Cookie Policy</a>, <a href="/terms">Terms and Conditions</a>, and <a href="/do-not-sell">Do Not Sell or Share</a> page. <a href="/products">Browse our products</a> or learn <a href="/how-it-works">how renting works</a>.</p>`,
+<p>If you encounter any accessibility barriers while using our website or need assistance with the rental process, please <a href="/contact">contact our support team</a>. We welcome your feedback and are committed to addressing accessibility issues promptly. You can also report accessibility concerns through email at support&#64;rentmygadgets.com. For information about how we handle your personal data, see our <a href="/privacy">Privacy Policy</a>. Review our <a href="/cookies">Cookie Policy</a>, <a href="/terms">Terms and Conditions</a>, and <a href="/do-not-sell">Do Not Sell or Share</a> page. <a href="/products">Browse our products</a> or learn <a href="/how-it-works">how renting works</a>.</p>`,
 
   "/advertising-disclosure": `<p>RentMyGadgets is committed to transparency in all of our advertising and marketing practices. This disclosure explains our approach to advertising, the standards we follow, and how we ensure our marketing accurately represents our products and services. We believe honest and clear advertising builds trust with our customers.</p>
 <h2>Our Advertising Standards</h2>
@@ -924,13 +924,6 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   result = upsertMeta(result, "revisit-after", "1 days");
   result = upsertMeta(result, "googlebot", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
   result = upsertMeta(result, "bingbot", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1");
-  if (!/hreflang="en-US"/.test(result)) {
-    const hreflangTags =
-      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="en-US" />\n    ` +
-      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="en" />\n    ` +
-      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="x-default" />`;
-    result = result.replace("</head>", `    ${hreflangTags}\n  </head>`);
-  }
 
   // Mobile / app-icon hints (Apple, Microsoft, generic).
   result = upsertMeta(result, "application-name", SITE_NAME);

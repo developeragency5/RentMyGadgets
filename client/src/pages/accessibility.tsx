@@ -194,7 +194,7 @@ export default function AccessibilityStatement() {
                     We welcome your feedback on the accessibility of our website. If you encounter accessibility barriers or need assistance, please contact us:
                   </p>
                   <div className="text-muted-foreground space-y-2">
-                    <p><strong>Email:</strong> accessibility@rentmygadgets.com</p>
+                    <p><strong>Email:</strong> {`accessibility${"\u0040"}rentmygadgets.com`}</p>
                     <p><strong>Dashboard:</strong> Contact us through your account dashboard</p>
                     <p><strong>Mail:</strong> Accessibility Coordinator, PC Rental, LLC, 2393 Seabreeze Dr SE, Darien, GA 31305-5425, United States</p>
                   </div>

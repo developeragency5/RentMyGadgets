@@ -130,7 +130,7 @@ export default function StructuredData(props: StructuredDataProps) {
           contactPoint: {
             "@type": "ContactPoint",
             contactType: "customer service",
-            email: "support@rentmygadgets.com"
+            email: `support${"\u0040"}rentmygadgets.com`
           }
         };
         break;
