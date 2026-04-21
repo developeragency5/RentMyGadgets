@@ -208,6 +208,12 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
     description: "Own the tech you love. After 6 months of renting, purchase your equipment at a 30% discount off retail price. Flexible path to ownership.",
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Rent-to-Own Program", description: "Purchase your rented technology equipment at a reduced price after 6 months of renting.", url: `${BASE_URL}/rent-to-own`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
+  "/office-printer-rentals": {
+    title: "Office Printer Rentals | Laser & Color Laser Printers for Small Offices",
+    description: "Rent a reliable office printer, laser printer, or color laser printer for your small office. Flexible monthly plans, fast delivery in select areas, no long-term contracts.",
+    keywords: "office printer rental, laser printer rental, color laser printer rental, small office printer, rent office printer, business printer rental, monthly printer rental, HP printer rental, Brother printer rental, Canon printer rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Office Printer Rentals", description: "Rent business-grade laser printers, color laser printers, and small office printers from HP, Brother, Canon, Xerox, and Epson with flexible monthly plans.", url: `${BASE_URL}/office-printer-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
   "/terms": {
     title: "Terms and Conditions",
     description: "Read our terms and conditions for renting technology equipment. Understand your rights and responsibilities when using RentMyGadgets services.",
@@ -282,6 +288,7 @@ const STATIC_KEYWORDS: Record<string, string> = {
   "/how-it-works": "how to rent tech, rental process, how rental works, rent in 3 steps, monthly tech rental guide",
   "/gadgetcare": "GadgetCare+, rental damage protection, accidental damage coverage, liquid spill protection, tech protection plan",
   "/rent-to-own": "rent to own electronics, rent to own laptop, rent to own camera, buy after renting, ownership program",
+  "/office-printer-rentals": "office printer rental, laser printer rental, color laser printer rental, small office printer, rent office printer, business printer rental, HP printer rental, Brother printer rental",
   "/terms": "terms and conditions, rental terms, RentMyGadgets terms of service, user agreement",
   "/rental-policy": "rental agreement, rental policy, rental terms, rental extension, equipment care policy",
   "/return-policy": "return policy, refund policy, 14 day returns, free returns, rental refund",
@@ -958,6 +965,20 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <p>To compare products, browse our <a href="/products">product catalog</a> or <a href="/categories">categories</a> and add items to your comparison list from any product page. You can compare up to four products at once, viewing their specifications, rental pricing across different term lengths, available configurations, and customer information side by side. This makes it easy to see which product best fits your needs and budget.</p>
 <h2>Things to Consider When Comparing</h2>
 <p>When comparing rental products, consider the monthly rental price across different term lengths — remember that longer terms come with bigger discounts (10% off for 3 months, 20% for 6 months, 30% for 12 months). Check whether the product is eligible for our <a href="/rent-to-own">Rent-to-Own program</a> if you might want to keep it after your rental. Consider adding <a href="/gadgetcare">GadgetCare+ protection</a> for valuable equipment. Not sure what you need? <a href="/search">Search our catalog</a>, read our <a href="/blog">product guides</a>, visit <a href="/how-it-works">How It Works</a>, or <a href="/contact">contact our team</a> for personalized recommendations.</p>`,
+
+  "/office-printer-rentals": `<p>RentMyGadgets offers flexible monthly rentals on business-grade laser printers, color laser printers, and compact small office printers from brands you already trust — HP, Brother, Canon, Xerox, and Epson. Whether you're outfitting a new workspace, handling a short-term project, or scaling print capacity for tax season, our rental plans put a professional office printer on your desk without a five-figure capital purchase or a three-year lease.</p>
+<h2>Why Rent an Office Printer Instead of Buying?</h2>
+<p>Buying an office printer outright locks up cash, ties you to one device for years, and leaves you responsible for toner, maintenance, and eventual disposal. Renting flips that equation. You get the exact printer you need for as long as you need it, with optional damage protection and no surprise repair bills. If your print volume changes or a better model hits the market, you swap devices instead of selling used equipment at a loss. For small offices, startups, and project-based teams, renting keeps your balance sheet lean and your office printing modern.</p>
+<h2>Laser Printer Rentals Built for Speed and Reliability</h2>
+<p>Our laser printer inventory includes monochrome models that deliver crisp black-and-white documents at 35 to 55 pages per minute, with duty cycles built for teams that actually print. Every laser printer rental ships with a starter toner cartridge, duplex printing enabled, and wireless connectivity. Popular rental models include the HP LaserJet Pro MFP series, Brother HL-L6210DW, and Canon imageCLASS LBP236dw.</p>
+<h2>Color Laser Printer Rentals for Marketing-Ready Output</h2>
+<p>A color laser printer delivers the sharp, professional output your proposals, presentations, and marketing collateral deserve. Unlike inkjets, a color laser printer handles high-volume color jobs without smearing, drying out, or burning through expensive ink. Our color laser printer rentals cover everything from compact desktop units for creative teams to floor-standing workgroup devices rated for 75,000+ pages per month.</p>
+<h2>Small Office Printer Rentals That Fit Anywhere</h2>
+<p>Our small office printer lineup is engineered for home offices, co-working desks, and rooms where every square foot counts. Most models fit on a credenza or shelf while delivering laser-quality output, wireless printing, and automatic document feeders. A small office printer rental is ideal for freelancers, consultants, and two-to-five person teams. Starting at $29 per month.</p>
+<h2>How Our Printer Rental Process Works</h2>
+<p>Step 1: Choose your printer from our laser, color laser, and small office categories. Step 2: Select a rental term from 1 to 12 months with progressive discounts. Step 3: We deliver your office printer fast — delivery available in select metro areas. Step 4: Print with confidence with free tech support and optional damage protection. Step 5: Return with a prepaid shipping label or upgrade anytime.</p>
+<h2>What's Included with Every Office Printer Rental</h2>
+<p>Every office printer ships fully configured with Wi-Fi, Ethernet, and USB connectivity, mobile printing support, a starter toner cartridge, and a setup guide. Technical support is available seven days a week. Replacement units ship within 24 hours if your device ever fails. <a href="/collections/printers-scanners">Browse our printer catalog</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for a recommendation.</p>`,
 
   "/terms": `<p>These Terms and Conditions govern your use of the RentMyGadgets website and rental services. By creating an account or placing a rental order, you agree to these terms. Please read them carefully before using our services. Our rental services are available to individuals and businesses who meet our approval requirements.</p>
 <h2>Rental Agreement Terms</h2>

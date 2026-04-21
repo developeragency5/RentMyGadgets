@@ -42,6 +42,7 @@ const RentToOwn = lazy(() => import("@/pages/rent-to-own"));
 const HowItWorks = lazy(() => import("@/pages/how-it-works"));
 const GadgetCare = lazy(() => import("@/pages/gadgetcare"));
 const AdVariants = lazy(() => import("@/pages/ad-variants"));
+const OfficePrinterRentals = lazy(() => import("@/pages/office-printer-rentals"));
 
 // Loading fallback component
 function PageLoader() {
@@ -97,6 +98,7 @@ function Router() {
         <Route path="/how-it-works" component={HowItWorks} />
         <Route path="/gadgetcare" component={GadgetCare} />
         <Route path="/ad-variants" component={AdVariants} />
+        <Route path="/office-printer-rentals" component={OfficePrinterRentals} />
         
         <Route component={NotFound} />
       </Switch>

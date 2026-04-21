@@ -34,7 +34,7 @@ const CATEGORY_CONTENT: Record<string, ContentBlock> = {
       h2: "Office Printers for Every Desk",
       body: "Office printers that print, scan, copy, and handle all your paperwork in one handy device. RentMyGadgets puts a business-grade office printer on your desk for a flat monthly fee — laser printers, color laser printers, and small office printers from HP, Brother, Canon, Xerox, and Epson. Whether you're opening a new location, surviving tax season, or just tired of inkjet headaches, you get the right device for as long as you need it, and not a day longer.",
       bullets: [
-        { icon: "truck", text: "Same-day delivery in 30+ metros" },
+        { icon: "truck", text: "Fast delivery in select areas" },
         { icon: "shield", text: "Optional GadgetCare+ damage protection" },
         { icon: "refresh", text: "14-day free returns, no contracts" },
       ],
@@ -78,7 +78,7 @@ const CATEGORY_CONTENT: Record<string, ContentBlock> = {
     howItWorks: [
       { title: "Pick a printer", body: "Browse the office printer catalog above by brand, price, or product type." },
       { title: "Choose your term", body: "1, 3, 6, or 12 months. Longer terms unlock automatic discounts: 10% off 3 months, 20% off 6 months, 30% off 12 months." },
-      { title: "Same-day delivery", body: "Order before 12 PM local time and it's at your door tonight in 30+ metros." },
+      { title: "Fast delivery", body: "Order and get your equipment delivered quickly — fast delivery available in select metropolitan areas." },
       { title: "Print with confidence", body: "Free 7-day support. Optional GadgetCare+ covers accidental damage, spills, and hardware failure." },
       { title: "Return or swap", body: "Prepaid return label included. Upgrade to a newer model at any time — no penalties." },
     ],

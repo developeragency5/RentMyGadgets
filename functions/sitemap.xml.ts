@@ -14,6 +14,7 @@ const STATIC_PAGES: { loc: string; priority: string; changefreq: string }[] = [
   { loc: "/how-it-works", priority: "0.8", changefreq: "monthly" },
   { loc: "/rent-to-own", priority: "0.8", changefreq: "monthly" },
   { loc: "/gadgetcare", priority: "0.8", changefreq: "monthly" },
+  { loc: "/office-printer-rentals", priority: "0.8", changefreq: "monthly" },
   { loc: "/search", priority: "0.7", changefreq: "daily" },
   { loc: "/compare", priority: "0.6", changefreq: "monthly" },
   { loc: "/terms", priority: "0.3", changefreq: "yearly" },

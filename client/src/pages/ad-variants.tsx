@@ -18,7 +18,7 @@ const AD_PAIRS: AdPair[] = [
     id: 1,
     angle: "Flexibility",
     headline: "Rent Office Printers | Monthly",
-    description: "Rent laser & color office printers. Same-day delivery, free setup. No long-term contracts.",
+    description: "Rent laser & color office printers. Fast delivery in select areas, free setup. No long-term contracts.",
     color: "bg-blue-500",
   },
   {
@@ -32,14 +32,14 @@ const AD_PAIRS: AdPair[] = [
     id: 3,
     angle: "Price",
     headline: "Color Laser Printers | Rentals",
-    description: "Color laser printers for your small office. Same-day delivery available. Rent from $29/mo.",
+    description: "Color laser printers for your small office. Fast delivery in select areas. Rent from $29/mo.",
     color: "bg-amber-500",
   },
   {
     id: 4,
     angle: "Small Office",
     headline: "Rent Laser Printers - Fast Ship",
-    description: "Rent small office printers monthly. Laser & color models. Same-day setup, zero commitment.",
+    description: "Rent small office printers monthly. Laser & color models. Fast setup, zero commitment.",
     color: "bg-purple-500",
   },
 ];

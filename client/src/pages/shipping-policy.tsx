@@ -33,7 +33,7 @@ export default function ShippingPolicy() {
               </div>
               <div className="bg-primary/10 p-4 rounded-lg">
                 <Clock className="h-8 w-8 mx-auto mb-2 text-primary" />
-                <p className="font-semibold">Same-Day Delivery</p>
+                <p className="font-semibold">Express Delivery</p>
                 <p className="text-sm text-muted-foreground">Select Areas</p>
               </div>
               <div className="bg-primary/10 p-4 rounded-lg">
@@ -76,7 +76,7 @@ export default function ShippingPolicy() {
                       <td className="p-3 border">$39.99</td>
                     </tr>
                     <tr>
-                      <td className="p-3 border">Same-Day Delivery*</td>
+                      <td className="p-3 border">Express Delivery*</td>
                       <td className="p-3 border">Within 4-6 hours</td>
                       <td className="p-3 border">$49.99</td>
                     </tr>
@@ -89,7 +89,7 @@ export default function ShippingPolicy() {
                 </table>
               </div>
               <p className="text-sm text-muted-foreground mt-4">
-                *Same-day delivery available in select metropolitan areas for orders placed before 10:00 AM local time.<br />
+                *Express delivery available in select metropolitan areas for orders placed before 10:00 AM local time.<br />
                 **White Glove includes setup, demonstration, and packaging removal.
               </p>
             </div>
@@ -101,8 +101,8 @@ export default function ShippingPolicy() {
                 We ship to all 50 US states, including Alaska, Hawaii, Puerto Rico, and US territories. Shipping times and costs may vary for non-contiguous states.
               </p>
               
-              <h3 className="text-xl font-semibold mb-2">Same-Day Delivery Zones</h3>
-              <p className="text-muted-foreground mb-2">Same-day delivery is currently available in:</p>
+              <h3 className="text-xl font-semibold mb-2">Express Delivery Zones</h3>
+              <p className="text-muted-foreground mb-2">Express delivery is currently available in:</p>
               <ul className="list-disc list-inside text-muted-foreground space-y-1 columns-2">
                 <li>San Francisco Bay Area</li>
                 <li>Los Angeles Metro</li>
