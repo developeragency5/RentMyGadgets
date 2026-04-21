@@ -47,6 +47,8 @@ export function fixGalleryArraysSync(rows: any[]): any[] {
   return rows.map((r) => ({
     ...r,
     galleryImageUrls: parseGalleryValue(r.galleryImageUrls),
+    availableColors: parseGalleryValue(r.availableColors),
+    specs: parseGalleryValue(r.specs),
   }));
 }
 

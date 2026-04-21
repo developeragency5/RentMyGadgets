@@ -52,7 +52,7 @@ async function fetchWithStaticFallback(url: string, options?: RequestInit): Prom
       const staticRes = await fetch(`${BASE_PATH}data/products.json`);
       if (staticRes.ok) {
         const products = await staticRes.json();
-        const product = products.find((p: any) => p.id === productId);
+        const product = products.find((p: any) => p.id === productId || p.slug === productId);
         if (product) {
           return new Response(JSON.stringify(fixImagePaths(product)), {
             status: 200,
