@@ -84,12 +84,12 @@ export async function fetchProducts(params?: { categoryId?: string; featured?: b
   );
 }
 
-export async function fetchProduct(id: string): Promise<Product> {
+export async function fetchProduct(idOrSlug: string): Promise<Product> {
   return fetchWithFallback<Product>(
-    `${API_BASE}/products/${id}`,
+    `${API_BASE}/products/${idOrSlug}`,
     `${BASE_PATH}data/products.json`,
     (products) => {
-      const product = products.find((p: Product) => p.id === id);
+      const product = products.find((p: Product) => p.id === idOrSlug || p.slug === idOrSlug);
       if (!product) throw new Error("Product not found");
       return product;
     }

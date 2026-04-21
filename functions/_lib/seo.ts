@@ -478,7 +478,7 @@ async function getCategoryMeta(env: Env, categoryId: string): Promise<PageMeta |
     // Every product in the category — no cap, so the crawler-visible list
     // is a complete reflection of what's available.
     const catProducts = await db
-      .select({ id: products.id, name: products.name, pricePerMonth: products.pricePerMonth, brand: products.brand })
+      .select({ id: products.id, slug: products.slug, name: products.name, pricePerMonth: products.pricePerMonth, brand: products.brand })
       .from(products)
       .where(eq(products.categoryId, categoryId));
 

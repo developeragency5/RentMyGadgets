@@ -56,18 +56,18 @@ const CATEGORY_CONTENT: Record<string, ContentBlock> = {
         h2: "Laser Printer Rentals — Built for Teams That Actually Print",
         body: "Our laser printer lineup is engineered for offices where reliability matters more than novelty. Monochrome models print 35–55 pages per minute with monthly duty cycles up to 80,000 pages, so you're not babysitting jams during a Monday morning rush. Every laser printer rental ships with a starter toner cartridge, duplex two-sided printing enabled by default, Wi-Fi 6, Gigabit Ethernet, USB-C connectivity, and full mobile printing support (AirPrint, Mopria, Google Cloud Print).",
         products: [
-          { name: "HP LaserJet Pro 4001n", price: "$42.99/mo", href: "/product/b2f1532d-6704-4b3b-8a77-17e9be0fe3af" },
-          { name: "HP LaserJet Pro MFP 4101", price: "$79/mo", href: "/product/7d00ec97-bba1-4b19-ae07-f7c3f0885f0a" },
-          { name: "Brother HL-L8360CDW", price: "$49.99/mo", href: "/product/d6adf03f-59dd-4241-8bdf-3f73ad5faf5a" },
+          { name: "HP LaserJet Pro 4001n", price: "$42.99/mo", href: "/product/hp-laserjet-pro-4001n-mono-laser-printer" },
+          { name: "HP LaserJet Pro MFP 4101", price: "$79/mo", href: "/product/hp-laserjet-pro-mfp-4101" },
+          { name: "Brother HL-L8360CDW", price: "$49.99/mo", href: "/product/brother-hl-l8360cdw-business-color-laser-printer" },
         ],
       },
       {
         h2: "Color Laser Printer Rentals — Marketing-Ready Output, on Demand",
         body: "When black-and-white won't sell the deal, a color laser printer delivers proposal-grade color without the dried-ink bills of an inkjet. Our color laser printer rentals span compact desktop units for 2-person creative teams up to floor-standing workgroup machines rated for 75,000 pages a month. You get true-to-brand color, smudge-proof output, and a per-page cost that can run 60–80% lower than inkjet over the rental term.",
         products: [
-          { name: "HP Color LaserJet Pro MFP 4301fdw", price: "$64.99/mo", href: "/product/1de29bc6-85b1-4c78-801a-aa03de2eb82e" },
-          { name: "Brother MFC-L8900CDW", price: "$89/mo", href: "/product/444933b5-a61b-4c9a-9688-1c63b026c9ed" },
-          { name: "HP Color LaserJet Enterprise MFP", price: "$124.99/mo", href: "/product/5ca4fa51-d579-4367-a4a5-03b182ba7859" },
+          { name: "HP Color LaserJet Pro MFP 4301fdw", price: "$64.99/mo", href: "/product/hp-color-laserjet-pro-mfp-4301fdw-wireless-color-all-in-one" },
+          { name: "Brother MFC-L8900CDW", price: "$89/mo", href: "/product/brother-mfc-l8900cdw" },
+          { name: "HP Color LaserJet Enterprise MFP", price: "$124.99/mo", href: "/product/hp-color-laserjet-enterprise-flow-mfp-6800zf-printer" },
         ],
       },
       {

@@ -88,13 +88,13 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
     const productImageMap = new Map<string, any>();
     for (const prod of allProducts) {
-      productImageMap.set(`/product/${prod.id}`, prod);
+      productImageMap.set(`/product/${prod.slug || prod.id}`, prod);
     }
 
     const allPages = [
       ...STATIC_PAGES,
       ...allCategories.map((c) => ({ loc: `/categories/${c.id}`, priority: "0.8", changefreq: "daily" })),
-      ...allProducts.map((p) => ({ loc: `/product/${p.id}`, priority: "0.7", changefreq: "weekly" })),
+      ...allProducts.map((p) => ({ loc: `/product/${p.slug || p.id}`, priority: "0.7", changefreq: "weekly" })),
       ...posts.map((p) => ({ loc: `/blog/${p.slug}`, priority: "0.6", changefreq: "monthly" })),
     ];
 
