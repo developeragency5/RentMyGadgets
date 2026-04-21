@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, CheckCircle, ArrowLeft } from "lucide-react";
+import { Mail, MapPin, Phone, CheckCircle, ArrowLeft } from "lucide-react";
 
 export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -54,6 +54,17 @@ export default function Contact() {
                 </div>
               </div>
               
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center shrink-0">
+                  <Phone className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Call Us</h3>
+                  <a href="tel:+19124378920" className="text-primary hover:underline font-medium">(912) 437-8920</a>
+                  <p className="text-sm text-muted-foreground mt-1">Mon–Fri, 9 AM – 6 PM ET</p>
+                </div>
+              </div>
+
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center shrink-0">
                   <MapPin className="h-6 w-6" />
