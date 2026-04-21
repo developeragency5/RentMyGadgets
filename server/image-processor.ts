@@ -52,18 +52,27 @@ function generateImageFilename(productId: string, sizeName: string, format: stri
   return `${productId.substring(0, 8)}_${hash}_${sizeName}.${format}`;
 }
 
+function sanitizeDownloadUrl(raw: string): string {
+  try {
+    return new URL(raw.trim()).href;
+  } catch {
+    return raw.trim().replace(/ /g, "%20");
+  }
+}
+
 export async function downloadImage(url: string): Promise<Buffer> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), DOWNLOAD_TIMEOUT);
+  const safeUrl = sanitizeDownloadUrl(url);
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch(safeUrl, {
       signal: controller.signal,
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'image/webp,image/avif,image/apng,image/svg+xml,image/*,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.9',
-        'Referer': new URL(url).origin
+        'Referer': new URL(safeUrl).origin
       }
     });
 

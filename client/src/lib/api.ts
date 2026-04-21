@@ -1,4 +1,5 @@
 import type { Category, Product } from "@shared/schema";
+import { sanitizeImageUrl } from "@shared/sanitizeImageUrl";
 
 const API_BASE = "/api";
 const BASE_PATH = import.meta.env.BASE_URL || "/";
@@ -13,12 +14,13 @@ export async function safeFetch(url: string, options?: RequestInit): Promise<Res
 }
 
 function fixImagePaths<T>(data: T): T {
-  if (BASE_PATH === "/") return data;
-  const prefix = BASE_PATH.replace(/\/$/, "");
+  const prefix = BASE_PATH === "/" ? "" : BASE_PATH.replace(/\/$/, "");
   const fixUrl = (url: string | null) => {
-    if (!url || url.startsWith("http") || url.startsWith(prefix)) return url;
-    if (url.startsWith("/")) return `${prefix}${url}`;
-    return url;
+    if (!url) return url;
+    const safe = sanitizeImageUrl(url);
+    if (!prefix || safe.startsWith("http") || safe.startsWith(prefix)) return safe;
+    if (safe.startsWith("/")) return `${prefix}${safe}`;
+    return safe;
   };
   if (Array.isArray(data)) {
     return data.map((item: any) => fixImagePaths(item)) as T;

@@ -155,15 +155,26 @@ export async function registerRoutes(
 
       const allPages = [...staticPages, ...categoryPages, ...productPages, ...blogPages];
 
+      function sanitizeImgUrl(url: string): string {
+        if (!url) return url;
+        try {
+          if (url.startsWith("http://") || url.startsWith("https://")) return new URL(url).href;
+          const temp = new URL(url, "http://localhost");
+          return temp.pathname + temp.search + temp.hash;
+        } catch { return url.replace(/ /g, "%20"); }
+      }
+
       function buildProductImageTags(prod: any): string {
         const images: string[] = [];
         if (prod.imageUrl) {
-          const abs = prod.imageUrl.startsWith("http") ? prod.imageUrl : `${baseUrl}${prod.imageUrl}`;
+          const safe = sanitizeImgUrl(prod.imageUrl);
+          const abs = safe.startsWith("http") ? safe : `${baseUrl}${safe}`;
           images.push(abs);
         }
         const gallery = (prod.galleryImageUrls || []) as string[];
         for (const url of gallery) {
-          const abs = url.startsWith("http") ? url : `${baseUrl}${url}`;
+          const safe = sanitizeImgUrl(url);
+          const abs = safe.startsWith("http") ? safe : `${baseUrl}${safe}`;
           if (!images.includes(abs)) images.push(abs);
         }
         if (images.length === 0) return "";

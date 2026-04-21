@@ -59,16 +59,27 @@ function escXml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+function sanitizeImgUrl(url: string): string {
+  if (!url) return url;
+  try {
+    if (url.startsWith("http://") || url.startsWith("https://")) return new URL(url).href;
+    const temp = new URL(url, "http://localhost");
+    return temp.pathname + temp.search + temp.hash;
+  } catch { return url.replace(/ /g, "%20"); }
+}
+
 function buildProductImageTags(prod: any): string {
   const images: string[] = [];
   if (prod.imageUrl) {
-    const abs = prod.imageUrl.startsWith("http") ? prod.imageUrl : `${BASE_URL}${prod.imageUrl}`;
+    const safe = sanitizeImgUrl(prod.imageUrl);
+    const abs = safe.startsWith("http") ? safe : `${BASE_URL}${safe}`;
     images.push(abs);
   }
   const gallery: string[] = Array.isArray(prod.galleryImageUrls) ? prod.galleryImageUrls : [];
   for (const url of gallery) {
     if (typeof url !== "string" || !url) continue;
-    const abs = url.startsWith("http") ? url : `${BASE_URL}${url}`;
+    const safe = sanitizeImgUrl(url);
+    const abs = safe.startsWith("http") ? safe : `${BASE_URL}${safe}`;
     if (!images.includes(abs)) images.push(abs);
   }
   if (images.length === 0) return "";

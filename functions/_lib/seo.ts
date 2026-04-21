@@ -54,9 +54,25 @@ const SITE_NAME = "RentMyGadgets";
 const DEFAULT_IMAGE = "/opengraph.jpg";
 const BASE_URL = "https://www.rentmygadgets.com";
 
+function sanitizeUrl(url: string): string {
+  if (!url || typeof url !== "string") return url;
+  const trimmed = url.trim();
+  if (!trimmed) return trimmed;
+  try {
+    if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+      return new URL(trimmed).href;
+    }
+    const temp = new URL(trimmed, "http://localhost");
+    return temp.pathname + temp.search + temp.hash;
+  } catch {
+    return trimmed.replace(/ /g, "%20");
+  }
+}
+
 function toAbsoluteUrl(path: string): string {
-  if (path.startsWith("http://") || path.startsWith("https://")) return path;
-  return `${BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
+  const safe = sanitizeUrl(path);
+  if (safe.startsWith("http://") || safe.startsWith("https://")) return safe;
+  return `${BASE_URL}${safe.startsWith("/") ? "" : "/"}${safe}`;
 }
 
 const TRACKING_PARAMS = new Set([

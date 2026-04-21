@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import { ImageOff } from 'lucide-react';
+import { sanitizeImageUrl } from '@shared/sanitizeImageUrl';
 
 const BASE_PATH = import.meta.env.BASE_URL || "/";
 
 export function resolveImageSrc(src: string | null | undefined): string | null | undefined {
   if (!src) return src;
-  if (src.startsWith("http")) return src;
-  if (BASE_PATH !== "/" && src.startsWith("/") && !src.startsWith(BASE_PATH)) {
-    return `${BASE_PATH.replace(/\/$/, "")}${src}`;
+  const safe = sanitizeImageUrl(src);
+  if (safe.startsWith("http")) return safe;
+  if (BASE_PATH !== "/" && safe.startsWith("/") && !safe.startsWith(BASE_PATH)) {
+    return `${BASE_PATH.replace(/\/$/, "")}${safe}`;
   }
-  return src;
+  return safe;
 }
 
 interface ProductImageProps {
