@@ -725,7 +725,7 @@ export default function ProductList() {
                 {filteredAndSortedProducts.map((product) => {
                   const isPhoneCategory = category?.name === "Phones";
                   return (
-                  <Link key={product.id} href={`/product/${product.slug}`} className="group block h-full cursor-pointer" data-testid={`product-card-${product.id}`}>
+                  <Link key={product.id} href={`/product/${product.slug || product.id}`} className="group block h-full cursor-pointer" data-testid={`product-card-${product.id}`}>
                     <div className="bg-card rounded-xl border overflow-hidden h-full flex flex-col hover:shadow-lg hover:border-primary/20">
                       <div className={`${isPhoneCategory ? 'aspect-square' : 'aspect-[4/5]'} overflow-hidden bg-white relative`}>
                         <div className="w-full h-full">

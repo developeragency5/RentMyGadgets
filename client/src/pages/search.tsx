@@ -470,7 +470,7 @@ export default function SearchPage() {
                 {filteredProducts.map((product) => (
                   <Link 
                     key={product.id} 
-                    href={`/product/${product.slug}`} 
+                    href={`/product/${product.slug || product.id}`} 
                     className="group block h-full cursor-pointer" 
                     data-testid={`search-product-card-${product.id}`}
                   >

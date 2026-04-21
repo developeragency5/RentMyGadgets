@@ -886,7 +886,7 @@ export default function ProductDetail() {
             <h2 className="text-2xl font-heading font-bold mb-6">Similar Products</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {similarProducts.map((similarProduct) => (
-                <Link key={similarProduct.id} href={`/product/${similarProduct.slug}`}>
+                <Link key={similarProduct.id} href={`/product/${similarProduct.slug || similarProduct.id}`}>
                   <div className="bg-background rounded-xl border p-3 hover:shadow-lg hover:border-primary/30 transition-all cursor-pointer group" data-testid={`similar-product-${similarProduct.id}`}>
                     <div className="aspect-square rounded-lg overflow-hidden bg-muted mb-3">
                       <ProductImage 

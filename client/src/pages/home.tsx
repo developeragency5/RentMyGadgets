@@ -438,7 +438,7 @@ export default function Home() {
                 return (
                 <AnimatedCard key={product.id} index={index}>
                   <Link 
-                    href={`/product/${product.slug}`} 
+                    href={`/product/${product.slug || product.id}`} 
                     className="group block cursor-pointer h-full" 
                     data-testid={`product-${product.id}`}
                   >

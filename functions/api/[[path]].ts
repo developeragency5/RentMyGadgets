@@ -59,16 +59,19 @@ app.get("/products", async (c) => {
   }
 });
 
-app.get("/products/:id", async (c) => {
+app.get("/products/:idOrSlug", async (c) => {
   try {
     const db = getDb(c.env);
-    const id = c.req.param("id");
-    const rows = await db.select().from(products).where(eq(products.id, id)).limit(1);
+    const idOrSlug = c.req.param("idOrSlug");
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(idOrSlug);
+    const rows = isUuid
+      ? await db.select().from(products).where(eq(products.id, idOrSlug)).limit(1)
+      : await db.select().from(products).where(eq(products.slug, idOrSlug)).limit(1);
     if (!rows[0]) return c.json({ message: "Product not found" }, 404);
     const fixed = await fixGalleryArrays(c.env, rows);
     return c.json(fixed[0]);
   } catch (err) {
-    console.error("GET /api/products/:id failed:", err);
+    console.error("GET /api/products/:idOrSlug failed:", err);
     return c.json({ message: "Failed to fetch product" }, 500);
   }
 });
@@ -106,6 +109,7 @@ app.get("/products/search/suggestions", async (c) => {
       .slice(0, maxResults)
       .map((x) => ({
         id: x.p.id,
+        slug: x.p.slug,
         name: x.p.name,
         brand: x.p.brand,
         imageUrl: x.p.imageUrl,

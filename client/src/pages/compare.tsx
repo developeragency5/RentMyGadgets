@@ -100,7 +100,7 @@ export default function Compare() {
                           >
                             <X className="h-4 w-4" />
                           </button>
-                          <Link href={`/product/${product.slug}`}>
+                          <Link href={`/product/${product.slug || product.id}`}>
                             <div className="aspect-square w-32 mx-auto mb-3 rounded-lg overflow-hidden bg-white cursor-pointer">
                               <img 
                                 src={product.imageUrl || ''} 
@@ -109,7 +109,7 @@ export default function Compare() {
                               />
                             </div>
                           </Link>
-                          <Link href={`/product/${product.slug}`}>
+                          <Link href={`/product/${product.slug || product.id}`}>
                             <h3 className="font-bold text-center hover:text-primary transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
                               {product.name}
                             </h3>
