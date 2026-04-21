@@ -57,7 +57,7 @@ export const categories = [
     id: "cameras",
     name: "Cameras & Gear",
     icon: Camera,
-    description: "DSLRs, lenses, and lighting equipment",
+    description: "Professional cameras, lenses, and lighting",
     image: cameraCat
   }
 ];

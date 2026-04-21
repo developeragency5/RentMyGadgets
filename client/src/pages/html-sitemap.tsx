@@ -29,7 +29,7 @@ const COLLECTION_PAGES = [
   { href: "/collections/headphones", label: "Headphones" },
   { href: "/collections/keyboards", label: "Keyboards" },
   { href: "/collections/computer-mice", label: "Computer Mice" },
-  { href: "/collections/dslr-cameras", label: "DSLR Cameras" },
+  { href: "/collections/dslr-cameras", label: "Professional Cameras" },
   { href: "/collections/camera-lenses", label: "Camera Lenses" },
   { href: "/collections/lighting-gear", label: "Lighting Gear" },
   { href: "/collections/routers", label: "Routers" },

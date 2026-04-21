@@ -41,7 +41,7 @@ const rentalSteps = [
   {
     step: 1,
     title: "Choose your camera or gear",
-    description: "Browse our DSLR cameras, camera lenses, and lighting gear categories and pick the equipment that fits your shoot."
+    description: "Browse our professional cameras, camera lenses, and lighting gear categories and pick the equipment that fits your shoot."
   },
   {
     step: 2,
@@ -76,8 +76,8 @@ const includedFeatures = [
 
 const faqs = [
   {
-    question: "What DSLR cameras do you have available for rent?",
-    answer: "We carry top-rated DSLR cameras from Canon, Nikon, and Sony — including full-frame and crop-sensor bodies ideal for portraits, events, travel, and studio work."
+    question: "What professional cameras do you have available for rent?",
+    answer: "We carry top-rated professional cameras from Canon, Nikon, and Sony — including full-frame and crop-sensor bodies ideal for portraits, events, travel, and studio work."
   },
   {
     question: "Can I rent a camera lens separately from a camera body?",
@@ -160,7 +160,7 @@ const useCases = [
   {
     icon: <Video className="h-7 w-7" />,
     title: "Content Creation & YouTube",
-    description: "Level up your YouTube videos, TikToks, and social media content with professional DSLR rental gear, studio lighting, and audio equipment that makes your content stand out.",
+    description: "Level up your YouTube videos, TikToks, and social media content with professional camera rental gear, studio lighting, and audio equipment that makes your content stand out.",
     bullets: [
       "Mirrorless cameras with flip screens for vlogging",
       "Ring lights and softboxes for perfect studio lighting",
@@ -182,9 +182,9 @@ export default function CameraGearRentals() {
   return (
     <Layout>
       <SeoHead
-        title="Camera & Gear Rentals | DSLRs, Lenses & Lighting Equipment"
-        description="Rent professional DSLR cameras, sharp lenses, and studio lighting gear for photo shoots, events, and travel. Flexible monthly plans, no contracts."
-        keywords="camera rental, DSLR rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental"
+        title="Camera & Gear Rentals | Pro Cameras, Lenses & Lighting Equipment"
+        description="Rent professional cameras, sharp lenses, and studio lighting gear for photo shoots, events, and travel. Flexible monthly plans, no contracts."
+        keywords="camera rental, professional camera rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental"
       />
 
       <section className="relative py-20 overflow-hidden bg-gradient-to-b from-blue-50 to-background">
@@ -201,7 +201,7 @@ export default function CameraGearRentals() {
               Rent Professional Cameras & Photography Gear
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              RentMyGadgets offers flexible monthly rentals on professional DSLR cameras, sharp camera lenses, and studio lighting gear from brands photographers trust — Canon, Nikon, Sony, and Aputure. No massive upfront costs. No long-term contracts.
+              RentMyGadgets offers flexible monthly rentals on professional cameras, sharp camera lenses, and studio lighting gear from brands photographers trust — Canon, Nikon, Sony, and Aputure. No massive upfront costs. No long-term contracts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/categories/cameras">
@@ -269,9 +269,9 @@ export default function CameraGearRentals() {
                 <div className="w-14 h-14 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-5">
                   <Camera className="h-7 w-7" />
                 </div>
-                <h2 className="text-2xl font-heading font-bold mb-4">DSLR Camera Rentals</h2>
+                <h2 className="text-2xl font-heading font-bold mb-4">Professional Camera Rentals</h2>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  DSLR cameras for portraits, events, and travel. Sharp lens, strong build, and clear shots. Our inventory includes full-frame and crop-sensor bodies from Canon, Nikon, and Sony — ready for any photo studio or on-location shoot.
+                  Professional cameras for portraits, events, and travel. Sharp lens, strong build, and clear shots. Our inventory includes full-frame and crop-sensor bodies from Canon, Nikon, and Sony — ready for any photo studio or on-location shoot.
                 </p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Full-frame and APS-C sensor options</li>
@@ -463,7 +463,7 @@ export default function CameraGearRentals() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-heading font-bold text-center mb-4" data-testid="text-rent-vs-buy">Renting vs. Buying Camera Gear</h2>
             <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed">
-              Professional DSLR cameras and lenses are expensive — and they depreciate fast. Here's why camera equipment hire through RentMyGadgets makes more sense for most photographers and videographers.
+              Professional cameras and lenses are expensive — and they depreciate fast. Here's why camera equipment hire through RentMyGadgets makes more sense for most photographers and videographers.
             </p>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse" data-testid="table-rent-vs-buy">
@@ -504,7 +504,7 @@ export default function CameraGearRentals() {
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-heading font-bold text-center mb-4" data-testid="text-who-rents">Who Rents Camera Gear?</h2>
             <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed">
-              Our camera rental customers include freelance photographers, film students, production companies, real estate agents, and content creators. Whether you're a seasoned pro or picking up a DSLR for the first time, renting makes high-end photography gear accessible to everyone.
+              Our camera rental customers include freelance photographers, film students, production companies, real estate agents, and content creators. Whether you're a seasoned pro or picking up a camera for the first time, renting makes high-end photography gear accessible to everyone.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card className="bg-white border-2" data-testid="who-rents-freelance">
@@ -540,7 +540,7 @@ export default function CameraGearRentals() {
                     <Video className="h-7 w-7" />
                   </div>
                   <h3 className="font-bold mb-2">Content Creators</h3>
-                  <p className="text-sm text-muted-foreground">Level up YouTube, TikTok, and Instagram content with professional DSLR rental gear and studio lighting setups.</p>
+                  <p className="text-sm text-muted-foreground">Level up YouTube, TikTok, and Instagram content with professional camera rental gear and studio lighting setups.</p>
                 </CardContent>
               </Card>
             </div>
@@ -592,7 +592,7 @@ export default function CameraGearRentals() {
                     <Sun className="h-7 w-7" />
                   </div>
                   <h3 className="font-bold text-lg mb-2">Travel & Landscape Kit</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Lightweight mirrorless body + wide-angle zoom + compact tripod. The perfect DSLR rental setup for travel photography and landscapes.</p>
+                  <p className="text-sm text-muted-foreground mb-4">Lightweight mirrorless body + wide-angle zoom + compact tripod. The perfect camera rental setup for travel photography and landscapes.</p>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Nikon Z6 III or Fujifilm X-T5 body</li>
                     <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> 16-35mm f/4 wide-angle zoom</li>
@@ -612,7 +612,7 @@ export default function CameraGearRentals() {
             <h2 className="text-3xl font-heading font-bold text-center mb-6" data-testid="text-why-rentmygadgets">Why Choose RentMyGadgets for Camera Rentals?</h2>
             <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-4">
               <p>
-                At RentMyGadgets, we believe every photographer and videographer deserves access to professional-grade equipment. Whether you need a DSLR rental for a one-time wedding shoot, a camera lens rental for a month-long travel adventure, or a full lighting gear rental for a commercial production — we make it affordable and hassle-free.
+                At RentMyGadgets, we believe every photographer and videographer deserves access to professional-grade equipment. Whether you need a camera rental for a one-time wedding shoot, a camera lens rental for a month-long travel adventure, or a full lighting gear rental for a commercial production — we make it affordable and hassle-free.
               </p>
               <p>
                 Our camera equipment hire service covers the full spectrum: Canon EOS rental bodies, Sony A7 rental mirrorless systems, Nikon Z-mount cameras, DJI drones for aerial photography, and studio lighting from Aputure and Godox. Every piece of photography gear rental equipment is professionally inspected, cleaned, and tested before shipping.

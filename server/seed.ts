@@ -34,7 +34,7 @@ async function seed() {
     },
     {
       name: "Cameras & Gear",
-      description: "DSLRs, lenses, and lighting equipment",
+      description: "Professional cameras, lenses, and lighting",
       imageUrl: "/stock_images/professional_camera__71fd9611.jpg"
     }
   ];

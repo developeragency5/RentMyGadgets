@@ -129,9 +129,9 @@ const COLLECTION_SEO: Record<string, { title: string; description: string; keywo
     keywords: "mouse rental, rent mouse, ergonomic mouse rental, gaming mouse for rent",
   },
   "dslr-cameras": {
-    title: "DSLR Cameras for Rent",
-    description: "Rent professional DSLR cameras for photo shoots, weddings, and events. Top brands available.",
-    keywords: "DSLR rental, rent DSLR, camera rental, DSLR camera for rent, professional camera rental",
+    title: "Professional Cameras for Rent",
+    description: "Rent professional cameras for photo shoots, weddings, and events. Top brands available.",
+    keywords: "camera rental, professional camera rental, rent camera, camera for rent, photography equipment rental",
   },
   "camera-lenses": {
     title: "Camera Lenses for Rent",

@@ -25,7 +25,7 @@ RentMyGadgets makes high-end technology accessible through affordable rental opt
 
 - [Laptops](/categories): MacBooks, Windows laptops, and Chromebooks
 - [Desktops](/categories): High-performance desktop computers
-- [Cameras](/categories): DSLR, mirrorless, and video cameras
+- [Cameras](/categories): Professional mirrorless and video cameras
 - [Audio](/categories): Professional microphones, speakers, and headphones
 - [Accessories](/categories): Monitors, keyboards, mice, and peripherals
 - [Networking](/categories): Routers, switches, and networking equipment

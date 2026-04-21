@@ -382,11 +382,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="border-t mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <p>© 2026 RentMyGadgets. All rights reserved.</p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/terms"><span className="hover:text-primary cursor-pointer">Terms</span></Link>
-              <Link href="/privacy"><span className="hover:text-primary cursor-pointer">Privacy</span></Link>
-              <Link href="/cookies"><span className="hover:text-primary cursor-pointer">Cookies</span></Link>
-              <Link href="/accessibility"><span className="hover:text-primary cursor-pointer">Accessibility</span></Link>
-              <Link href="/html-sitemap"><span className="hover:text-primary cursor-pointer">Site Map</span></Link>
               <button 
                 onClick={() => {
                   localStorage.removeItem("cookieConsent");

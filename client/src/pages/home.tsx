@@ -314,7 +314,7 @@ export default function Home() {
   return (
     <Layout>
       <SeoHead 
-        title="Rent High-End Tech Gadgets"
+        title="Rent High-End Tech Gadgets Online"
         description="Rent laptops, desktops, cameras, printers, headphones and routers. Flexible daily, weekly, or monthly plans with delivery options. Quality-checked devices."
         keywords="rent gadgets, tech rental, laptop rental, camera rental, desktop rental, equipment hire, gadget hire, technology rental service, rent electronics, short term rental"
       />
@@ -785,7 +785,7 @@ export default function Home() {
               { name: "Sony", category: "Cameras & Audio" },
               { name: "Samsung", category: "Phones & Displays" },
               { name: "Lenovo", category: "Laptops & Desktops" },
-              { name: "ASUS", category: "Routers & Laptops" },
+              { name: "Asus", category: "Routers & Laptops" },
               { name: "Brother", category: "Printers" },
               { name: "Epson", category: "Printers" },
               { name: "Nikon", category: "Cameras" },
@@ -815,7 +815,7 @@ export default function Home() {
               Rent Tech for <span className="text-primary">Every Industry</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              From business laptops and DSLR cameras to office printers and WiFi routers — find the perfect rental for your needs.
+              From business laptops and professional cameras to office printers and WiFi routers — find the perfect rental for your needs.
             </p>
           </AnimatedSection>
 
@@ -841,7 +841,7 @@ export default function Home() {
                 icon: Camera,
                 title: "Camera & Gear Rentals",
                 href: "/camera-gear-rentals",
-                description: "Access professional DSLR cameras, mirrorless bodies, cinema lenses, and studio lighting gear from Canon, Sony, and Nikon. Trusted by photographers, filmmakers, and content creators worldwide.",
+                description: "Access professional cameras, mirrorless bodies, cinema lenses, and studio lighting gear from Canon, Sony, and Nikon. Trusted by photographers, filmmakers, and content creators worldwide.",
                 features: ["Canon EOS R5", "Sony A9 III", "DJI Ronin 4D", "Studio Lighting"],
                 startPrice: "$45"
               },
@@ -865,7 +865,7 @@ export default function Home() {
                 icon: Wifi,
                 title: "Router & WiFi Rentals",
                 href: "/router-rentals",
-                description: "Rent high-performance WiFi 6E and WiFi 7 routers, mesh networking systems, and enterprise-grade access points from ASUS, TP-Link, and Netgear. Set up reliable internet anywhere in minutes.",
+                description: "Rent high-performance WiFi 6E and WiFi 7 routers, mesh networking systems, and enterprise-grade access points from Asus, TP-Link, and Netgear. Set up reliable internet anywhere in minutes.",
                 features: ["WiFi 7 Routers", "Mesh Systems", "4G/5G Hotspots", "Enterprise APs"],
                 startPrice: "$19"
               },
@@ -988,7 +988,7 @@ export default function Home() {
                 role: "Event Manager",
                 text: "We needed 20 WiFi routers for a 3-day conference. RentMyGadgets delivered them pre-configured and ready to go. The entire setup took 30 minutes. Couldn't be happier with the service.",
                 rating: 5,
-                product: "ASUS RT-BE96U"
+                product: "Asus RT-BE96U"
               },
               {
                 name: "Lisa Thompson",
@@ -1103,7 +1103,7 @@ export default function Home() {
               },
               {
                 q: "What brands do you carry?",
-                a: "We carry all major technology brands including Apple (MacBook, iPhone, iPad), Dell (XPS, Latitude), HP (EliteBook, LaserJet), Canon (EOS, PIXMA), Sony (Alpha, WH-1000XM), Samsung (Galaxy), Lenovo (ThinkPad), ASUS (ROG, RT), Nikon (Z-series), and many more."
+                a: "We carry all major technology brands including Apple (MacBook, iPhone, iPad), Dell (XPS, Latitude), HP (EliteBook, LaserJet), Canon (EOS, PIXMA), Sony (Alpha, WH-1000XM), Samsung (Galaxy), Lenovo (ThinkPad), Asus (ROG, RT), Nikon (Z-series), and many more."
               },
               {
                 q: "Do you offer rent-to-own options?",
@@ -1115,7 +1115,7 @@ export default function Home() {
               },
               {
                 q: "Can I rent a camera for a wedding or event?",
-                a: "Absolutely! Camera and lens rentals for events are one of our most popular categories. You can rent a professional DSLR or mirrorless camera body, multiple lenses, lighting equipment, and even stabilizers. Many wedding photographers rent backup bodies through us."
+                a: "Absolutely! Camera and lens rentals for events are one of our most popular categories. You can rent a professional mirrorless or interchangeable-lens camera body, multiple lenses, lighting equipment, and even stabilizers. Many wedding photographers rent backup bodies through us."
               },
               {
                 q: "How do I return my rented device?",

@@ -82,7 +82,7 @@ const brands = [
   { name: "Dell", tagline: "XPS, Latitude, Precision, OptiPlex" },
   { name: "HP", tagline: "Spectre, EliteBook, ZBook, EliteDesk" },
   { name: "Lenovo", tagline: "ThinkPad, IdeaPad, Legion, ThinkCentre" },
-  { name: "ASUS", tagline: "ZenBook, ROG, VivoBook, ProArt" },
+  { name: "Asus", tagline: "ZenBook, ROG, VivoBook, ProArt" },
   { name: "Microsoft", tagline: "Surface Pro, Surface Laptop, Surface Studio" }
 ];
 
@@ -204,7 +204,7 @@ export default function LaptopDesktopRentals() {
               Rent Powerful Laptops & Desktops for Any Task
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              RentMyGadgets offers flexible monthly rentals on business-grade laptops, desktop computers, and professional workstations from brands like Apple, Dell, HP, Lenovo, and ASUS. Skip the massive upfront cost. Cancel anytime. Always stay current.
+              RentMyGadgets offers flexible monthly rentals on business-grade laptops, desktop computers, and professional workstations from brands like Apple, Dell, HP, Lenovo, and Asus. Skip the massive upfront cost. Cancel anytime. Always stay current.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/categories/laptops">
@@ -572,7 +572,7 @@ export default function LaptopDesktopRentals() {
                 </p>
                 <h3 className="font-bold text-xl mb-3 mt-6">Gaming Laptop Rental</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Need a gaming laptop rental for a LAN event, streaming setup, or short-term use? We carry high-performance laptops with dedicated NVIDIA and AMD GPUs, high-refresh-rate displays, and advanced cooling systems from brands like ASUS ROG, Alienware, and MSI. Rent by the month with no long-term commitment.
+                  Need a gaming laptop rental for a LAN event, streaming setup, or short-term use? We carry high-performance laptops with dedicated NVIDIA and AMD GPUs, high-refresh-rate displays, and advanced cooling systems from brands like Asus ROG, Alienware, and MSI. Rent by the month with no long-term commitment.
                 </p>
               </div>
             </div>

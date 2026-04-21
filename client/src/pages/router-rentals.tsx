@@ -98,7 +98,7 @@ const faqs = [
   },
   {
     question: "Can I rent a WiFi 7 router?",
-    answer: "Yes! We carry the latest WiFi 7 (802.11be) routers from ASUS, TP-Link, and Netgear. WiFi 7 delivers speeds up to 46 Gbps with lower latency — ideal for 8K streaming, cloud gaming, and bandwidth-heavy smart homes."
+    answer: "Yes! We carry the latest WiFi 7 (802.11be) routers from Asus, TP-Link, and Netgear. WiFi 7 delivers speeds up to 46 Gbps with lower latency — ideal for 8K streaming, cloud gaming, and bandwidth-heavy smart homes."
   },
   {
     question: "Do you provide mesh networking systems?",
@@ -141,7 +141,7 @@ export default function RouterRentals() {
               Rent Fast, Reliable Routers for Home & Office
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              RentMyGadgets offers flexible monthly rentals on high-performance routers, WiFi systems, and wireless networking gear from brands you trust — ASUS, TP-Link, Netgear, Google, and Ubiquiti. No expensive purchases. No outdated hardware.
+              RentMyGadgets offers flexible monthly rentals on high-performance routers, WiFi systems, and wireless networking gear from brands you trust — Asus, TP-Link, Netgear, Google, and Ubiquiti. No expensive purchases. No outdated hardware.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/categories/routers">
@@ -217,7 +217,7 @@ export default function RouterRentals() {
                   <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Dual-band and tri-band options available</li>
                   <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Gigabit Ethernet ports for wired devices</li>
                   <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Built-in security features and parental controls</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Popular models: ASUS RT-AX86U, Netgear Nighthawk</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Popular models: Asus RT-AX86U, Netgear Nighthawk</li>
                 </ul>
               </div>
 
@@ -350,11 +350,11 @@ export default function RouterRentals() {
               </p>
             </div>
             <p className="text-sm text-muted-foreground text-center max-w-3xl mx-auto mb-8">
-              Whether you're looking for an ASUS gaming router with blazing-fast speeds, a TP-Link Deco mesh system for whole-home coverage, a Netgear Nighthawk for power users, a Linksys Velop for seamless streaming, a Google Nest WiFi Pro for smart home integration, or a Ubiquiti UniFi access point for commercial deployments — we have your ideal wireless router for rent.
+              Whether you're looking for an Asus gaming router with blazing-fast speeds, a TP-Link Deco mesh system for whole-home coverage, a Netgear Nighthawk for power users, a Linksys Velop for seamless streaming, a Google Nest WiFi Pro for smart home integration, or a Ubiquiti UniFi access point for commercial deployments — we have your ideal wireless router for rent.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
-                { name: "ASUS", tagline: "Gaming & Pro Networking", color: "bg-slate-100" },
+                { name: "Asus", tagline: "Gaming & Pro Networking", color: "bg-slate-100" },
                 { name: "TP-Link", tagline: "Value & Performance", color: "bg-blue-50" },
                 { name: "Netgear", tagline: "Nighthawk Power", color: "bg-purple-50" },
                 { name: "Linksys", tagline: "Trusted Home WiFi", color: "bg-cyan-50" },

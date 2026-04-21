@@ -141,27 +141,27 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
   "/collections/office-printers": {
     title: "Office Printers for Every Desk",
-    description: "Office printers that print, scan, copy, and handle all your paperwork in one handy device.",
+    description: "Rent multifunction office printers that print, scan, copy, and fax. Flexible monthly plans from HP, Brother, Canon, and Epson with fast delivery in select areas.",
     keywords: "office printer, office printers, rent office printer, all-in-one office printer, office printer rental",
-    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Office Printers for Every Desk", description: "Office printers that print, scan, copy, and handle all your paperwork in one handy device.", url: `${BASE_URL}/collections/office-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Office Printers for Every Desk", description: "Rent multifunction office printers that print, scan, copy, and fax. Flexible monthly plans from HP, Brother, Canon, and Epson.", url: `${BASE_URL}/collections/office-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/collections/laser-printers": {
     title: "Laser Printers for Your Office",
-    description: "Laser printers deliver sharp text, fast speeds, and low cost per page for any busy office.",
+    description: "Rent laser printers that deliver sharp text, fast speeds, and low cost per page. Ideal for busy offices, schools, and small businesses with high-volume needs.",
     keywords: "laser printer, laser printers, rent laser printer, laser printer rental, office laser printer",
-    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Laser Printers for Your Office", description: "Laser printers deliver sharp text, fast speeds, and low cost per page for any busy office.", url: `${BASE_URL}/collections/laser-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Laser Printers for Your Office", description: "Rent laser printers that deliver sharp text, fast speeds, and low cost per page for busy offices.", url: `${BASE_URL}/collections/laser-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/collections/color-laser-printers": {
     title: "Color Laser Printers Made Easy",
-    description: "Color laser printers produce vibrant prints, detailed output, and accurate color printing.",
+    description: "Rent color laser printers that produce vibrant prints, detailed output, and accurate color for marketing materials, presentations, and creative projects.",
     keywords: "color laser printer, color laser printers, rent color laser printer, color laser printer rental",
-    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Color Laser Printers Made Easy", description: "Color laser printers produce vibrant prints, detailed output, and accurate color printing.", url: `${BASE_URL}/collections/color-laser-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Color Laser Printers Made Easy", description: "Rent color laser printers that produce vibrant prints, detailed output, and accurate color for marketing materials.", url: `${BASE_URL}/collections/color-laser-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/collections/small-office-printers": {
     title: "Small Office Printers in Stock",
-    description: "Small office printers fit tight spaces and deliver reliable printing for your daily tasks.",
+    description: "Rent compact small office printers that fit tight spaces and deliver reliable printing for daily tasks. Flexible monthly plans with no long-term commitment required.",
     keywords: "small office printer, small office printers, rent small office printer, compact office printer rental",
-    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Small Office Printers in Stock", description: "Small office printers fit tight spaces and deliver reliable printing for your daily tasks.", url: `${BASE_URL}/collections/small-office-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Small Office Printers in Stock", description: "Rent compact small office printers that fit tight spaces and deliver reliable output for daily tasks.", url: `${BASE_URL}/collections/small-office-printers`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/laptop-desktop-rentals": {
     title: "Laptop & Desktop Rentals | Laptops, Desktops & Workstations",
@@ -236,16 +236,16 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
     jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Computer Mice for Home or Work", description: "Computer mice with smooth glide, quiet clicks, and comfort grip for daily work and gaming.", url: `${BASE_URL}/collections/computer-mice`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/camera-gear-rentals": {
-    title: "Camera & Gear Rentals | DSLRs, Lenses & Lighting Equipment",
-    description: "Rent professional DSLR cameras, sharp lenses, and studio lighting gear for photo shoots, events, and travel. Flexible monthly plans, no contracts.",
-    keywords: "camera rental, DSLR rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental",
-    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Camera & Gear Rentals", description: "Rent professional DSLR cameras, lenses, and lighting gear for shoots, events, and travel.", url: `${BASE_URL}/camera-gear-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+    title: "Camera & Gear Rentals | Pro Cameras, Lenses & Lighting Equipment",
+    description: "Rent professional cameras, sharp lenses, and studio lighting gear for photo shoots, events, and travel. Flexible monthly plans, no contracts.",
+    keywords: "camera rental, professional camera rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Camera & Gear Rentals", description: "Rent professional cameras, lenses, and lighting gear for shoots, events, and travel.", url: `${BASE_URL}/camera-gear-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/collections/dslr-cameras": {
-    title: "DSLR Cameras for Photo Studios",
-    description: "DSLR cameras for portraits, events, and travel. Sharp lens, strong build, and clear shots at flexible rental rates.",
-    keywords: "DSLR rental, rent DSLR camera, DSLR camera rental, portrait camera rental, event camera rental",
-    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "DSLR Cameras for Photo Studios", description: "DSLR cameras for portraits, events, and travel. Sharp lens, strong build, and clear shots.", url: `${BASE_URL}/collections/dslr-cameras`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+    title: "Professional Cameras for Photo Studios",
+    description: "Professional cameras for portraits, events, and travel. Sharp lens, strong build, and clear shots at flexible rental rates.",
+    keywords: "professional camera rental, rent camera, camera rental, portrait camera rental, event camera rental",
+    jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Professional Cameras for Photo Studios", description: "Professional cameras for portraits, events, and travel. Sharp lens, strong build, and clear shots.", url: `${BASE_URL}/collections/dslr-cameras`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/collections/camera-lenses": {
     title: "Camera Lenses for Clear Photos",
@@ -417,7 +417,7 @@ const STATIC_KEYWORDS: Record<string, string> = {
   "/laptop-desktop-rentals": "laptop rental, desktop rental, workstation rental, rent laptop, rent desktop, computer rental, gaming laptop rental, business laptop rental",
   "/smartphone-rentals": "smartphone rental, phone rental, rent smartphone, rent phone, mobile phone rental, cell phone rental, iPhone rental, Samsung rental",
   "/headphones-audio-rentals": "headphone rental, keyboard rental, mouse rental, rent headphones, gaming headset rental, mechanical keyboard rental, ergonomic mouse rental",
-  "/camera-gear-rentals": "camera rental, DSLR rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental",
+  "/camera-gear-rentals": "camera rental, professional camera rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental",
   "/router-rentals": "router rental, WiFi router rental, wireless router rental, rent router, internet router rental, mesh WiFi rental, home router rental",
   "/terms": "terms and conditions, rental terms, RentMyGadgets terms of service, user agreement",
   "/rental-policy": "rental agreement, rental policy, rental terms, rental extension, equipment care policy",
@@ -983,8 +983,8 @@ const HOMEPAGE_CRAWLER_CONTENT = `<p>RentMyGadgets is the trusted destination fo
 <h2>Browse Tech Rentals by Category</h2>
 <p>Explore our six rental categories to find the right equipment for your project, business, classroom, or studio. Every category is curated with current-generation models, multiple brand options, and transparent monthly pricing.</p>
 <ul>
-  <li><strong>Desktops &amp; Laptops</strong> — Dell XPS, HP Spectre, Lenovo ThinkPad, ASUS ZenBook ultrabooks, mobile workstations, gaming laptops, and high-performance desktop towers for video editing, 3D rendering, software development, and remote work.</li>
-  <li><strong>Cameras &amp; Gear</strong> — Professional DSLR and mirrorless cameras from Canon, Sony, Nikon, Fujifilm, and Panasonic. Rent the Canon EOS R5, Sony A7 IV, Nikon Z9, plus cinema lenses, gimbals, and the DJI Ronin 4D for film and photo shoots.</li>
+  <li><strong>Desktops &amp; Laptops</strong> — Dell XPS, HP Spectre, Lenovo ThinkPad, Asus ZenBook ultrabooks, mobile workstations, gaming laptops, and high-performance desktop towers for video editing, 3D rendering, software development, and remote work.</li>
+  <li><strong>Cameras &amp; Gear</strong> — Professional mirrorless and interchangeable-lens cameras from Canon, Sony, Nikon, Fujifilm, and Panasonic. Rent the Canon EOS R5, Sony A7 IV, Nikon Z9, plus cinema lenses, gimbals, and the DJI Ronin 4D for film and photo shoots.</li>
   <li><strong>Printers &amp; Scanners</strong> — HP, Brother, Canon, and Epson laser printers, color laser printers, all-in-one office printers, and high-volume scanners for small businesses, home offices, real-estate firms, schools, and pop-up events.</li>
   <li><strong>Phones</strong> — Samsung Galaxy S24 Ultra, Google Pixel, OnePlus, and Sony Xperia smartphones for app testing, content creation, business travel, or short-term loaners.</li>
   <li><strong>Headphones</strong> — Bose QuietComfort Ultra, Sony WH-1000XM5, Sennheiser, and Beats premium headphones and earbuds for studio work, podcasting, and travel.</li>
@@ -1034,9 +1034,9 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 
   "/categories": `<p>Find the perfect technology rental by browsing our organized categories. RentMyGadgets carries laptops, desktops, cameras, audio equipment, networking gear, and accessories from trusted brands like Dell, HP, Canon, Sony, Nikon, Lenovo, and more. Each category features a curated selection of premium equipment available for flexible monthly rental.</p>
 <h2>Laptop Rentals</h2>
-<p>Rent Dell XPS, HP Spectre, Lenovo ThinkPad, ASUS ZenBook, and other premium laptops. Whether you need a lightweight ultrabook for travel, a powerful workstation for video editing, or a gaming laptop for entertainment, our laptop rental category has options for every use case. All laptops are inspected and tested before shipping.</p>
+<p>Rent Dell XPS, HP Spectre, Lenovo ThinkPad, Asus ZenBook, and other premium laptops. Whether you need a lightweight ultrabook for travel, a powerful workstation for video editing, or a gaming laptop for entertainment, our laptop rental category has options for every use case. All laptops are inspected and tested before shipping.</p>
 <h2>Desktop and Camera Rentals</h2>
-<p>Our desktop category includes high-performance workstations, gaming PCs, and all-in-one computers from Dell, HP, and Lenovo. For photography and videography, rent professional DSLR and mirrorless cameras from Canon, Sony, and Nikon, along with lenses and accessories. We also carry audio equipment including studio microphones, speakers, and headphones for podcasting and music production.</p>
+<p>Our desktop category includes high-performance workstations, gaming PCs, and all-in-one computers from Dell, HP, and Lenovo. For photography and videography, rent professional mirrorless cameras from Canon, Sony, and Nikon, along with lenses and accessories. We also carry audio equipment including studio microphones, speakers, and headphones for podcasting and music production.</p>
 <h2>Accessories and Networking</h2>
 <p>Complete your rental setup with monitors, keyboards, mice, docking stations, and other peripherals. Our networking category includes routers, mesh WiFi systems, and switches for home and office connectivity. All rentals come with flexible monthly terms — choose 1, 3, 6, or 12 month plans with progressive discounts for longer commitments. <a href="/products">Browse all products</a>, <a href="/how-it-works">learn how renting works</a>, or <a href="/gadgetcare">add GadgetCare+ protection</a> to any rental. <a href="/compare">Compare products</a> side by side or <a href="/search">search our catalog</a> to find exactly what you need. Visit our <a href="/rent-to-own">Rent-to-Own page</a> to learn about purchasing your rental equipment after 6 months.</p>`,
 
@@ -1044,7 +1044,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Laptops and Desktops for Rent</h2>
 <p>Our inventory includes premium laptops from Dell, HP, Lenovo, and Samsung. Rent a Dell XPS for creative work, an HP Spectre for business productivity, or a gaming laptop for entertainment. Desktop computers are available for gaming, video editing, 3D rendering, and professional workstation needs. All computers are tested and ready to use upon delivery.</p>
 <h2>Cameras, Audio, and Accessories</h2>
-<p>Professional cameras from Canon, Sony, and Nikon are available for photography and videography projects. Rent DSLR bodies, mirrorless cameras, lenses, and video equipment. Our audio category includes studio microphones, monitors, and headphones for podcasting, recording, and events. Accessories include monitors, keyboards, mice, docking stations, and networking equipment like routers and mesh WiFi systems.</p>
+<p>Professional cameras from Canon, Sony, and Nikon are available for photography and videography projects. Rent mirrorless bodies, interchangeable-lens cameras, lenses, and video equipment. Our audio category includes studio microphones, monitors, and headphones for podcasting, recording, and events. Accessories include monitors, keyboards, mice, docking stations, and networking equipment like routers and mesh WiFi systems.</p>
 <p>All products can be protected with our optional <a href="/gadgetcare">GadgetCare+ plan</a> covering accidental damage and hardware issues. <a href="/categories">Browse by category</a> for organized browsing, <a href="/compare">compare products</a> side by side, or <a href="/search">search</a> for specific items. Learn about our <a href="/rent-to-own">Rent-to-Own program</a> for equipment you want to keep. Visit <a href="/how-it-works">How It Works</a> for a step-by-step guide to renting, or <a href="/contact">contact us</a> with any questions.</p>`,
 
   "/about": `<p>RentMyGadgets is a technology equipment rental service offering flexible monthly plans for premium laptops, cameras, desktops, and accessories. Our mission is to make high-end technology accessible through affordable rental options, whether you need equipment for a short-term project, want to try before you buy, or prefer the flexibility of renting over purchasing.</p>
@@ -1083,7 +1083,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 
   "/blog": `<p>Welcome to the RentMyGadgets blog, your resource for technology rental tips, product guides, industry insights, and practical advice on getting the most from your tech rentals. Whether you are a first-time renter or an experienced tech enthusiast, our articles cover everything from choosing the right laptop for remote work to camera rental tips for beginners.</p>
 <h2>Featured Articles</h2>
-<p>Best Laptops for Remote Work — A comprehensive guide comparing the top laptops available for rent, including Dell XPS, HP Spectre, and Lenovo ThinkPad models. Learn which specs matter most for video conferencing, document editing, and creative work. Camera Rental Guide for Beginners — Everything you need to know about renting your first camera, from understanding DSLR vs mirrorless to choosing the right lens for your project. Save Money Renting vs Buying Tech — A detailed cost comparison showing how renting technology equipment can save you money compared to purchasing, especially for short-term projects and specialized needs.</p>
+<p>Best Laptops for Remote Work — A comprehensive guide comparing the top laptops available for rent, including Dell XPS, HP Spectre, and Lenovo ThinkPad models. Learn which specs matter most for video conferencing, document editing, and creative work. Camera Rental Guide for Beginners — Everything you need to know about renting your first camera, from understanding different camera types to choosing the right lens for your project. Save Money Renting vs Buying Tech — A detailed cost comparison showing how renting technology equipment can save you money compared to purchasing, especially for short-term projects and specialized needs.</p>
 <h2>More Resources</h2>
 <p>Ready to get started? <a href="/products">Browse our full product catalog</a> of over 130 rental items, or <a href="/categories">explore by category</a> to find laptops, cameras, desktops, and more. Learn about our <a href="/how-it-works">rental process</a>, <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/rent-to-own">Rent-to-Own program</a>. <a href="/search">Search for specific products</a> or <a href="/compare">compare items</a> side by side. <a href="/contact">Contact our team</a> with questions.</p>`,
 
@@ -1099,19 +1099,19 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Things to Consider When Comparing</h2>
 <p>When comparing rental products, consider the monthly rental price across different term lengths — remember that longer terms come with bigger discounts (10% off for 3 months, 20% for 6 months, 30% for 12 months). Check whether the product is eligible for our <a href="/rent-to-own">Rent-to-Own program</a> if you might want to keep it after your rental. Consider adding <a href="/gadgetcare">GadgetCare+ protection</a> for valuable equipment. Not sure what you need? <a href="/search">Search our catalog</a>, read our <a href="/blog">product guides</a>, visit <a href="/how-it-works">How It Works</a>, or <a href="/contact">contact our team</a> for personalized recommendations.</p>`,
 
-  "/office-printer-rentals": `<p>RentMyGadgets offers flexible monthly rentals on business-grade laser printers, color laser printers, and compact small office printers from brands you already trust — HP, Brother, Canon, Xerox, and Epson. Whether you're outfitting a new workspace, handling a short-term project, or scaling print capacity for tax season, our rental plans put a professional office printer on your desk without a five-figure capital purchase or a three-year lease.</p>
-<h2>Why Rent an Office Printer Instead of Buying?</h2>
-<p>Buying an office printer outright locks up cash, ties you to one device for years, and leaves you responsible for toner, maintenance, and eventual disposal. Renting flips that equation. You get the exact printer you need for as long as you need it, with optional damage protection and no surprise repair bills. If your print volume changes or a better model hits the market, you swap devices instead of selling used equipment at a loss. For small offices, startups, and project-based teams, renting keeps your balance sheet lean and your office printing modern.</p>
-<h2>Laser Printer Rentals Built for Speed and Reliability</h2>
-<p>Our laser printer inventory includes monochrome models that deliver crisp black-and-white documents at 35 to 55 pages per minute, with duty cycles built for teams that actually print. Every laser printer rental ships with a starter toner cartridge, duplex printing enabled, and wireless connectivity. Popular rental models include the HP LaserJet Pro MFP series, Brother HL-L6210DW, and Canon imageCLASS LBP236dw.</p>
-<h2>Color Laser Printer Rentals for Marketing-Ready Output</h2>
-<p>A color laser printer delivers the sharp, professional output your proposals, presentations, and marketing collateral deserve. Unlike inkjets, a color laser printer handles high-volume color jobs without smearing, drying out, or burning through expensive ink. Our color laser printer rentals cover everything from compact desktop units for creative teams to floor-standing workgroup devices rated for 75,000+ pages per month.</p>
-<h2>Small Office Printer Rentals That Fit Anywhere</h2>
-<p>Our small office printer lineup is engineered for home offices, co-working desks, and rooms where every square foot counts. Most models fit on a credenza or shelf while delivering laser-quality output, wireless printing, and automatic document feeders. A small office printer rental is ideal for freelancers, consultants, and two-to-five person teams. Starting at $29 per month.</p>
-<h2>How Our Printer Rental Process Works</h2>
-<p>Step 1: Choose your printer from our laser, color laser, and small office categories. Step 2: Select a rental term from 1 to 12 months with progressive discounts. Step 3: We deliver your office printer fast — delivery available in select metro areas. Step 4: Print with confidence with free tech support and optional damage protection. Step 5: Return with a prepaid shipping label or upgrade anytime.</p>
-<h2>What's Included with Every Office Printer Rental</h2>
-<p>Every office printer ships fully configured with Wi-Fi, Ethernet, and USB connectivity, mobile printing support, a starter toner cartridge, and a setup guide. Technical support is available seven days a week. Replacement units ship within 24 hours if your device ever fails. <a href="/collections/printers-scanners">Browse our printer catalog</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for a recommendation.</p>`,
+  "/office-printer-rentals": `<p>RentMyGadgets offers flexible monthly rentals on business-grade printing equipment from HP, Brother, Canon, Xerox, and Epson. Whether you're outfitting a new workspace, handling a short-term project, or scaling capacity for tax season, our plans deliver professional output without a large capital purchase or a three-year lease.</p>
+<h2>Why Rent Instead of Buying?</h2>
+<p>Purchasing hardware outright locks up cash, ties you to one device for years, and leaves you responsible for toner, maintenance, and disposal. Renting flips that equation. You get the exact model you need for as long as you need it, with optional damage protection and no surprise repair bills. If your volume changes or a better model launches, swap devices instead of selling used equipment at a loss. For startups and project-based teams, renting keeps your balance sheet lean.</p>
+<h2>Laser Models Built for Speed and Reliability</h2>
+<p>Our monochrome laser inventory delivers crisp black-and-white documents at 35 to 55 pages per minute, with duty cycles built for teams that print every day. Every rental ships with a starter toner cartridge, duplex capability, and wireless connectivity. Popular models include the HP LaserJet Pro MFP series, Brother HL-L6210DW, and Canon imageCLASS LBP236dw.</p>
+<h2>Color Laser Rentals for Marketing-Ready Output</h2>
+<p>A color laser model delivers sharp, professional output for proposals, presentations, and marketing collateral. Unlike inkjets, it handles high-volume color jobs without smearing or drying out. We carry everything from compact desktop units for creative teams to floor-standing workgroup devices rated for 75,000+ pages per month.</p>
+<h2>Compact Models That Fit Anywhere</h2>
+<p>Our compact lineup is engineered for home offices, co-working desks, and rooms where every square foot counts. Most units fit on a credenza or shelf while delivering laser-quality output, wireless connectivity, and automatic document feeders. Ideal for freelancers, consultants, and small teams. Starting at $29 per month.</p>
+<h2>How Our Rental Process Works</h2>
+<p>Step 1: Choose from our laser, color, and compact categories. Step 2: Select a term from 1 to 12 months with progressive discounts. Step 3: We deliver fast — delivery available in select metro areas. Step 4: Work with confidence backed by free tech support and optional damage protection. Step 5: Return with a prepaid shipping label or upgrade anytime.</p>
+<h2>What's Included with Every Rental</h2>
+<p>Every device ships fully configured with Wi-Fi, Ethernet, and USB connectivity, mobile support, a starter toner cartridge, and a setup guide. Technical support is available seven days a week. Replacement units ship within 24 hours if your device ever fails. <a href="/collections/printers-scanners">Browse our catalog</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for a recommendation.</p>`,
 
   "/laptop-desktop-rentals": `<p>RentMyGadgets offers flexible monthly rentals on powerful laptops, desktop computers, and professional workstations from the brands you trust. Whether you need a lightweight laptop for travel, a high-performance desktop for your office, or a workstation built for creative projects, our rental plans give you access to premium computing power without the upfront cost of buying.</p>
 <h2>Why Rent a Laptop or Desktop Instead of Buying?</h2>
@@ -1155,17 +1155,17 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>What's Included with Every Accessory Rental</h2>
 <p>Every accessory ships with all necessary cables, adapters, batteries or receivers, and a carrying case or storage pouch. Tech support is available seven days a week. Replacement units ship within 24 hours if your gear has issues. <a href="/categories/accessories">Browse accessories</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for a recommendation.</p>`,
 
-  "/camera-gear-rentals": `<p>RentMyGadgets offers flexible monthly rentals on professional DSLR cameras, sharp lenses, and studio lighting equipment. Whether you're a photographer preparing for a wedding shoot, a filmmaker working on a short film, or a content creator building your portfolio, our rental plans give you access to pro-grade gear without the massive investment.</p>
+  "/camera-gear-rentals": `<p>RentMyGadgets offers flexible monthly rentals on professional cameras, sharp lenses, and studio lighting equipment. Whether you're a photographer preparing for a wedding shoot, a filmmaker working on a short film, or a content creator building your portfolio, our rental plans give you access to pro-grade gear without the massive investment.</p>
 <h2>Why Rent Camera Gear Instead of Buying?</h2>
 <p>Professional photography and video equipment is expensive, and different projects often demand different gear. Renting lets you access the exact camera body, lens, or lighting setup for each shoot without owning shelves of equipment you rarely use. Try new gear before investing, access pro-level equipment for one-off projects, and avoid the storage and insurance costs of ownership.</p>
-<h2>DSLR Cameras for Photo Studios</h2>
-<p>DSLR cameras for portraits, events, and travel — sharp lenses, strong build, and clear shots. Our DSLR rentals include full-frame bodies, crop-sensor options, and mirrorless hybrids from leading brands. Every camera ships with a charged battery, memory card, lens cap, and carrying strap.</p>
+<h2>Professional Cameras for Photo Studios</h2>
+<p>Professional cameras for portraits, events, and travel — sharp lenses, strong build, and clear shots. Our camera rentals include full-frame bodies, crop-sensor options, and mirrorless hybrids from leading brands. Every camera ships with a charged battery, memory card, lens cap, and carrying strap.</p>
 <h2>Camera Lenses for Clear Photos</h2>
 <p>Camera lenses with sharp focus, wide range, and smooth zoom for portrait and travel shots. Our lens library covers prime lenses, zoom lenses, macro lenses, and wide-angle options for every shooting style. Rent the perfect lens for your next project without the four-figure price tag.</p>
 <h2>Lighting Gear for Photo Shoots</h2>
 <p>Lighting gear for photo and video shoots — softbox, stands, and bright LED lights in stock. Our lighting rentals include continuous LED panels, strobe kits, softboxes with stands, ring lights, and reflector sets. Everything ships ready to set up with clear instructions and all mounting hardware included.</p>
 <h2>How Our Rental Process Works</h2>
-<p>Step 1: Browse our DSLR cameras, lenses, and lighting gear and pick the equipment for your project. Step 2: Select a rental term from 1 to 12 months with progressive discounts. Step 3: We deliver your camera gear quickly with fast delivery in select areas. Step 4: Shoot with confidence backed by free tech support and optional damage protection. Step 5: Return with a prepaid label or keep renting for your next project.</p>
+<p>Step 1: Browse our professional cameras, lenses, and lighting gear and pick the equipment for your project. Step 2: Select a rental term from 1 to 12 months with progressive discounts. Step 3: We deliver your camera gear quickly with fast delivery in select areas. Step 4: Shoot with confidence backed by free tech support and optional damage protection. Step 5: Return with a prepaid label or keep renting for your next project.</p>
 <h2>What's Included with Every Camera Rental</h2>
 <p>Every camera ships with a memory card, battery pack, carrying bag, and lens cleaning cloth. Lighting kits include all stands, diffusers, and mounting hardware. Tech support is available seven days a week. Replacement units ship within 24 hours if your gear has issues. <a href="/categories/cameras">Browse cameras and gear</a>, learn about <a href="/gadgetcare">GadgetCare+ protection</a>, or <a href="/contact">contact our team</a> for gear recommendations.</p>`,
 
@@ -1173,7 +1173,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Why Rent a Router Instead of Buying?</h2>
 <p>WiFi standards evolve quickly — WiFi 6, WiFi 6E, and WiFi 7 devices continue to push speeds and coverage further. Buying a router means locking into today's technology. Renting lets you upgrade to the latest standards as they arrive, scale your coverage for changing needs, and avoid obsolete hardware. Fixed monthly costs, no surprise obsolescence.</p>
 <h2>Routers for Fast Home Internet</h2>
-<p>Routers with fast speeds, wide range, and stable signal for home, office, or everyday use. Our router rentals include dual-band and tri-band models with advanced QoS, parental controls, and guest network support from brands like ASUS, TP-Link, Netgear, Google, and Ubiquiti.</p>
+<p>Routers with fast speeds, wide range, and stable signal for home, office, or everyday use. Our router rentals include dual-band and tri-band models with advanced QoS, parental controls, and guest network support from brands like Asus, TP-Link, Netgear, Google, and Ubiquiti.</p>
 <h2>WiFi Routers for Home and Work</h2>
 <p>WiFi routers with strong speeds, wide coverage, and stable signal for any home and office. Our WiFi router selection includes mesh systems for large spaces, gaming routers with ultra-low latency, and business-grade access points with enterprise security features.</p>
 <h2>Wireless Routers for Fast WiFi</h2>
@@ -1322,7 +1322,7 @@ const COLLECTION_LINKS = [
   { href: "/collections/keyboards", text: "Keyboards" },
   { href: "/collections/computer-mice", text: "Computer Mice" },
   { href: "/camera-gear-rentals", text: "Camera & Gear Rentals" },
-  { href: "/collections/dslr-cameras", text: "DSLR Cameras" },
+  { href: "/collections/dslr-cameras", text: "Professional Cameras" },
   { href: "/collections/camera-lenses", text: "Camera Lenses" },
   { href: "/collections/lighting-gear", text: "Lighting Gear" },
   { href: "/router-rentals", text: "Router Rentals" },
