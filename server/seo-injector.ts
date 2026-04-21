@@ -29,6 +29,12 @@ interface PageMeta {
   };
   imageAlt?: string;
   canonicalUrl?: string;
+  pagination?: {
+    currentPage: number;
+    totalPages: number;
+    prevUrl?: string;
+    nextUrl?: string;
+  };
 }
 
 const SITE_NAME = "RentMyGadgets";
@@ -595,26 +601,44 @@ export async function getMetaForUrl(url: string): Promise<PageMeta> {
     const category = params.get("category");
     if (category) {
       const posts = await storage.getBlogPostsByCategory(category);
-      const categoryUrl = `${BASE_URL}/blog?category=${encodeURIComponent(category)}`;
+      const POSTS_PER_PAGE = 10;
+      const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+      const currentPage = Math.max(1, Math.min(parseInt(params.get("page") || "1", 10) || 1, totalPages));
+      const startIdx = (currentPage - 1) * POSTS_PER_PAGE;
+      const pagePosts = posts.slice(startIdx, startIdx + POSTS_PER_PAGE);
+
+      const categoryBase = `${BASE_URL}/blog?category=${encodeURIComponent(category)}`;
+      const pageUrl = (p: number) => p === 1 ? categoryBase : `${categoryBase}&page=${p}`;
+
+      const pagination: PageMeta["pagination"] = {
+        currentPage,
+        totalPages,
+        ...(currentPage > 1 && { prevUrl: pageUrl(currentPage - 1) }),
+        ...(currentPage < totalPages && { nextUrl: pageUrl(currentPage + 1) }),
+      };
+
+      const pageSuffix = currentPage > 1 ? ` (Page ${currentPage})` : "";
+
       return {
-        canonicalUrl: categoryUrl,
-        title: `${category} Articles | ${SITE_NAME} Blog`,
-        description: `Browse ${posts.length > 0 ? posts.length : "our"} ${category} articles on the ${SITE_NAME} blog. Tips, guides, and insights about ${category.toLowerCase()}.`,
+        canonicalUrl: categoryBase,
+        title: `${category} Articles${pageSuffix} | ${SITE_NAME} Blog`,
+        description: `Browse ${posts.length > 0 ? posts.length : "our"} ${category} articles on the ${SITE_NAME} blog. Tips, guides, and insights about ${category.toLowerCase()}.${pageSuffix ? ` Page ${currentPage} of ${totalPages}.` : ""}`,
         keywords: `${category.toLowerCase()}, ${category.toLowerCase()} blog, ${category.toLowerCase()} tips, tech rental blog, gadget rental guides`,
+        pagination,
         jsonLd: {
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: `${category} – ${SITE_NAME} Blog`,
+          name: `${category} – ${SITE_NAME} Blog${pageSuffix}`,
           description: `All blog posts in the ${category} category.`,
-          url: categoryUrl,
+          url: pageUrl(currentPage),
           isPartOf: { "@type": "Blog", name: `${SITE_NAME} Blog`, url: `${BASE_URL}/blog` },
-          ...(posts.length > 0 && {
+          ...(pagePosts.length > 0 && {
             mainEntity: {
               "@type": "ItemList",
               numberOfItems: posts.length,
-              itemListElement: posts.slice(0, 10).map((p, i) => ({
+              itemListElement: pagePosts.map((p, i) => ({
                 "@type": "ListItem",
-                position: i + 1,
+                position: startIdx + i + 1,
                 url: `${BASE_URL}/blog/${p.slug}`,
                 name: p.title,
               })),
@@ -1032,6 +1056,16 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   result = upsertMeta(result, "geo.position", "31.3697;-81.4337");
   result = upsertMeta(result, "ICBM", "31.3697, -81.4337");
   result = upsertLink(result, "canonical", escapeHtml(fullUrl));
+
+  if (meta.pagination) {
+    if (meta.pagination.prevUrl) {
+      result = result.replace("</head>", `    <link rel="prev" href="${escapeHtml(meta.pagination.prevUrl)}" />\n  </head>`);
+    }
+    if (meta.pagination.nextUrl) {
+      result = result.replace("</head>", `    <link rel="next" href="${escapeHtml(meta.pagination.nextUrl)}" />\n  </head>`);
+    }
+  }
+
   result = upsertMeta(result, "og:title", safeTitle, true);
   result = upsertMeta(result, "og:description", safeDesc, true);
   result = upsertMeta(result, "og:type", ogType, true);
