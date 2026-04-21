@@ -246,8 +246,18 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="text-2xl font-heading font-bold mb-4">11. Cookies and Tracking Technologies</h2>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground mb-4">
                 We use cookies and similar technologies to enhance your experience. For detailed information about our use of cookies and how to manage your preferences, please see our <Link href="/cookies" className="text-primary underline">Cookie Policy</Link>.
+              </p>
+              <p className="text-muted-foreground mb-4">
+                With your consent, we use the following third-party tracking and analytics services:
+              </p>
+              <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
+                <li><strong>Google Analytics (GA4)</strong> — to analyze website traffic and understand how visitors use our site.</li>
+                <li><strong>Microsoft Advertising (Bing Ads) Universal Event Tracking (UET)</strong> — to measure the effectiveness of our advertising campaigns on Microsoft Bing and partner networks.</li>
+              </ul>
+              <p className="text-muted-foreground">
+                These services may collect information about your browsing activity using cookies and similar technologies. Both services operate under their respective privacy policies. We support Google Consent Mode v2 and honor your consent choices before loading any tracking scripts. You can manage your tracking preferences through our cookie consent banner or opt out entirely on our <Link href="/do-not-sell" className="text-primary underline">Do Not Sell or Share</Link> page.
               </p>
             </div>
 

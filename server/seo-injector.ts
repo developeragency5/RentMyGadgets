@@ -947,6 +947,8 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
   "/privacy": `<p>RentMyGadgets is committed to protecting your personal information and privacy. This Privacy Policy explains how we collect, use, store, and protect your data when you use our website and rental services. This policy is compliant with the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA), and we support Global Privacy Control (GPC) signals.</p>
 <h2>Information We Collect and How We Use It</h2>
 <p>We collect information necessary to provide our rental services, including your name, email address, shipping address, payment information, and account preferences. This information is used to process rental orders, manage your account, communicate about your rentals, and improve our services. We do not sell your personal information to third parties. We use cookies and similar technologies as described in our <a href="/cookies">Cookie Policy</a> to improve your browsing experience and analyze site usage.</p>
+<h2>Advertising and Tracking Technologies</h2>
+<p>With your consent, we use Google Analytics (GA4) to analyze website traffic and Microsoft Advertising (Bing Ads) Universal Event Tracking (UET) to measure the effectiveness of our advertising campaigns. These services may collect information about your browsing activity using cookies and similar technologies. Microsoft UET helps us understand how visitors interact with our site after viewing our ads on Microsoft Bing and partner networks. Google Analytics helps us understand site usage patterns. Both services operate under their respective privacy policies. You can manage your tracking preferences through our cookie consent banner or opt out entirely on our <a href="/do-not-sell">Do Not Sell or Share</a> page. We support Google Consent Mode v2 and honor your consent choices before loading any tracking scripts.</p>
 <h2>Your Privacy Rights</h2>
 <p>Under CCPA and CPRA, California residents have the right to know what personal information we collect, request deletion of their data, opt out of the sale or sharing of personal information, and exercise these rights without discrimination. We detect and honor Global Privacy Control (GPC) browser signals automatically. To opt out of data sharing, visit our <a href="/do-not-sell">Do Not Sell or Share</a> page. For accessibility accommodations, see our <a href="/accessibility">Accessibility Statement</a>. Review our <a href="/terms">Terms and Conditions</a> for service terms. <a href="/contact">Contact us</a> with privacy questions, <a href="/products">browse products</a>, or learn <a href="/how-it-works">how renting works</a>.</p>`,
 
@@ -1273,6 +1275,24 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   const pageContent = meta.bodyContent || getCrawlerPageContent(url);
   const crawlerContent = `<div hidden aria-hidden="true" style="display:none!important">${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}</div>`;
   result = result.replace('<div id="root"></div>', `<div id="root">${crawlerContent}</div>`);
+
+  if (!result.includes('id="ssr-cookie-consent"')) {
+    const cookieBanner = `<div id="ssr-cookie-consent" role="dialog" aria-label="Cookie consent" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;padding:16px 24px;z-index:9999;box-shadow:0 -2px 8px rgba(0,0,0,0.1)">
+  <p style="margin:0 0 8px;font-size:14px;color:#374151">Your Privacy Matters. We use cookies to enhance your experience and analyze traffic. Some information may be shared with advertising partners. You have the right to opt-out of the sale or sharing of your personal information. <a href="/cookies" style="color:#f97316">Cookie Policy</a> | <a href="/privacy" style="color:#f97316">Privacy Policy</a> | <a href="/do-not-sell" style="color:#f97316">Do Not Sell My Info</a></p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap"><button style="padding:8px 16px;background:#f97316;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">Accept All</button><button style="padding:8px 16px;background:#fff;color:#374151;border:1px solid #d1d5db;border-radius:6px;cursor:pointer;font-size:14px">Reject All</button><button style="padding:8px 16px;background:#fff;color:#374151;border:1px solid #d1d5db;border-radius:6px;cursor:pointer;font-size:14px">Customize</button></div>
+</div>`;
+    result = result.replace("</body>", `${cookieBanner}\n</body>`);
+  }
+
+  if (!result.includes("gtag('consent'")) {
+    const consentAndUet = `<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied'});
+gtag('set','ads_data_redaction',true);
+</script>
+<script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"YOUR_UET_TAG_ID",enableAutoSpaTracking:true};o.q=w[u],w[u]=new UET(o)},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","https://bat.bing.com/bat.js","uetq");</script>`;
+    result = result.replace("</head>", `${consentAndUet}\n</head>`);
+  }
 
   return result;
 }

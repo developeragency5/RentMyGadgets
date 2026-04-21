@@ -73,8 +73,8 @@ function stripTrackingParams(url: string): string {
 
 const STATIC_ROUTES: Record<string, PageMeta> = {
   "/": {
-    title: "Rent Premium Tech Equipment | Laptops, Cameras & More",
-    description: "Rent high-end laptops, desktops, cameras, and tech accessories. Flexible monthly plans, fast delivery in select areas, and optional damage protection.",
+    title: "Rent Laptops, Cameras & Tech | RentMyGadgets",
+    description: "Rent high-end laptops, desktops, cameras, and tech accessories from RentMyGadgets. Flexible monthly plans, fast delivery, and optional damage protection.",
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -125,8 +125,8 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
   "/checkout": {
     title: "Secure Checkout",
-    description: "Complete your rental order securely. Review your items, enter delivery details, and confirm your tech equipment rental booking today.",
-    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Secure Checkout", description: "Complete your technology equipment rental order securely.", url: `${BASE_URL}/checkout`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+    description: "Complete your rental order with confidence. Review your items, enter delivery details, and confirm your tech equipment rental booking today.",
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Checkout", description: "Complete your technology equipment rental order with confidence.", url: `${BASE_URL}/checkout`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/ad-variants": {
     title: "Google Ads — Printer Rental A/B Test Variants",
@@ -874,7 +874,7 @@ const HOMEPAGE_CRAWLER_CONTENT = `<p>RentMyGadgets is the trusted destination fo
   <li><strong>Choose your gear.</strong> Browse the <a href="/products">catalog</a> or pick a <a href="/categories">category</a>, then open any product page to see specs, configurations, and rental pricing.</li>
   <li><strong>Pick your rental term.</strong> Select a 1, 3, 6, or 12-month plan. Longer terms unlock automatic savings — 10% off for 3 months, 20% off for 6 months, and 30% off for 12 months.</li>
   <li><strong>Add optional protection.</strong> Toggle on <a href="/gadgetcare">GadgetCare+</a> for 15% of your rental total to cover accidental drops, liquid spills, and hardware malfunctions.</li>
-  <li><strong>Check out securely.</strong> Expedited delivery is available in select metro areas, and standard shipping arrives in 3 to 5 business days.</li>
+  <li><strong>Complete your order.</strong> Expedited delivery is available in select metro areas, and standard shipping arrives in 3 to 5 business days.</li>
   <li><strong>Return it free — or keep it.</strong> Send everything back with the prepaid shipping label, or buy your gear through our <a href="/rent-to-own">Rent-to-Own program</a> after 6 months.</li>
 </ol>
 
@@ -901,7 +901,10 @@ const HOMEPAGE_CRAWLER_CONTENT = `<p>RentMyGadgets is the trusted destination fo
   <li><strong>Students and educators</strong> rent laptops and creative software stations for semester-long courses.</li>
 </ul>
 
-<p>Need help? Visit our <a href="/how-it-works">How It Works</a> guide, browse the <a href="/blog">blog</a> for gear roundups and tips, or <a href="/contact">contact our team</a>. Review our <a href="/rental-policy">Rental Agreement</a> and <a href="/privacy">Privacy Policy</a> for full details.</p>`;
+<p><a href="/products" style="display:inline-block;padding:12px 24px;background:#f97316;color:#fff;border-radius:8px;text-decoration:none;font-weight:bold">Browse All Rentals</a></p>
+
+<p>Need help? Visit our <a href="/how-it-works">How It Works</a> guide, browse the <a href="/blog">blog</a> for gear roundups and tips, or <a href="/contact">contact our team</a>. Review our <a href="/rental-policy">Rental Agreement</a> and <a href="/privacy">Privacy Policy</a> for full details.</p>
+<p>Contact us: <a href="tel:+19124378920">(912) 437-8920</a> | <a href="mailto:support@rentmygadgets.com">support@rentmygadgets.com</a> | 2393 Seabreeze Dr SE, Darien, GA 31305</p>`;
 
 const CRAWLER_PAGE_CONTENT: Record<string, string> = {
   "/": HOMEPAGE_CRAWLER_CONTENT,
@@ -1007,9 +1010,9 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 
   "/shipping-policy": `<p>RentMyGadgets offers fast and reliable shipping for all rental equipment. Free shipping is included on all orders with rental terms of 3 months or longer. Expedited delivery is available in select areas for qualifying orders. This policy covers shipping methods, delivery timeframes, costs, and return shipping procedures.</p>
 <h2>Delivery Options and Timeframes</h2>
-<p>Standard shipping delivers equipment within 3 to 5 business days from the date your order is processed. Expedited shipping is available for faster delivery at an additional cost. Expedited delivery is available in select metropolitan areas for qualifying orders. All shipments include tracking information sent to your email and available in your account dashboard. Equipment is packaged securely to prevent damage during transit.</p>
+<p>Standard shipping delivers equipment within 3 to 5 business days from the date your order is processed. Expedited shipping is available for faster delivery at an additional cost. Expedited delivery is available in select metropolitan areas for qualifying orders. All shipments include tracking information sent to your email and available in your account dashboard. Equipment is packaged carefully to prevent damage during transit.</p>
 <h2>Return Shipping and Costs</h2>
-<p>Return shipping is free for all rentals. We include a prepaid shipping label with every rental order for easy returns. Simply package the equipment securely in the original packaging and drop it off at any authorized shipping location. For return eligibility and refund details, see our <a href="/return-policy">Return and Refund Policy</a>. Shipping costs for orders under 3 months vary by product weight and destination — specific costs are displayed at checkout. For equipment care during shipping and use, review our <a href="/damage-policy">Damage Policy</a> and consider <a href="/gadgetcare">GadgetCare+ protection</a>. View our <a href="/rental-policy">rental terms</a>, <a href="/products">browse products</a>, or <a href="/contact">contact us</a> with shipping questions. Learn about our <a href="/how-it-works">rental process</a>.</p>`,
+<p>Return shipping is free for all rentals. We include a prepaid shipping label with every rental order for easy returns. Simply package the equipment carefully in the original packaging and drop it off at any authorized shipping location. For return eligibility and refund details, see our <a href="/return-policy">Return and Refund Policy</a>. Shipping costs for orders under 3 months vary by product weight and destination — specific costs are displayed at checkout. For equipment care during shipping and use, review our <a href="/damage-policy">Damage Policy</a> and consider <a href="/gadgetcare">GadgetCare+ protection</a>. View our <a href="/rental-policy">rental terms</a>, <a href="/products">browse products</a>, or <a href="/contact">contact us</a> with shipping questions. Learn about our <a href="/how-it-works">rental process</a>.</p>`,
 
   "/security-deposit": `<p>RentMyGadgets may require a refundable security deposit on certain rental products. Security deposits protect against potential equipment damage or loss and are fully refunded when equipment is returned in acceptable condition. This policy explains deposit amounts, how deposits are held, refund conditions, and the deposit process.</p>
 <h2>Deposit Amounts and Payment</h2>
@@ -1026,6 +1029,8 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
   "/privacy": `<p>RentMyGadgets is committed to protecting your personal information and privacy. This Privacy Policy explains how we collect, use, store, and protect your data when you use our website and rental services. This policy is compliant with the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA), and we support Global Privacy Control (GPC) signals.</p>
 <h2>Information We Collect and How We Use It</h2>
 <p>We collect information necessary to provide our rental services, including your name, email address, shipping address, payment information, and account preferences. This information is used to process rental orders, manage your account, communicate about your rentals, and improve our services. We do not sell your personal information to third parties. We use cookies and similar technologies as described in our <a href="/cookies">Cookie Policy</a> to improve your browsing experience and analyze site usage.</p>
+<h2>Advertising and Tracking Technologies</h2>
+<p>With your consent, we use Google Analytics (GA4) to analyze website traffic and Microsoft Advertising (Bing Ads) Universal Event Tracking (UET) to measure the effectiveness of our advertising campaigns. These services may collect information about your browsing activity using cookies and similar technologies. Microsoft UET helps us understand how visitors interact with our site after viewing our ads on Microsoft Bing and partner networks. Google Analytics helps us understand site usage patterns. Both services operate under their respective privacy policies. You can manage your tracking preferences through our cookie consent banner or opt out entirely on our <a href="/do-not-sell">Do Not Sell or Share</a> page. We support Google Consent Mode v2 and honor your consent choices before loading any tracking scripts.</p>
 <h2>Your Privacy Rights</h2>
 <p>Under CCPA and CPRA, California residents have the right to know what personal information we collect, request deletion of their data, opt out of the sale or sharing of personal information, and exercise these rights without discrimination. We detect and honor Global Privacy Control (GPC) browser signals automatically. To opt out of data sharing, visit our <a href="/do-not-sell">Do Not Sell or Share</a> page. For accessibility accommodations, see our <a href="/accessibility">Accessibility Statement</a>. Review our <a href="/terms">Terms and Conditions</a> for service terms. <a href="/contact">Contact us</a> with privacy questions, <a href="/products">browse products</a>, or learn <a href="/how-it-works">how renting works</a>.</p>`,
 
@@ -1065,7 +1070,7 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <h2>Protection and Next Steps</h2>
 <p>Consider adding <a href="/gadgetcare">GadgetCare+ protection</a> to your rental items for coverage against accidental damage, liquid spills, and hardware malfunctions at 15% of your rental total. When you are ready, proceed to checkout to enter your delivery details and confirm your order. Need more products? <a href="/products">Browse our catalog</a>, <a href="/categories">explore categories</a>, <a href="/search">search for specific items</a>, or <a href="/compare">compare products</a> side by side. Review our <a href="/shipping-policy">shipping policy</a>, <a href="/return-policy">return policy</a>, and <a href="/rental-policy">rental terms</a> before completing your order. <a href="/contact">Contact us</a> with questions.</p>`,
 
-  "/checkout": `<p>Complete your RentMyGadgets rental order securely. Review your selected items, enter your delivery address, and confirm your rental booking. All transactions are processed through secure encrypted connections to protect your payment information. Your rental begins when your equipment ships.</p>
+  "/checkout": `<p>Complete your RentMyGadgets rental order with confidence. Review your selected items, enter your delivery address, and confirm your rental booking. All transactions are processed through encrypted connections to protect your payment information. Your rental begins when your equipment ships.</p>
 <h2>Order Review and Delivery</h2>
 <p>Before completing your order, review each item in your cart including the rental period, monthly price, any applicable discounts, and GadgetCare+ protection status. Verify your delivery address and select your preferred shipping method. Standard shipping delivers within 3 to 5 business days, and fast delivery in select areas is available in select areas for orders placed before noon. Free shipping is included on orders with rental terms of 3 months or longer. See our <a href="/shipping-policy">shipping policy</a> for complete delivery details.</p>
 <h2>Payment and Policies</h2>
@@ -1427,6 +1432,26 @@ export async function injectMeta(
   // No-JS fallback lives outside the React root so hydration can't wipe it.
   if (result.includes("</body>") && !result.includes("<noscript>")) {
     result = result.replace("</body>", `  ${NOSCRIPT_FALLBACK}\n  </body>`);
+  }
+
+  // Server-rendered cookie consent banner for crawlers (hidden once React hydrates).
+  if (!result.includes('id="ssr-cookie-consent"')) {
+    const cookieBanner = `<div id="ssr-cookie-consent" role="dialog" aria-label="Cookie consent" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;padding:16px 24px;z-index:9999;box-shadow:0 -2px 8px rgba(0,0,0,0.1)">
+  <p style="margin:0 0 8px;font-size:14px;color:#374151">Your Privacy Matters. We use cookies to enhance your experience and analyze traffic. Some information may be shared with advertising partners. You have the right to opt-out of the sale or sharing of your personal information. <a href="/cookies" style="color:#f97316">Cookie Policy</a> | <a href="/privacy" style="color:#f97316">Privacy Policy</a> | <a href="/do-not-sell" style="color:#f97316">Do Not Sell My Info</a></p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap"><button style="padding:8px 16px;background:#f97316;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">Accept All</button><button style="padding:8px 16px;background:#fff;color:#374151;border:1px solid #d1d5db;border-radius:6px;cursor:pointer;font-size:14px">Reject All</button><button style="padding:8px 16px;background:#fff;color:#374151;border:1px solid #d1d5db;border-radius:6px;cursor:pointer;font-size:14px">Customize</button></div>
+</div>`;
+    result = result.replace("</body>", `${cookieBanner}\n</body>`);
+  }
+
+  // Google Consent Mode v2 + Microsoft UET tag (consent-gated, server-rendered for crawler detection).
+  if (!result.includes("gtag('consent'")) {
+    const consentAndUet = `<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied'});
+gtag('set','ads_data_redaction',true);
+</script>
+<script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"YOUR_UET_TAG_ID",enableAutoSpaTracking:true};o.q=w[u],w[u]=new UET(o)},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","https://bat.bing.com/bat.js","uetq");</script>`;
+    result = result.replace("</head>", `${consentAndUet}\n</head>`);
   }
 
   return result;
