@@ -17,6 +17,26 @@ interface PageMeta {
   h1?: string;
   // Per-page comma-separated keywords meta tag.
   keywords?: string;
+  // Optional product-specific OG/Schema.org metadata (used for product pages).
+  product?: {
+    priceAmount?: string;
+    priceCurrency?: string;
+    availability?: string; // "in stock" | "out of stock" | "preorder"
+    condition?: string;    // "new" | "refurbished" | "used"
+    brand?: string;
+    retailerItemId?: string;
+    category?: string;
+  };
+  // Optional article metadata (used for blog posts).
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+    tags?: string[];
+  };
+  // Optional alt text for og:image / twitter:image.
+  imageAlt?: string;
 }
 
 const SITE_NAME = "RentMyGadgets";
@@ -302,6 +322,16 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
       description: desc.slice(0, 300),
       type: "product",
       image: product.imageUrl || DEFAULT_IMAGE,
+      imageAlt: `${brandPart}${product.name} available to rent from ${SITE_NAME}`,
+      product: {
+        priceAmount: price.toFixed(2),
+        priceCurrency: "USD",
+        availability: product.available ? "in stock" : "out of stock",
+        condition: "refurbished",
+        brand: product.brand || undefined,
+        retailerItemId: product.id,
+        category: category?.name || undefined,
+      },
       h1: product.name,
       bodyContent,
       keywords: productKeywords,
@@ -433,10 +463,24 @@ async function getBlogMeta(env: Env, slug: string): Promise<PageMeta | null> {
 
     const blogKeywords = `${post.title}, ${post.category}, tech rental blog, RentMyGadgets blog, ${post.category} guide, rental tips`;
 
+    const publishedIso = post.createdAt instanceof Date ? post.createdAt.toISOString() : new Date(post.createdAt).toISOString();
+    const modifiedIso = (post as any).updatedAt
+      ? ((post as any).updatedAt instanceof Date ? (post as any).updatedAt.toISOString() : new Date((post as any).updatedAt).toISOString())
+      : publishedIso;
+
     return {
       title: post.title,
       description: excerpt.slice(0, 300),
+      type: "article",
       image: post.imageUrl || DEFAULT_IMAGE,
+      imageAlt: `${post.title} — ${SITE_NAME} blog`,
+      article: {
+        publishedTime: publishedIso,
+        modifiedTime: modifiedIso,
+        author: post.author,
+        section: post.category,
+        tags: [post.category, "tech rental", "RentMyGadgets"],
+      },
       h1: post.title,
       bodyContent,
       keywords: blogKeywords,
@@ -962,7 +1006,11 @@ export async function injectMeta(
   const safeDesc = escapeHtml(meta.description);
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
   const fullUrl = `${BASE_URL}${url.split("?")[0]}`;
-  const ogType = meta.type === "product" ? "product" : "website";
+  const ogType =
+    meta.type === "product" ? "product"
+    : meta.type === "article" ? "article"
+    : "website";
+  const imageAlt = escapeHtml(meta.imageAlt || `${meta.title} — ${SITE_NAME}`);
 
   let result = html;
 
@@ -1008,7 +1056,105 @@ export async function injectMeta(
   result = upsertMeta(result, "twitter:title", safeTitle);
   result = upsertMeta(result, "twitter:description", safeDesc);
   result = upsertMeta(result, "twitter:image", escapeHtml(image));
+  result = upsertMeta(result, "twitter:image:alt", imageAlt);
   result = upsertMeta(result, "twitter:url", escapeHtml(fullUrl));
+  result = upsertMeta(result, "twitter:domain", "rentmygadgets.com");
+
+  // Extended OpenGraph image metadata for richer social previews.
+  result = upsertMeta(result, "og:image:secure_url", escapeHtml(image), true);
+  result = upsertMeta(result, "og:image:type", "image/jpeg", true);
+  result = upsertMeta(result, "og:image:width", "1200", true);
+  result = upsertMeta(result, "og:image:height", "630", true);
+  result = upsertMeta(result, "og:image:alt", imageAlt, true);
+
+  // Product-specific OpenGraph + Facebook product tags.
+  if (meta.product) {
+    if (meta.product.priceAmount) {
+      result = upsertMeta(result, "product:price:amount", escapeHtml(meta.product.priceAmount), true);
+      result = upsertMeta(result, "og:price:amount", escapeHtml(meta.product.priceAmount), true);
+    }
+    if (meta.product.priceCurrency) {
+      result = upsertMeta(result, "product:price:currency", escapeHtml(meta.product.priceCurrency), true);
+      result = upsertMeta(result, "og:price:currency", escapeHtml(meta.product.priceCurrency), true);
+    }
+    if (meta.product.availability) {
+      result = upsertMeta(result, "product:availability", escapeHtml(meta.product.availability), true);
+      result = upsertMeta(result, "og:availability", escapeHtml(meta.product.availability), true);
+    }
+    if (meta.product.condition) {
+      result = upsertMeta(result, "product:condition", escapeHtml(meta.product.condition), true);
+    }
+    if (meta.product.brand) {
+      result = upsertMeta(result, "product:brand", escapeHtml(meta.product.brand), true);
+    }
+    if (meta.product.retailerItemId) {
+      result = upsertMeta(result, "product:retailer_item_id", escapeHtml(meta.product.retailerItemId), true);
+    }
+    if (meta.product.category) {
+      result = upsertMeta(result, "product:category", escapeHtml(meta.product.category), true);
+    }
+  }
+
+  // Article-specific OpenGraph tags for blog posts.
+  if (meta.article) {
+    if (meta.article.publishedTime) {
+      result = upsertMeta(result, "article:published_time", escapeHtml(meta.article.publishedTime), true);
+    }
+    if (meta.article.modifiedTime) {
+      result = upsertMeta(result, "article:modified_time", escapeHtml(meta.article.modifiedTime), true);
+    }
+    if (meta.article.author) {
+      result = upsertMeta(result, "article:author", escapeHtml(meta.article.author), true);
+    }
+    if (meta.article.section) {
+      result = upsertMeta(result, "article:section", escapeHtml(meta.article.section), true);
+    }
+    if (meta.article.tags && meta.article.tags.length > 0) {
+      // Inject one article:tag meta per tag (not via upsert — these are repeatable).
+      const tagMetas = meta.article.tags
+        .map(t => `<meta property="article:tag" content="${escapeHtml(t)}" />`)
+        .join("\n    ");
+      result = result.replace("</head>", `    ${tagMetas}\n  </head>`);
+    }
+  }
+
+  // Language, hreflang, and crawler directives.
+  result = upsertMeta(result, "content-language", "en-US");
+  result = upsertMeta(result, "language", "English");
+  result = upsertMeta(result, "referrer", "strict-origin-when-cross-origin");
+  result = upsertMeta(result, "rating", "general");
+  result = upsertMeta(result, "distribution", "global");
+  result = upsertMeta(result, "revisit-after", "1 days");
+  result = upsertMeta(result, "googlebot", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+  result = upsertMeta(result, "bingbot", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1");
+  // hreflang alternates (en-US, en, x-default) — injected directly because
+  // upsertLink keys on `rel` and would collide across multiple alternates.
+  if (!/hreflang="en-US"/.test(result)) {
+    const hreflangTags =
+      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="en-US" />\n    ` +
+      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="en" />\n    ` +
+      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="x-default" />`;
+    result = result.replace("</head>", `    ${hreflangTags}\n  </head>`);
+  }
+
+  // Mobile / app-icon hints (Apple, Microsoft, generic).
+  result = upsertMeta(result, "application-name", SITE_NAME);
+  result = upsertMeta(result, "apple-mobile-web-app-title", SITE_NAME);
+  result = upsertMeta(result, "apple-mobile-web-app-capable", "yes");
+  result = upsertMeta(result, "apple-mobile-web-app-status-bar-style", "default");
+  result = upsertMeta(result, "mobile-web-app-capable", "yes");
+  result = upsertMeta(result, "msapplication-TileColor", "#f97316");
+  result = upsertMeta(result, "msapplication-TileImage", `${BASE_URL}/favicon.png`);
+  result = upsertMeta(result, "HandheldFriendly", "true");
+  result = upsertMeta(result, "MobileOptimized", "width");
+
+  // Dublin Core metadata (used by some specialized crawlers / archives).
+  result = upsertMeta(result, "DC.title", safeTitle);
+  result = upsertMeta(result, "DC.description", safeDesc);
+  result = upsertMeta(result, "DC.publisher", SITE_NAME);
+  result = upsertMeta(result, "DC.language", "en-US");
+  result = upsertMeta(result, "DC.identifier", escapeHtml(fullUrl));
+  result = upsertMeta(result, "DC.rights", `Copyright ${new Date().getUTCFullYear()} ${SITE_NAME}. All rights reserved.`);
 
   // Build JSON-LD: page-specific schema(s) plus a homepage ItemList of featured products.
   const schemas: Record<string, any>[] = [];

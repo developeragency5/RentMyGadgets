@@ -10,6 +10,23 @@ interface PageMeta {
   bodyContent?: string;
   h1?: string;
   keywords?: string;
+  product?: {
+    priceAmount?: string;
+    priceCurrency?: string;
+    availability?: string;
+    condition?: string;
+    brand?: string;
+    retailerItemId?: string;
+    category?: string;
+  };
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+    tags?: string[];
+  };
+  imageAlt?: string;
 }
 
 const SITE_NAME = "RentMyGadgets";
@@ -99,16 +116,19 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   "/cart": {
     title: "Your Rental Cart",
     description: "Review your selected rental items, adjust quantities and rental periods, and proceed to secure checkout. Free shipping on 3-month orders.",
+    noindex: true,
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Shopping Cart", description: "Review and manage your rental equipment selections.", url: `${BASE_URL}/cart`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/checkout": {
     title: "Secure Checkout",
     description: "Complete your rental order securely. Review your items, enter delivery details, and confirm your tech equipment rental booking today.",
+    noindex: true,
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Secure Checkout", description: "Complete your technology equipment rental order securely.", url: `${BASE_URL}/checkout`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/dashboard": {
     title: "Your Account Dashboard",
     description: "Manage your RentMyGadgets account. View active rentals, track deliveries, review order history, and update your account settings.",
+    noindex: true,
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Account Dashboard", description: "Manage your technology rentals, track deliveries, and update account settings.", url: `${BASE_URL}/dashboard`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
   "/about": {
@@ -268,6 +288,16 @@ async function getProductMeta(productId: string): Promise<PageMeta | null> {
       description: desc.slice(0, 300),
       type: "product",
       image: product.imageUrl || DEFAULT_IMAGE,
+      imageAlt: `${brandPart}${product.name} available to rent from ${SITE_NAME}`,
+      product: {
+        priceAmount: price.toFixed(2),
+        priceCurrency: "USD",
+        availability: product.available ? "in stock" : "out of stock",
+        condition: "refurbished",
+        brand: product.brand || undefined,
+        retailerItemId: product.id,
+        category: category?.name || undefined,
+      },
       keywords: productKeywords,
       jsonLd: [
         {
@@ -768,7 +798,11 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   const safeDesc = escapeHtml(meta.description);
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
   const fullUrl = `${BASE_URL}${url.split("?")[0]}`;
-  const ogType = meta.type === "product" ? "product" : "website";
+  const ogType =
+    meta.type === "product" ? "product"
+    : meta.type === "article" ? "article"
+    : "website";
+  const imageAlt = escapeHtml(meta.imageAlt || `${meta.title} — ${SITE_NAME}`);
 
   let result = html;
 
@@ -780,6 +814,11 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   }
 
   result = upsertMeta(result, "description", safeDesc);
+  result = upsertMeta(
+    result,
+    "robots",
+    meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"
+  );
   // Per-page keywords: prefer explicit meta.keywords, fall back to STATIC_KEYWORDS map.
   const pathOnly = url.split("?")[0];
   const keywords = meta.keywords ?? STATIC_KEYWORDS[pathOnly];
@@ -809,7 +848,102 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   result = upsertMeta(result, "twitter:title", safeTitle);
   result = upsertMeta(result, "twitter:description", safeDesc);
   result = upsertMeta(result, "twitter:image", escapeHtml(image));
+  result = upsertMeta(result, "twitter:image:alt", imageAlt);
   result = upsertMeta(result, "twitter:url", escapeHtml(fullUrl));
+  result = upsertMeta(result, "twitter:domain", "rentmygadgets.com");
+
+  // Extended OpenGraph image metadata for richer social previews.
+  result = upsertMeta(result, "og:image:secure_url", escapeHtml(image), true);
+  result = upsertMeta(result, "og:image:type", "image/jpeg", true);
+  result = upsertMeta(result, "og:image:width", "1200", true);
+  result = upsertMeta(result, "og:image:height", "630", true);
+  result = upsertMeta(result, "og:image:alt", imageAlt, true);
+
+  // Product-specific OpenGraph + Facebook product tags.
+  if (meta.product) {
+    if (meta.product.priceAmount) {
+      result = upsertMeta(result, "product:price:amount", escapeHtml(meta.product.priceAmount), true);
+      result = upsertMeta(result, "og:price:amount", escapeHtml(meta.product.priceAmount), true);
+    }
+    if (meta.product.priceCurrency) {
+      result = upsertMeta(result, "product:price:currency", escapeHtml(meta.product.priceCurrency), true);
+      result = upsertMeta(result, "og:price:currency", escapeHtml(meta.product.priceCurrency), true);
+    }
+    if (meta.product.availability) {
+      result = upsertMeta(result, "product:availability", escapeHtml(meta.product.availability), true);
+      result = upsertMeta(result, "og:availability", escapeHtml(meta.product.availability), true);
+    }
+    if (meta.product.condition) {
+      result = upsertMeta(result, "product:condition", escapeHtml(meta.product.condition), true);
+    }
+    if (meta.product.brand) {
+      result = upsertMeta(result, "product:brand", escapeHtml(meta.product.brand), true);
+    }
+    if (meta.product.retailerItemId) {
+      result = upsertMeta(result, "product:retailer_item_id", escapeHtml(meta.product.retailerItemId), true);
+    }
+    if (meta.product.category) {
+      result = upsertMeta(result, "product:category", escapeHtml(meta.product.category), true);
+    }
+  }
+
+  // Article-specific OpenGraph tags for blog posts.
+  if (meta.article) {
+    if (meta.article.publishedTime) {
+      result = upsertMeta(result, "article:published_time", escapeHtml(meta.article.publishedTime), true);
+    }
+    if (meta.article.modifiedTime) {
+      result = upsertMeta(result, "article:modified_time", escapeHtml(meta.article.modifiedTime), true);
+    }
+    if (meta.article.author) {
+      result = upsertMeta(result, "article:author", escapeHtml(meta.article.author), true);
+    }
+    if (meta.article.section) {
+      result = upsertMeta(result, "article:section", escapeHtml(meta.article.section), true);
+    }
+    if (meta.article.tags && meta.article.tags.length > 0) {
+      const tagMetas = meta.article.tags
+        .map(t => `<meta property="article:tag" content="${escapeHtml(t)}" />`)
+        .join("\n    ");
+      result = result.replace("</head>", `    ${tagMetas}\n  </head>`);
+    }
+  }
+
+  // Language, hreflang, and crawler directives.
+  result = upsertMeta(result, "content-language", "en-US");
+  result = upsertMeta(result, "language", "English");
+  result = upsertMeta(result, "referrer", "strict-origin-when-cross-origin");
+  result = upsertMeta(result, "rating", "general");
+  result = upsertMeta(result, "distribution", "global");
+  result = upsertMeta(result, "revisit-after", "1 days");
+  result = upsertMeta(result, "googlebot", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+  result = upsertMeta(result, "bingbot", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1");
+  if (!/hreflang="en-US"/.test(result)) {
+    const hreflangTags =
+      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="en-US" />\n    ` +
+      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="en" />\n    ` +
+      `<link rel="alternate" href="${escapeHtml(fullUrl)}" hreflang="x-default" />`;
+    result = result.replace("</head>", `    ${hreflangTags}\n  </head>`);
+  }
+
+  // Mobile / app-icon hints (Apple, Microsoft, generic).
+  result = upsertMeta(result, "application-name", SITE_NAME);
+  result = upsertMeta(result, "apple-mobile-web-app-title", SITE_NAME);
+  result = upsertMeta(result, "apple-mobile-web-app-capable", "yes");
+  result = upsertMeta(result, "apple-mobile-web-app-status-bar-style", "default");
+  result = upsertMeta(result, "mobile-web-app-capable", "yes");
+  result = upsertMeta(result, "msapplication-TileColor", "#f97316");
+  result = upsertMeta(result, "msapplication-TileImage", `${BASE_URL}/favicon.png`);
+  result = upsertMeta(result, "HandheldFriendly", "true");
+  result = upsertMeta(result, "MobileOptimized", "width");
+
+  // Dublin Core metadata.
+  result = upsertMeta(result, "DC.title", safeTitle);
+  result = upsertMeta(result, "DC.description", safeDesc);
+  result = upsertMeta(result, "DC.publisher", SITE_NAME);
+  result = upsertMeta(result, "DC.language", "en-US");
+  result = upsertMeta(result, "DC.identifier", escapeHtml(fullUrl));
+  result = upsertMeta(result, "DC.rights", `Copyright ${new Date().getUTCFullYear()} ${SITE_NAME}. All rights reserved.`);
 
   if (meta.jsonLd) {
     const schemas = Array.isArray(meta.jsonLd) ? meta.jsonLd : [meta.jsonLd];
