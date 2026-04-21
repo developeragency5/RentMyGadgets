@@ -66,12 +66,19 @@ function camelCaseRow(row: Record<string, unknown>): Record<string, unknown> {
 
 export async function queryProducts(env: Env, opts?: { categoryId?: string; featured?: boolean; id?: string; slug?: string; limit?: number; columns?: string[] }): Promise<any[]> {
   const sql = getNeonClient(env);
-  const cols = opts?.columns ? opts.columns.join(", ") : "*";
   let rows;
   if (opts?.id) {
     rows = await sql`SELECT * FROM products WHERE id = ${opts.id} LIMIT 1`;
   } else if (opts?.slug) {
-    rows = await sql`SELECT * FROM products WHERE slug = ${opts.slug} LIMIT 1`;
+    try {
+      rows = await sql`SELECT * FROM products WHERE slug = ${opts.slug} LIMIT 1`;
+    } catch {
+      rows = [];
+    }
+    if (!rows.length) {
+      const nameGuess = opts.slug.replace(/-/g, " ");
+      rows = await sql`SELECT * FROM products WHERE LOWER(name) LIKE ${"%" + nameGuess + "%"} LIMIT 1`;
+    }
   } else if (opts?.categoryId) {
     rows = await sql`SELECT * FROM products WHERE category_id = ${opts.categoryId}`;
   } else if (opts?.featured) {
