@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { products, categories, blogPosts } from "@shared/schema";
-import { getDb, fixGalleryArrays, queryProducts, type Env } from "./_lib/db";
+import { getDb, queryProducts, type Env } from "./_lib/db";
 
 const BASE_URL = "https://www.rentmygadgets.com";
 

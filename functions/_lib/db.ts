@@ -22,7 +22,7 @@ export function getDb(env: Env) {
   return drizzle(client);
 }
 
-export function getNeonClient(env: Env) {
+function getNeonClient(env: Env) {
   if (!env.DATABASE_URL) {
     throw new Error("DATABASE_URL is not configured");
   }
@@ -47,17 +47,13 @@ function parseGalleryValue(val: unknown): string[] {
   return [];
 }
 
-export function fixGalleryArraysSync(rows: any[]): any[] {
+function fixGalleryArraysSync(rows: any[]): any[] {
   return rows.map((r) => ({
     ...r,
     galleryImageUrls: parseGalleryValue(r.galleryImageUrls),
     availableColors: parseGalleryValue(r.availableColors),
     specs: parseGalleryValue(r.specs),
   }));
-}
-
-export async function fixGalleryArrays(env: Env, rows: any[]): Promise<any[]> {
-  return fixGalleryArraysSync(rows);
 }
 
 function snakeToCamel(s: string): string {
