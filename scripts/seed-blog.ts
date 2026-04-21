@@ -3,7 +3,7 @@ import { blogPosts } from "../shared/schema";
 
 const articles = [
   {
-    title: "5 Reasons Why Renting a Laptop Beats Buying for Short-Term Projects",
+    title: "5 Reasons Renting a Laptop Beats Buying",
     slug: "5-reasons-renting-laptop-beats-buying",
     excerpt: "Discover why more professionals and businesses are choosing to rent laptops instead of purchasing them outright for their short-term needs.",
     content: `When you have a short-term project that requires specific computing power, the decision between buying and renting can significantly impact your budget and efficiency.
@@ -35,7 +35,7 @@ Whether you're a freelancer working on a special project, a company hosting a te
     published: true
   },
   {
-    title: "The Ultimate Guide to Choosing the Right Camera Gear for Your Event",
+    title: "Choosing the Right Camera Gear for Events",
     slug: "guide-choosing-camera-gear-events",
     excerpt: "Planning to capture a special event? Learn how to select the perfect camera equipment for weddings, conferences, and corporate functions.",
     content: `Capturing memorable moments at events requires the right equipment. Here's your comprehensive guide to selecting camera gear that matches your event needs.
@@ -73,7 +73,7 @@ Event photography often requires specialized gear you might not use regularly. R
     published: true
   },
   {
-    title: "Remote Work Revolution: How Equipment Rentals Are Changing Home Offices",
+    title: "Remote Work: Equipment Rentals for Home Offices",
     slug: "remote-work-equipment-rentals-home-offices",
     excerpt: "The rise of remote work has created new opportunities for equipment rentals. See how companies are leveraging rentals to equip distributed teams.",
     content: `The shift to remote work has fundamentally changed how businesses think about office equipment. Here's how equipment rentals are powering the remote work revolution.
@@ -110,7 +110,7 @@ As remote work becomes the norm, equipment rental services are becoming essentia
     published: true
   },
   {
-    title: "Gaming PC Rental: Everything You Need to Know for Your Next LAN Party",
+    title: "Gaming PC Rental Guide for LAN Parties",
     slug: "gaming-pc-rental-lan-party-guide",
     excerpt: "Planning a LAN party or gaming event? Discover how to rent high-performance gaming PCs and what specs to look for.",
     content: `Whether you're organizing a competitive esports event or a casual LAN party with friends, having the right gaming hardware is crucial. Here's everything you need to know about renting gaming PCs.
@@ -167,7 +167,7 @@ Renting gaming PCs lets you create an unforgettable gaming experience without th
     published: true
   },
   {
-    title: "Printer Rentals for Trade Shows: A Complete Planning Checklist",
+    title: "Printer Rentals for Trade Shows: Checklist",
     slug: "printer-rentals-trade-shows-checklist",
     excerpt: "Don't let printing bottlenecks slow down your trade show booth. Learn how to plan and rent the perfect printing setup for your next event.",
     content: `Trade shows require professional, on-demand printing capabilities. From badges to marketing materials, here's your complete guide to printer rentals for trade shows.
@@ -230,7 +230,7 @@ Proper planning ensures your trade show booth operates smoothly, impressing visi
     published: true
   },
   {
-    title: "The Best Headphones and Audio Equipment for Podcast Recording",
+    title: "Best Headphones & Audio for Podcast Recording",
     slug: "best-headphones-audio-equipment-podcast",
     excerpt: "Starting a podcast? Learn which headphones and audio gear will give you professional-quality sound without breaking the bank.",
     content: `Creating a professional-sounding podcast doesn't require owning thousands of dollars in equipment. Here's how to get started with the right audio gear.
@@ -281,7 +281,7 @@ Whether you're starting your first podcast or upgrading your setup, equipment re
     published: true
   },
   {
-    title: "Network Equipment Rental: Setting Up Temporary WiFi for Events",
+    title: "Temporary WiFi for Events: Network Rentals",
     slug: "network-equipment-rental-temporary-wifi-events",
     excerpt: "Need reliable internet for your next conference or outdoor event? Learn how to plan and deploy temporary WiFi infrastructure.",
     content: `Reliable internet connectivity can make or break an event. Here's your guide to setting up temporary WiFi infrastructure through equipment rentals.

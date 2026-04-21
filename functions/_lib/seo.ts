@@ -229,7 +229,7 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
   "/smartphone-rentals": {
     canonicalUrl: `${BASE_URL}/smartphone-rentals`,
-    title: "Smartphone Rentals | Latest Phones for Work, Travel & Daily Life",
+    title: "Smartphone Rentals for Work, Travel & Life | RentMyGadgets",
     description: "Rent premium smartphones with sharp displays, powerful cameras, and long battery life. Flexible monthly plans, no long-term contracts, always the latest models.",
     keywords: "smartphone rental, phone rental, rent smartphone, rent phone, mobile phone rental, cell phone rental, iPhone rental, Samsung rental",
     jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Smartphone Rentals", description: "Rent premium smartphones with sharp displays, powerful cameras, and long battery life.", url: `${BASE_URL}/smartphone-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
@@ -257,7 +257,7 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
   "/headphones-audio-rentals": {
     canonicalUrl: `${BASE_URL}/headphones-audio-rentals`,
-    title: "Headphones & Accessories Rentals | Audio Gear, Keyboards & Mice",
+    title: "Headphones & Accessory Rentals: Audio Gear | RentMyGadgets",
     description: "Rent premium headphones, mechanical keyboards, and ergonomic mice for work, gaming, and music. Flexible monthly plans, no long-term contracts.",
     keywords: "headphone rental, keyboard rental, mouse rental, rent headphones, gaming headset rental, mechanical keyboard rental, ergonomic mouse rental",
     jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Headphones & Accessories Rentals", description: "Rent premium headphones, keyboards, and mice for work, gaming, and music.", url: `${BASE_URL}/headphones-audio-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
@@ -285,7 +285,7 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
   "/camera-gear-rentals": {
     canonicalUrl: `${BASE_URL}/camera-gear-rentals`,
-    title: "Camera & Gear Rentals | Pro Cameras, Lenses & Lighting Equipment",
+    title: "Camera Rentals: Cameras, Lenses & Lighting | RentMyGadgets",
     description: "Rent professional cameras, sharp lenses, and studio lighting gear for photo shoots, events, and travel. Flexible monthly plans, no contracts.",
     keywords: "camera rental, professional camera rental, camera lens rental, lighting rental, rent camera, photography equipment rental, studio lighting rental",
     jsonLd: { "@context": "https://schema.org", "@type": "CollectionPage", name: "Camera & Gear Rentals", description: "Rent professional cameras, lenses, and lighting gear for shoots, events, and travel.", url: `${BASE_URL}/camera-gear-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
@@ -395,7 +395,7 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
   "/office-printer-rentals": {
     canonicalUrl: `${BASE_URL}/office-printer-rentals`,
-    title: "Office Printer Rentals | Laser & Color Laser Printers for Small Offices",
+    title: "Office Printer Rentals for Small Offices | RentMyGadgets",
     description: "Rent a reliable office printer, laser printer, or color laser printer for your small office. Flexible monthly plans, fast delivery in select areas, no long-term contracts.",
     keywords: "office equipment rental, laser rental, color laser rental, small office device, rent business equipment, monthly equipment rental, HP rental, Brother rental, Canon rental",
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Office Printer Rentals", description: "Rent business-grade laser printers, color laser printers, and small office printers from HP, Brother, Canon, Xerox, and Epson with flexible monthly plans.", url: `${BASE_URL}/office-printer-rentals`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
@@ -858,7 +858,7 @@ async function getBlogMeta(env: Env, slug: string): Promise<PageMeta | null> {
           image: post.imageUrl ? toAbsoluteUrl(post.imageUrl) : undefined,
           author: { "@type": "Person", name: post.author },
           publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } },
-          datePublished: post.createdAt instanceof Date ? post.createdAt.toISOString() : new Date(post.createdAt).toISOString(),
+          datePublished: (() => { try { const d = post.createdAt instanceof Date ? post.createdAt : new Date(post.createdAt); return isNaN(d.getTime()) ? undefined : d.toISOString(); } catch { return undefined; } })(),
           url,
           mainEntityOfPage: { "@type": "WebPage", "@id": url },
           articleSection: post.category,
