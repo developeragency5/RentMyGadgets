@@ -6,6 +6,10 @@ interface PageMeta {
   type?: string;
   image?: string;
   jsonLd?: Record<string, any> | Record<string, any>[];
+  noindex?: boolean;
+  bodyContent?: string;
+  h1?: string;
+  keywords?: string;
 }
 
 const SITE_NAME = "RentMyGadgets";
@@ -16,6 +20,35 @@ function toAbsoluteUrl(path: string): string {
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
   return `${BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
 }
+
+const STATIC_KEYWORDS: Record<string, string> = {
+  "/": "rent tech equipment, laptop rental, camera rental, MacBook rental, rent gadgets, tech rental USA, rent electronics, monthly tech rental, rent-to-own electronics",
+  "/categories": "tech rental categories, laptop rental, camera rental, desktop rental, headphone rental, printer rental, networking rental, browse rentals",
+  "/products": "all tech rentals, browse tech catalog, laptop rental catalog, camera rental catalog, rent electronics, monthly equipment rental",
+  "/cart": "rental cart, tech rental checkout, review rental order, gadget rental cart",
+  "/checkout": "secure checkout, rent tech equipment, complete rental order, gadget rental payment",
+  "/dashboard": "rental account, manage rentals, my orders, RentMyGadgets dashboard, track rentals",
+  "/about": "about RentMyGadgets, tech rental company, equipment rental service, premium gadget rental USA",
+  "/contact": "contact RentMyGadgets, tech rental support, customer service, gadget rental help",
+  "/login": "sign in, RentMyGadgets account login, customer login, manage rentals",
+  "/compare": "compare tech rentals, laptop comparison, camera comparison, side by side rental products",
+  "/blog": "tech rental blog, gadget rental tips, laptop guides, camera buying guides, rent vs buy",
+  "/search": "search tech rentals, find laptop rental, find camera rental, search gadgets",
+  "/how-it-works": "how to rent tech, rental process, how rental works, rent in 3 steps, monthly tech rental guide",
+  "/gadgetcare": "GadgetCare+, rental damage protection, accidental damage coverage, liquid spill protection, tech protection plan",
+  "/rent-to-own": "rent to own electronics, rent to own laptop, rent to own camera, buy after renting, ownership program",
+  "/terms": "terms and conditions, rental terms, RentMyGadgets terms of service, user agreement",
+  "/rental-policy": "rental agreement, rental policy, rental terms, rental extension, equipment care policy",
+  "/return-policy": "return policy, refund policy, 14 day returns, free returns, rental refund",
+  "/shipping-policy": "shipping policy, same day delivery, free shipping, rental delivery, expedited shipping",
+  "/security-deposit": "security deposit, rental deposit, deposit refund, deposit policy",
+  "/damage-policy": "damage policy, equipment damage, damage charges, replacement costs, rental damage",
+  "/privacy": "privacy policy, CCPA, CPRA, GDPR, data privacy, GPC, personal information protection",
+  "/cookies": "cookie policy, cookie preferences, cookie consent, GPC signal, tracking cookies",
+  "/advertising-disclosure": "advertising disclosure, merchant standards, pricing transparency, ad compliance",
+  "/accessibility": "accessibility statement, WCAG 2.1, ADA compliance, accessible website, screen reader support",
+  "/do-not-sell": "do not sell my information, CCPA opt out, CPRA opt out, California privacy rights, data sharing opt out",
+};
 
 const STATIC_ROUTES: Record<string, PageMeta> = {
   "/": {
@@ -219,11 +252,23 @@ async function getProductMeta(productId: string): Promise<PageMeta | null> {
       breadcrumbItems.push({ "@type": "ListItem", position: 3, name: product.name });
     }
 
+    const productKeywords = [
+      `rent ${product.name}`,
+      product.brand ? `${product.brand} rental` : "",
+      product.brand ? `rent ${product.brand}` : "",
+      category ? `${category.name.toLowerCase()} rental` : "",
+      category ? `rent ${category.name.toLowerCase()}` : "",
+      "monthly tech rental",
+      "rent to own electronics",
+      "RentMyGadgets",
+    ].filter(Boolean).join(", ");
+
     return {
       title: titleWithPrice,
       description: desc.slice(0, 300),
       type: "product",
       image: product.imageUrl || DEFAULT_IMAGE,
+      keywords: productKeywords,
       jsonLd: [
         {
           "@context": "https://schema.org",
@@ -262,10 +307,14 @@ async function getCategoryMeta(categoryId: string): Promise<PageMeta | null> {
 
     const catDesc = category.description || `Browse and rent ${category.name.toLowerCase()} equipment. Flexible rental periods, competitive pricing, and same-day delivery available.`;
 
+    const catLower = category.name.toLowerCase();
+    const categoryKeywords = `rent ${catLower}, ${catLower} rental, monthly ${catLower} rental, ${catLower} for rent, rent ${catLower} online, RentMyGadgets ${catLower}, browse ${catLower}`;
+
     return {
       title: `Rent ${category.name} | Browse Equipment`,
       description: catDesc,
       image: category.imageUrl || DEFAULT_IMAGE,
+      keywords: categoryKeywords,
       jsonLd: [
         {
           "@context": "https://schema.org",
@@ -295,6 +344,7 @@ const BLOG_META: Record<string, PageMeta> = {
   "best-laptops-remote-work-2025": {
     title: "Best Laptops for Remote Work in 2025",
     description: "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing for the best work-from-home setups.",
+    keywords: "best laptops for remote work, remote work laptops 2025, work from home laptop, MacBook Pro for remote work, Dell XPS rental, rent a laptop for work, laptop rental guide",
     jsonLd: [
       { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Best Laptops for Remote Work in 2025", description: "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/best-laptops-remote-work-2025`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/best-laptops-remote-work-2025` } },
       { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Best Laptops for Remote Work in 2025" }] },
@@ -303,6 +353,7 @@ const BLOG_META: Record<string, PageMeta> = {
   "camera-rental-guide-beginners": {
     title: "Camera Rental Guide for Beginners",
     description: "A complete guide to renting cameras for beginners. Learn what to look for, which cameras to rent for different needs, and how to get started.",
+    keywords: "camera rental guide, beginner camera rental, rent a camera, DSLR rental, mirrorless camera rental, Canon EOS rental, Sony A7 rental, camera rental tips",
     jsonLd: [
       { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Camera Rental Guide for Beginners", description: "A complete guide to renting cameras for beginners.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/camera-rental-guide-beginners`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/camera-rental-guide-beginners` } },
       { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Camera Rental Guide for Beginners" }] },
@@ -311,6 +362,7 @@ const BLOG_META: Record<string, PageMeta> = {
   "save-money-renting-vs-buying-tech": {
     title: "Save Money: Renting vs. Buying Tech",
     description: "Compare the costs of renting vs buying technology equipment. See how much you can save with flexible tech rentals.",
+    keywords: "rent vs buy tech, save money on electronics, renting vs buying laptop, cost of renting tech, tech rental savings, rent technology",
     jsonLd: [
       { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Save Money: Renting vs. Buying Tech", description: "Compare the costs of renting vs buying technology equipment.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/save-money-renting-vs-buying-tech`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/save-money-renting-vs-buying-tech` } },
       { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Save Money: Renting vs. Buying Tech" }] },
@@ -728,6 +780,21 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   }
 
   result = upsertMeta(result, "description", safeDesc);
+  // Per-page keywords: prefer explicit meta.keywords, fall back to STATIC_KEYWORDS map.
+  const pathOnly = url.split("?")[0];
+  const keywords = meta.keywords ?? STATIC_KEYWORDS[pathOnly];
+  if (keywords) {
+    result = upsertMeta(result, "keywords", escapeHtml(keywords));
+  }
+  // Site-wide identity, locale, mobile, and local-SEO meta tags.
+  result = upsertMeta(result, "author", SITE_NAME);
+  result = upsertMeta(result, "publisher", SITE_NAME);
+  result = upsertMeta(result, "theme-color", "#f97316");
+  result = upsertMeta(result, "format-detection", "telephone=no");
+  result = upsertMeta(result, "geo.region", "US-GA");
+  result = upsertMeta(result, "geo.placename", "Darien, Georgia");
+  result = upsertMeta(result, "geo.position", "31.3697;-81.4337");
+  result = upsertMeta(result, "ICBM", "31.3697, -81.4337");
   result = upsertLink(result, "canonical", escapeHtml(fullUrl));
   result = upsertMeta(result, "og:title", safeTitle, true);
   result = upsertMeta(result, "og:description", safeDesc, true);
@@ -735,10 +802,14 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   result = upsertMeta(result, "og:url", escapeHtml(fullUrl), true);
   result = upsertMeta(result, "og:image", escapeHtml(image), true);
   result = upsertMeta(result, "og:site_name", SITE_NAME, true);
+  result = upsertMeta(result, "og:locale", "en_US", true);
   result = upsertMeta(result, "twitter:card", "summary_large_image");
+  result = upsertMeta(result, "twitter:site", "@rentmygadgets");
+  result = upsertMeta(result, "twitter:creator", "@rentmygadgets");
   result = upsertMeta(result, "twitter:title", safeTitle);
   result = upsertMeta(result, "twitter:description", safeDesc);
   result = upsertMeta(result, "twitter:image", escapeHtml(image));
+  result = upsertMeta(result, "twitter:url", escapeHtml(fullUrl));
 
   if (meta.jsonLd) {
     const schemas = Array.isArray(meta.jsonLd) ? meta.jsonLd : [meta.jsonLd];

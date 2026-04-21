@@ -15,6 +15,8 @@ interface PageMeta {
   bodyContent?: string;
   // Override for the rendered <h1>; defaults to title minus the site suffix.
   h1?: string;
+  // Per-page comma-separated keywords meta tag.
+  keywords?: string;
 }
 
 const SITE_NAME = "RentMyGadgets";
@@ -189,6 +191,36 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
   },
 };
 
+// Per-route comma-separated keywords. Used as a meta tag for crawlers.
+const STATIC_KEYWORDS: Record<string, string> = {
+  "/": "rent tech equipment, laptop rental, camera rental, MacBook rental, rent gadgets, tech rental USA, rent electronics, monthly tech rental, rent-to-own electronics",
+  "/categories": "tech rental categories, laptop rental, camera rental, desktop rental, headphone rental, printer rental, networking rental, browse rentals",
+  "/products": "all tech rentals, browse tech catalog, laptop rental catalog, camera rental catalog, rent electronics, monthly equipment rental",
+  "/cart": "rental cart, tech rental checkout, review rental order, gadget rental cart",
+  "/checkout": "secure checkout, rent tech equipment, complete rental order, gadget rental payment",
+  "/dashboard": "rental account, manage rentals, my orders, RentMyGadgets dashboard, track rentals",
+  "/about": "about RentMyGadgets, tech rental company, equipment rental service, premium gadget rental USA",
+  "/contact": "contact RentMyGadgets, tech rental support, customer service, gadget rental help",
+  "/login": "sign in, RentMyGadgets account login, customer login, manage rentals",
+  "/compare": "compare tech rentals, laptop comparison, camera comparison, side by side rental products",
+  "/blog": "tech rental blog, gadget rental tips, laptop guides, camera buying guides, rent vs buy",
+  "/search": "search tech rentals, find laptop rental, find camera rental, search gadgets",
+  "/how-it-works": "how to rent tech, rental process, how rental works, rent in 3 steps, monthly tech rental guide",
+  "/gadgetcare": "GadgetCare+, rental damage protection, accidental damage coverage, liquid spill protection, tech protection plan",
+  "/rent-to-own": "rent to own electronics, rent to own laptop, rent to own camera, buy after renting, ownership program",
+  "/terms": "terms and conditions, rental terms, RentMyGadgets terms of service, user agreement",
+  "/rental-policy": "rental agreement, rental policy, rental terms, rental extension, equipment care policy",
+  "/return-policy": "return policy, refund policy, 14 day returns, free returns, rental refund",
+  "/shipping-policy": "shipping policy, same day delivery, free shipping, rental delivery, expedited shipping",
+  "/security-deposit": "security deposit, rental deposit, deposit refund, deposit policy",
+  "/damage-policy": "damage policy, equipment damage, damage charges, replacement costs, rental damage",
+  "/privacy": "privacy policy, CCPA, CPRA, GDPR, data privacy, GPC, personal information protection",
+  "/cookies": "cookie policy, cookie preferences, cookie consent, GPC signal, tracking cookies",
+  "/advertising-disclosure": "advertising disclosure, merchant standards, pricing transparency, ad compliance",
+  "/accessibility": "accessibility statement, WCAG 2.1, ADA compliance, accessible website, screen reader support",
+  "/do-not-sell": "do not sell my information, CCPA opt out, CPRA opt out, California privacy rights, data sharing opt out",
+};
+
 async function getProductMeta(env: Env, productId: string): Promise<PageMeta | null> {
   try {
     const db = getDb(env);
@@ -254,6 +286,17 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
       : "";
     const bodyContent = `${breadcrumbHtml}<article><h2>About this rental</h2><p>${escapeHtml(fullDesc).slice(0, 1500)}</p><dl>${product.brand ? `<dt>Brand</dt><dd>${escapeHtml(product.brand)}</dd>` : ""}${category ? `<dt>Category</dt><dd><a href="/categories/${category.id}">${escapeHtml(category.name)}</a></dd>` : ""}<dt>Monthly rate</dt><dd>$${price.toFixed(2)}/mo</dd><dt>Availability</dt><dd>${product.available ? "In stock" : "Currently unavailable"}</dd></dl><p><a href="/cart">Add to cart</a> &middot; <a href="/gadgetcare">Add GadgetCare+ protection</a> &middot; <a href="/how-it-works">How rental works</a></p></article>${relatedHtml}`;
 
+    const productKeywords = [
+      `rent ${product.name}`,
+      product.brand ? `${product.brand} rental` : "",
+      product.brand ? `rent ${product.brand}` : "",
+      category ? `${category.name.toLowerCase()} rental` : "",
+      category ? `rent ${category.name.toLowerCase()}` : "",
+      "monthly tech rental",
+      "rent to own electronics",
+      "RentMyGadgets",
+    ].filter(Boolean).join(", ");
+
     return {
       title: titleWithPrice,
       description: desc.slice(0, 300),
@@ -261,6 +304,7 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
       image: product.imageUrl || DEFAULT_IMAGE,
       h1: product.name,
       bodyContent,
+      keywords: productKeywords,
       jsonLd: [
         {
           "@context": "https://schema.org",
@@ -320,12 +364,16 @@ async function getCategoryMeta(env: Env, categoryId: string): Promise<PageMeta |
       `<article><h2>About ${escapeHtml(category.name)}</h2><p>${escapeHtml(catDesc)}</p></article>` +
       productListHtml;
 
+    const catLower = category.name.toLowerCase();
+    const categoryKeywords = `rent ${catLower}, ${catLower} rental, monthly ${catLower} rental, ${catLower} for rent, rent ${catLower} online, RentMyGadgets ${catLower}, browse ${catLower}`;
+
     return {
       title: `Rent ${category.name} | Browse Equipment`,
       description: catDesc,
       image: category.imageUrl || DEFAULT_IMAGE,
       h1: category.name,
       bodyContent,
+      keywords: categoryKeywords,
       jsonLd: [
         {
           "@context": "https://schema.org",
@@ -383,12 +431,15 @@ async function getBlogMeta(env: Env, slug: string): Promise<PageMeta | null> {
       `<p>${escapeHtml(contentExcerpt)}</p>` +
       `<p>Read more on the <a href="/blog">RentMyGadgets blog</a> or <a href="/contact">contact our support team</a> with questions.</p></article>`;
 
+    const blogKeywords = `${post.title}, ${post.category}, tech rental blog, RentMyGadgets blog, ${post.category} guide, rental tips`;
+
     return {
       title: post.title,
       description: excerpt.slice(0, 300),
       image: post.imageUrl || DEFAULT_IMAGE,
       h1: post.title,
       bodyContent,
+      keywords: blogKeywords,
       jsonLd: [
         {
           "@context": "https://schema.org",
@@ -928,6 +979,21 @@ export async function injectMeta(
     "robots",
     meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"
   );
+  // Per-page keywords: prefer explicit meta.keywords, fall back to STATIC_KEYWORDS map.
+  const pathOnly = url.split("?")[0];
+  const keywords = meta.keywords ?? STATIC_KEYWORDS[pathOnly];
+  if (keywords) {
+    result = upsertMeta(result, "keywords", escapeHtml(keywords));
+  }
+  // Site-wide identity, locale, mobile, and local-SEO meta tags.
+  result = upsertMeta(result, "author", SITE_NAME);
+  result = upsertMeta(result, "publisher", SITE_NAME);
+  result = upsertMeta(result, "theme-color", "#f97316");
+  result = upsertMeta(result, "format-detection", "telephone=no");
+  result = upsertMeta(result, "geo.region", "US-GA");
+  result = upsertMeta(result, "geo.placename", "Darien, Georgia");
+  result = upsertMeta(result, "geo.position", "31.3697;-81.4337");
+  result = upsertMeta(result, "ICBM", "31.3697, -81.4337");
   result = upsertLink(result, "canonical", escapeHtml(fullUrl));
   result = upsertMeta(result, "og:title", safeTitle, true);
   result = upsertMeta(result, "og:description", safeDesc, true);
@@ -935,10 +1001,14 @@ export async function injectMeta(
   result = upsertMeta(result, "og:url", escapeHtml(fullUrl), true);
   result = upsertMeta(result, "og:image", escapeHtml(image), true);
   result = upsertMeta(result, "og:site_name", SITE_NAME, true);
+  result = upsertMeta(result, "og:locale", "en_US", true);
   result = upsertMeta(result, "twitter:card", "summary_large_image");
+  result = upsertMeta(result, "twitter:site", "@rentmygadgets");
+  result = upsertMeta(result, "twitter:creator", "@rentmygadgets");
   result = upsertMeta(result, "twitter:title", safeTitle);
   result = upsertMeta(result, "twitter:description", safeDesc);
   result = upsertMeta(result, "twitter:image", escapeHtml(image));
+  result = upsertMeta(result, "twitter:url", escapeHtml(fullUrl));
 
   // Build JSON-LD: page-specific schema(s) plus a homepage ItemList of featured products.
   const schemas: Record<string, any>[] = [];
