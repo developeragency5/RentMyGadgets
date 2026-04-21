@@ -1193,7 +1193,18 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   const safeDesc = escapeHtml(meta.description);
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
   if (!meta.canonicalUrl) {
-    console.warn(`[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`);
+    const message = `[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`;
+    if (process.env.NODE_ENV === 'production') {
+      console.error(JSON.stringify({
+        level: 'error',
+        component: 'seo-injector',
+        event: 'missing_canonical_url',
+        url,
+        message,
+      }));
+    } else {
+      throw new Error(message);
+    }
   }
   const fullUrl = meta.canonicalUrl;
   const ogType =

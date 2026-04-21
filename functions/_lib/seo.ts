@@ -1447,7 +1447,14 @@ export async function injectMeta(
   const safeDesc = escapeHtml(meta.description);
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
   if (!meta.canonicalUrl) {
-    console.warn(`[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`);
+    const message = `[SEO] Missing canonicalUrl for ${url} — every route must set canonicalUrl explicitly`;
+    console.error(JSON.stringify({
+      level: 'error',
+      component: 'seo-injector',
+      event: 'missing_canonical_url',
+      url,
+      message,
+    }));
   }
   const fullUrl = meta.canonicalUrl;
   const ogType =
