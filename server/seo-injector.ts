@@ -936,7 +936,7 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   const nav = await getCrawlerNav(url);
   const safeH1 = escapeHtml(meta.title.includes(SITE_NAME) ? meta.title.replace(` | ${SITE_NAME}`, '') : meta.title);
   const pageContent = getCrawlerPageContent(url);
-  const crawlerContent = `${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}`;
+  const crawlerContent = `<div hidden aria-hidden="true" style="display:none!important">${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}</div>`;
   result = result.replace('<div id="root"></div>', `<div id="root">${crawlerContent}</div>`);
 
   return result;

@@ -1202,7 +1202,7 @@ export async function injectMeta(
   const safeH1 = escapeHtml(h1Source);
   // Prefer route-specific dynamic body; fall back to the static map.
   const pageContent = meta.bodyContent ?? getCrawlerPageContent(url);
-  const crawlerContent = `${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}`;
+  const crawlerContent = `<div hidden aria-hidden="true" style="display:none!important">${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}</div>`;
   result = result.replace('<div id="root"></div>', `<div id="root">${crawlerContent}</div>`);
 
   // No-JS fallback lives outside the React root so hydration can't wipe it.
