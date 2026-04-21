@@ -24,7 +24,21 @@ import {
   TrendingUp,
   Users,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Star,
+  Award,
+  DollarSign,
+  Building2,
+  GraduationCap,
+  Briefcase,
+  Wrench,
+  ChevronDown,
+  Quote,
+  BarChart3,
+  Package,
+  Globe,
+  Heart,
+  CalendarDays
 } from "lucide-react";
 import heroImage from "@assets/stock_images/professional_busines_f4477421.jpg";
 import { useQuery } from "@tanstack/react-query";
@@ -73,6 +87,26 @@ interface AnimatedCardProps {
 
 function AnimatedCard({ children, className = "" }: AnimatedCardProps) {
   return <div className={className}>{children}</div>;
+}
+
+function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden" data-testid={`faq-${index}`}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors"
+      >
+        <span className="font-semibold text-foreground pr-4">{question}</span>
+        <ChevronDown className={`h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+      {isOpen && (
+        <div className="px-6 pb-6 text-muted-foreground leading-relaxed border-t border-slate-100 pt-4">
+          {answer}
+        </div>
+      )}
+    </div>
+  );
 }
 
 const categoryIcons: Record<string, typeof Laptop> = {
@@ -705,6 +739,395 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Stats / By the Numbers */}
+      <section className="py-20 bg-gradient-to-r from-primary via-orange-500 to-amber-500 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+PC9zdmc+')] opacity-30" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {[
+              { value: "500+", label: "Gadgets Available", icon: Package },
+              { value: "14-Day", label: "Free Returns", icon: RefreshCw },
+              { value: "24hr", label: "Fast Delivery", icon: Truck },
+              { value: "4.9★", label: "Customer Rating", icon: Star },
+            ].map((stat, i) => (
+              <AnimatedCard key={i} index={i}>
+                <div className="text-center" data-testid={`stat-${i}`}>
+                  <stat.icon className="h-8 w-8 mx-auto mb-3 text-white/80" />
+                  <div className="text-4xl md:text-5xl font-heading font-bold mb-2">{stat.value}</div>
+                  <div className="text-white/80 font-medium">{stat.label}</div>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trusted Brands */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <Award className="h-4 w-4" />
+              Trusted Brands
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+              Rent from <span className="text-primary">Industry Leaders</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              We partner with the world's most trusted technology brands so you always get premium, reliable equipment.
+            </p>
+          </AnimatedSection>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 md:gap-8 items-center">
+            {[
+              { name: "Dell", category: "Laptops & Desktops" },
+              { name: "HP", category: "Printers & Laptops" },
+              { name: "Canon", category: "Cameras & Printers" },
+              { name: "Sony", category: "Cameras & Audio" },
+              { name: "Samsung", category: "Phones & Displays" },
+              { name: "Lenovo", category: "Laptops & Desktops" },
+              { name: "ASUS", category: "Routers & Laptops" },
+              { name: "Brother", category: "Printers" },
+              { name: "Epson", category: "Printers" },
+              { name: "Nikon", category: "Cameras" },
+              { name: "Apple", category: "Laptops & Phones" },
+              { name: "Google", category: "Phones & Routers" },
+            ].map((brand, i) => (
+              <AnimatedCard key={i} index={i}>
+                <div className="group text-center p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300" data-testid={`brand-${brand.name.toLowerCase()}`}>
+                  <div className="text-2xl font-bold text-slate-700 group-hover:text-primary transition-colors mb-1">{brand.name}</div>
+                  <div className="text-xs text-muted-foreground">{brand.category}</div>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed Rental Categories */}
+      <section className="py-24 bg-gradient-to-b from-slate-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <Globe className="h-4 w-4" />
+              Explore Our Catalog
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+              Rent Tech for <span className="text-primary">Every Industry</span>
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              From business laptops and DSLR cameras to office printers and WiFi routers — find the perfect rental for your needs.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Laptop,
+                title: "Laptop & Desktop Rentals",
+                href: "/laptop-desktop-rentals",
+                description: "Rent powerful laptops, desktop computers, and professional workstations from Dell, HP, Lenovo, and Apple. Perfect for remote workers, businesses scaling their teams, video editors needing raw processing power, and students on a budget.",
+                features: ["MacBook Pro & Air", "Dell XPS Series", "HP EliteBook", "Gaming Laptops"],
+                startPrice: "$49"
+              },
+              {
+                icon: Smartphone,
+                title: "Smartphone Rentals",
+                href: "/smartphone-rentals",
+                description: "Get the latest iPhones, Samsung Galaxy, and Google Pixel devices on flexible monthly terms. Ideal for app testing, temporary business phones, travel, and events without long carrier contracts.",
+                features: ["iPhone 17 Pro Max", "Samsung Galaxy S25", "Google Pixel 9", "OnePlus 13"],
+                startPrice: "$35"
+              },
+              {
+                icon: Camera,
+                title: "Camera & Gear Rentals",
+                href: "/camera-gear-rentals",
+                description: "Access professional DSLR cameras, mirrorless bodies, cinema lenses, and studio lighting gear from Canon, Sony, and Nikon. Trusted by photographers, filmmakers, and content creators worldwide.",
+                features: ["Canon EOS R5", "Sony A9 III", "DJI Ronin 4D", "Studio Lighting"],
+                startPrice: "$45"
+              },
+              {
+                icon: Printer,
+                title: "Printer & Scanner Rentals",
+                href: "/office-printer-rentals",
+                description: "Rent laser printers, color printers, wide-format printers, and high-speed scanners from HP, Brother, Canon, and Epson. Save thousands compared to buying office printing equipment outright.",
+                features: ["Color Laser Printers", "All-in-One MFPs", "Wide Format", "Flatbed Scanners"],
+                startPrice: "$29"
+              },
+              {
+                icon: Headphones,
+                title: "Headphones & Accessories",
+                href: "/headphones-audio-rentals",
+                description: "Rent premium noise-cancelling headphones, mechanical keyboards, and ergonomic mice from Sony, Bose, Logitech, and Razer. Upgrade your workspace without the commitment.",
+                features: ["Sony WH-1000XM5", "AirPods Pro", "Mechanical Keyboards", "Ergonomic Mice"],
+                startPrice: "$15"
+              },
+              {
+                icon: Wifi,
+                title: "Router & WiFi Rentals",
+                href: "/router-rentals",
+                description: "Rent high-performance WiFi 6E and WiFi 7 routers, mesh networking systems, and enterprise-grade access points from ASUS, TP-Link, and Netgear. Set up reliable internet anywhere in minutes.",
+                features: ["WiFi 7 Routers", "Mesh Systems", "4G/5G Hotspots", "Enterprise APs"],
+                startPrice: "$19"
+              },
+            ].map((cat, i) => (
+              <AnimatedCard key={i} index={i}>
+                <Link href={cat.href}>
+                  <div className="group bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300 h-full cursor-pointer" data-testid={`category-detail-${i}`}>
+                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
+                      <cat.icon className="h-7 w-7 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{cat.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed mb-4 text-sm">{cat.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {cat.features.map((f, fi) => (
+                        <span key={fi} className="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">{f}</span>
+                      ))}
+                    </div>
+                    <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                      <span className="text-sm text-muted-foreground">Starting from <strong className="text-foreground">{cat.startPrice}/mo</strong></span>
+                      <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </Link>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Rent vs Buy Comparison */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <BarChart3 className="h-4 w-4" />
+              Smart Comparison
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+              Why <span className="text-primary">Renting</span> Beats Buying
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              See how renting technology saves you money, reduces risk, and gives you more flexibility than traditional ownership.
+            </p>
+          </AnimatedSection>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden">
+              <div className="grid grid-cols-3 bg-slate-50 border-b border-slate-200">
+                <div className="p-5 text-center font-bold text-foreground">Feature</div>
+                <div className="p-5 text-center font-bold text-white bg-gradient-to-r from-primary to-amber-500 rounded-t-none">Renting</div>
+                <div className="p-5 text-center font-bold text-foreground">Buying</div>
+              </div>
+              {[
+                { feature: "Upfront Cost", rent: "Low monthly fee", buy: "Full purchase price" },
+                { feature: "Latest Models", rent: "Always available", buy: "Stuck with what you buy" },
+                { feature: "Maintenance", rent: "Included free", buy: "Your responsibility" },
+                { feature: "Flexibility", rent: "Swap or return anytime", buy: "Sell at depreciated value" },
+                { feature: "Tax Benefits", rent: "Often deductible as expense", buy: "Depreciation only" },
+                { feature: "Damage Protection", rent: "GadgetCare+ available", buy: "Separate warranty needed" },
+                { feature: "Storage", rent: "Return when done", buy: "Store unused equipment" },
+                { feature: "Scaling", rent: "Add or reduce instantly", buy: "Buy more or sell off" },
+              ].map((row, i) => (
+                <div key={i} className={`grid grid-cols-3 border-b border-slate-100 last:border-0 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`} data-testid={`comparison-row-${i}`}>
+                  <div className="p-4 font-medium text-foreground text-sm">{row.feature}</div>
+                  <div className="p-4 text-center text-sm bg-primary/5">
+                    <span className="inline-flex items-center gap-1.5 text-green-700 font-medium">
+                      <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                      {row.rent}
+                    </span>
+                  </div>
+                  <div className="p-4 text-center text-sm text-muted-foreground">{row.buy}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-gradient-to-b from-slate-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <Heart className="h-4 w-4" />
+              Customer Stories
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+              Loved by <span className="text-primary">Thousands</span>
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              See why professionals, freelancers, and businesses trust RentMyGadgets for their technology needs.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                name: "Sarah Chen",
+                role: "Freelance Photographer",
+                text: "I rented a Canon EOS R5 and two L-series lenses for a destination wedding. The quality was flawless, delivery was next-day, and I saved over $4,000 compared to buying. RentMyGadgets is now my go-to for every shoot.",
+                rating: 5,
+                product: "Canon EOS R5"
+              },
+              {
+                name: "Marcus Rivera",
+                role: "IT Director, TechStart Inc.",
+                text: "When we onboarded 15 new developers, buying laptops would have blown our budget. We rented Dell XPS 15s for the entire team on a 6-month term. The progressive discounts made it incredibly affordable.",
+                rating: 5,
+                product: "Dell XPS 15"
+              },
+              {
+                name: "Priya Patel",
+                role: "Content Creator",
+                text: "I test new phones every month for my YouTube channel. RentMyGadgets lets me get the latest iPhone or Galaxy without spending thousands. The 14-day return policy gives me plenty of time for my reviews.",
+                rating: 5,
+                product: "iPhone 17 Pro"
+              },
+              {
+                name: "David Park",
+                role: "Event Manager",
+                text: "We needed 20 WiFi routers for a 3-day conference. RentMyGadgets delivered them pre-configured and ready to go. The entire setup took 30 minutes. Couldn't be happier with the service.",
+                rating: 5,
+                product: "ASUS RT-BE96U"
+              },
+              {
+                name: "Lisa Thompson",
+                role: "Architecture Student",
+                text: "I couldn't afford a MacBook Pro for my 3D rendering coursework. Renting one for the semester saved me $2,000 and I got the M4 Pro model — way better specs than what I could have bought.",
+                rating: 5,
+                product: "MacBook Pro 16\""
+              },
+              {
+                name: "James O'Brien",
+                role: "Small Business Owner",
+                text: "Our office printer died and we needed a replacement fast. RentMyGadgets had an HP Color LaserJet delivered same-day. The monthly rental is less than what we paid for toner alone with our old printer.",
+                rating: 4,
+                product: "HP Color LaserJet"
+              },
+            ].map((review, i) => (
+              <AnimatedCard key={i} index={i}>
+                <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col" data-testid={`testimonial-${i}`}>
+                  <div className="flex gap-1 mb-4">
+                    {Array.from({ length: 5 }).map((_, si) => (
+                      <Star key={si} className={`h-4 w-4 ${si < review.rating ? "text-amber-400 fill-amber-400" : "text-slate-200"}`} />
+                    ))}
+                  </div>
+                  <Quote className="h-8 w-8 text-primary/20 mb-3" />
+                  <p className="text-muted-foreground leading-relaxed mb-6 flex-1 text-sm">{review.text}</p>
+                  <div className="border-t border-slate-100 pt-4">
+                    <div className="font-bold text-foreground">{review.name}</div>
+                    <div className="text-sm text-muted-foreground">{review.role}</div>
+                    <div className="text-xs text-primary mt-1">Rented: {review.product}</div>
+                  </div>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Who Rents From Us */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <Building2 className="h-4 w-4" />
+              Who We Serve
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+              Built for <span className="text-primary">Everyone</span>
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              From solo freelancers to Fortune 500 companies — our rental platform scales to fit any need.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {[
+              { icon: Briefcase, title: "Businesses", desc: "Equip teams with the latest tech on flexible terms. Scale up or down without capital expenditure." },
+              { icon: GraduationCap, title: "Students", desc: "Get the powerful laptop or camera you need for coursework without the student-budget stress." },
+              { icon: Camera, title: "Creatives", desc: "Access cinema-grade cameras, lighting rigs, and editing workstations for your next project." },
+              { icon: CalendarDays, title: "Event Planners", desc: "Rent routers, laptops, and screens for conferences, trade shows, and corporate retreats." },
+            ].map((persona, i) => (
+              <AnimatedCard key={i} index={i}>
+                <div className="text-center p-6 rounded-2xl hover:bg-slate-50 transition-colors" data-testid={`persona-${i}`}>
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <persona.icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-2">{persona.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{persona.desc}</p>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-gradient-to-b from-slate-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <Wrench className="h-4 w-4" />
+              Common Questions
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+              Frequently Asked <span className="text-primary">Questions</span>
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Everything you need to know about renting technology from RentMyGadgets.
+            </p>
+          </AnimatedSection>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              {
+                q: "How does tech rental work at RentMyGadgets?",
+                a: "It's simple: browse our catalog of 500+ gadgets, choose your rental period (1, 3, 6, or 12 months), and we deliver to your doorstep. Use the device for as long as you need, then return it when you're done. You can also extend your rental or swap for a different device at any time."
+              },
+              {
+                q: "Is renting a laptop cheaper than buying one?",
+                a: "For short to medium-term needs, absolutely. A high-end laptop that costs $2,000+ to buy can be rented for as little as $49/month. You also avoid depreciation, repair costs, and storage. For businesses, rentals are often fully tax-deductible as an operating expense."
+              },
+              {
+                q: "What happens if I accidentally damage a rented device?",
+                a: "We offer GadgetCare+ protection on every rental. For just 15% of your rental total, you're covered against accidental damage, drops, and spills. Without GadgetCare+, you'd be responsible for repair or replacement costs, so we highly recommend it."
+              },
+              {
+                q: "Can I rent equipment for my business or team?",
+                a: "Yes! Many of our customers are businesses that need laptops, printers, or other equipment for their teams. We offer volume discounts, dedicated account management, and flexible terms for corporate rentals. Contact us for custom business pricing."
+              },
+              {
+                q: "How fast is delivery?",
+                a: "We offer same-day delivery in select metropolitan areas and next-day delivery nationwide. All devices arrive tested, cleaned, and ready to use right out of the box. We include all necessary cables, chargers, and setup guides."
+              },
+              {
+                q: "What brands do you carry?",
+                a: "We carry all major technology brands including Apple (MacBook, iPhone, iPad), Dell (XPS, Latitude), HP (EliteBook, LaserJet), Canon (EOS, PIXMA), Sony (Alpha, WH-1000XM), Samsung (Galaxy), Lenovo (ThinkPad), ASUS (ROG, RT), Nikon (Z-series), and many more."
+              },
+              {
+                q: "Do you offer rent-to-own options?",
+                a: "Yes! After 6 months of renting, you can choose to purchase the device at a significant discount. Your rental payments are applied toward the purchase price. Visit our Rent-to-Own page for full details on eligible products and pricing."
+              },
+              {
+                q: "What is the minimum rental period?",
+                a: "Our minimum rental period is 1 month. However, you get better rates with longer commitments — 3-month rentals save you 10%, 6-month rentals save 15%, and 12-month rentals save 20%. You can always extend your rental if you need more time."
+              },
+              {
+                q: "Can I rent a camera for a wedding or event?",
+                a: "Absolutely! Camera and lens rentals for events are one of our most popular categories. You can rent a professional DSLR or mirrorless camera body, multiple lenses, lighting equipment, and even stabilizers. Many wedding photographers rent backup bodies through us."
+              },
+              {
+                q: "How do I return my rented device?",
+                a: "Returns are free and easy. Schedule a pickup through your account dashboard, pack the device in the box it arrived in, and our courier will pick it up from your door. You can also drop it off at any of our partner locations. We include a prepaid return label with every rental."
+              },
+            ].map((faq, i) => (
+              <FAQItem key={i} question={faq.q} answer={faq.a} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-amber-500/5" />
@@ -715,8 +1138,9 @@ export default function Home() {
               Ready to Get <span className="text-primary">Started?</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Browse our catalog of laptops, cameras, and gear — all available on flexible rental terms.
-              Start renting today.
+              Join thousands of satisfied customers who rent their tech from RentMyGadgets.
+              Browse 500+ gadgets — laptops, cameras, printers, phones, and more — all on flexible monthly terms.
+              Start renting today and save thousands.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/categories">
@@ -729,14 +1153,14 @@ export default function Home() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link href="/about">
+              <Link href="/how-it-works">
                 <Button 
                   size="lg" 
                   variant="outline" 
                   className="h-14 px-10 text-lg font-semibold rounded-2xl border-2 hover:bg-slate-100 transition-all"
-                  data-testid="button-cta-learn-more"
+                  data-testid="button-cta-how-it-works"
                 >
-                  Learn More
+                  How It Works
                 </Button>
               </Link>
             </div>

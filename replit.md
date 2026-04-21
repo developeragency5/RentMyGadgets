@@ -36,7 +36,8 @@ Preferred communication style: Simple, everyday language.
 - **SEO-Friendly Product URLs**: Uses slug-based URLs for product pages, automatically generated and stored in the database.
 - **SEO & Performance Optimizations**: Includes server-side meta injection, comprehensive JSON-LD structured data, crawler-friendly navigation, image sitemaps, multi-image Open Graph tags, and SEO-optimized collection pages.
 - **HTML Sitemap Page**: A dedicated `/html-sitemap` page that lists all products, categories, collections, blog posts, and policy pages as visible links — solving orphaned sitemap page issues.
-- **Category Landing Pages**: 6 SEO landing pages (laptops/desktops, smartphones, headphones/audio, cameras, routers, printers) with hero sections, benefits, sub-categories, FAQs, and CTAs.
+- **Category Landing Pages**: 6 SEO-optimized landing pages (laptops/desktops, smartphones, headphones/audio, cameras, routers, printers) each with 10+ sections: hero, benefits, sub-categories, how-it-works, included features, brand showcase, use cases, rent vs buy comparison table, 10 FAQs, and CTAs (500-676 lines each).
+- **Home Page SEO Expansion**: 14+ sections including hero, why rent, categories carousel, featured products, trust section, how it works, use cases, stats counter, brand showcase (12 brands), detailed category descriptions, rent vs buy comparison table, testimonials (6 reviews), who we serve (4 personas), FAQ (10 questions), and CTA.
 - **Collection URL Mapping**: 19 collection slugs mapped to category UUIDs in `COLLECTION_CATEGORY_MAP` (product-list.tsx), with SEO titles/descriptions per collection.
 - **Security Headers**: Utilizes Helmet for CSP, X-Frame-Options, and other security headers.
 - **Advertising Platform Integration**: Incorporates Google Ads and Microsoft Ads tracking, consent-gated for privacy compliance.

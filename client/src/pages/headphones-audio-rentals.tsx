@@ -29,7 +29,13 @@ import {
   Battery,
   Wifi,
   Zap,
-  Music
+  Music,
+  Mic,
+  Briefcase,
+  Gamepad2,
+  Plane,
+  XCircle,
+  Check
 } from "lucide-react";
 
 const rentalSteps = [
@@ -89,6 +95,26 @@ const faqs = [
   {
     question: "Can I rent a complete desk setup — headphones, keyboard, and mouse?",
     answer: "Yes! Many customers bundle accessories together. Rent all three and enjoy a unified premium workspace experience with a single monthly payment."
+  },
+  {
+    question: "Can I rent noise-cancelling headphones?",
+    answer: "Absolutely. Noise-cancelling headphones are among our most popular rentals. Choose from industry-leading models like the Sony WH-1000XM5, Bose QuietComfort Ultra, or Apple AirPods Max — all available for flexible monthly rental terms with active noise cancellation technology."
+  },
+  {
+    question: "Do you rent mechanical keyboards?",
+    answer: "Yes, we carry a wide range of mechanical keyboard rentals including models from Logitech, Razer, and Keychron. Whether you prefer linear, tactile, or clicky switches, we have options for gaming, programming, and everyday productivity. Keyboard rental is a great way to test different switch types before committing to a purchase."
+  },
+  {
+    question: "Are gaming headsets available?",
+    answer: "Yes! Our gaming headset rental selection includes top models from Razer, SteelSeries, and Logitech with features like surround sound, detachable boom microphones, and ultra-low latency wireless connectivity. Perfect for competitive gaming or streaming setups."
+  },
+  {
+    question: "What if the headphones don't fit?",
+    answer: "Comfort is critical for headphones. If the fit isn't right, contact our support team within 7 days and we'll arrange a swap to a different model at no extra cost. We also include multiple ear tip sizes with in-ear models to ensure the best seal and sound quality."
+  },
+  {
+    question: "Do you rent studio monitors or speakers?",
+    answer: "Yes, we offer studio monitor and speaker rentals for music production, podcasting, and content creation. Choose from reference monitors by brands like Sony and others, ideal for mixing, mastering, and critical listening environments."
   }
 ];
 
@@ -310,6 +336,305 @@ export default function HeadphonesAudioRentals() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-4" data-testid="text-brand-showcase">Top Audio & Accessories Brands Available for Rent</h2>
+            <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed">
+              We partner with the world's leading headphone, keyboard, and ergonomic mouse manufacturers to bring you premium audio gear and accessories for rent. Whether you need Sony headphones for rent, a Bose rental for travel, or a Razer gaming headset rental, we have you covered.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {[
+                { name: "Sony", tagline: "Premium noise cancelling" },
+                { name: "Bose", tagline: "Legendary comfort & sound" },
+                { name: "Apple", tagline: "AirPods & Beats ecosystem" },
+                { name: "Logitech", tagline: "Productivity & precision" },
+                { name: "Razer", tagline: "Gaming performance" },
+                { name: "SteelSeries", tagline: "Esports-grade audio" }
+              ].map((brand) => (
+                <Link key={brand.name} href="/categories/accessories">
+                  <Card className="border-2 hover:border-purple-300 hover:shadow-md transition-all cursor-pointer h-full" data-testid={`brand-card-${brand.name.toLowerCase()}`}>
+                    <CardContent className="p-5 text-center flex flex-col items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mb-3">
+                        <Headphones className="h-6 w-6" />
+                      </div>
+                      <h3 className="font-bold text-sm mb-1">{brand.name}</h3>
+                      <p className="text-xs text-muted-foreground">{brand.tagline}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-4" data-testid="text-use-cases">Who Rents Headphones & Audio Gear?</h2>
+            <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed">
+              From professional studios to daily commuters, renting headphones and accessories gives you access to the best gear without the long-term commitment. Discover how different users benefit from flexible audio gear rental.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="border-2 hover:border-purple-200 transition-colors" data-testid="usecase-studio">
+                <CardContent className="p-6">
+                  <div className="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
+                    <Mic className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Studio Recording & Music Production</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Professional audio engineers and musicians rent studio headphones and monitors to access reference-grade sound without investing thousands upfront. Rent headphones like the Sony WH-1000XM5 or studio monitors for critical mixing and mastering sessions.
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Flat-response studio monitors for accurate mixing</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Closed-back headphones for tracking and isolation</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Try different models to find your ideal monitoring setup</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-purple-200 transition-colors" data-testid="usecase-office">
+                <CardContent className="p-6">
+                  <div className="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                    <Briefcase className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Office & Remote Work</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Remote workers and office teams rent noise-cancelling headphones, ergonomic mice, and mechanical keyboards to create productive workspaces. An ergonomic mouse rental or keyboard rental can transform your daily comfort and productivity.
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Noise-cancelling headphones for open office focus</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Ergonomic keyboards and mice to reduce strain</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Bundle desk accessories for a single monthly payment</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-purple-200 transition-colors" data-testid="usecase-gaming">
+                <CardContent className="p-6">
+                  <div className="w-14 h-14 rounded-xl bg-green-100 text-green-600 flex items-center justify-center mb-4">
+                    <Gamepad2 className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Gaming</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Gamers rent premium gaming headsets, mechanical keyboards, and high-DPI mice to stay competitive without spending hundreds upfront. A gaming headset rental from Razer or SteelSeries gives you surround sound and crystal-clear comms.
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> 7.1 surround sound gaming headsets with boom mics</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Ultra-responsive mechanical keyboards with RGB</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> High-DPI gaming mice with ultra-low latency</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-purple-200 transition-colors" data-testid="usecase-travel">
+                <CardContent className="p-6">
+                  <div className="w-14 h-14 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+                    <Plane className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Travel & Commuting</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Frequent travelers and commuters rent compact noise-cancelling headphones and wireless earbuds for flights, trains, and daily transit. A Bose rental or Sony headphones for rent makes long journeys more enjoyable without the full purchase price.
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Compact foldable designs for easy packing</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Industry-leading ANC for noisy environments</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> 30+ hour battery life for long-haul flights</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-4" data-testid="text-rent-vs-buy">Renting vs. Buying Headphones & Accessories</h2>
+            <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed">
+              Should you rent headphones or buy them outright? Here's a side-by-side comparison showing why noise cancelling headphones rental and keyboard rental makes more sense for many users.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse" data-testid="table-rent-vs-buy">
+                <thead>
+                  <tr className="border-b-2 border-purple-200">
+                    <th className="text-left py-4 px-4 font-bold text-base">Feature</th>
+                    <th className="text-center py-4 px-4 font-bold text-base text-purple-600">Renting</th>
+                    <th className="text-center py-4 px-4 font-bold text-base text-muted-foreground">Buying</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { feature: "Upfront cost", rent: "Low monthly fee", buy: "Full retail price ($150–$550+)" },
+                    { feature: "Access to latest models", rent: "Swap anytime to newest releases", buy: "Stuck until you sell and rebuy" },
+                    { feature: "Try before committing", rent: "Test any model risk-free for a month", buy: "Limited return windows, restocking fees" },
+                    { feature: "Maintenance & repairs", rent: "Covered with damage protection plan", buy: "Out of pocket after warranty expires" },
+                    { feature: "Hygiene & cleaning", rent: "Professionally sanitized between rentals", buy: "Self-maintained over product lifetime" },
+                    { feature: "Environmental impact", rent: "Shared use extends product lifecycle", buy: "E-waste when upgrading or discarding" }
+                  ].map((row, index) => (
+                    <tr key={index} className={`border-b ${index % 2 === 0 ? 'bg-purple-50/50' : 'bg-white'}`} data-testid={`compare-row-${index}`}>
+                      <td className="py-4 px-4 font-medium text-sm">{row.feature}</td>
+                      <td className="py-4 px-4 text-center text-sm">
+                        <div className="flex items-center justify-center gap-2">
+                          <Check className="h-4 w-4 text-green-600 shrink-0" />
+                          <span>{row.rent}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-4 text-center text-sm">
+                        <div className="flex items-center justify-center gap-2">
+                          <XCircle className="h-4 w-4 text-red-400 shrink-0" />
+                          <span className="text-muted-foreground">{row.buy}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-purple-50/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-4" data-testid="text-popular-combos">
+              Popular Headphone & Accessory Rental Bundles
+            </h2>
+            <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed">
+              Many of our customers rent headphones together with keyboards and mice for a complete workspace upgrade. Here are the most popular accessory rental combinations our customers choose.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="border-2 hover:border-purple-200 transition-colors" data-testid="bundle-productivity">
+                <CardContent className="p-6 text-center">
+                  <div className="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-4">
+                    <Briefcase className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Productivity Bundle</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Perfect for remote workers who want premium audio and ergonomic input devices for all-day comfort and focus.
+                  </p>
+                  <ul className="space-y-2 text-sm text-left">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Bose QuietComfort Ultra headphones</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Logitech MX Keys wireless keyboard</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Logitech MX Master 3S ergonomic mouse</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-purple-200 transition-colors" data-testid="bundle-gaming">
+                <CardContent className="p-6 text-center">
+                  <div className="w-14 h-14 rounded-xl bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4">
+                    <Gamepad2 className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Gaming Bundle</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Competitive gamers love this combo for immersive audio, lightning-fast keystrokes, and pixel-perfect aiming precision.
+                  </p>
+                  <ul className="space-y-2 text-sm text-left">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> SteelSeries Arctis Nova Pro headset</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Razer BlackWidow V4 mechanical keyboard</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Razer DeathAdder V3 gaming mouse</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-purple-200 transition-colors" data-testid="bundle-creative">
+                <CardContent className="p-6 text-center">
+                  <div className="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mx-auto mb-4">
+                    <Music className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Creative Bundle</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Content creators and music producers choose this setup for studio-quality monitoring and comfortable extended sessions.
+                  </p>
+                  <ul className="space-y-2 text-sm text-left">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Sony WH-1000XM5 studio headphones</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Keychron Q1 mechanical keyboard</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Logitech MX Ergo trackball mouse</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-6" data-testid="text-why-rent-audio">
+              Why Headphone & Audio Gear Rental Is the Smart Choice
+            </h2>
+            <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-4">
+              <p>
+                The audio accessories market evolves rapidly — new noise-cancelling headphones, gaming headsets, and mechanical keyboards launch every few months with improved features. When you rent headphones instead of buying, you avoid the frustration of owning gear that quickly becomes outdated. With RentMyGadgets, you can always upgrade to the latest Sony headphones for rent, try a Bose rental for your commute, or test a gaming headset rental from Razer before making any long-term decisions.
+              </p>
+              <p>
+                Our headphone rental service is ideal for professionals who need premium audio quality for meetings, podcasts, or music production but don't want the upfront cost of $300–$550 for high-end models. Similarly, an ergonomic mouse rental or keyboard rental lets you experiment with different form factors and switch types — mechanical, membrane, split, or compact — until you find the perfect match for your workflow.
+              </p>
+              <p>
+                For gamers, a gaming headset rental provides access to top-tier 7.1 surround sound, low-latency wireless, and crystal-clear microphone quality from brands like SteelSeries and Razer. Pair it with a mechanical keyboard rental and high-DPI mouse for the ultimate competitive setup — all for a fraction of the retail price.
+              </p>
+              <p>
+                RentMyGadgets offers flexible monthly plans with no long-term contracts, free shipping on returns, and optional damage protection. Whether you need noise cancelling headphones rental for a single month or a full desk accessory bundle for the year, we make it easy to rent premium audio gear and accessories on your terms.
+              </p>
+              <p>
+                Our accessory rental service covers every major brand and category: Sony headphones for rent including the WH-1000XM5 and WF-1000XM5 earbuds, Bose rental options like the QuietComfort Ultra and Bose 700, Apple AirPods Max and AirPods Pro, plus gaming headset rentals from Razer Kraken, SteelSeries Arctis, and Logitech G Pro. For keyboard rental, choose from mechanical boards by Keychron, Razer BlackWidow, and Logitech MX Keys. Our ergonomic mouse rental selection includes the Logitech MX Master 3S, Razer DeathAdder V3, and more.
+              </p>
+              <p>
+                Every rental includes professional sanitization, all cables and accessories, a protective carrying case, and our 7-day satisfaction guarantee. If you're not happy with your headphones, keyboard, or mouse within the first week, we'll swap it for a different model at no extra charge. That's the RentMyGadgets promise — premium audio gear and accessories, delivered to your door, with zero risk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-6" data-testid="text-pricing-terms">
+              Flexible Rental Pricing & Terms
+            </h2>
+            <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed">
+              Whether you need to rent headphones for a quick project or want a long-term ergonomic mouse rental for your home office, our pricing is designed to reward commitment while keeping things flexible.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Card className="border-2 text-center" data-testid="term-1month">
+                <CardContent className="p-6">
+                  <div className="text-3xl font-bold text-purple-600 mb-2">1 Mo</div>
+                  <p className="text-sm font-medium mb-1">Monthly Rental</p>
+                  <p className="text-xs text-muted-foreground">Standard pricing, no commitment</p>
+                </CardContent>
+              </Card>
+              <Card className="border-2 text-center" data-testid="term-3month">
+                <CardContent className="p-6">
+                  <div className="text-3xl font-bold text-purple-600 mb-2">3 Mo</div>
+                  <p className="text-sm font-medium mb-1">Quarterly Rental</p>
+                  <p className="text-xs text-muted-foreground">Save 10% on monthly rate</p>
+                </CardContent>
+              </Card>
+              <Card className="border-2 text-center" data-testid="term-6month">
+                <CardContent className="p-6">
+                  <div className="text-3xl font-bold text-purple-600 mb-2">6 Mo</div>
+                  <p className="text-sm font-medium mb-1">Semi-Annual Rental</p>
+                  <p className="text-xs text-muted-foreground">Save 20% on monthly rate</p>
+                </CardContent>
+              </Card>
+              <Card className="border-2 border-purple-300 bg-purple-50 text-center" data-testid="term-12month">
+                <CardContent className="p-6">
+                  <div className="text-3xl font-bold text-purple-600 mb-2">12 Mo</div>
+                  <p className="text-sm font-medium mb-1">Annual Rental</p>
+                  <p className="text-xs text-muted-foreground">Best value — save 30%</p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

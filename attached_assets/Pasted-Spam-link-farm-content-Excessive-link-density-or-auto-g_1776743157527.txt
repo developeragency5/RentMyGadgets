@@ -1,0 +1,53 @@
+Spam / link-farm content
+Excessive link density or auto-generated text triggers rejection.
+PAGE TO FIX:
+https://rentmygadgets.com
+
+ (https://rentmygadgets.com/)FOUND ON PAGE: Failed on 110 pages: /how-it-works, /categories, /contact (+107 more) Excessive link density (263 links / 1733 words = 15.2%) — link-farm pattern
+HOW TO FIX
+Reduce link density and remove repeated/auto-generated text patterns. Spam-style pages are rejected by Microsoft Ads.Excessive capitalization
+Random or excessive capitalization is restricted.
+PAGE TO FIX:
+https://rentmygadgets.com 
+ (https://rentmygadgets.com/)FOUND ON PAGE: Failed on 440 pages: /, /how-it-works, /categories (+437 more) Excessive caps found: ASUS, DSLR, ENVY, ASUS (18 total)
+HOW TO FIX
+Use proper grammatically correct capitalization. Avoid random or excessive caps like BIG SALE or AmAzinG.
+
+TRIGGERED BY: No excessive capitalization
+
+MEDIUMDuplicate content
+Repeated paragraphs hurt landing-page quality scoring.
+PAGE TO FIX:
+https://rentmygadgets.com 
+ (https://rentmygadgets.com/)FOUND ON PAGE: Warning on 14 pages: /blog/network-equipment-rental-temporary-wifi-events, /blog/compare-tech-rental-prices-guide, /blog/gaming-pc-rental-lan-party-guide (+11 more) 1 sentence(s) appear multiple times on the page
+HOW TO FIX
+Remove duplicate content. Microsoft Ads quality scoring penalizes pages with repeated or boilerplate paragraphs.
+
+TRIGGERED BY: No duplicated paragraphs
+
+MEDIUMKeyword stuffing
+Repeating keywords beyond a natural density is restricted.
+PAGE TO FIX:
+https://rentmygadgets.com 
+ (https://rentmygadgets.com/)FOUND ON PAGE: Failed on 440 pages: /, /how-it-works, /categories (+437 more) High-density terms (>3% of content): "printer" (75x, 5.3%), "all-in-one" (51x, 3.6%), "wireless" (45x, 3.2%), "color" (44x, 3.1%)
+HOW TO FIX
+Reduce keyword repetition. Microsoft Ads policy prohibits keyword stuffing — write naturally for users, not search engines.
+
+TRIGGERED BY: No keyword stuffingLimited inline styles
+Warning on 2 pages: /, /
+21 inline style attribute(s) found
+
+How to fix
+Move inline styles to external stylesheets for better performance and maintainability.Title tag present and optimal length (50–60 chars)
+Warning on 346 pages: /, /categories, / (+343 more)
+"Rent Laptops, Cameras &amp; Tech | RentMyGadgets" (48 chars)
+
+How to fix
+Write a title between 50–60 characters that clearly describes the page and includes keywords.
+
+Meta description present and optimal length (140–160 chars)
+Warning on 404 pages: /contact, /blog, /rent-to-own (+401 more)
+"Get in touch with RentMyGadgets. Reach our customer support team for questions a..." (131 chars)
+
+How to fix
+Write a compelling meta description between 140–160 characters.

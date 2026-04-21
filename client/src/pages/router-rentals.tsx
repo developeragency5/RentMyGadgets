@@ -27,7 +27,15 @@ import {
   Sparkles,
   Mail,
   Zap,
-  Signal
+  Signal,
+  Building2,
+  HardHat,
+  Home,
+  Users,
+  Calendar,
+  XCircle,
+  MinusCircle,
+  Star
 } from "lucide-react";
 
 const rentalSteps = [
@@ -87,6 +95,26 @@ const faqs = [
   {
     question: "What happens if my router stops working?",
     answer: "With optional damage protection ($5/month), we cover all repairs and ship a replacement unit within 24 hours at no charge."
+  },
+  {
+    question: "Can I rent a WiFi 7 router?",
+    answer: "Yes! We carry the latest WiFi 7 (802.11be) routers from ASUS, TP-Link, and Netgear. WiFi 7 delivers speeds up to 46 Gbps with lower latency — ideal for 8K streaming, cloud gaming, and bandwidth-heavy smart homes."
+  },
+  {
+    question: "Do you provide mesh networking systems?",
+    answer: "Absolutely. Our mesh router rental selection includes Google Nest WiFi Pro, Eero Pro 6E, TP-Link Deco BE85, and Linksys Velop systems. Choose a 2-pack, 3-pack, or larger kit depending on your square footage and coverage needs."
+  },
+  {
+    question: "How do I set up a rented router?",
+    answer: "Every rental ships with a quick-start setup guide and QR code for app-based configuration. Most routers are online within 5 minutes. If you need help, our 7-day tech support team is available by phone, chat, or email."
+  },
+  {
+    question: "Can I rent a 5G mobile hotspot?",
+    answer: "Yes. We offer portable WiFi rental devices including 5G hotspot units that provide fast internet on the go — perfect for travel, remote job sites, events, and temporary internet solutions where wired service isn't available."
+  },
+  {
+    question: "Do you offer enterprise-grade access points?",
+    answer: "We do. Our catalog includes enterprise-grade access points from Ubiquiti UniFi, Cisco Meraki, and Aruba Networks. These are ideal for offices, co-working spaces, conferences, and venues that need commercial-grade event WiFi rental solutions."
   }
 ];
 
@@ -308,6 +336,285 @@ export default function RouterRentals() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-heading font-bold mb-4" data-testid="text-brand-showcase">Top Router Brands Available for Rent</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                We partner with the world's leading networking brands to bring you reliable, high-performance routers for every need — from home WiFi rental to enterprise-grade event WiFi rental solutions.
+              </p>
+            </div>
+            <p className="text-sm text-muted-foreground text-center max-w-3xl mx-auto mb-8">
+              Whether you're looking for an ASUS gaming router with blazing-fast speeds, a TP-Link Deco mesh system for whole-home coverage, a Netgear Nighthawk for power users, a Linksys Velop for seamless streaming, a Google Nest WiFi Pro for smart home integration, or a Ubiquiti UniFi access point for commercial deployments — we have your ideal wireless router for rent.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {[
+                { name: "ASUS", tagline: "Gaming & Pro Networking", color: "bg-slate-100" },
+                { name: "TP-Link", tagline: "Value & Performance", color: "bg-blue-50" },
+                { name: "Netgear", tagline: "Nighthawk Power", color: "bg-purple-50" },
+                { name: "Linksys", tagline: "Trusted Home WiFi", color: "bg-cyan-50" },
+                { name: "Google", tagline: "Nest Mesh Systems", color: "bg-green-50" },
+                { name: "Ubiquiti", tagline: "Enterprise Grade", color: "bg-indigo-50" },
+              ].map((brand) => (
+                <Link key={brand.name} href="/categories/routers">
+                  <Card className={`${brand.color} border-2 hover:border-blue-300 transition-all hover:shadow-md cursor-pointer h-full`} data-testid={`brand-${brand.name.toLowerCase().replace(/[- ]/g, "")}`}>
+                    <CardContent className="p-5 text-center flex flex-col items-center justify-center">
+                      <Wifi className="h-8 w-8 text-blue-600 mb-3" />
+                      <h3 className="font-bold text-base mb-1">{brand.name}</h3>
+                      <p className="text-xs text-muted-foreground">{brand.tagline}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-heading font-bold mb-4" data-testid="text-use-cases">Who Rents Routers? Popular Use Cases</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto mb-2">
+                From pop-up events to remote construction sites, a temporary internet solution through router rental keeps you connected without long-term contracts or expensive infrastructure.
+              </p>
+              <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+                Thousands of businesses and individuals rent routers every month for short-term projects, seasonal needs, and flexible scaling.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="border-2 hover:border-blue-200 transition-colors" data-testid="usecase-events">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                    <Calendar className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Events & Conferences</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Event WiFi rental is essential for trade shows, conferences, weddings, and festivals. Rent high-capacity routers and mesh systems that handle hundreds of simultaneous connections with ease.
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Support 200+ devices simultaneously</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Enterprise-grade access points for large venues</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Short-term 1-week to 1-month rental options</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Pre-configured network setup saves time on event day</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-blue-200 transition-colors" data-testid="usecase-offices">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-green-100 text-green-600 flex items-center justify-center mb-4">
+                    <Building2 className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Temporary Offices & Co-Working</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Setting up a pop-up office, temporary workspace, or co-working hub? Rent a router with business-grade performance. Our wireless router for rent options deliver fast, secure connectivity for entire teams.
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> VPN passthrough and VLAN support</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> QoS for prioritizing video calls and cloud apps</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Scalable mesh router rental for growing teams</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> WPA3 enterprise security for sensitive data</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-blue-200 transition-colors" data-testid="usecase-construction">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+                    <HardHat className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Construction Sites</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Construction sites need rugged, reliable connectivity for project management software, security cameras, and communication. A 5G hotspot rental or portable WiFi rental keeps remote sites online.
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> 5G mobile hotspots for areas without wired internet</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Weather-resistant outdoor access points</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Flexible month-to-month terms for project timelines</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> PoE-powered units for easy cable-free installation</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-blue-200 transition-colors" data-testid="usecase-airbnb">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center mb-4">
+                    <Home className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Airbnb & Short-Term Rentals</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Provide guests with blazing-fast WiFi without buying expensive equipment. Rent a router for your vacation rental property and offer a premium guest experience with whole-home mesh WiFi coverage.
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Guest-friendly networks with custom SSIDs</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Whole-property mesh router rental coverage</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Swap or upgrade routers between seasons</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" /> Boost guest reviews with fast, reliable WiFi</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-blue-50/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-heading font-bold mb-4" data-testid="text-why-choose">Why Choose RentMyGadgets for Router Rentals?</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Whether you need a portable WiFi rental for a weekend event or a long-term mesh router rental for your office, RentMyGadgets delivers the best networking gear with unmatched service.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="text-center" data-testid="why-choose-catalog">
+                <div className="w-14 h-14 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-4">
+                  <Globe className="h-7 w-7" />
+                </div>
+                <h3 className="font-bold text-base mb-2">Largest Selection</h3>
+                <p className="text-sm text-muted-foreground">Over 50 router models from 6 top brands. Find the perfect wireless router for rent — from basic dual-band to WiFi 7 tri-band gaming routers.</p>
+              </div>
+              <div className="text-center" data-testid="why-choose-delivery">
+                <div className="w-14 h-14 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4">
+                  <Package className="h-7 w-7" />
+                </div>
+                <h3 className="font-bold text-base mb-2">Fast Nationwide Delivery</h3>
+                <p className="text-sm text-muted-foreground">Standard shipping in 3–5 business days nationwide. Need it sooner? Expedited delivery available in select metro areas for urgent temporary internet solutions.</p>
+              </div>
+              <div className="text-center" data-testid="why-choose-support">
+                <div className="w-14 h-14 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mx-auto mb-4">
+                  <Phone className="h-7 w-7" />
+                </div>
+                <h3 className="font-bold text-base mb-2">Expert Setup Support</h3>
+                <p className="text-sm text-muted-foreground">Our networking specialists help you choose the right router, configure your network, and troubleshoot any issues — 7 days a week by phone, chat, or email.</p>
+              </div>
+              <div className="text-center" data-testid="why-choose-savings">
+                <div className="w-14 h-14 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-4">
+                  <TrendingDown className="h-7 w-7" />
+                </div>
+                <h3 className="font-bold text-base mb-2">Volume Discounts</h3>
+                <p className="text-sm text-muted-foreground">Renting multiple routers for an event or office? Get bulk pricing on mesh router rental kits and enterprise access point packages. Save up to 30% on long-term plans.</p>
+              </div>
+            </div>
+
+            <div className="mt-12 bg-white rounded-xl border-2 p-8" data-testid="router-rental-summary">
+              <h3 className="text-xl font-bold mb-4 text-center">The Smarter Way to Stay Connected</h3>
+              <p className="text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed">
+                Networking technology evolves fast — WiFi 6, WiFi 6E, WiFi 7, and 5G hotspot devices change the landscape every year. When you rent a router from RentMyGadgets, you always have access to the latest standards without paying full retail. Our flexible month-to-month WiFi rental plans let you scale up for busy seasons, downgrade when you need less coverage, and upgrade whenever a faster model drops. It's the smartest temporary internet solution for homes, businesses, events, and everything in between.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-heading font-bold mb-4" data-testid="text-rent-vs-buy">Rent vs. Buy: Router Comparison</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                See why renting a router is the smarter choice for flexibility, cost savings, and staying current with the latest WiFi technology.
+              </p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse" data-testid="table-rent-vs-buy">
+                <thead>
+                  <tr className="border-b-2 border-blue-200">
+                    <th className="text-left p-4 font-bold text-base">Feature</th>
+                    <th className="text-center p-4 font-bold text-base text-blue-600">
+                      <div className="flex items-center justify-center gap-2">
+                        <CheckCircle className="h-5 w-5" /> Rent a Router
+                      </div>
+                    </th>
+                    <th className="text-center p-4 font-bold text-base text-muted-foreground">
+                      <div className="flex items-center justify-center gap-2">
+                        <MinusCircle className="h-5 w-5" /> Buy a Router
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    {
+                      feature: "Upfront Cost",
+                      rent: "Low monthly fee starting at $15/mo",
+                      buy: "$150–$700+ one-time purchase",
+                      rentIcon: <CheckCircle className="h-4 w-4 text-green-600" />,
+                      buyIcon: <XCircle className="h-4 w-4 text-red-400" />
+                    },
+                    {
+                      feature: "Technology Upgrades",
+                      rent: "Swap to WiFi 7 or newer models anytime",
+                      buy: "Stuck with purchased model until you buy again",
+                      rentIcon: <CheckCircle className="h-4 w-4 text-green-600" />,
+                      buyIcon: <XCircle className="h-4 w-4 text-red-400" />
+                    },
+                    {
+                      feature: "Maintenance & Repairs",
+                      rent: "Covered — free replacements within 24 hours",
+                      buy: "Out-of-pocket repair or replacement costs",
+                      rentIcon: <CheckCircle className="h-4 w-4 text-green-600" />,
+                      buyIcon: <XCircle className="h-4 w-4 text-red-400" />
+                    },
+                    {
+                      feature: "Flexibility",
+                      rent: "Month-to-month, scale up or down as needed",
+                      buy: "Committed to one device, resale value drops fast",
+                      rentIcon: <CheckCircle className="h-4 w-4 text-green-600" />,
+                      buyIcon: <XCircle className="h-4 w-4 text-red-400" />
+                    },
+                    {
+                      feature: "Technical Support",
+                      rent: "7-day expert support included at no extra charge",
+                      buy: "Limited manufacturer warranty, often 1 year only",
+                      rentIcon: <CheckCircle className="h-4 w-4 text-green-600" />,
+                      buyIcon: <XCircle className="h-4 w-4 text-red-400" />
+                    },
+                    {
+                      feature: "E-Waste & Sustainability",
+                      rent: "Devices are refurbished and recycled responsibly",
+                      buy: "Old routers often end up in landfills",
+                      rentIcon: <CheckCircle className="h-4 w-4 text-green-600" />,
+                      buyIcon: <XCircle className="h-4 w-4 text-red-400" />
+                    },
+                  ].map((row, index) => (
+                    <tr key={index} className={`border-b ${index % 2 === 0 ? "bg-blue-50/30" : "bg-white"}`}>
+                      <td className="p-4 font-medium text-sm">{row.feature}</td>
+                      <td className="p-4 text-center text-sm">
+                        <div className="flex items-center justify-center gap-2">
+                          {row.rentIcon}
+                          <span>{row.rent}</span>
+                        </div>
+                      </td>
+                      <td className="p-4 text-center text-sm text-muted-foreground">
+                        <div className="flex items-center justify-center gap-2">
+                          {row.buyIcon}
+                          <span>{row.buy}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-sm text-muted-foreground text-center max-w-3xl mx-auto mt-8 leading-relaxed">
+              The math is clear: renting a router saves money, eliminates hassle, and ensures you always have access to the latest WiFi technology. Whether you need a basic home WiFi rental or an enterprise mesh router rental, the flexibility of renting beats buying every time.
+            </p>
+            <div className="text-center mt-6">
+              <Link href="/categories/routers">
+                <Button size="lg" className="rounded-full" data-testid="button-rent-vs-buy-cta">
+                  Start Renting a Router Today <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

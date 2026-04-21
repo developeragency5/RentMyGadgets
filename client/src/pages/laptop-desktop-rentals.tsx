@@ -29,7 +29,15 @@ import {
   Mail,
   Battery,
   Wifi,
-  Zap
+  Zap,
+  Briefcase,
+  Film,
+  Users,
+  GraduationCap,
+  Building2,
+  Check,
+  X,
+  ExternalLink
 } from "lucide-react";
 
 const rentalSteps = [
@@ -69,6 +77,67 @@ const includedFeatures = [
   { icon: <Sparkles className="h-5 w-5" />, text: "Professional data wipe before and after every rental" }
 ];
 
+const brands = [
+  { name: "Apple", tagline: "MacBook Air, MacBook Pro, iMac, Mac Studio" },
+  { name: "Dell", tagline: "XPS, Latitude, Precision, OptiPlex" },
+  { name: "HP", tagline: "Spectre, EliteBook, ZBook, EliteDesk" },
+  { name: "Lenovo", tagline: "ThinkPad, IdeaPad, Legion, ThinkCentre" },
+  { name: "ASUS", tagline: "ZenBook, ROG, VivoBook, ProArt" },
+  { name: "Microsoft", tagline: "Surface Pro, Surface Laptop, Surface Studio" }
+];
+
+const useCases = [
+  {
+    icon: <Briefcase className="h-7 w-7" />,
+    title: "Remote Work",
+    description: "Equip your remote team with reliable business laptops and desktops without the capital expense. Our laptop rental plans let distributed employees work from anywhere with enterprise-grade hardware.",
+    bullets: [
+      "Pre-configured with VPN, security software, and collaboration tools",
+      "Scale up or down as your team size changes — no long-term contracts",
+      "IT-ready devices shipped directly to each employee's home office"
+    ]
+  },
+  {
+    icon: <Film className="h-7 w-7" />,
+    title: "Video Editing & Creative Work",
+    description: "Rent high-performance workstations and creative laptops built for Adobe Premiere, DaVinci Resolve, After Effects, and other demanding creative applications — without buying a $5,000 machine.",
+    bullets: [
+      "Dedicated GPUs and high-refresh displays for color-accurate editing",
+      "Up to 64 GB RAM for seamless 4K and 8K video timeline scrubbing",
+      "MacBook Pro and Dell Precision models available for rent monthly"
+    ]
+  },
+  {
+    icon: <Users className="h-7 w-7" />,
+    title: "Business Teams",
+    description: "Outfit entire departments with identical business laptop hire packages. Whether you're onboarding 5 new hires or equipping a 200-person call center, bulk desktop rental pricing keeps costs predictable.",
+    bullets: [
+      "Volume discounts on 10+ unit orders with dedicated account management",
+      "Uniform hardware specs across your organization for easy IT support",
+      "Asset tracking and lifecycle management included at no extra cost"
+    ]
+  },
+  {
+    icon: <GraduationCap className="h-7 w-7" />,
+    title: "Students & Education",
+    description: "Affordable laptop rentals for students, coding bootcamps, and university programs. Get a powerful machine for the semester without the full purchase price — perfect for students who need a reliable computer.",
+    bullets: [
+      "Semester-length rental terms with student-friendly pricing",
+      "Lightweight laptops ideal for note-taking, coding, and research",
+      "Easy returns at the end of the school year — no depreciation worries"
+    ]
+  }
+];
+
+const comparisonRows = [
+  { feature: "Upfront Cost", renting: "From $49/month — no large capital outlay", buying: "$800–$3,500+ upfront per device" },
+  { feature: "Technology Freshness", renting: "Upgrade to the latest model anytime during your rental", buying: "Stuck with the same hardware for 3–5 years" },
+  { feature: "Maintenance & Repairs", renting: "Covered — replacement units ship within 24 hours", buying: "Out-of-pocket repair costs after warranty expires" },
+  { feature: "Scalability", renting: "Add or remove devices instantly as your team changes", buying: "Must purchase and resell hardware manually" },
+  { feature: "Depreciation", renting: "Zero — you never own a depreciating asset", buying: "30–40% value loss in the first year alone" },
+  { feature: "End-of-Life Disposal", renting: "We handle data wipe and responsible recycling", buying: "Your responsibility to securely wipe and recycle" }
+];
+
 const faqs = [
   {
     question: "What's the cheapest laptop I can rent?",
@@ -76,7 +145,7 @@ const faqs = [
   },
   {
     question: "Can I rent a gaming laptop or high-performance desktop?",
-    answer: "Yes. We carry gaming laptops with dedicated GPUs and high-performance desktops with the latest processors. Filter by use case on our catalog page to find the right fit."
+    answer: "Yes. We carry gaming laptop rental options with dedicated GPUs and high-performance desktops with the latest processors. Filter by use case on our catalog page to find the right fit for gaming or creative workloads."
   },
   {
     question: "Do I need to install my own software?",
@@ -89,6 +158,26 @@ const faqs = [
   {
     question: "Can I rent a laptop for just one month?",
     answer: "Absolutely. All of our laptop and desktop rentals start at a one-month minimum with no long-term commitment. Extend or return whenever you need."
+  },
+  {
+    question: "Do you offer rent-to-own for laptops?",
+    answer: "Yes, we offer a rent-to-own pathway on select laptop and desktop models. After 12 months of continuous rental, you can apply a portion of your paid rental fees toward the purchase price. Contact our team for eligible models and pricing details."
+  },
+  {
+    question: "Can I rent a MacBook Pro?",
+    answer: "Absolutely. MacBook rental is one of our most popular categories. We carry MacBook Air 13\" and 15\" with the M3 chip, MacBook Pro 14\" and 16\" with M3 Pro and M3 Max, and Mac Studio workstations. All ship pre-configured with the latest macOS."
+  },
+  {
+    question: "What if I need to extend my rental?",
+    answer: "Extending is easy — just log into your account or contact support before your term ends. Extensions are billed at the same monthly rate, and longer extensions may qualify for additional multi-month discounts on your workstation rental or laptop plan."
+  },
+  {
+    question: "Do you provide monitors with desktop rentals?",
+    answer: "Yes. When you rent a desktop computer, you can add monitors, keyboards, and mice as accessories. We offer 24\" and 27\" displays from Dell, LG, and Apple, with multi-monitor bundles available at discounted rates."
+  },
+  {
+    question: "Can I install my own software on rented laptops?",
+    answer: "Yes, you have full administrator access on every rented laptop and desktop. Install any software you need — from development tools and creative suites to business applications. We perform a professional data wipe after every rental to protect your privacy."
   }
 ];
 
@@ -280,6 +369,248 @@ export default function LaptopDesktopRentals() {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-heading font-bold mb-4" data-testid="text-brand-showcase">Top Laptop & Desktop Brands Available for Rent</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                We partner with the world's leading computer manufacturers to bring you the latest laptops, desktops, and workstations. Whether you need a Dell laptop rental for the office or a MacBook rental for creative projects, we have you covered.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+              {brands.map((brand, index) => (
+                <Link key={brand.name} href="/categories/laptops">
+                  <Card className="border-2 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group" data-testid={`brand-card-${index}`}>
+                    <CardContent className="p-6 text-center">
+                      <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-50 transition-colors">
+                        <Building2 className="h-7 w-7 text-slate-600 group-hover:text-blue-600 transition-colors" />
+                      </div>
+                      <h3 className="font-bold text-lg mb-1">{brand.name}</h3>
+                      <p className="text-xs text-muted-foreground">{brand.tagline}</p>
+                      <div className="mt-3 flex items-center justify-center text-blue-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        Browse {brand.name} <ExternalLink className="ml-1 h-3 w-3" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-heading font-bold mb-4" data-testid="text-use-cases">Who Rents Laptops & Desktops?</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                From remote workers to film editors, students to enterprise IT departments — our flexible laptop and desktop rental plans serve a wide range of needs and budgets.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {useCases.map((useCase, index) => (
+                <Card key={index} className="border-2 hover:border-blue-200 transition-colors" data-testid={`usecase-card-${index}`}>
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                        {useCase.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-xl mb-2">{useCase.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{useCase.description}</p>
+                      </div>
+                    </div>
+                    <ul className="space-y-2 ml-[4.5rem]">
+                      {useCase.bullets.map((bullet, bIndex) => (
+                        <li key={bIndex} className="flex items-start gap-2 text-sm">
+                          <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" />
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-heading font-bold mb-4" data-testid="text-popular-configs">Popular Laptop & Desktop Rental Configurations</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Not sure what to rent? Here are our most popular laptop and desktop configurations, chosen by thousands of renters for work, creativity, and gaming.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="border-2 hover:border-blue-200 transition-colors" data-testid="config-business">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                    <Briefcase className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Business Essential</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Perfect for office work, email, video conferencing, and everyday business tasks.</p>
+                  <ul className="space-y-1.5 text-sm">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Intel Core i5 / Apple M3</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 16 GB RAM / 512 GB SSD</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 14" FHD Display</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> From $69/month</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              <Card className="border-2 border-blue-300 shadow-md relative" data-testid="config-creative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</div>
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
+                    <Film className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Creative Pro</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Built for video editing, graphic design, software development, and creative workflows.</p>
+                  <ul className="space-y-1.5 text-sm">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Intel Core i7 / Apple M3 Pro</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 32 GB RAM / 1 TB SSD</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 16" Retina / 4K Display</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> From $129/month</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              <Card className="border-2 hover:border-blue-200 transition-colors" data-testid="config-power">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+                    <Zap className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Power Workstation</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Maximum performance for 3D rendering, data science, machine learning, and engineering.</p>
+                  <ul className="space-y-1.5 text-sm">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Intel Xeon / Apple M3 Max</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 64 GB RAM / 2 TB SSD</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Pro GPU / Multi-monitor</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> From $199/month</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-heading font-bold mb-4" data-testid="text-rent-vs-buy">Rent vs. Buy: Laptop & Desktop Comparison</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                See how renting a laptop or desktop computer stacks up against purchasing. For most individuals and businesses, renting delivers better value, more flexibility, and zero risk of depreciation.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse" data-testid="table-rent-vs-buy">
+                <thead>
+                  <tr className="bg-slate-100">
+                    <th className="text-left p-4 font-bold text-sm border-b-2 border-slate-200 w-1/4">Feature</th>
+                    <th className="text-left p-4 font-bold text-sm border-b-2 border-blue-300 bg-blue-50 w-[37.5%]">
+                      <span className="flex items-center gap-2 text-blue-700">
+                        <Check className="h-5 w-5" /> Renting
+                      </span>
+                    </th>
+                    <th className="text-left p-4 font-bold text-sm border-b-2 border-slate-200 w-[37.5%]">
+                      <span className="flex items-center gap-2 text-slate-500">
+                        <X className="h-5 w-5" /> Buying
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row, index) => (
+                    <tr key={index} className={index % 2 === 0 ? "bg-white" : "bg-slate-50"} data-testid={`comparison-row-${index}`}>
+                      <td className="p-4 text-sm font-semibold border-b border-slate-100">{row.feature}</td>
+                      <td className="p-4 text-sm text-blue-800 bg-blue-50/50 border-b border-blue-100">{row.renting}</td>
+                      <td className="p-4 text-sm text-muted-foreground border-b border-slate-100">{row.buying}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-blue-50/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-10" data-testid="text-seo-why-rent">
+              Why Laptop Rental Makes Sense in 2025
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="font-bold text-xl mb-3">The Smart Alternative to Buying</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  The average business laptop costs between $1,200 and $2,500 — and that's before you factor in software licenses, extended warranties, and inevitable repairs. With a laptop rental from RentMyGadgets, you get the same computing power for a predictable monthly fee that's a fraction of the purchase price. Whether you need to rent a laptop for a single project or equip an entire team for the quarter, our flexible plans adapt to your timeline, not the other way around.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Desktop rental is equally compelling for businesses that need powerful workstations without the five-figure capital expenditure. Rent a desktop computer from brands like Dell, HP, and Lenovo, and get dedicated IT support, damage protection, and hassle-free returns when your project wraps up.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-bold text-xl mb-3">Laptop Rental Near Me — Nationwide Delivery</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Searching for "laptop rental near me"? RentMyGadgets ships pre-configured laptops and desktops to all 50 states, with expedited delivery available in major metro areas. Every machine arrives ready to power on and work — no setup required. We handle the logistics so you can focus on what matters: getting work done.
+                </p>
+                <h3 className="font-bold text-xl mb-3 mt-6">Gaming Laptop Rental</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Need a gaming laptop rental for a LAN event, streaming setup, or short-term use? We carry high-performance laptops with dedicated NVIDIA and AMD GPUs, high-refresh-rate displays, and advanced cooling systems from brands like ASUS ROG, Alienware, and MSI. Rent by the month with no long-term commitment.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+              <div>
+                <h3 className="font-bold text-xl mb-3">Business Laptop Hire for Teams</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Scaling your team? Business laptop hire through RentMyGadgets means you can outfit 10, 50, or 500 employees with identical hardware in days, not weeks. Our bulk laptop rental program includes dedicated account management, centralized billing, and standardized configurations across your fleet. Every Dell laptop rental and HP workstation rental ships with enterprise-grade security pre-configured — TPM chips, BitLocker encryption, and BIOS-level passwords.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-bold text-xl mb-3">Workstation Rental for Professionals</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Professional workstation rental bridges the gap between consumer-grade laptops and enterprise computing. Architects, engineers, data scientists, and video editors need machines with ECC memory, professional GPUs, and ISV-certified configurations. Our workstation rental catalog includes the Apple Mac Studio with M2 Ultra, Dell Precision 7780, and HP ZBook Studio — all available on flexible monthly terms. Stop waiting months for procurement approval and start rendering, compiling, and editing today.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="bg-white" data-testid="stat-laptops-rented">
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-1">12,000+</div>
+                  <p className="text-sm text-muted-foreground">Laptops & desktops rented nationwide</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white" data-testid="stat-brands-available">
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-1">30+</div>
+                  <p className="text-sm text-muted-foreground">Laptop and desktop models from top brands</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white" data-testid="stat-satisfaction">
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-1">98%</div>
+                  <p className="text-sm text-muted-foreground">Customer satisfaction on laptop rentals</p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

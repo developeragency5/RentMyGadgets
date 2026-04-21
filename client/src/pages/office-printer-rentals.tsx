@@ -28,7 +28,13 @@ import {
   Package,
   TrendingDown,
   Sparkles,
-  Mail
+  Mail,
+  Building2,
+  Home,
+  GraduationCap,
+  Briefcase,
+  Award,
+  Star
 } from "lucide-react";
 
 const rentalSteps = [
@@ -88,7 +94,72 @@ const faqs = [
   {
     question: "What happens if my printer breaks?",
     answer: "With optional damage protection ($9/month), we cover all repairs and ship a replacement unit within 24 hours at no charge."
+  },
+  {
+    question: "Can I rent a wide-format or large-format printer?",
+    answer: "Yes. We carry wide-format inkjet and laser printers from HP, Canon, and Epson — ideal for architectural drawings, engineering blueprints, posters, and signage. Starting at $79/month."
+  },
+  {
+    question: "Do you rent all-in-one printers with scanning and faxing?",
+    answer: "Absolutely. Most of our office printer rentals are multifunction devices (MFPs) that include printing, scanning, copying, and faxing. Just filter for 'All-in-One' in our catalog."
+  },
+  {
+    question: "Is renting a printer cheaper than a managed print service?",
+    answer: "For most small to mid-sized offices, yes. Managed print services charge per page plus a base fee. Our flat monthly rental rate with included toner often works out to 30-50% less for offices printing under 5,000 pages per month."
+  },
+  {
+    question: "Can I rent multiple printers for my office?",
+    answer: "Yes, we offer volume discounts for multi-printer rentals. Rent 3 or more printers and receive 15% off each unit. Contact our business team for custom fleet pricing and setup assistance."
+  },
+  {
+    question: "Do you offer printer setup and installation?",
+    answer: "Every printer arrives pre-configured and ready to plug in. We include a one-page setup guide, and our tech support team can walk you through network setup over the phone. On-site installation is available in select metro areas for an additional fee."
   }
+];
+
+const brands = [
+  { name: "HP", tagline: "LaserJet & OfficeJet Series" },
+  { name: "Brother", tagline: "Reliable Business Printers" },
+  { name: "Canon", tagline: "imageCLASS & PIXMA" },
+  { name: "Epson", tagline: "EcoTank & WorkForce" },
+  { name: "Xerox", tagline: "Enterprise Solutions" },
+  { name: "Lexmark", tagline: "Professional Grade" },
+];
+
+const useCases = [
+  {
+    icon: Building2,
+    title: "Office & Corporate",
+    description: "Equip your office with high-volume laser printers that handle thousands of pages monthly without breaking a sweat. Perfect for shared workgroups.",
+    highlights: ["High-speed duplex printing", "Network-ready for 20+ users", "Automatic document feeder"]
+  },
+  {
+    icon: Home,
+    title: "Home Office & Remote Work",
+    description: "Compact, quiet printers designed for home offices and remote workers. Get professional-quality prints without taking up your entire desk.",
+    highlights: ["Whisper-quiet operation", "Wi-Fi and mobile printing", "Compact footprint"]
+  },
+  {
+    icon: GraduationCap,
+    title: "Schools & Education",
+    description: "Cost-effective printing solutions for classrooms, admin offices, and libraries. Rent printers by the semester and return when the school year ends.",
+    highlights: ["Bulk printing capabilities", "Low cost per page", "Semester-length rentals"]
+  },
+  {
+    icon: Briefcase,
+    title: "Events & Pop-Up Offices",
+    description: "Need printing at a trade show, conference, or temporary office? Rent a printer for as little as one month with delivery and pickup included.",
+    highlights: ["Short-term availability", "Pre-configured setup", "On-site delivery"]
+  }
+];
+
+const comparisonData = [
+  { feature: "Upfront Cost", rent: "$29-$89/month", buy: "$300-$2,000+" },
+  { feature: "Toner & Supplies", rent: "Starter included, wholesale refills", buy: "Full retail price" },
+  { feature: "Maintenance", rent: "Free tech support + 24hr replacement", buy: "Out-of-warranty repair costs" },
+  { feature: "Technology Refresh", rent: "Swap for newer model anytime", buy: "Stuck with aging hardware" },
+  { feature: "Tax Treatment", rent: "Deductible operating expense", buy: "Depreciating asset" },
+  { feature: "End of Life", rent: "We handle recycling", buy: "Your disposal problem" },
 ];
 
 export default function OfficePrinterRentals() {
@@ -309,6 +380,94 @@ export default function OfficePrinterRentals() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 justify-center mb-4">
+              <Award className="h-8 w-8 text-orange-600" />
+              <h2 className="text-3xl font-heading font-bold" data-testid="text-brands-title">Trusted Printer Brands We Carry</h2>
+            </div>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
+              We partner with the world's leading printer manufacturers so you get reliable, professional-grade equipment for every office printer rental.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+              {brands.map((brand, i) => (
+                <div key={i} className="text-center p-4 rounded-xl border-2 border-slate-100 hover:border-orange-200 hover:shadow-md transition-all" data-testid={`brand-${brand.name.toLowerCase()}`}>
+                  <div className="text-xl font-bold text-slate-800 mb-1">{brand.name}</div>
+                  <div className="text-xs text-muted-foreground">{brand.tagline}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-gradient-to-b from-orange-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-4" data-testid="text-use-cases">Who Rents Office Printers?</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+              From Fortune 500 companies to home offices, our printer rental service fits every printing need and budget.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {useCases.map((uc, i) => (
+                <Card key={i} className="border-2 hover:border-orange-200 transition-colors" data-testid={`use-case-${i}`}>
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center shrink-0">
+                        <uc.icon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-lg mb-2">{uc.title}</h3>
+                        <p className="text-sm text-muted-foreground mb-3">{uc.description}</p>
+                        <ul className="space-y-1">
+                          {uc.highlights.map((h, hi) => (
+                            <li key={hi} className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" />
+                              {h}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-4" data-testid="text-comparison">Renting vs. Buying a Printer: Side-by-Side</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
+              See why thousands of businesses choose to rent their office printers instead of purchasing them outright.
+            </p>
+            <div className="rounded-xl border overflow-hidden shadow-sm">
+              <div className="grid grid-cols-3 bg-slate-800 text-white">
+                <div className="p-4 font-bold text-sm">Feature</div>
+                <div className="p-4 font-bold text-sm text-center bg-orange-600">Renting</div>
+                <div className="p-4 font-bold text-sm text-center">Buying</div>
+              </div>
+              {comparisonData.map((row, i) => (
+                <div key={i} className={`grid grid-cols-3 border-b last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`} data-testid={`compare-row-${i}`}>
+                  <div className="p-4 font-medium text-sm">{row.feature}</div>
+                  <div className="p-4 text-center text-sm bg-orange-50">
+                    <span className="flex items-center justify-center gap-1.5 text-green-700 font-medium">
+                      <CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" />
+                      {row.rent}
+                    </span>
+                  </div>
+                  <div className="p-4 text-center text-sm text-muted-foreground">{row.buy}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
