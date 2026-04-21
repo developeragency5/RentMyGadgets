@@ -583,10 +583,45 @@ const NOINDEX_ROUTES = new Set<string>([
 ]);
 
 export async function getMetaForUrl(url: string): Promise<PageMeta> {
-  const cleanUrl = url.split("?")[0].split("#")[0];
+  const [pathPart, queryPart] = url.split("?");
+  const cleanUrl = pathPart.split("#")[0];
 
   const applyNoindex = (m: PageMeta): PageMeta =>
     NOINDEX_ROUTES.has(cleanUrl) ? { ...m, noindex: true } : m;
+
+  if (cleanUrl === "/blog" && queryPart) {
+    const params = new URLSearchParams(queryPart.split("#")[0]);
+    const category = params.get("category");
+    if (category) {
+      const posts = await storage.getBlogPostsByCategory(category);
+      const categoryUrl = `${BASE_URL}/blog?category=${encodeURIComponent(category)}`;
+      return {
+        title: `${category} Articles | ${SITE_NAME} Blog`,
+        description: `Browse ${posts.length > 0 ? posts.length : "our"} ${category} articles on the ${SITE_NAME} blog. Tips, guides, and insights about ${category.toLowerCase()}.`,
+        keywords: `${category.toLowerCase()}, ${category.toLowerCase()} blog, ${category.toLowerCase()} tips, tech rental blog, gadget rental guides`,
+        jsonLd: {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `${category} – ${SITE_NAME} Blog`,
+          description: `All blog posts in the ${category} category.`,
+          url: categoryUrl,
+          isPartOf: { "@type": "Blog", name: `${SITE_NAME} Blog`, url: `${BASE_URL}/blog` },
+          ...(posts.length > 0 && {
+            mainEntity: {
+              "@type": "ItemList",
+              numberOfItems: posts.length,
+              itemListElement: posts.slice(0, 10).map((p, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `${BASE_URL}/blog/${p.slug}`,
+                name: p.title,
+              })),
+            },
+          }),
+        },
+      };
+    }
+  }
 
   if (STATIC_ROUTES[cleanUrl]) {
     return applyNoindex(STATIC_ROUTES[cleanUrl]);
