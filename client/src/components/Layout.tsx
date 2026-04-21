@@ -326,9 +326,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><Link href="/"><span className="hover:text-primary cursor-pointer">Home</span></Link></li>
                 <li><Link href="/categories"><span className="hover:text-primary cursor-pointer">Categories</span></Link></li>
+                <li><Link href="/products"><span className="hover:text-primary cursor-pointer">All Products</span></Link></li>
                 <li><Link href="/how-it-works"><span className="hover:text-primary cursor-pointer">How It Works</span></Link></li>
                 <li><Link href="/gadgetcare"><span className="hover:text-primary cursor-pointer text-blue-600 dark:text-blue-500 font-medium">GadgetCare+</span></Link></li>
                 <li><Link href="/rent-to-own"><span className="hover:text-primary cursor-pointer text-amber-600 dark:text-amber-500 font-medium">Rent-to-Own</span></Link></li>
+                <li><Link href="/search"><span className="hover:text-primary cursor-pointer">Search</span></Link></li>
+                <li><Link href="/compare"><span className="hover:text-primary cursor-pointer">Compare Products</span></Link></li>
                 <li><Link href="/blog"><span className="hover:text-primary cursor-pointer">Blog</span></Link></li>
                 <li><Link href="/about"><span className="hover:text-primary cursor-pointer">About Us</span></Link></li>
                 <li><Link href="/contact"><span className="hover:text-primary cursor-pointer">Contact</span></Link></li>
@@ -336,21 +339,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
+              <h4 className="font-semibold text-sm mb-4">Rental Categories</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link href="/laptop-desktop-rentals"><span className="hover:text-primary cursor-pointer">Laptop & Desktop Rentals</span></Link></li>
+                <li><Link href="/smartphone-rentals"><span className="hover:text-primary cursor-pointer">Smartphone Rentals</span></Link></li>
+                <li><Link href="/camera-gear-rentals"><span className="hover:text-primary cursor-pointer">Camera & Gear Rentals</span></Link></li>
+                <li><Link href="/headphones-audio-rentals"><span className="hover:text-primary cursor-pointer">Headphones & Audio Rentals</span></Link></li>
+                <li><Link href="/router-rentals"><span className="hover:text-primary cursor-pointer">Router Rentals</span></Link></li>
+                <li><Link href="/office-printer-rentals"><span className="hover:text-primary cursor-pointer">Office Printer Rentals</span></Link></li>
+              </ul>
+            </div>
+
+            <div>
               <h4 className="font-semibold text-sm mb-4">Policies</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><Link href="/terms"><span className="hover:text-primary cursor-pointer">Terms & Conditions</span></Link></li>
+                <li><Link href="/privacy"><span className="hover:text-primary cursor-pointer">Privacy Policy</span></Link></li>
                 <li><Link href="/rental-policy"><span className="hover:text-primary cursor-pointer">Rental Agreement</span></Link></li>
                 <li><Link href="/return-policy"><span className="hover:text-primary cursor-pointer">Return & Refund</span></Link></li>
                 <li><Link href="/shipping-policy"><span className="hover:text-primary cursor-pointer">Shipping & Delivery</span></Link></li>
                 <li><Link href="/security-deposit"><span className="hover:text-primary cursor-pointer">Security Deposit</span></Link></li>
                 <li><Link href="/damage-policy"><span className="hover:text-primary cursor-pointer">Damage & Loss</span></Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-sm mb-4">Privacy & Legal</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/privacy"><span className="hover:text-primary cursor-pointer">Privacy Policy</span></Link></li>
                 <li><Link href="/cookies"><span className="hover:text-primary cursor-pointer">Cookie Policy</span></Link></li>
                 <li><Link href="/do-not-sell"><span className="hover:text-primary cursor-pointer">Do Not Sell My Info</span></Link></li>
                 <li><Link href="/accessibility"><span className="hover:text-primary cursor-pointer">Accessibility</span></Link></li>
@@ -377,6 +386,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link href="/privacy"><span className="hover:text-primary cursor-pointer">Privacy</span></Link>
               <Link href="/cookies"><span className="hover:text-primary cursor-pointer">Cookies</span></Link>
               <Link href="/accessibility"><span className="hover:text-primary cursor-pointer">Accessibility</span></Link>
+              <Link href="/html-sitemap"><span className="hover:text-primary cursor-pointer">Site Map</span></Link>
               <button 
                 onClick={() => {
                   localStorage.removeItem("cookieConsent");

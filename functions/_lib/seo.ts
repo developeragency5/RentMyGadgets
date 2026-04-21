@@ -389,6 +389,11 @@ const STATIC_ROUTES: Record<string, PageMeta> = {
     description: "Exercise your California privacy rights under CCPA and CPRA. Opt out of the sale or sharing of your personal information on RentMyGadgets.",
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Do Not Sell or Share My Personal Information", description: "Opt out of the sale or sharing of personal information under CCPA/CPRA.", url: `${BASE_URL}/do-not-sell`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
   },
+  "/html-sitemap": {
+    title: "Site Map — Browse All Pages",
+    description: "Browse every page on RentMyGadgets. Find every product, rental category, blog post, and policy page in one place.",
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "Site Map", description: "Complete site map of RentMyGadgets with links to all products, categories, blog posts, and policies.", url: `${BASE_URL}/html-sitemap`, isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL } },
+  },
 };
 
 // Per-route comma-separated keywords. Used as a meta tag for crawlers.
@@ -425,6 +430,7 @@ const STATIC_KEYWORDS: Record<string, string> = {
   "/advertising-disclosure": "advertising disclosure, merchant standards, pricing transparency, ad compliance",
   "/accessibility": "accessibility statement, WCAG 2.1, ADA compliance, accessible website, screen reader support",
   "/do-not-sell": "do not sell my information, CCPA opt out, CPRA opt out, California privacy rights, data sharing opt out",
+  "/html-sitemap": "site map, all pages, browse products, product directory, rental catalog sitemap",
 };
 
 async function getProductMeta(env: Env, idOrSlug: string): Promise<PageMeta | null> {
@@ -1276,6 +1282,14 @@ const CRAWLER_PAGE_CONTENT: Record<string, string> = {
 <p>Your dashboard provides a complete overview of your current and past rental activity. View the status of active rentals including equipment details, rental period, monthly cost, and delivery tracking information. Extend your rental period at any time to take advantage of progressive discounts for longer terms. Initiate returns through your dashboard when your rental period ends — we provide prepaid shipping labels for all returns. Add or modify <a href="/gadgetcare">GadgetCare+ protection</a> on active rentals for coverage against accidental damage.</p>
 <h2>Account Settings and Support</h2>
 <p>Update your personal information, shipping addresses, and payment methods in your account settings. View your complete rental history and download receipts for any past orders. Check the status of pending refunds and <a href="/security-deposit">security deposit</a> returns. If you have rented an item for 6 months or longer, explore our <a href="/rent-to-own">Rent-to-Own program</a> to purchase your equipment at a reduced price. <a href="/products">Browse products</a> to start a new rental, visit <a href="/categories">categories</a> for organized browsing, or <a href="/search">search our catalog</a>. Review our <a href="/rental-policy">rental policy</a>, <a href="/return-policy">return policy</a>, and <a href="/shipping-policy">shipping policy</a>. <a href="/contact">Contact us</a> for support.</p>`,
+
+  "/html-sitemap": `<p>Welcome to the RentMyGadgets site map. This page provides links to every page on our website, including all product pages, rental category landing pages, collection pages, blog posts, and policy documents.</p>
+<h2>Rental Category Pages</h2>
+<p>Browse our rental categories: <a href="/laptop-desktop-rentals">Laptop & Desktop Rentals</a>, <a href="/smartphone-rentals">Smartphone Rentals</a>, <a href="/camera-gear-rentals">Camera & Gear Rentals</a>, <a href="/headphones-audio-rentals">Headphones & Audio Rentals</a>, <a href="/router-rentals">Router Rentals</a>, and <a href="/office-printer-rentals">Office Printer Rentals</a>.</p>
+<h2>Main Pages</h2>
+<p><a href="/">Home</a> | <a href="/categories">Browse Categories</a> | <a href="/products">All Products</a> | <a href="/how-it-works">How It Works</a> | <a href="/gadgetcare">GadgetCare+ Protection</a> | <a href="/rent-to-own">Rent-to-Own</a> | <a href="/search">Search</a> | <a href="/compare">Compare Products</a> | <a href="/blog">Blog</a> | <a href="/about">About Us</a> | <a href="/contact">Contact</a></p>
+<h2>Policy & Legal Pages</h2>
+<p><a href="/terms">Terms & Conditions</a> | <a href="/privacy">Privacy Policy</a> | <a href="/rental-policy">Rental Policy</a> | <a href="/return-policy">Return Policy</a> | <a href="/shipping-policy">Shipping Policy</a> | <a href="/damage-policy">Damage Policy</a> | <a href="/security-deposit">Security Deposit</a> | <a href="/cookies">Cookie Policy</a> | <a href="/do-not-sell">Do Not Sell</a> | <a href="/accessibility">Accessibility</a> | <a href="/advertising-disclosure">Advertising Disclosure</a></p>`,
 };
 
 function getCrawlerPageContent(url: string): string {
@@ -1295,6 +1309,7 @@ const NAV_LINKS = [
   { href: "/blog", text: "Blog" },
   { href: "/search", text: "Search Products" },
   { href: "/compare", text: "Compare Products" },
+  { href: "/html-sitemap", text: "Site Map" },
 ];
 
 const COLLECTION_LINKS = [
@@ -1359,9 +1374,9 @@ function buildCrawlerNav(
   const allBodySections = `${catSection}${productSection}${blogSection}`;
 
   return {
-    header: `<header hidden aria-hidden="true"><nav aria-label="Site Navigation"><p><a href="/"><strong>RentMyGadgets</strong></a> | ${navHtml}</p><p>${collectionHtml}</p></nav></header>`,
-    bodyLinks: allBodySections ? `<div hidden aria-hidden="true">${allBodySections}</div>` : "",
-    footer: `<footer hidden aria-hidden="true"><p>${policyHtml}</p></footer>`,
+    header: `<header><nav aria-label="Site Navigation"><p><a href="/"><strong>RentMyGadgets</strong></a> | ${navHtml}</p><p>${collectionHtml}</p></nav></header>`,
+    bodyLinks: allBodySections ? `<div>${allBodySections}</div>` : "",
+    footer: `<footer><p>${policyHtml}</p></footer>`,
   };
 }
 
@@ -1418,6 +1433,16 @@ const NOSCRIPT_FALLBACK = `<noscript>
       <li><a href="/rent-to-own">Rent-to-own</a></li>
       <li><a href="/blog">Blog &amp; guides</a></li>
       <li><a href="/about">About us</a></li>
+      <li><a href="/html-sitemap">Site map</a></li>
+    </ul>
+    <h2 style="font-size:1.15rem;margin:1.25rem 0 0.5rem;">Rental Categories</h2>
+    <ul style="line-height:1.8;">
+      <li><a href="/laptop-desktop-rentals">Laptop &amp; Desktop Rentals</a></li>
+      <li><a href="/smartphone-rentals">Smartphone Rentals</a></li>
+      <li><a href="/camera-gear-rentals">Camera &amp; Gear Rentals</a></li>
+      <li><a href="/headphones-audio-rentals">Headphones &amp; Audio Rentals</a></li>
+      <li><a href="/router-rentals">Router Rentals</a></li>
+      <li><a href="/office-printer-rentals">Office Printer Rentals</a></li>
     </ul>
     <h2 style="font-size:1.15rem;margin:1.25rem 0 0.5rem;">Contact</h2>
     <ul style="line-height:1.8;">
@@ -1641,7 +1666,7 @@ export async function injectMeta(
   const safeH1 = escapeHtml(h1Source);
   // Prefer route-specific dynamic body; fall back to the static map.
   const pageContent = meta.bodyContent ?? getCrawlerPageContent(url);
-  const crawlerContent = `<div hidden aria-hidden="true" style="display:none!important">${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}</div>`;
+  const crawlerContent = `<div id="ssr-content">${nav.header}<main><h1>${safeH1}</h1><p>${safeDesc}</p>${pageContent}</main>${nav.bodyLinks}${nav.footer}</div>`;
   result = result.replace('<div id="root"></div>', `<div id="root">${crawlerContent}</div>`);
 
   // No-JS fallback lives outside the React root so hydration can't wipe it.

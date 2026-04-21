@@ -1,0 +1,52 @@
+esktops and Laptops
+Pair 1 — Laptop
+Headline: Laptops for Work and Home Life (30)
+Description: Laptops for work, study, gaming, and travel. Light build, strong battery, and fast speeds. (90)
+Pair 2 — Desktop
+Headline: Desktop Computers for Any Room (30)
+Description: Desktop computers for home, work, and gaming. Wide displays, strong power, and fast speed. (90)
+Pair 3 — Workstation
+Headline: Workstations for Creative Work (30)
+Description: Workstations built for design, editing, and coding. Strong chips, big memory, quick speed. (90)
+
+Phones
+Pair 1 — Smartphone
+Headline: Smartphones for Daily Life Use (30)
+Description: Smartphones with sharp displays, strong cameras, and long battery life for daily home use. (90)
+Pair 2 — Mobile phone
+Headline: Mobile Phones for Home or Work (30)
+Description: Mobile phones with clear screens, smooth performance, and long battery life for daily use. (90)
+Pair 3 — Cell phone
+Headline: Cell Phones for Home or Travel (30)
+Description: Cell phones with sharp cameras, clear calls, and lasting battery life for work and travel. (90)
+
+Headphones and Audio Gear
+Pair 1 — Headphones
+Headline: Headphones for Music and Games (30)
+Description: Headphones with clear sound, comfy fit, and long battery life for music, calls, or gaming. (90)
+Pair 2 — Keyboards
+Headline: Keyboards Made for Fast Typing (30)
+Description: Keyboards with quiet keys, strong build, and smooth action for busy office and home desks. (90)
+Pair 3 — Computer mice
+Headline: Computer Mice for Home or Work (30)
+Description: Computer mice with smooth glide, quiet clicks, and comfort grip for daily work and gaming. (90)
+
+Cameras and Gear
+Pair 1 — DSLR camera
+Headline: DSLR Cameras for Photo Studios (30)
+Description: DSLR cameras for portraits, events, and travel. Sharp lens, strong build, and clear shots. (90)
+Pair 2 — Camera lens
+Headline: Camera Lenses for Clear Photos (30)
+Description: Camera lenses with sharp focus, wide range, and smooth zoom for portrait and travel shots. (90)
+Pair 3 — Lighting gear
+Headline: Lighting Gear for Photo Shoots (30)
+Description: Lighting gear for photo and video shoots. Softbox, stands, and bright LED lights in stock. (90)
+
+Routers
+Pair 1 — Router
+Headline: Routers for Fast Home Internet (30)
+Description: Routers with fast speeds, wide range, and stable signal for home, office, or everyday use. (90)
+Pair 2 — WiFi router
+Headline: WiFi Routers for Home and Work (30)
+Description: WiFi routers with strong speeds, wide coverage, and stable signal for any home and office. (90)
+Pair 3 — Wireless router

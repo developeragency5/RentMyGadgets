@@ -48,6 +48,7 @@ const SmartphoneRentals = lazy(() => import("@/pages/smartphone-rentals"));
 const HeadphonesAudioRentals = lazy(() => import("@/pages/headphones-audio-rentals"));
 const CameraGearRentals = lazy(() => import("@/pages/camera-gear-rentals"));
 const RouterRentals = lazy(() => import("@/pages/router-rentals"));
+const HtmlSitemap = lazy(() => import("@/pages/html-sitemap"));
 
 // Loading fallback component
 function PageLoader() {
@@ -109,6 +110,7 @@ function Router() {
         <Route path="/headphones-audio-rentals" component={HeadphonesAudioRentals} />
         <Route path="/camera-gear-rentals" component={CameraGearRentals} />
         <Route path="/router-rentals" component={RouterRentals} />
+        <Route path="/html-sitemap" component={HtmlSitemap} />
         
         <Route component={NotFound} />
       </Switch>
