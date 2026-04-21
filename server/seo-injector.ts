@@ -46,6 +46,27 @@ function toAbsoluteUrl(path: string): string {
   return `${BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
 }
 
+const TRACKING_PARAMS = new Set([
+  "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
+  "utm_id", "ref", "fbclid", "gclid", "gclsrc", "dclid", "msclkid",
+  "twclid", "li_fat_id", "mc_cid", "mc_eid", "s_kwcid", "ef_id",
+  "_ga", "_gl", "yclid", "ttclid", "wbraid", "gbraid",
+]);
+
+function stripTrackingParams(url: string): string {
+  const [path, query] = url.split("?");
+  if (!query) return path;
+  const params = new URLSearchParams(query.split("#")[0]);
+  const kept = new URLSearchParams();
+  params.forEach((value, key) => {
+    if (!TRACKING_PARAMS.has(key)) {
+      kept.append(key, value);
+    }
+  });
+  const qs = kept.toString();
+  return qs ? `${path}?${qs}` : path;
+}
+
 const STATIC_KEYWORDS: Record<string, string> = {
   "/": "rent tech equipment, laptop rental, camera rental, MacBook rental, rent gadgets, tech rental USA, rent electronics, monthly tech rental, rent-to-own electronics",
   "/categories": "tech rental categories, laptop rental, camera rental, desktop rental, headphone rental, printer rental, networking rental, browse rentals",
@@ -652,6 +673,42 @@ export async function getMetaForUrl(url: string): Promise<PageMeta> {
     }
   }
 
+  if (cleanUrl === "/search" && queryPart) {
+    const params = new URLSearchParams(queryPart.split("#")[0]);
+    const q = params.get("q");
+    if (q) {
+      return {
+        ...STATIC_ROUTES["/search"],
+        canonicalUrl: `${BASE_URL}/search`,
+        noindex: true,
+      };
+    }
+  }
+
+  if (cleanUrl === "/rent-to-own" && queryPart) {
+    const params = new URLSearchParams(queryPart.split("#")[0]);
+    const productId = params.get("product");
+    if (productId) {
+      const product = await storage.getProduct(productId);
+      if (product) {
+        return {
+          canonicalUrl: `${BASE_URL}/rent-to-own?product=${encodeURIComponent(productId)}`,
+          title: `Rent-to-Own ${product.name} | ${SITE_NAME}`,
+          description: `Own the ${product.name} after 6 months of renting. Apply your rental payments toward ownership at a 30% discount off the $${product.retailPrice} retail price.`,
+          keywords: `rent to own ${product.name}, ${product.name} rental, buy after renting, ownership program`,
+          jsonLd: {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: `Rent-to-Own: ${product.name}`,
+            description: `Rent-to-own program for the ${product.name}. Purchase after 6 months at a reduced price.`,
+            url: `${BASE_URL}/rent-to-own?product=${encodeURIComponent(productId)}`,
+            isPartOf: { "@type": "WebSite", name: SITE_NAME, url: BASE_URL },
+          },
+        };
+      }
+    }
+  }
+
   if (STATIC_ROUTES[cleanUrl]) {
     return applyNoindex(STATIC_ROUTES[cleanUrl]);
   }
@@ -1021,7 +1078,7 @@ export async function injectMeta(html: string, meta: PageMeta, url: string): Pro
   const safeTitle = escapeHtml(fullTitle);
   const safeDesc = escapeHtml(meta.description);
   const image = toAbsoluteUrl(meta.image || DEFAULT_IMAGE);
-  const fullUrl = meta.canonicalUrl || `${BASE_URL}${url.split("?")[0]}`;
+  const fullUrl = meta.canonicalUrl || `${BASE_URL}${stripTrackingParams(url)}`;
   const ogType =
     meta.type === "product" ? "product"
     : meta.type === "article" ? "article"
