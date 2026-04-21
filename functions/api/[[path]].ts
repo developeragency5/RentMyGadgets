@@ -53,9 +53,9 @@ app.get("/products", async (c) => {
     }
     const fixed = await fixGalleryArrays(c.env, rows);
     return c.json(fixed);
-  } catch (err) {
+  } catch (err: any) {
     console.error("GET /api/products failed:", err);
-    return c.json({ message: "Failed to fetch products" }, 500);
+    return c.json({ message: "Failed to fetch products", error: String(err?.message || err) }, 500);
   }
 });
 
@@ -72,7 +72,7 @@ app.get("/products/:idOrSlug", async (c) => {
     return c.json(fixed[0]);
   } catch (err) {
     console.error("GET /api/products/:idOrSlug failed:", err);
-    return c.json({ message: "Failed to fetch product" }, 500);
+    return c.json({ message: "Failed to fetch product", error: String((err as any)?.message || err) }, 500);
   }
 });
 
