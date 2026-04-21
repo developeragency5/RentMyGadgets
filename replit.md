@@ -44,6 +44,8 @@ Preferred communication style: Simple, everyday language.
 
 ### Cloudflare Pages Deployment Notes
 
+- **Dual Database Setup**: The Replit dev environment uses a Replit-managed PostgreSQL (`helium/heliumdb`), while the CF Pages deployment connects to a separate Neon Serverless PostgreSQL. These databases may have different schemas (e.g., the Neon DB may be missing the `slug` column on the products table). All CF product queries use raw SQL (`SELECT *`) via `queryProducts()` helper to avoid Drizzle schema mismatches.
+- **Product Query Resilience**: The `queryProducts()` helper in `functions/_lib/db.ts` uses raw SQL with `SELECT *` and snake_to_camelCase conversion. Slug-based lookups fall back to name-based search when the `slug` column is absent.
 - **Gallery Array Parsing**: CF Workers `fixGalleryArrays` uses inline parsing (not raw SQL) to handle PostgreSQL array columns. This avoids 500 errors that occurred when the raw neon SQL query crashed on CF Workers.
 - **Sitemap**: Product URLs use slug-based paths (`/product/:slug`). Gallery images are included with robust type guards.
 - **SEO Injection**: The catch-all function injects product-specific OG images, JSON-LD structured data, and gallery images into server-rendered HTML for crawlers (Bing, Google).
