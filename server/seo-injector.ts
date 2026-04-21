@@ -379,16 +379,96 @@ function upsertLink(html: string, rel: string, href: string): string {
   return html.replace("</head>", `    ${tag}\n  </head>`);
 }
 
+const HOMEPAGE_CRAWLER_CONTENT = `<p>RentMyGadgets is the trusted destination for renting premium technology equipment in the United States. Whether you need a powerful <a href="/categories/2c7a748e-6128-488e-af34-1ff07d5efca8">MacBook Pro or Windows laptop</a> for a creative project, a <a href="/categories/09bcf6ce-10bb-4e95-95ee-477e78f6edb1">Canon or Sony mirrorless camera</a> for professional photography, or a <a href="/categories/18079e56-3836-4542-b12a-733b4ce84bdd">color laser printer</a> for your small office, our flexible monthly rental plans fit any budget and timeline. We carry over 140 inspected, ready-to-ship products from trusted brands including Apple, Dell, HP, Lenovo, Canon, Sony, Nikon, Bose, DJI, Brother, Epson, and Netgear — with same-day delivery available in select areas, free shipping on rentals of 3 months or longer, optional <a href="/gadgetcare">GadgetCare+ damage protection</a>, and a <a href="/rent-to-own">Rent-to-Own pathway</a> if you decide to keep the gear.</p>
+
+<h2>Browse Tech Rentals by Category</h2>
+<p>Explore our six rental categories to find the right equipment for your project, business, classroom, or studio. Every category is curated with current-generation models, multiple brand options, and transparent monthly pricing.</p>
+<ul>
+  <li><a href="/categories/2c7a748e-6128-488e-af34-1ff07d5efca8"><img src="/images/categories/desktops-and-laptops-macbook-workspace-camera-v2.webp" alt="Rent MacBook and Windows laptops, desktops, and workstations" loading="lazy" width="240" height="160" /></a> <strong><a href="/categories/2c7a748e-6128-488e-af34-1ff07d5efca8">Desktops &amp; Laptops</a></strong> — MacBook Pro, MacBook Air, Dell XPS, HP Spectre, Lenovo ThinkPad ultrabooks, mobile workstations, gaming laptops, and high-performance desktop towers for video editing, 3D rendering, software development, and remote work.</li>
+  <li><a href="/categories/09bcf6ce-10bb-4e95-95ee-477e78f6edb1"><strong>Cameras &amp; Gear</strong></a> — Professional DSLR and mirrorless cameras from Canon, Sony, Nikon, Fujifilm, and Panasonic. Rent the Canon EOS R5, Sony A7 IV, Nikon Z9, plus cinema lenses, gimbals, and the DJI Ronin 4D for film and photo shoots.</li>
+  <li><a href="/categories/18079e56-3836-4542-b12a-733b4ce84bdd"><strong>Printers &amp; Scanners</strong></a> — HP, Brother, Canon, and Epson laser printers, color laser printers, all-in-one office printers, and high-volume scanners for small businesses, home offices, real-estate firms, schools, and pop-up events.</li>
+  <li><a href="/categories/c9f3d7d1-34c8-4f9f-9dec-57a808b28e35"><img src="/images/categories/phones-category-iphone-pro-max-collection-colors.webp" alt="Rent iPhone, Samsung Galaxy, Google Pixel, and OnePlus smartphones" loading="lazy" width="240" height="160" /></a> <strong><a href="/categories/c9f3d7d1-34c8-4f9f-9dec-57a808b28e35">Phones</a></strong> — iPhone 16 Pro and Pro Max, Samsung Galaxy S24 Ultra, Google Pixel, OnePlus, and Sony Xperia smartphones for app testing, content creation, business travel, or short-term loaners.</li>
+  <li><a href="/categories/5bf83f8b-6cca-4c80-ae3f-e926ef53f14e"><strong>Headphones</strong></a> — Bose QuietComfort Ultra, Sony WH-1000XM5, Apple AirPods Max, Sennheiser, and Beats premium headphones and earbuds for studio work, podcasting, and travel.</li>
+  <li><a href="/categories/f74a6ed6-d23e-4800-8a2e-df600a5f38b4"><img src="/images/categories/routers-category-mesh-wifi-gaming-network-equipment.webp" alt="Rent mesh WiFi systems, gaming routers, and small business networking" loading="lazy" width="240" height="160" /></a> <strong><a href="/categories/f74a6ed6-d23e-4800-8a2e-df600a5f38b4">Routers &amp; Networking</a></strong> — Eero, Netgear Orbi, Asus ROG, TP-Link, and Google Nest mesh WiFi 6E and WiFi 7 systems, gaming routers, and small business networking gear.</li>
+</ul>
+
+<h2>Most Popular Tech Rentals This Month</h2>
+<p>Looking for inspiration? These are the most-rented products on RentMyGadgets right now across creative, business, and consumer use cases:</p>
+<ul>
+  <li>Apple MacBook Pro 16" with M4 Max — for video editors, 3D artists, and software developers who need maximum CPU and GPU performance.</li>
+  <li>Apple iPhone 16 Pro Max — for content creators shooting ProRes video and mobile app developers testing on the latest iOS hardware.</li>
+  <li>Canon EOS R5 mirrorless camera — for wedding photographers, real-estate shooters, and YouTube creators recording 8K video.</li>
+  <li>Sony A7 IV full-frame mirrorless — a workhorse hybrid camera for stills and video production.</li>
+  <li>DJI Ronin 4D cinema camera — an integrated 4-axis stabilized cinema rig used on commercial shoots and indie films.</li>
+  <li>HP Color LaserJet Enterprise 5700dn — a high-volume color laser printer rented by law firms, real-estate offices, and accounting practices during tax season.</li>
+  <li>Brother MFC-L8900CDW all-in-one color laser printer — popular with small offices that need print, scan, copy, and fax in one machine.</li>
+  <li>Bose QuietComfort Ultra headphones — top pick for travelers, remote workers, and podcast editors who need active noise cancellation.</li>
+  <li>Eero Pro 6E and Netgear Orbi mesh WiFi systems — rented by homeowners during renovations and event organizers covering large venues.</li>
+</ul>
+<p>See the full lineup in our <a href="/products">complete product catalog</a>, run a side-by-side <a href="/compare">comparison of any two products</a>, or use <a href="/search">search</a> to find a specific model.</p>
+
+<h2>How Renting Tech from RentMyGadgets Works</h2>
+<p>Renting is simple, transparent, and designed around real project timelines. Our full <a href="/how-it-works">How It Works guide</a> walks through every step in detail, but here is the short version:</p>
+<ol>
+  <li><strong>Choose your gear.</strong> Browse the <a href="/products">catalog</a> or pick a <a href="/categories">category</a>, then open any product page to see specs, configurations, AI-generated photography, and rental pricing.</li>
+  <li><strong>Pick your rental term.</strong> Select a 1, 3, 6, or 12-month plan. Longer terms unlock automatic savings — 10% off monthly rate for 3 months, 20% off for 6 months, and 30% off for 12 months.</li>
+  <li><strong>Add optional protection.</strong> Toggle on <a href="/gadgetcare">GadgetCare+</a> for 15% of your rental total to cover accidental drops, liquid spills, and hardware malfunctions.</li>
+  <li><strong>Check out securely.</strong> Complete checkout in minutes. Same-day delivery is available in select metro areas for orders placed before noon, and standard shipping arrives in 3 to 5 business days.</li>
+  <li><strong>Use the equipment.</strong> Get unlimited use during your rental term. Need to extend or change plans? Adjust at any time from your dashboard.</li>
+  <li><strong>Return it free — or keep it.</strong> Send everything back with the prepaid shipping label, or buy your gear at a reduced price through our <a href="/rent-to-own">Rent-to-Own program</a> after 6 months of continuous rental.</li>
+</ol>
+
+<h2>Why Rent Premium Tech Equipment Instead of Buying</h2>
+<p>For most short-term needs, renting is dramatically cheaper than buying outright and far more flexible than a multi-year lease. Renting is the right call when you need:</p>
+<ul>
+  <li><strong>Short-term project gear</strong> — a 4K camera kit for a single shoot, a workstation for a 3-month freelance contract, or extra laptops for a seasonal team.</li>
+  <li><strong>Try-before-you-buy testing</strong> — evaluate a new MacBook configuration, a mirrorless camera body, or a mesh WiFi system before committing to a purchase.</li>
+  <li><strong>Always-current technology</strong> — swap to the latest models without reselling old equipment yourself.</li>
+  <li><strong>Cash-flow friendly budgets</strong> — predictable monthly payments instead of a large up-front capital expense.</li>
+  <li><strong>Travel and event coverage</strong> — printers for trade-show booths, laptops for conferences, headphones and cameras for production crews on location.</li>
+</ul>
+<p>Every RentMyGadgets order ships from our inspection facility with a 14-day free return window, free shipping on 3+ month rentals, no long-term contracts, and the option to add GadgetCare+ damage protection at checkout.</p>
+
+<h2>Flexible Monthly Plans with Real Savings</h2>
+<p>Our tiered pricing rewards longer rentals. The base monthly rate is shown on each product page; longer terms automatically apply the discount below.</p>
+<table>
+  <thead><tr><th>Rental term</th><th>Discount on monthly rate</th><th>Best for</th></tr></thead>
+  <tbody>
+    <tr><td>1 month</td><td>Standard rate</td><td>Single shoots, short trips, weekend events</td></tr>
+    <tr><td>3 months</td><td>10% off / month</td><td>Quarterly projects, seasonal contractors, tax-season offices</td></tr>
+    <tr><td>6 months</td><td>20% off / month</td><td>Semester-long classes, freelance engagements, pop-up businesses</td></tr>
+    <tr><td>12 months</td><td>30% off / month</td><td>Long-term remote workers, annual studio kits, full-year programs</td></tr>
+  </tbody>
+</table>
+
+<h2>GadgetCare+ Damage Protection</h2>
+<p>Real life happens — coffee gets spilled, laptops get bumped, cameras occasionally meet pavement. <a href="/gadgetcare">GadgetCare+</a> is our optional protection plan that covers accidental damage, liquid spills, hardware malfunctions, and provides priority repair and replacement service for the entire length of your rental. The cost is just 15% of your rental total, and it can be added on any product page at checkout. See our standard <a href="/damage-policy">Damage Policy</a> for the baseline coverage included with every rental.</p>
+
+<h2>Rent-to-Own: A Path to Ownership</h2>
+<p>If you fall in love with the gear, you do not have to give it back. Our <a href="/rent-to-own">Rent-to-Own program</a> lets you buy any eligible product after 6 months of continuous rental at a reduced buyout price — a portion of the monthly payments you have already made is credited toward the purchase. This is especially popular with creators who rent a Canon EOS R5 or Sony A7 IV for a project and decide to keep it for the long haul.</p>
+
+<h2>Same-Day Delivery, Free Returns, and Real Support</h2>
+<p>We ship every order from our inspection center with tracking included. Standard shipping is 3 to 5 business days; <a href="/shipping-policy">expedited and same-day delivery</a> are available in select metropolitan areas. Returns are always free with our prepaid label, and the first 14 days of any rental are covered by our no-questions-asked <a href="/return-policy">return policy</a>. Have a question about your rental, billing, or a specific product? <a href="/contact">Contact our support team</a> by email and we typically respond within one business day.</p>
+
+<h2>Trusted Brands We Carry</h2>
+<p>RentMyGadgets stocks current-generation gear from the brands creators and businesses already trust: Apple (MacBook, iPhone, iPad, AirPods), Dell (XPS, Latitude, Precision), HP (Spectre, EliteBook, LaserJet), Lenovo (ThinkPad, Legion), Microsoft (Surface), Canon (EOS, PIXMA, ImageCLASS), Sony (Alpha, Xperia, WH-1000XM5), Nikon (Z series), Fujifilm, Panasonic, DJI (Ronin, Mavic), Bose (QuietComfort Ultra), Sennheiser, Beats, Brother, Epson, Eero, Netgear, Asus, TP-Link, Google (Pixel, Nest WiFi), OnePlus, and more.</p>
+
+<h2>Real-World Use Cases for Tech Rentals</h2>
+<ul>
+  <li><strong>Photographers and videographers</strong> rent cameras, lenses, gimbals, and editing laptops for specific shoots without tying up tens of thousands of dollars in gear.</li>
+  <li><strong>Small businesses and law firms</strong> rent color laser printers and all-in-one office printers during peak filing seasons or while waiting on a long-term equipment decision.</li>
+  <li><strong>Software developers and designers</strong> rent maxed-out MacBook Pro and Windows workstations for client projects and contract work.</li>
+  <li><strong>Real estate teams</strong> rent printers, networking gear, and laptops for new branch openings and pop-up offices.</li>
+  <li><strong>Event producers and trade-show exhibitors</strong> rent monitors, laptops, printers, mesh WiFi systems, and audio gear for short-term venue setups.</li>
+  <li><strong>Students and educators</strong> rent laptops and creative software stations for semester-long courses and capstone projects.</li>
+  <li><strong>Remote workers and digital nomads</strong> rent ultrabooks, headphones, and monitors during travel or relocations.</li>
+</ul>
+
+<h2>Help, Resources, and Policies</h2>
+<p>New to renting tech? Start with our <a href="/how-it-works">How It Works</a> guide, then read the <a href="/blog">RentMyGadgets blog</a> for buying-vs-renting guides, gear roundups, and project tips. Compare any two products with the <a href="/compare">comparison tool</a>, or use <a href="/search">search</a> to jump straight to a specific model. Our complete policies are linked from every page: <a href="/rental-policy">Rental Agreement</a>, <a href="/return-policy">Return &amp; Refund Policy</a>, <a href="/shipping-policy">Shipping Policy</a>, <a href="/damage-policy">Damage Policy</a>, <a href="/security-deposit">Security Deposit Policy</a>, <a href="/privacy">Privacy Policy</a>, <a href="/cookies">Cookie Policy</a>, <a href="/terms">Terms &amp; Conditions</a>, and <a href="/accessibility">Accessibility Statement</a>. Still have questions? <a href="/contact">Contact our team</a> — we are happy to help you choose the right rental.</p>`;
+
 const CRAWLER_PAGE_CONTENT: Record<string, string> = {
-  "/": `<p>RentMyGadgets is your destination for renting premium technology equipment including laptops, desktops, cameras, audio gear, and accessories. Whether you need a powerful MacBook Pro for a creative project, a Canon EOS camera for professional photography, or a high-performance gaming desktop, we offer flexible monthly rental plans that fit your budget and timeline. Our catalog features over 140 products from trusted brands like Apple, Dell, HP, Lenovo, Canon, Sony, Nikon, and more.</p>
-<h2>How Renting Works</h2>
-<p>Renting technology from RentMyGadgets is straightforward. First, <a href="/products">browse our full product catalog</a> or <a href="/categories">explore by category</a> to find the equipment you need. Next, choose your rental period from 1, 3, 6, or 12 months. Longer rental terms come with progressive discounts — save 10% on 3-month rentals, 20% on 6-month rentals, and 30% on 12-month rentals. We ship your equipment with same-day delivery available in select areas. When your rental period ends, return it using our prepaid shipping label. Learn more on our <a href="/how-it-works">How It Works</a> page.</p>
-<h2>Why Rent Premium Tech Equipment</h2>
-<p>Renting technology saves you money compared to buying, especially for short-term projects or when you want to try equipment before committing. Every item is inspected and tested before shipping to ensure quality. We offer 14-day free returns on all rentals, free shipping on orders of 3 or more months, and no long-term contracts required. You can add optional <a href="/gadgetcare">GadgetCare+ protection</a> covering accidental damage, liquid spills, and hardware malfunctions for 15% of your rental total.</p>
-<h2>Popular Rental Categories</h2>
-<p><a href="/categories">Laptops</a> — Rent MacBooks, Windows laptops, and Chromebooks for work, school, or creative projects. Choose from ultrabooks, workstations, and gaming laptops. <a href="/categories">Desktops</a> — High-performance desktop computers for gaming, video editing, 3D rendering, and professional work. <a href="/categories">Cameras</a> — DSLR, mirrorless, and video cameras from Canon, Sony, and Nikon for photography and videography projects. <a href="/categories">Audio Equipment</a> — Professional microphones, studio monitors, speakers, and headphones for podcasting, music production, and events. <a href="/categories">Accessories</a> — Monitors, keyboards, mice, docking stations, and other peripherals to complete your setup. <a href="/categories">Networking</a> — Routers, mesh systems, switches, and networking equipment for home offices and businesses.</p>
-<h2>Flexible Rental Plans and Ownership Options</h2>
-<p>All rental plans are month-to-month with no long-term commitment required. If you love the equipment you are renting, our <a href="/rent-to-own">Rent-to-Own program</a> lets you purchase it at a reduced price after 6 months. A portion of your rental payments goes toward the buyout cost. <a href="/search">Search our catalog</a> to find specific products or <a href="/compare">compare products</a> side by side. Read our <a href="/blog">tech rental blog</a> for guides and tips on getting the most from your rentals. Have questions? <a href="/contact">Contact our support team</a> for help with rentals, returns, or account issues.</p>`,
+  "/": HOMEPAGE_CRAWLER_CONTENT,
 
   "/categories": `<p>Find the perfect technology rental by browsing our organized categories. RentMyGadgets carries laptops, desktops, cameras, audio equipment, networking gear, and accessories from trusted brands like Apple, Dell, HP, Canon, Sony, Nikon, Lenovo, and more. Each category features a curated selection of premium equipment available for flexible monthly rental.</p>
 <h2>Laptop Rentals</h2>
