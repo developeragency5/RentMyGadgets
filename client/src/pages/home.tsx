@@ -739,28 +739,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats / By the Numbers */}
-      <section className="py-20 bg-gradient-to-r from-primary via-orange-500 to-amber-500 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+PC9zdmc+')] opacity-30" />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {[
-              { value: "500+", label: "Gadgets Available", icon: Package },
-              { value: "14-Day", label: "Free Returns", icon: RefreshCw },
-              { value: "24hr", label: "Fast Delivery", icon: Truck },
-              { value: "4.9★", label: "Customer Rating", icon: Star },
-            ].map((stat, i) => (
-              <AnimatedCard key={i} index={i}>
-                <div className="text-center" data-testid={`stat-${i}`}>
-                  <stat.icon className="h-8 w-8 mx-auto mb-3 text-white/80" />
-                  <div className="text-4xl md:text-5xl font-heading font-bold mb-2">{stat.value}</div>
-                  <div className="text-white/80 font-medium">{stat.label}</div>
-                </div>
-              </AnimatedCard>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Trusted Brands */}
       <section className="py-20 bg-white">
@@ -1083,7 +1061,7 @@ export default function Home() {
             {[
               {
                 q: "How does tech rental work at RentMyGadgets?",
-                a: "It's simple: browse our catalog of 500+ gadgets, choose your rental period (1, 3, 6, or 12 months), and we deliver to your doorstep. Use the device for as long as you need, then return it when you're done. You can also extend your rental or swap for a different device at any time."
+                a: "It's simple: browse our catalog, choose your rental period (1, 3, 6, or 12 months), and we deliver to your doorstep. Use the device for as long as you need, then return it when you're done. You can also extend your rental or swap for a different device at any time."
               },
               {
                 q: "Is renting a laptop cheaper than buying one?",
@@ -1139,7 +1117,7 @@ export default function Home() {
             </h2>
             <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
               Join thousands of satisfied customers who rent their tech from RentMyGadgets.
-              Browse 500+ gadgets — laptops, cameras, printers, phones, and more — all on flexible monthly terms.
+              Browse laptops, cameras, phones, and more — all on flexible monthly terms.
               Start renting today and save thousands.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
