@@ -109,8 +109,8 @@ export default function StructuredData(props: StructuredDataProps) {
               url: `${SITE_URL}/favicon.png`
             }
           },
-          datePublished: props.post.createdAt,
-          dateModified: props.post.createdAt,
+          datePublished: props.post.createdAt || new Date().toISOString(),
+          dateModified: props.post.createdAt || new Date().toISOString(),
           mainEntityOfPage: {
             "@type": "WebPage",
             "@id": `${SITE_URL}/blog/${props.post.slug}`

@@ -839,7 +839,7 @@ function getCrawlerPageContent(url: string): string {
   return CRAWLER_PAGE_CONTENT[cleanUrl] || "";
 }
 
-const CRAWLABLE_LINKS = [
+const NAV_LINKS = [
   { href: "/", text: "Home" },
   { href: "/categories", text: "Browse Categories" },
   { href: "/products", text: "All Products" },
@@ -851,6 +851,16 @@ const CRAWLABLE_LINKS = [
   { href: "/blog", text: "Blog" },
   { href: "/search", text: "Search Products" },
   { href: "/compare", text: "Compare Products" },
+];
+
+const COLLECTION_LINKS = [
+  { href: "/collections/office-printers", text: "Office Printers" },
+  { href: "/collections/laser-printers", text: "Laser Printers" },
+  { href: "/collections/color-laser-printers", text: "Color Laser Printers" },
+  { href: "/collections/small-office-printers", text: "Small Office Printers" },
+];
+
+const POLICY_LINKS = [
   { href: "/terms", text: "Terms of Service" },
   { href: "/privacy", text: "Privacy Policy" },
   { href: "/rental-policy", text: "Rental Policy" },
@@ -862,7 +872,6 @@ const CRAWLABLE_LINKS = [
   { href: "/do-not-sell", text: "Do Not Sell" },
   { href: "/accessibility", text: "Accessibility" },
   { href: "/advertising-disclosure", text: "Advertising Disclosure" },
-  { href: "/login", text: "Sign In" },
 ];
 
 interface CrawlerNavParts {
@@ -871,20 +880,22 @@ interface CrawlerNavParts {
   footer: string;
 }
 
-function buildCrawlerNav(currentUrl: string, categoryLinks: string[], _productLinks: string[]): CrawlerNavParts {
-  const mainLinks = CRAWLABLE_LINKS.slice(0, 8).map(
-    l => `<a href="${l.href}">${l.text}</a>`
-  ).join(" | ");
+function buildCrawlerNav(
+  currentUrl: string,
+  categoryLinks: string[],
+  _productLinks: string[],
+  blogLinks: string[] = [],
+): CrawlerNavParts {
+  const navHtml = NAV_LINKS.map(l => `<a href="${l.href}">${l.text}</a>`).join(" | ");
+  const collectionHtml = COLLECTION_LINKS.map(l => `<a href="${l.href}">${l.text}</a>`).join(" | ");
+  const policyHtml = POLICY_LINKS.map(l => `<a href="${l.href}">${l.text}</a>`).join(" | ");
   const catSection = categoryLinks.length > 0 ? `<p>${categoryLinks.join(" | ")}</p>` : "";
+  const blogSection = blogLinks.length > 0 ? `<p>${blogLinks.join(" | ")}</p>` : "";
 
-  // Use the HTML5 `hidden` attribute so the crawler nav is invisible to
-  // sighted users (it would otherwise flash before React hydrates) but
-  // remains in the DOM for crawlers that don't execute JavaScript. React's
-  // root-replacement on hydration also wipes these blocks for JS clients.
   return {
-    header: `<header hidden aria-hidden="true"><nav aria-label="Site Navigation"><p><a href="/"><strong>RentMyGadgets</strong></a> | ${mainLinks}</p></nav></header>`,
-    bodyLinks: catSection ? `<div hidden aria-hidden="true">${catSection}</div>` : "",
-    footer: `<footer hidden aria-hidden="true"><p><a href="/terms">Terms</a> | <a href="/privacy">Privacy</a> | <a href="/rental-policy">Rental Policy</a> | <a href="/accessibility">Accessibility</a></p></footer>`,
+    header: `<header hidden aria-hidden="true"><nav aria-label="Site Navigation"><p><a href="/"><strong>RentMyGadgets</strong></a> | ${navHtml}</p><p>${collectionHtml}</p></nav></header>`,
+    bodyLinks: catSection ? `<div hidden aria-hidden="true">${catSection}${blogSection}</div>` : (blogSection ? `<div hidden aria-hidden="true">${blogSection}</div>` : ""),
+    footer: `<footer hidden aria-hidden="true"><p>${policyHtml}</p></footer>`,
   };
 }
 
@@ -899,9 +910,10 @@ async function getCrawlerNav(env: Env, url: string): Promise<CrawlerNavParts> {
   }
   try {
     const db = getDb(env);
-    const [allCategories, allProducts] = await Promise.all([
+    const [allCategories, allProducts, allBlogPosts] = await Promise.all([
       db.select({ id: categories.id, name: categories.name }).from(categories),
       db.select({ id: products.id, name: products.name }).from(products),
+      db.select({ slug: blogPosts.slug, title: blogPosts.title, published: blogPosts.published }).from(blogPosts),
     ]);
 
     const categoryLinks = allCategories.map(
@@ -910,8 +922,11 @@ async function getCrawlerNav(env: Env, url: string): Promise<CrawlerNavParts> {
     const productLinks = allProducts.map(
       p => `<a href="/product/${p.id}">${escapeHtml(p.name)}</a>`
     );
+    const blogLinks = allBlogPosts
+      .filter(p => p.published)
+      .map(p => `<a href="/blog/${escapeHtml(p.slug)}">${escapeHtml(p.title)}</a>`);
 
-    cachedCrawlerNav = buildCrawlerNav(url, categoryLinks, productLinks);
+    cachedCrawlerNav = buildCrawlerNav(url, categoryLinks, productLinks, blogLinks);
     cachedCrawlerNavTime = now;
     return cachedCrawlerNav;
   } catch {

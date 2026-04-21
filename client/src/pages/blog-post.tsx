@@ -79,7 +79,7 @@ export default function BlogPostPage() {
         keywords={`${post.category}, tech rental tips, ${post.title.toLowerCase().split(' ').slice(0, 3).join(', ')}, rental guide`}
         article={{
           author: post.author,
-          publishedTime: post.createdAt.toString()
+          publishedTime: post.createdAt ? post.createdAt.toString() : new Date().toISOString()
         }}
       />
       <StructuredData type="blog" post={post} />
