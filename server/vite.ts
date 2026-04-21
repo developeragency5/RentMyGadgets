@@ -50,10 +50,12 @@ export async function setupVite(server: Server, app: Express) {
       );
 
       const meta = await getMetaForUrl(url);
-      template = await injectMeta(template, meta, url);
 
       const page = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      let output = page.replace(/<meta property="og:image"[^>]*\/?>\s*/gi, "");
+      output = output.replace(/<meta name="twitter:image"[^>]*\/?>\s*/gi, "");
+      output = await injectMeta(output, meta, url);
+      res.status(200).set({ "Content-Type": "text/html" }).end(output);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
       next(e);

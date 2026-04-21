@@ -67,16 +67,18 @@ Preferred communication style: Simple, everyday language.
     - Dedicated GadgetCare+ page at `/gadgetcare` with coverage details, benefits, how it works, and FAQ
     - Navigation links in header menu and footer Quick Links (blue styling)
 - **Legal Compliance**: Implementation of CCPA/CPRA requirements, including privacy policy, "Do Not Sell" page, cookie consent, and accessibility statement (WCAG 2.1 AA).
-- **SEO & Performance Optimizations** (hardcoded production domain `rentmygadgets.com` for all canonical/OG/sitemap URLs):
+- **SEO & Performance Optimizations** (hardcoded production domain `www.rentmygadgets.com` for all canonical/OG/sitemap URLs):
     - **Server-Side Meta Injection** (`server/seo-injector.ts`): Injects route-specific `<title>`, `<meta>`, Open Graph, Twitter Card, canonical URL, and JSON-LD structured data into HTML before serving — eliminates cloaking violations for ad platform bots that don't execute JavaScript
     - **Comprehensive JSON-LD Structured Data**: Every page has appropriate schema markup — Organization+WebSite on homepage, Product+BreadcrumbList on product pages, CollectionPage+BreadcrumbList on category pages, AboutPage/ContactPage/WebPage/Blog/SearchResultsPage/HowTo on other pages. Supports array of schemas per page.
-    - **Crawler-Friendly Navigation**: Hidden `<nav>` with links to all pages (23 static + ALL products + all categories) injected into HTML body after `<div id="root">` — allows crawlers to discover all pages even though the SPA renders client-side. Links cached for 1 hour.
+    - **Crawler-Friendly Navigation**: Lean hidden `<nav>` with ~20 key links (8 main nav + 6 categories + 4 footer policy) injected into HTML body after `<div id="root">`. Product discovery relies on sitemap.xml rather than inline links to keep per-page link count under 30. Links cached for 1 hour.
     - Product pages get dynamic meta from DB (name, price, description, brand, availability as Schema.org Product)
     - Category pages get dynamic meta from DB (name, description, CollectionPage schema)
     - All 26 static routes have unique, descriptive meta tags with JSON-LD structured data
     - Both dev (`vite.ts`) and production (`static.ts`) use the same async injection pipeline
+    - **Image Sitemap**: Google Image Sitemap extension (`xmlns:image`) with `<image:image>` tags for all product images (600+ URLs). Each product's sitemap entry includes `<image:loc>` and `<image:title>` for main + gallery images, making them directly crawlable.
+    - **Multi-Image OG Tags**: Product pages include multiple `og:image` tags (main + gallery), all gallery images in JSON-LD Product schema `image` array, and correct `twitter:image`. Dev server strips default template tags before Vite transform to prevent overwriting (`server/vite.ts`).
     - Dynamic sitemap.xml at /sitemap.xml with 177+ URLs including all pages, categories, products, and blog posts (with `<lastmod>` dates)
-    - robots.txt with absolute sitemap URL (`https://rentmygadgets.com/sitemap.xml`) and Disallow for /api/, /checkout, /dashboard
+    - robots.txt with absolute sitemap URL (`https://www.rentmygadgets.com/sitemap.xml`) and Disallow for /api/, /checkout, /dashboard
     - Canonical URLs on all pages via SeoHead component (client-side) and seo-injector (server-side)
     - React.lazy() and Suspense for code splitting (non-critical pages lazy loaded)
     - Enhanced meta keywords for transactional pages (Cart, Checkout, Search)

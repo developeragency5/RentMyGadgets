@@ -76,7 +76,7 @@ export async function registerRoutes(
   // Sitemap.xml for SEO
   app.get("/sitemap.xml", async (_req, res) => {
     try {
-      const baseUrl = "https://rentmygadgets.com";
+      const baseUrl = "https://www.rentmygadgets.com";
       const today = new Date().toISOString().split('T')[0];
       
       const staticPages = [
@@ -111,8 +111,8 @@ export async function registerRoutes(
         changefreq: "daily"
       }));
 
-      const products = await storage.getAllProducts();
-      const productPages = products.map(prod => ({
+      const allProducts = await storage.getAllProducts();
+      const productPages = allProducts.map(prod => ({
         loc: `/product/${prod.id}`,
         priority: "0.7",
         changefreq: "weekly"
@@ -128,15 +128,49 @@ export async function registerRoutes(
         }));
 
       const allPages = [...staticPages, ...categoryPages, ...productPages, ...blogPages];
+
+      function buildProductImageTags(prod: any): string {
+        const images: string[] = [];
+        if (prod.imageUrl) {
+          const abs = prod.imageUrl.startsWith("http") ? prod.imageUrl : `${baseUrl}${prod.imageUrl}`;
+          images.push(abs);
+        }
+        const gallery = (prod.galleryImageUrls || []) as string[];
+        for (const url of gallery) {
+          const abs = url.startsWith("http") ? url : `${baseUrl}${url}`;
+          if (!images.includes(abs)) images.push(abs);
+        }
+        if (images.length === 0) return "";
+        const nameStartsWithBrand = prod.brand && prod.name.toLowerCase().startsWith(prod.brand.toLowerCase());
+        const brandPart = (prod.brand && !nameStartsWithBrand) ? `${prod.brand} ` : "";
+        return images.map(imgUrl => {
+          const escaped = imgUrl.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          const title = `${brandPart}${prod.name} - Rent from RentMyGadgets`.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+          return `    <image:image>
+      <image:loc>${escaped}</image:loc>
+      <image:title>${title}</image:title>
+    </image:image>`;
+        }).join("\n");
+      }
+
+      const productImageMap = new Map<string, any>();
+      for (const prod of allProducts) {
+        productImageMap.set(`/product/${prod.id}`, prod);
+      }
       
       const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allPages.map(page => `  <url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${allPages.map(page => {
+  const prod = productImageMap.get(page.loc);
+  const imageTags = prod ? buildProductImageTags(prod) : "";
+  return `  <url>
     <loc>${baseUrl}${page.loc}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-  </url>`).join('\n')}
+${imageTags}  </url>`;
+}).join('\n')}
 </urlset>`;
 
       res.setHeader("Content-Type", "application/xml");

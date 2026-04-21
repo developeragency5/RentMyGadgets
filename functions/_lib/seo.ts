@@ -2,32 +2,28 @@
 // Uses Neon HTTP via Drizzle directly (no `process.env` / no Express `storage`).
 import { eq, and } from "drizzle-orm";
 import { products, categories, blogPosts } from "@shared/schema";
-import { getDb, type Env } from "./db";
+import { getDb, fixGalleryArrays, type Env } from "./db";
 
 interface PageMeta {
   title: string;
   description: string;
   type?: string;
   image?: string;
+  additionalImages?: string[];
   jsonLd?: Record<string, any> | Record<string, any>[];
   noindex?: boolean;
-  // Route-specific <main> body for crawlers; replaces CRAWLER_PAGE_CONTENT.
   bodyContent?: string;
-  // Override for the rendered <h1>; defaults to title minus the site suffix.
   h1?: string;
-  // Per-page comma-separated keywords meta tag.
   keywords?: string;
-  // Optional product-specific OG/Schema.org metadata (used for product pages).
   product?: {
     priceAmount?: string;
     priceCurrency?: string;
-    availability?: string; // "in stock" | "out of stock" | "preorder"
-    condition?: string;    // "new" | "refurbished" | "used"
+    availability?: string;
+    condition?: string;
     brand?: string;
     retailerItemId?: string;
     category?: string;
   };
-  // Optional article metadata (used for blog posts).
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -41,7 +37,7 @@ interface PageMeta {
 
 const SITE_NAME = "RentMyGadgets";
 const DEFAULT_IMAGE = "/opengraph.jpg";
-const BASE_URL = "https://rentmygadgets.com";
+const BASE_URL = "https://www.rentmygadgets.com";
 
 function toAbsoluteUrl(path: string): string {
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
@@ -251,8 +247,9 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
   try {
     const db = getDb(env);
     const productRows = await db.select().from(products).where(eq(products.id, productId)).limit(1);
-    const product = productRows[0];
-    if (!product) return null;
+    if (!productRows[0]) return null;
+    const fixedRows = await fixGalleryArrays(env, productRows);
+    const product = fixedRows[0];
 
     let category: { id: string; name: string } | null = null;
     let related: { id: string; name: string; pricePerMonth: string | null }[] = [];
@@ -272,7 +269,8 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
     // products that happen to share a manufacturer's boilerplate description still
     // get distinct meta descriptions (avoids duplicate-meta SEO warnings).
     const dbDesc = (product.descriptionShort || product.description || "").trim();
-    const brandPart = product.brand ? `${product.brand} ` : "";
+    const nameStartsWithBrand = product.brand && product.name.toLowerCase().startsWith(product.brand.toLowerCase());
+    const brandPart = (product.brand && !nameStartsWithBrand) ? `${product.brand} ` : "";
     const catPart = category ? ` in our ${category.name.toLowerCase()} category` : "";
     const uniqueLead = `Rent the ${brandPart}${product.name} from RentMyGadgets for $${price.toFixed(2)}/month${catPart}. Flexible 1, 3, 6 or 12-month plans with same-day delivery and optional GadgetCare+ protection.`;
     const desc = dbDesc
@@ -323,11 +321,20 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
       "RentMyGadgets",
     ].filter(Boolean).join(", ");
 
+    const galleryUrls: string[] = (product.galleryImageUrls || []) as string[];
+    const allImageUrls: string[] = [];
+    if (product.imageUrl) allImageUrls.push(toAbsoluteUrl(product.imageUrl));
+    for (const url of galleryUrls) {
+      const abs = toAbsoluteUrl(url);
+      if (!allImageUrls.includes(abs)) allImageUrls.push(abs);
+    }
+
     return {
       title: titleWithPrice,
       description: desc.slice(0, 300),
       type: "product",
       image: product.imageUrl || DEFAULT_IMAGE,
+      additionalImages: allImageUrls.length > 1 ? allImageUrls.slice(1) : undefined,
       imageAlt: `${brandPart}${product.name} available to rent from ${SITE_NAME}`,
       product: {
         priceAmount: price.toFixed(2),
@@ -348,7 +355,7 @@ async function getProductMeta(env: Env, productId: string): Promise<PageMeta | n
           name: product.name,
           description: desc,
           brand: product.brand ? { "@type": "Brand", name: product.brand } : undefined,
-          image: product.imageUrl ? toAbsoluteUrl(product.imageUrl) : undefined,
+          image: allImageUrls.length > 0 ? allImageUrls : (product.imageUrl ? toAbsoluteUrl(product.imageUrl) : undefined),
           category: category?.name || undefined,
           offers: {
             "@type": "Offer",
@@ -594,93 +601,53 @@ function upsertLink(html: string, rel: string, href: string): string {
   return html.replace("</head>", `    ${tag}\n  </head>`);
 }
 
-const HOMEPAGE_CRAWLER_CONTENT = `<p>RentMyGadgets is the trusted destination for renting premium technology equipment in the United States. Whether you need a powerful <a href="/categories/2c7a748e-6128-488e-af34-1ff07d5efca8">MacBook Pro or Windows laptop</a> for a creative project, a <a href="/categories/09bcf6ce-10bb-4e95-95ee-477e78f6edb1">Canon or Sony mirrorless camera</a> for professional photography, or a <a href="/categories/18079e56-3836-4542-b12a-733b4ce84bdd">color laser printer</a> for your small office, our flexible monthly rental plans fit any budget and timeline. We carry over 140 inspected, ready-to-ship products from trusted brands including Apple, Dell, HP, Lenovo, Canon, Sony, Nikon, Bose, DJI, Brother, Epson, and Netgear — with same-day delivery available in select areas, free shipping on rentals of 3 months or longer, optional <a href="/gadgetcare">GadgetCare+ damage protection</a>, and a <a href="/rent-to-own">Rent-to-Own pathway</a> if you decide to keep the gear.</p>
+const HOMEPAGE_CRAWLER_CONTENT = `<p>RentMyGadgets is the trusted destination for renting premium technology equipment in the United States. Whether you need a powerful MacBook Pro or Windows laptop for a creative project, a Canon or Sony mirrorless camera for professional photography, or a color laser printer for your small office, our flexible monthly rental plans fit any budget and timeline. We carry over 140 inspected, ready-to-ship products from trusted brands including Apple, Dell, HP, Lenovo, Canon, Sony, Nikon, Bose, DJI, Brother, Epson, and Netgear — with same-day delivery available in select areas, free shipping on rentals of 3 months or longer, optional GadgetCare+ damage protection, and a Rent-to-Own pathway if you decide to keep the gear.</p>
 
 <h2>Browse Tech Rentals by Category</h2>
 <p>Explore our six rental categories to find the right equipment for your project, business, classroom, or studio. Every category is curated with current-generation models, multiple brand options, and transparent monthly pricing.</p>
 <ul>
-  <li><a href="/categories/2c7a748e-6128-488e-af34-1ff07d5efca8"><img src="/images/categories/desktops-and-laptops-macbook-workspace-camera-v2.webp" alt="Rent MacBook and Windows laptops, desktops, and workstations" loading="lazy" width="240" height="160" /></a> <strong><a href="/categories/2c7a748e-6128-488e-af34-1ff07d5efca8">Desktops &amp; Laptops</a></strong> — MacBook Pro, MacBook Air, Dell XPS, HP Spectre, Lenovo ThinkPad ultrabooks, mobile workstations, gaming laptops, and high-performance desktop towers for video editing, 3D rendering, software development, and remote work.</li>
-  <li><a href="/categories/09bcf6ce-10bb-4e95-95ee-477e78f6edb1"><strong>Cameras &amp; Gear</strong></a> — Professional DSLR and mirrorless cameras from Canon, Sony, Nikon, Fujifilm, and Panasonic. Rent the Canon EOS R5, Sony A7 IV, Nikon Z9, plus cinema lenses, gimbals, and the DJI Ronin 4D for film and photo shoots.</li>
-  <li><a href="/categories/18079e56-3836-4542-b12a-733b4ce84bdd"><strong>Printers &amp; Scanners</strong></a> — HP, Brother, Canon, and Epson laser printers, color laser printers, all-in-one office printers, and high-volume scanners for small businesses, home offices, real-estate firms, schools, and pop-up events.</li>
-  <li><a href="/categories/c9f3d7d1-34c8-4f9f-9dec-57a808b28e35"><img src="/images/categories/phones-category-iphone-pro-max-collection-colors.webp" alt="Rent iPhone, Samsung Galaxy, Google Pixel, and OnePlus smartphones" loading="lazy" width="240" height="160" /></a> <strong><a href="/categories/c9f3d7d1-34c8-4f9f-9dec-57a808b28e35">Phones</a></strong> — iPhone 16 Pro and Pro Max, Samsung Galaxy S24 Ultra, Google Pixel, OnePlus, and Sony Xperia smartphones for app testing, content creation, business travel, or short-term loaners.</li>
-  <li><a href="/categories/5bf83f8b-6cca-4c80-ae3f-e926ef53f14e"><strong>Headphones</strong></a> — Bose QuietComfort Ultra, Sony WH-1000XM5, Apple AirPods Max, Sennheiser, and Beats premium headphones and earbuds for studio work, podcasting, and travel.</li>
-  <li><a href="/categories/f74a6ed6-d23e-4800-8a2e-df600a5f38b4"><img src="/images/categories/routers-category-mesh-wifi-gaming-network-equipment.webp" alt="Rent mesh WiFi systems, gaming routers, and small business networking" loading="lazy" width="240" height="160" /></a> <strong><a href="/categories/f74a6ed6-d23e-4800-8a2e-df600a5f38b4">Routers &amp; Networking</a></strong> — Eero, Netgear Orbi, Asus ROG, TP-Link, and Google Nest mesh WiFi 6E and WiFi 7 systems, gaming routers, and small business networking gear.</li>
+  <li><strong>Desktops &amp; Laptops</strong> — MacBook Pro, MacBook Air, Dell XPS, HP Spectre, Lenovo ThinkPad ultrabooks, mobile workstations, gaming laptops, and high-performance desktop towers for video editing, 3D rendering, software development, and remote work.</li>
+  <li><strong>Cameras &amp; Gear</strong> — Professional DSLR and mirrorless cameras from Canon, Sony, Nikon, Fujifilm, and Panasonic. Rent the Canon EOS R5, Sony A7 IV, Nikon Z9, plus cinema lenses, gimbals, and the DJI Ronin 4D for film and photo shoots.</li>
+  <li><strong>Printers &amp; Scanners</strong> — HP, Brother, Canon, and Epson laser printers, color laser printers, all-in-one office printers, and high-volume scanners for small businesses, home offices, real-estate firms, schools, and pop-up events.</li>
+  <li><strong>Phones</strong> — iPhone 16 Pro and Pro Max, Samsung Galaxy S24 Ultra, Google Pixel, OnePlus, and Sony Xperia smartphones for app testing, content creation, business travel, or short-term loaners.</li>
+  <li><strong>Headphones</strong> — Bose QuietComfort Ultra, Sony WH-1000XM5, Apple AirPods Max, Sennheiser, and Beats premium headphones and earbuds for studio work, podcasting, and travel.</li>
+  <li><strong>Routers &amp; Networking</strong> — Eero, Netgear Orbi, Asus ROG, TP-Link, and Google Nest mesh WiFi 6E and WiFi 7 systems, gaming routers, and small business networking gear.</li>
 </ul>
 
-<h2>Most Popular Tech Rentals This Month</h2>
-<p>Looking for inspiration? These are the most-rented products on RentMyGadgets right now across creative, business, and consumer use cases:</p>
-<ul>
-  <li>Apple MacBook Pro 16" with M4 Max — for video editors, 3D artists, and software developers who need maximum CPU and GPU performance.</li>
-  <li>Apple iPhone 16 Pro Max — for content creators shooting ProRes video and mobile app developers testing on the latest iOS hardware.</li>
-  <li>Canon EOS R5 mirrorless camera — for wedding photographers, real-estate shooters, and YouTube creators recording 8K video.</li>
-  <li>Sony A7 IV full-frame mirrorless — a workhorse hybrid camera for stills and video production.</li>
-  <li>DJI Ronin 4D cinema camera — an integrated 4-axis stabilized cinema rig used on commercial shoots and indie films.</li>
-  <li>HP Color LaserJet Enterprise 5700dn — a high-volume color laser printer rented by law firms, real-estate offices, and accounting practices during tax season.</li>
-  <li>Brother MFC-L8900CDW all-in-one color laser printer — popular with small offices that need print, scan, copy, and fax in one machine.</li>
-  <li>Bose QuietComfort Ultra headphones — top pick for travelers, remote workers, and podcast editors who need active noise cancellation.</li>
-  <li>Eero Pro 6E and Netgear Orbi mesh WiFi systems — rented by homeowners during renovations and event organizers covering large venues.</li>
-</ul>
-<p>See the full lineup in our <a href="/products">complete product catalog</a>, run a side-by-side <a href="/compare">comparison of any two products</a>, or use <a href="/search">search</a> to find a specific model.</p>
-
-<h2>How Renting Tech from RentMyGadgets Works</h2>
-<p>Renting is simple, transparent, and designed around real project timelines. Our full <a href="/how-it-works">How It Works guide</a> walks through every step in detail, but here is the short version:</p>
+<h2>How Renting Tech Works</h2>
+<p>Renting is simple, transparent, and designed around real project timelines:</p>
 <ol>
-  <li><strong>Choose your gear.</strong> Browse the <a href="/products">catalog</a> or pick a <a href="/categories">category</a>, then open any product page to see specs, configurations, AI-generated photography, and rental pricing.</li>
-  <li><strong>Pick your rental term.</strong> Select a 1, 3, 6, or 12-month plan. Longer terms unlock automatic savings — 10% off monthly rate for 3 months, 20% off for 6 months, and 30% off for 12 months.</li>
+  <li><strong>Choose your gear.</strong> Browse the <a href="/products">catalog</a> or pick a <a href="/categories">category</a>, then open any product page to see specs, configurations, and rental pricing.</li>
+  <li><strong>Pick your rental term.</strong> Select a 1, 3, 6, or 12-month plan. Longer terms unlock automatic savings — 10% off for 3 months, 20% off for 6 months, and 30% off for 12 months.</li>
   <li><strong>Add optional protection.</strong> Toggle on <a href="/gadgetcare">GadgetCare+</a> for 15% of your rental total to cover accidental drops, liquid spills, and hardware malfunctions.</li>
-  <li><strong>Check out securely.</strong> Complete checkout in minutes. Same-day delivery is available in select metro areas for orders placed before noon, and standard shipping arrives in 3 to 5 business days.</li>
-  <li><strong>Use the equipment.</strong> Get unlimited use during your rental term. Need to extend or change plans? Adjust at any time from your dashboard.</li>
-  <li><strong>Return it free — or keep it.</strong> Send everything back with the prepaid shipping label, or buy your gear at a reduced price through our <a href="/rent-to-own">Rent-to-Own program</a> after 6 months of continuous rental.</li>
+  <li><strong>Check out securely.</strong> Same-day delivery is available in select metro areas, and standard shipping arrives in 3 to 5 business days.</li>
+  <li><strong>Return it free — or keep it.</strong> Send everything back with the prepaid shipping label, or buy your gear through our <a href="/rent-to-own">Rent-to-Own program</a> after 6 months.</li>
 </ol>
 
-<h2>Why Rent Premium Tech Equipment Instead of Buying</h2>
-<p>For most short-term needs, renting is dramatically cheaper than buying outright and far more flexible than a multi-year lease. Renting is the right call when you need:</p>
-<ul>
-  <li><strong>Short-term project gear</strong> — a 4K camera kit for a single shoot, a workstation for a 3-month freelance contract, or extra laptops for a seasonal team.</li>
-  <li><strong>Try-before-you-buy testing</strong> — evaluate a new MacBook configuration, a mirrorless camera body, or a mesh WiFi system before committing to a purchase.</li>
-  <li><strong>Always-current technology</strong> — swap to the latest models without reselling old equipment yourself.</li>
-  <li><strong>Cash-flow friendly budgets</strong> — predictable monthly payments instead of a large up-front capital expense.</li>
-  <li><strong>Travel and event coverage</strong> — printers for trade-show booths, laptops for conferences, headphones and cameras for production crews on location.</li>
-</ul>
-<p>Every RentMyGadgets order ships from our inspection facility with a 14-day free return window, free shipping on 3+ month rentals, no long-term contracts, and the option to add GadgetCare+ damage protection at checkout.</p>
+<h2>Why Rent Instead of Buying</h2>
+<p>For most short-term needs, renting is cheaper than buying outright and more flexible than a multi-year lease. Renting works well for short-term project gear, try-before-you-buy testing, always-current technology, cash-flow friendly budgets, and travel or event coverage. Every order ships from our inspection facility with a 14-day free return window and no long-term contracts.</p>
 
 <h2>Flexible Monthly Plans with Real Savings</h2>
-<p>Our tiered pricing rewards longer rentals. The base monthly rate is shown on each product page; longer terms automatically apply the discount below.</p>
 <table>
-  <thead><tr><th>Rental term</th><th>Discount on monthly rate</th><th>Best for</th></tr></thead>
+  <thead><tr><th>Rental term</th><th>Discount</th><th>Best for</th></tr></thead>
   <tbody>
     <tr><td>1 month</td><td>Standard rate</td><td>Single shoots, short trips, weekend events</td></tr>
-    <tr><td>3 months</td><td>10% off / month</td><td>Quarterly projects, seasonal contractors, tax-season offices</td></tr>
-    <tr><td>6 months</td><td>20% off / month</td><td>Semester-long classes, freelance engagements, pop-up businesses</td></tr>
-    <tr><td>12 months</td><td>30% off / month</td><td>Long-term remote workers, annual studio kits, full-year programs</td></tr>
+    <tr><td>3 months</td><td>10% off / month</td><td>Quarterly projects, seasonal contractors</td></tr>
+    <tr><td>6 months</td><td>20% off / month</td><td>Semester-long classes, freelance engagements</td></tr>
+    <tr><td>12 months</td><td>30% off / month</td><td>Long-term remote workers, annual studio kits</td></tr>
   </tbody>
 </table>
 
-<h2>GadgetCare+ Damage Protection</h2>
-<p>Real life happens — coffee gets spilled, laptops get bumped, cameras occasionally meet pavement. <a href="/gadgetcare">GadgetCare+</a> is our optional protection plan that covers accidental damage, liquid spills, hardware malfunctions, and provides priority repair and replacement service for the entire length of your rental. The cost is just 15% of your rental total, and it can be added on any product page at checkout. See our standard <a href="/damage-policy">Damage Policy</a> for the baseline coverage included with every rental.</p>
-
-<h2>Rent-to-Own: A Path to Ownership</h2>
-<p>If you fall in love with the gear, you do not have to give it back. Our <a href="/rent-to-own">Rent-to-Own program</a> lets you buy any eligible product after 6 months of continuous rental at a reduced buyout price — a portion of the monthly payments you have already made is credited toward the purchase. This is especially popular with creators who rent a Canon EOS R5 or Sony A7 IV for a project and decide to keep it for the long haul.</p>
-
-<h2>Same-Day Delivery, Free Returns, and Real Support</h2>
-<p>We ship every order from our inspection center with tracking included. Standard shipping is 3 to 5 business days; <a href="/shipping-policy">expedited and same-day delivery</a> are available in select metropolitan areas. Returns are always free with our prepaid label, and the first 14 days of any rental are covered by our no-questions-asked <a href="/return-policy">return policy</a>. Have a question about your rental, billing, or a specific product? <a href="/contact">Contact our support team</a> by email and we typically respond within one business day.</p>
-
-<h2>Trusted Brands We Carry</h2>
-<p>RentMyGadgets stocks current-generation gear from the brands creators and businesses already trust: Apple (MacBook, iPhone, iPad, AirPods), Dell (XPS, Latitude, Precision), HP (Spectre, EliteBook, LaserJet), Lenovo (ThinkPad, Legion), Microsoft (Surface), Canon (EOS, PIXMA, ImageCLASS), Sony (Alpha, Xperia, WH-1000XM5), Nikon (Z series), Fujifilm, Panasonic, DJI (Ronin, Mavic), Bose (QuietComfort Ultra), Sennheiser, Beats, Brother, Epson, Eero, Netgear, Asus, TP-Link, Google (Pixel, Nest WiFi), OnePlus, and more.</p>
-
-<h2>Real-World Use Cases for Tech Rentals</h2>
+<h2>Real-World Use Cases</h2>
 <ul>
-  <li><strong>Photographers and videographers</strong> rent cameras, lenses, gimbals, and editing laptops for specific shoots without tying up tens of thousands of dollars in gear.</li>
-  <li><strong>Small businesses and law firms</strong> rent color laser printers and all-in-one office printers during peak filing seasons or while waiting on a long-term equipment decision.</li>
-  <li><strong>Software developers and designers</strong> rent maxed-out MacBook Pro and Windows workstations for client projects and contract work.</li>
-  <li><strong>Real estate teams</strong> rent printers, networking gear, and laptops for new branch openings and pop-up offices.</li>
-  <li><strong>Event producers and trade-show exhibitors</strong> rent monitors, laptops, printers, mesh WiFi systems, and audio gear for short-term venue setups.</li>
-  <li><strong>Students and educators</strong> rent laptops and creative software stations for semester-long courses and capstone projects.</li>
-  <li><strong>Remote workers and digital nomads</strong> rent ultrabooks, headphones, and monitors during travel or relocations.</li>
+  <li><strong>Photographers and videographers</strong> rent cameras, lenses, gimbals, and editing laptops for specific shoots.</li>
+  <li><strong>Small businesses</strong> rent color laser printers during peak filing seasons or while evaluating equipment.</li>
+  <li><strong>Software developers</strong> rent MacBook Pro and Windows workstations for client projects and contract work.</li>
+  <li><strong>Event producers</strong> rent monitors, laptops, printers, and WiFi systems for short-term venue setups.</li>
+  <li><strong>Students and educators</strong> rent laptops and creative software stations for semester-long courses.</li>
 </ul>
 
-<h2>Help, Resources, and Policies</h2>
-<p>New to renting tech? Start with our <a href="/how-it-works">How It Works</a> guide, then read the <a href="/blog">RentMyGadgets blog</a> for buying-vs-renting guides, gear roundups, and project tips. Compare any two products with the <a href="/compare">comparison tool</a>, or use <a href="/search">search</a> to jump straight to a specific model. Our complete policies are linked from every page: <a href="/rental-policy">Rental Agreement</a>, <a href="/return-policy">Return &amp; Refund Policy</a>, <a href="/shipping-policy">Shipping Policy</a>, <a href="/damage-policy">Damage Policy</a>, <a href="/security-deposit">Security Deposit Policy</a>, <a href="/privacy">Privacy Policy</a>, <a href="/cookies">Cookie Policy</a>, <a href="/terms">Terms &amp; Conditions</a>, and <a href="/accessibility">Accessibility Statement</a>. Still have questions? <a href="/contact">Contact our team</a> — we are happy to help you choose the right rental.</p>`;
+<p>Need help? Visit our <a href="/how-it-works">How It Works</a> guide, browse the <a href="/blog">blog</a> for gear roundups and tips, or <a href="/contact">contact our team</a>. Review our <a href="/rental-policy">Rental Agreement</a> and <a href="/privacy">Privacy Policy</a> for full details.</p>`;
 
 const CRAWLER_PAGE_CONTENT: Record<string, string> = {
   "/": HOMEPAGE_CRAWLER_CONTENT,
@@ -880,15 +847,11 @@ interface CrawlerNavParts {
   footer: string;
 }
 
-function buildCrawlerNav(currentUrl: string, categoryLinks: string[], productLinks: string[]): CrawlerNavParts {
-  const mainLinks = CRAWLABLE_LINKS.slice(0, 12).map(
-    l => `<a href="${l.href}">${l.text}</a>`
-  ).join(" | ");
-  const policyLinks = CRAWLABLE_LINKS.slice(12).map(
+function buildCrawlerNav(currentUrl: string, categoryLinks: string[], _productLinks: string[]): CrawlerNavParts {
+  const mainLinks = CRAWLABLE_LINKS.slice(0, 8).map(
     l => `<a href="${l.href}">${l.text}</a>`
   ).join(" | ");
   const catSection = categoryLinks.length > 0 ? `<p>${categoryLinks.join(" | ")}</p>` : "";
-  const prodSection = productLinks.length > 0 ? `<p>${productLinks.join(" | ")}</p>` : "";
 
   // Use the HTML5 `hidden` attribute so the crawler nav is invisible to
   // sighted users (it would otherwise flash before React hydrates) but
@@ -896,8 +859,8 @@ function buildCrawlerNav(currentUrl: string, categoryLinks: string[], productLin
   // root-replacement on hydration also wipes these blocks for JS clients.
   return {
     header: `<header hidden aria-hidden="true"><nav aria-label="Site Navigation"><p><a href="/"><strong>RentMyGadgets</strong></a> | ${mainLinks}</p></nav></header>`,
-    bodyLinks: catSection || prodSection ? `<div hidden aria-hidden="true">${catSection}${prodSection}</div>` : "",
-    footer: `<footer hidden aria-hidden="true"><nav aria-label="Policies and Legal"><p>${policyLinks}</p></nav></footer>`,
+    bodyLinks: catSection ? `<div hidden aria-hidden="true">${catSection}</div>` : "",
+    footer: `<footer hidden aria-hidden="true"><p><a href="/terms">Terms</a> | <a href="/privacy">Privacy</a> | <a href="/rental-policy">Rental Policy</a> | <a href="/accessibility">Accessibility</a></p></footer>`,
   };
 }
 
@@ -1072,6 +1035,13 @@ export async function injectMeta(
   result = upsertMeta(result, "og:image:width", "1200", true);
   result = upsertMeta(result, "og:image:height", "630", true);
   result = upsertMeta(result, "og:image:alt", imageAlt, true);
+
+  if (meta.additionalImages && meta.additionalImages.length > 0) {
+    const additionalOgTags = meta.additionalImages
+      .map((imgUrl: string) => `<meta property="og:image" content="${escapeHtml(imgUrl)}" />`)
+      .join("\n    ");
+    result = result.replace("</head>", `    ${additionalOgTags}\n  </head>`);
+  }
 
   // Product-specific OpenGraph + Facebook product tags.
   if (meta.product) {

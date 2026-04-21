@@ -1,10 +1,8 @@
-// Dynamic sitemap.xml — generated from the live database on each request.
-// Mirrors the structure of the Express implementation in `server/routes.ts`.
 import { eq } from "drizzle-orm";
 import { products, categories, blogPosts } from "@shared/schema";
-import { getDb, type Env } from "./_lib/db";
+import { getDb, fixGalleryArrays, type Env } from "./_lib/db";
 
-const BASE_URL = "https://rentmygadgets.com";
+const BASE_URL = "https://www.rentmygadgets.com";
 
 const STATIC_PAGES: { loc: string; priority: string; changefreq: string }[] = [
   { loc: "/", priority: "1.0", changefreq: "daily" },
@@ -31,38 +29,85 @@ const STATIC_PAGES: { loc: string; priority: string; changefreq: string }[] = [
   { loc: "/advertising-disclosure", priority: "0.3", changefreq: "yearly" },
 ];
 
+function escXml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function buildProductImageTags(prod: any): string {
+  const images: string[] = [];
+  if (prod.imageUrl) {
+    const abs = prod.imageUrl.startsWith("http") ? prod.imageUrl : `${BASE_URL}${prod.imageUrl}`;
+    images.push(abs);
+  }
+  const gallery = (prod.galleryImageUrls || []) as string[];
+  for (const url of gallery) {
+    const abs = url.startsWith("http") ? url : `${BASE_URL}${url}`;
+    if (!images.includes(abs)) images.push(abs);
+  }
+  if (images.length === 0) return "";
+  const nameStartsWithBrand = prod.brand && prod.name.toLowerCase().startsWith(prod.brand.toLowerCase());
+  const brandPart = (prod.brand && !nameStartsWithBrand) ? `${prod.brand} ` : "";
+  return images
+    .map((imgUrl) => {
+      const title = escXml(`${brandPart}${prod.name} - Rent from RentMyGadgets`);
+      return `    <image:image>
+      <image:loc>${escXml(imgUrl)}</image:loc>
+      <image:title>${title}</image:title>
+    </image:image>`;
+    })
+    .join("\n");
+}
+
 export const onRequest: PagesFunction<Env> = async (context) => {
   try {
     const db = getDb(context.env);
     const today = new Date().toISOString().split("T")[0];
 
-    const [allCategories, allProducts, posts] = await Promise.all([
+    const [allCategories, allProductRows, posts] = await Promise.all([
       db.select({ id: categories.id }).from(categories),
-      db.select({ id: products.id }).from(products),
+      db
+        .select({
+          id: products.id,
+          name: products.name,
+          brand: products.brand,
+          imageUrl: products.imageUrl,
+          galleryImageUrls: products.galleryImageUrls,
+        })
+        .from(products),
       db
         .select({ slug: blogPosts.slug })
         .from(blogPosts)
         .where(eq(blogPosts.published, true)),
     ]);
 
+    const allProducts = await fixGalleryArrays(context.env, allProductRows);
+
+    const productImageMap = new Map<string, any>();
+    for (const prod of allProducts) {
+      productImageMap.set(`/product/${prod.id}`, prod);
+    }
+
     const allPages = [
       ...STATIC_PAGES,
-      ...allCategories.map(c => ({ loc: `/categories/${c.id}`, priority: "0.8", changefreq: "daily" })),
-      ...allProducts.map(p => ({ loc: `/product/${p.id}`, priority: "0.7", changefreq: "weekly" })),
-      ...posts.map(p => ({ loc: `/blog/${p.slug}`, priority: "0.6", changefreq: "monthly" })),
+      ...allCategories.map((c) => ({ loc: `/categories/${c.id}`, priority: "0.8", changefreq: "daily" })),
+      ...allProducts.map((p) => ({ loc: `/product/${p.id}`, priority: "0.7", changefreq: "weekly" })),
+      ...posts.map((p) => ({ loc: `/blog/${p.slug}`, priority: "0.6", changefreq: "monthly" })),
     ];
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${allPages
-  .map(
-    page => `  <url>
+  .map((page) => {
+    const prod = productImageMap.get(page.loc);
+    const imageTags = prod ? buildProductImageTags(prod) : "";
+    return `  <url>
     <loc>${BASE_URL}${page.loc}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-  </url>`
-  )
+${imageTags}  </url>`;
+  })
   .join("\n")}
 </urlset>`;
 
