@@ -411,35 +411,60 @@ async function getCategoryMeta(categoryId: string): Promise<PageMeta | null> {
   }
 }
 
-const BLOG_META: Record<string, PageMeta> = {
-  "best-laptops-remote-work-2025": {
-    title: "Best Laptops for Remote Work in 2025",
-    description: "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing for the best work-from-home setups.",
-    keywords: "best laptops for remote work, remote work laptops 2025, work from home laptop, MacBook Pro for remote work, Dell XPS rental, rent a laptop for work, laptop rental guide",
-    jsonLd: [
-      { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Best Laptops for Remote Work in 2025", description: "Discover the top laptops for remote work in 2025. Compare features, performance, and rental pricing.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/best-laptops-remote-work-2025`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/best-laptops-remote-work-2025` } },
-      { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Best Laptops for Remote Work in 2025" }] },
-    ],
-  },
-  "camera-rental-guide-beginners": {
-    title: "Camera Rental Guide for Beginners",
-    description: "A complete guide to renting cameras for beginners. Learn what to look for, which cameras to rent for different needs, and how to get started.",
-    keywords: "camera rental guide, beginner camera rental, rent a camera, DSLR rental, mirrorless camera rental, Canon EOS rental, Sony A7 rental, camera rental tips",
-    jsonLd: [
-      { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Camera Rental Guide for Beginners", description: "A complete guide to renting cameras for beginners.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/camera-rental-guide-beginners`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/camera-rental-guide-beginners` } },
-      { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Camera Rental Guide for Beginners" }] },
-    ],
-  },
-  "save-money-renting-vs-buying-tech": {
-    title: "Save Money: Renting vs. Buying Tech",
-    description: "Compare the costs of renting vs buying technology equipment. See how much you can save with flexible tech rentals.",
-    keywords: "rent vs buy tech, save money on electronics, renting vs buying laptop, cost of renting tech, tech rental savings, rent technology",
-    jsonLd: [
-      { "@context": "https://schema.org", "@type": "BlogPosting", headline: "Save Money: Renting vs. Buying Tech", description: "Compare the costs of renting vs buying technology equipment.", author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } }, url: `${BASE_URL}/blog/save-money-renting-vs-buying-tech`, mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/save-money-renting-vs-buying-tech` } },
-      { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` }, { "@type": "ListItem", position: 3, name: "Save Money: Renting vs. Buying Tech" }] },
-    ],
-  },
-};
+async function getBlogMeta(slug: string): Promise<PageMeta | null> {
+  try {
+    const post = await storage.getBlogPostBySlug(slug);
+    if (!post || !post.published) return null;
+
+    const url = `${BASE_URL}/blog/${post.slug}`;
+    const excerpt = post.excerpt;
+    const contentExcerpt = post.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 1500);
+    const bodyContent =
+      `<nav aria-label="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo; ${escapeHtml(post.title)}</nav>` +
+      `<article><h2>${escapeHtml(post.title)}</h2>` +
+      `<p><em>${escapeHtml(excerpt)}</em></p>` +
+      `<p>By ${escapeHtml(post.author)} &middot; Category: ${escapeHtml(post.category)}</p>` +
+      `<p>${escapeHtml(contentExcerpt)}</p>` +
+      `<p>Read more on the <a href="/blog">RentMyGadgets blog</a> or <a href="/contact">contact our support team</a> with questions.</p></article>`;
+
+    const blogKeywords = `${post.title}, ${post.category}, tech rental blog, RentMyGadgets blog, ${post.category} guide, rental tips`;
+
+    return {
+      title: post.title,
+      description: excerpt.slice(0, 300),
+      image: post.imageUrl || DEFAULT_IMAGE,
+      h1: post.title,
+      bodyContent,
+      keywords: blogKeywords,
+      jsonLd: [
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: excerpt,
+          image: post.imageUrl ? toAbsoluteUrl(post.imageUrl) : undefined,
+          author: { "@type": "Person", name: post.author },
+          publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.png` } },
+          datePublished: post.createdAt instanceof Date ? post.createdAt.toISOString() : new Date(post.createdAt).toISOString(),
+          url,
+          mainEntityOfPage: { "@type": "WebPage", "@id": url },
+          articleSection: post.category,
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+            { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
+            { "@type": "ListItem", position: 3, name: post.title },
+          ],
+        },
+      ],
+    };
+  } catch {
+    return null;
+  }
+}
 
 const NOINDEX_ROUTES = new Set<string>([
   "/cart",
@@ -471,8 +496,9 @@ export async function getMetaForUrl(url: string): Promise<PageMeta> {
   }
 
   const blogMatch = cleanUrl.match(/^\/blog\/([^/]+)$/);
-  if (blogMatch && BLOG_META[blogMatch[1]]) {
-    return BLOG_META[blogMatch[1]];
+  if (blogMatch) {
+    const meta = await getBlogMeta(blogMatch[1]);
+    if (meta) return meta;
   }
 
   return {
