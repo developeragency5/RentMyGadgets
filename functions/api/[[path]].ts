@@ -259,8 +259,6 @@ app.post("/auth/register", async (c) => {
     return c.json({ user: toPublicUser(user) });
   } catch (err: any) {
     console.error("POST /api/auth/register failed:", err);
-    // Detect Postgres unique-constraint violations from the race window
-    // between our pre-check and the INSERT, and return a stable 400.
     const msg = String(err?.message ?? "");
     const code = String(err?.code ?? "");
     if (code === "23505" || /duplicate key|unique constraint/i.test(msg)) {
@@ -270,7 +268,10 @@ app.post("/auth/register", async (c) => {
         400
       );
     }
-    return c.json({ error: "Registration failed" }, 500);
+    if (/DATABASE_URL/i.test(msg)) {
+      return c.json({ error: "Service temporarily unavailable. Please try again later." }, 503);
+    }
+    return c.json({ error: "Registration failed. Please try again." }, 500);
   }
 });
 

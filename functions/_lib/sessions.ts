@@ -41,11 +41,12 @@ function cookieDomain(c: Context<{ Bindings: Env }>): string | undefined {
   return undefined;
 }
 
-function requireSessionsKv(c: Context<{ Bindings: Env }>): KVNamespace {
+function getSessionsKv(c: Context<{ Bindings: Env }>): KVNamespace | null {
   if (!c.env.SESSIONS) {
-    throw new Error(
-      "SESSIONS KV namespace is not bound. Add it in Cloudflare Pages → Settings → Functions → KV namespace bindings (variable name: SESSIONS)."
+    console.warn(
+      "SESSIONS KV namespace is not bound. Sessions will use cookie-only mode. Add it in Cloudflare Pages → Settings → Functions → KV namespace bindings (variable name: SESSIONS)."
     );
+    return null;
   }
   return c.env.SESSIONS;
 }
@@ -56,7 +57,7 @@ export async function createSession(
   userId: string,
   opts: { isGuest?: boolean } = {}
 ): Promise<string> {
-  const kv = requireSessionsKv(c);
+  const kv = getSessionsKv(c);
   const sessionId = generateSessionId();
   const ttl = opts.isGuest ? GUEST_TTL_SECONDS : USER_TTL_SECONDS;
   const payload: SessionPayload = {
@@ -64,9 +65,11 @@ export async function createSession(
     isGuest: opts.isGuest === true,
     createdAt: Date.now(),
   };
-  await kv.put(`session:${sessionId}`, JSON.stringify(payload), {
-    expirationTtl: ttl,
-  });
+  if (kv) {
+    await kv.put(`session:${sessionId}`, JSON.stringify(payload), {
+      expirationTtl: ttl,
+    });
+  }
 
   const domain = cookieDomain(c);
   setCookie(c, SESSION_COOKIE, sessionId, {
