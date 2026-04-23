@@ -338,7 +338,11 @@ app.post("/auth/guest", async (c) => {
     return c.json({ user: { ...toPublicUser(user), isGuest: true } });
   } catch (err: any) {
     console.error("POST /api/auth/guest failed:", err);
-    return c.json({ error: "Failed to create guest session" }, 500);
+    const msg = String(err?.message ?? "");
+    if (/DATABASE_URL/i.test(msg)) {
+      return c.json({ error: "Service temporarily unavailable. Please try again later." }, 503);
+    }
+    return c.json({ error: "Failed to create guest session. Please try again." }, 500);
   }
 });
 
