@@ -50,7 +50,7 @@ export default function ConsentGatedScripts() {
   useEffect(() => {
     const handleConsentChange = () => {
       if (isAnalyticsAllowed()) {
-        initGoogleAnalytics("YOUR_GA_MEASUREMENT_ID");
+        initGoogleAnalytics("AW-18113004379");
       }
       if (isMarketingAllowed()) {
         initMicrosoftAds("YOUR_UET_TAG_ID");
