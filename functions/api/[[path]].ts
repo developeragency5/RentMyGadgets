@@ -271,7 +271,7 @@ app.post("/auth/register", async (c) => {
     if (/DATABASE_URL/i.test(msg)) {
       return c.json({ error: "Service temporarily unavailable. Please try again later." }, 503);
     }
-    return c.json({ error: "Registration failed. Please try again." }, 500);
+    return c.json({ error: `Registration failed: ${msg.slice(0, 200)}` }, 500);
   }
 });
 
@@ -342,7 +342,7 @@ app.post("/auth/guest", async (c) => {
     if (/DATABASE_URL/i.test(msg)) {
       return c.json({ error: "Service temporarily unavailable. Please try again later." }, 503);
     }
-    return c.json({ error: "Failed to create guest session. Please try again." }, 500);
+    return c.json({ error: `Guest session failed: ${String(err?.message ?? "").slice(0, 200)}` }, 500);
   }
 });
 
