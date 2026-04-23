@@ -19,10 +19,11 @@ pages_build_output_dir = "dist/public"
 #   COOKIE_DOMAIN   - .rentmygadgets.com (production only — leave unset on .pages.dev)
 #   GEMINI_API_KEY  - Optional, only used if AI content generation is invoked
 #
-# Required KV namespaces (Phase 2+):
-#   SESSIONS        - Stores session_id -> { userId, isGuest, createdAt }
-#                     Bind in dashboard: Settings → Functions → KV namespace bindings
-#                     Variable name: SESSIONS  →  Namespace: rentmygadgets-sessions
+# KV namespace for session storage — replace YOUR_KV_NAMESPACE_ID with the
+# actual ID from Cloudflare dashboard (Storage & databases → Workers KV).
+# [[kv_namespaces]]
+# binding = "SESSIONS"
+# id = "YOUR_KV_NAMESPACE_ID"
 #
 # Local dev with bindings:
 #   1. Create a local KV namespace once:
