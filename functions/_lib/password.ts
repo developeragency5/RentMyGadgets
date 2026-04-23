@@ -1,5 +1,5 @@
-const PBKDF2_ITERATIONS = 600_000; // OWASP 2023 recommendation for PBKDF2-SHA256
-const PBKDF2_MIN_ITERATIONS = 100_000;
+const PBKDF2_ITERATIONS = 100_000; // Cloudflare Workers max supported iterations
+const PBKDF2_MIN_ITERATIONS = 10_000;
 const PBKDF2_MAX_ITERATIONS = 5_000_000; // upper bound to prevent DoS via tampered hash
 const PBKDF2_HASH = "SHA-256";
 const PBKDF2_KEY_LEN = 32;
